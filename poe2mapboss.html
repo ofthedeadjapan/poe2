@@ -443,6 +443,8 @@
             Chaos: { normal: 'images/IconEnemy/IconEnemyResistanceChaos.png', strong: 'images/IconEnemy/IconEnemyResistanceChaosStrong.png' }
         };
 
+        const RESIST_TYPES = Object.keys(RESIST_DEFINITIONS);
+
         const COLUMN_CONFIG = {
             '検索用よみがな': false,
             '検索用ローマ字': false,
@@ -671,44 +673,94 @@
         // 5. テーブル構築
         // ==========================================
 
+        /**
+         * 改行とカンマ区切りの耐性文字列をパースし、キーの二次元配列を返す
+         */
+        function parseResistRows(resistStr) {
+            return String(resistStr || '-')
+                .replace(/\r\n/g, '\n')
+                .split('\n')
+                .map(row => 
+                    row
+                        .split(',')
+                        .map(k => k.trim())
+                        .filter(Boolean)
+                );
+        }
+
+        /**
+         * 個別の耐性アイコン（またはダミーテキスト）のDOM要素を生成する
+         */
+        function createResistIcon(foundKey) {
+            if (foundKey && getIconPath(foundKey)) {
+                const img = document.createElement('img');
+                img.src = getIconPath(foundKey); 
+                img.title = foundKey; 
+                img.className = 'icon-img';
+                return img;
+            } else {
+                const span = document.createElement('span');
+                span.className = 'icon-text'; 
+                span.textContent = '-';
+                return span;
+            }
+        }
+
+        /**
+         * 1行分の耐性アイコン群を含むコンテナ(div)を生成する
+         */
+        function createResistRow(keysInRow) {
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'resist-row-inline';
+
+            RESIST_TYPES.forEach(attr => {
+                const foundKey = keysInRow.find(k => k.startsWith(attr));
+                const iconElement = createResistIcon(foundKey);
+                rowDiv.appendChild(iconElement);
+            });
+
+            return rowDiv;
+        }
+
+        /**
+         * 耐性セル全体の構築処理
+         */
+        function createResistCell(item, td) {
+            const parsedRows = parseResistRows(item.耐性アイコン);
+            
+            parsedRows.forEach(keysInRow => {
+                const rowElement = createResistRow(keysInRow);
+                td.appendChild(rowElement);
+            });
+        }
+
         function createRow(item, hiddenColumns) {
             const tr = document.createElement('tr');
 
             REQUIRED_HEADERS.forEach(key => {
-                const td = document.createElement('td');
-                td.className = `col-${key}`;
-                if (hiddenColumns.has(key)) td.classList.add('is-hidden');
-
-                if (key === '耐性アイコン') {
-                    const bossResistances = String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split('\n');
-                    
-                    bossResistances.forEach(resistStr => {
-                        const keysInRow = resistStr.split(',').map(k => k.trim()).filter(k => k !== '');
-                        
-                        const rowDiv = document.createElement('div');
-                        rowDiv.className = 'resist-row-inline';
-
-                        Object.keys(RESIST_DEFINITIONS).forEach(attr => {
-                            const foundKey = keysInRow.find(k => k.startsWith(attr));
-                            if (foundKey && getIconPath(foundKey)) {
-                                const img = document.createElement('img');
-                                img.src = getIconPath(foundKey); img.title = foundKey; img.className = 'icon-img';
-                                rowDiv.appendChild(img);
-                            } else {
-                                const span = document.createElement('span');
-                                span.className = 'icon-text'; span.textContent = '-';
-                                rowDiv.appendChild(span);
-                            }
-                        });
-                        td.appendChild(rowDiv);
-                    });
-                } else {
-                    td.textContent = item[key] || '';
-                }
+                const isHidden = hiddenColumns.has(key);
+                const td = createCell(key, item, isHidden);
                 tr.appendChild(td);
             });
             
             return tr;
+        }
+
+        function createCell(key, item, isHidden) {
+            const td = document.createElement('td');
+            td.className = `col-${key}`;
+            
+            if (isHidden) {
+                td.classList.add('is-hidden');
+            }
+
+            if (key === '耐性アイコン') {
+                createResistCell(item, td);
+            } else {
+                td.textContent = item[key] || '';
+            }
+            
+            return td;
         }
 
         function buildTable(data) {
@@ -743,17 +795,19 @@
         // 6. フィルタリング と レンダリング
         // ==========================================
 
-        function filterTable() {
+        function getViewState() {
             const hasVisibleColumn = Object.values(AppState.columnState).some(v => v);
             const matchedRows = getFilteredRows(hasVisibleColumn);
             
-            const viewState = {
+            return {
                 matchedRows: matchedRows,
                 visibleCount: matchedRows.length,
                 hasVisibleColumn: hasVisibleColumn
             };
+        }
 
-            renderView(viewState);
+        function filterTable() {
+            renderView(getViewState());
         }
 
         function getFilteredData() {
@@ -803,34 +857,54 @@
             if (!DOM.noResultRow) return;
 
             if (!viewState.hasVisibleColumn) {
-                DOM.noResultRow.classList.remove('is-hidden');
-                DOM.noResultRow.innerHTML = `
-                    <td colspan="${TOTAL_COLUMNS}" class="msg-container">
-                        <span>選択項目がありません</span><br>
-                        <button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">
-                            ↺ ソート・表示項目の初期化
-                        </button>
-                    </td>
-                `;
+                showNoColumnMessage();
             } else if (viewState.visibleCount === 0) {
-                DOM.noResultRow.classList.remove('is-hidden');
-                DOM.noResultRow.innerHTML = `
-                    <td colspan="${TOTAL_COLUMNS}" class="msg-container">
-                        <span>該当するデータが見つかりませんでした。</span><br>
-                        <button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">
-                            ✖ 検索・フィルターの全解除
-                        </button>
-                    </td>
-                `;
+                showNoDataMessage();
             } else {
-                DOM.noResultRow.classList.add('is-hidden');
-                DOM.noResultRow.innerHTML = '';
+                hideNoResultMessage();
             }
+        }
+
+        function showNoColumnMessage() {
+            DOM.noResultRow.classList.remove('is-hidden');
+            DOM.noResultRow.innerHTML = `
+                <td colspan="${TOTAL_COLUMNS}" class="msg-container">
+                    <span>選択項目がありません</span><br>
+                    <button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">
+                        ↺ ソート・表示項目の初期化
+                    </button>
+                </td>
+            `;
+        }
+
+        function showNoDataMessage() {
+            DOM.noResultRow.classList.remove('is-hidden');
+            DOM.noResultRow.innerHTML = `
+                <td colspan="${TOTAL_COLUMNS}" class="msg-container">
+                    <span>該当するデータが見つかりませんでした。</span><br>
+                    <button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">
+                        ✖ 検索・フィルターの全解除
+                    </button>
+                </td>
+            `;
+        }
+
+        function hideNoResultMessage() {
+            DOM.noResultRow.classList.add('is-hidden');
+            DOM.noResultRow.innerHTML = '';
         }
 
         // ==========================================
         // 7. ソートと表示項目切り替え
         // ==========================================
+
+        const SORTERS = {
+            'default': (a, b) => a.defaultOrder - b.defaultOrder,
+            'kana-asc': (a, b) => String(a["検索用よみがな"] || '').localeCompare(String(b["検索用よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'kana-desc': (a, b) => String(b["検索用よみがな"] || '').localeCompare(String(a["検索用よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'eng-asc': (a, b) => String(a["マップ英語"] || '').localeCompare(String(b["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'eng-desc': (a, b) => String(b["マップ英語"] || '').localeCompare(String(a["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder
+        };
 
         function reorderRows() {
             AppState.currentData.forEach(item => {
@@ -841,35 +915,42 @@
         }
 
         function sortTable(mode, textName) {
+            updateSortUI(mode, textName);
+            applySortData(mode);
+            reorderRows();
+            filterTable();
+        }
+
+        function updateSortUI(mode, textName) {
             document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
             document.querySelector(`[data-sort="${mode}"]`)?.classList.add('sort-active');
             
-            if (textName) DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
+            if (textName) {
+                DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
+            }
+        }
 
+        function applySortData(mode) {
             AppState.currentSort = mode; 
+            
+            if (SORTERS[mode]) {
+                AppState.currentData.sort(SORTERS[mode]);
+            } else {
+                console.warn(`Unknown sort mode: ${mode}`);
+            }
+        }
 
-            const sorters = {
-                'default': (a, b) => a.defaultOrder - b.defaultOrder,
-                'kana-asc': (a, b) => String(a["検索用よみがな"] || '').localeCompare(String(b["検索用よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-                'kana-desc': (a, b) => String(b["検索用よみがな"] || '').localeCompare(String(a["検索用よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-                'eng-asc': (a, b) => String(a["マップ英語"] || '').localeCompare(String(b["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-                'eng-desc': (a, b) => String(b["マップ英語"] || '').localeCompare(String(a["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder
-            };
-            
-            AppState.currentData.sort(sorters[mode]);
-            
-            reorderRows();
-            filterTable();
+        function updateColumnVisibility(columnKey, visible) {
+            document.querySelectorAll(`.col-${columnKey}`).forEach(el => {
+                el.classList.toggle('is-hidden', !visible);
+            });
         }
 
         function toggleColumn(stateKey) {
             if (AppState.columnState[stateKey] !== undefined) {
                 AppState.columnState[stateKey] = !AppState.columnState[stateKey];
-                const isHidden = !AppState.columnState[stateKey];
                 
-                document.querySelectorAll(`.col-${stateKey}`).forEach(el => {
-                    el.classList.toggle('is-hidden', isHidden);
-                });
+                updateColumnVisibility(stateKey, AppState.columnState[stateKey]);
                 
                 updateButtonUI();
                 filterTable();
@@ -879,34 +960,34 @@
         function setAllColumns(visible) {
             Object.keys(AppState.columnState).forEach(k => {
                 AppState.columnState[k] = visible;
-                const isHidden = !visible;
-                document.querySelectorAll(`.col-${k}`).forEach(el => {
-                    el.classList.toggle('is-hidden', isHidden);
-                });
+                updateColumnVisibility(k, visible);
             });
+            
             updateButtonUI();
             filterTable();
         }
-        
-        function resetView() {
+
+        function resetSort() {
             document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
             document.querySelector('[data-sort="default"]')?.classList.add('sort-active');
             DOM.btnSortText.innerText = 'マップ名ソート: 初期順';
             
             AppState.currentSort = 'default'; 
-            
             AppState.currentData.sort((a, b) => a.defaultOrder - b.defaultOrder);
             reorderRows();
+        }
 
+        function resetColumns() {
             Object.keys(AppState.columnState).forEach(k => {
-                AppState.columnState[k] = !['検索用よみがな', '検索用ローマ字'].includes(k);
-                const isHidden = !AppState.columnState[k];
-                document.querySelectorAll(`.col-${k}`).forEach(el => {
-                    el.classList.toggle('is-hidden', isHidden);
-                });
+                AppState.columnState[k] = COLUMN_CONFIG[k];
+                updateColumnVisibility(k, COLUMN_CONFIG[k]);
             });
-            
             updateButtonUI();
+        }
+
+        function resetView() {
+            resetSort();
+            resetColumns();
             filterTable();
         }
     </script>
