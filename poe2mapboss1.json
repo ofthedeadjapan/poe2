@@ -783,20 +783,20 @@
     "よみがな": "あらしのめ\nひすいのしま",
     "マップ日本語": "嵐の目\nヒスイの島",
     "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ",
-    "マップ英語": "The Jade Isles",
+    "マップ英語": "Eye of the Storm\nThe Jade Isles",
     "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled",
     "耐性アイコン": "ArmourStrong,Fire\nArmourStrong\nArmourStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "部族の中心",
     "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
     "元ボス特徴": "4章ボス",
-    "メモ": "カオムの狂気\nラキアタの流れ\nタウホアの加護"
+    "メモ": "タウホアの加護\nカオムの狂気\nラキアタの流れ"
   },
   {
     "よみがな": "じくうのすなあらし\nしんせいなちょすいち",
     "マップ日本語": "時空の砂嵐\n神聖な貯水池",
     "ボス日本語": "剣の王、ザーミル",
-    "マップ英語": "Sacred Reservoir",
+    "マップ英語": "Temporal Sandstorm\nSacred Reservoir",
     "ボス英語": "Zahmir, the Blade Sovereign",
     "耐性アイコン": "Fire",
     "元ボスアクト": "幕間",
@@ -809,27 +809,27 @@
     "よみがな": "きりのなかのごうてい\nはいやしき",
     "マップ日本語": "霧の中の豪邸\n廃屋敷",
     "ボス日本語": "灰の王、ヴァ―ロック\n枯れ薔薇のアヴェリン",
-    "マップ英語": "Derelict Mansion",
+    "マップ英語": "Mansion in the Mists\nDerelict Mansion",
     "ボス英語": "Varloch, the Ashen Lord\nAvelyne, the Withered Rose",
     "耐性アイコン": "ArmourStrong\nArmour,Fire",
     "元ボスアクト": "幕間",
     "元ボスエリア": "ホルテンの豪邸",
     "元ボス名": "ウルフリック族長\nエルズウィス婦人",
     "元ボス特徴": "",
-    "メモ": "リグワルドの獰猛\nエイリスの鐘"
+    "メモ": "エイリスの鐘\nリグワルドの獰猛"
   },
   {
     "よみがな": "えすたずんてぃのひなんじょ\nふういんされたちかしつ",
     "マップ日本語": "エスタズンティの避難所\n封印された地下室",
     "ボス日本語": "血の神託者、イツァラ\n肉体改造者、マズトリ",
-    "マップ英語": "Sealed Vault",
+    "マップ英語": "Estazunti's Vault\nSealed Vault",
     "ボス英語": "Ytzara, Blood Oracle\nMaztli, Flesh-Shaper",
     "耐性アイコン": "EvasionStrong,Cold\nEvasion,Cold",
     "元ボスアクト": "幕間",
     "元ボスエリア": "クアチクの地下避難所",
     "元ボス名": "血の巫女、ゼリナ\n血の司祭、ゾリン",
     "元ボス特徴": "",
-    "メモ": "アタルイの血抜き\nタカティの怒り\nパクアテの契約"
+    "メモ": "アタルイの血抜き\nパクアテの契約\nタカティの怒り"
   },
   {
     "よみがな": "ごうりゅうてん",

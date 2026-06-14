@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 ver0.5 マップボスリスト</title>
     <style>
         :root {
@@ -244,9 +245,15 @@
         tr:not(.no-hover-row):hover { background-color: var(--bg-tr-hover); }
         tr:not(.no-hover-row):hover td:first-child { box-shadow: inset 4px 0 0 var(--accent-gold); }
 
-        .col-耐性アイコン { width: 216px; min-width: 216px; max-width: 216px; text-align: center; white-space: normal; }
-        .icon-img, .icon-text { display: inline-block; width: 30px; height: 30px; margin: 2px; vertical-align: middle; border-radius: 50%; }
-        .icon-text { line-height: 30px; text-align: center; color: var(--text-muted); font-weight: bold; font-size: 16px; }
+        /* 【変更】216pxから180pxへ列幅を縮小 */
+        .col-耐性アイコン { width: 180px; min-width: 180px; max-width: 180px; text-align: center; white-space: normal; }
+        
+        /* 【変更】アイコンサイズを30pxから24pxへ縮小 */
+        .icon-img, .icon-text { display: inline-block; width: 24px; height: 24px; margin: 2px; vertical-align: middle; border-radius: 50%; }
+        
+        /* 【変更】フォントサイズと行高さをアイコンサイズ(24px)に合わせる */
+        .icon-text { line-height: 24px; text-align: center; color: var(--text-muted); font-weight: bold; font-size: 14px; }
+        
         .resist-row-inline { display: inline-flex; justify-content: center; align-items: center; flex-wrap: nowrap; width: 100%; gap: 2px; margin-bottom: 2px; }
 
         .icon-img[title$="Weak"] { --table-status-color: 239, 68, 68; }
@@ -281,6 +288,7 @@
         }
         .msg-error { color: #f87171; }
 
+        /* 【追加・変更】スマホ画面用の最適化 */
         @media (max-width: 900px) {
             .controls-row { gap: 12px; }
             .separator-strong, .separator-weak, .separator-horizontal { display: none; }
@@ -288,6 +296,23 @@
             .search-counter { width: 100%; text-align: left; }
             .btn-dropdown, .btn-action { flex: 1; width: 100%; }
             .table-wrapper { overflow-x: auto; }
+            
+            /* 見出しの折り返し許可 */
+            th { white-space: normal; word-break: break-word; }
+            
+            /* 全体的な文字サイズと余白の縮小 */
+            table { font-size: 12px; }
+            th, td { padding: 4px 6px; }
+            
+            /* 耐性アイコン列のスマホ用調整（折り返し許可） */
+            .col-耐性アイコン {
+                width: auto;
+                min-width: 110px;
+                max-width: 150px;
+            }
+            .resist-row-inline {
+                flex-wrap: wrap; 
+            }
         }
     </style>
 </head>
@@ -600,7 +625,7 @@
     "メモ": ""
   },{ "よみがな": "いおうのどうくつ", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
                         { "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
-                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" },
+                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" },
                     ];
                     initializeApp(dummyData);
                 });
