@@ -86,6 +86,7 @@
         .btn-action {
             padding: 10px 16px; white-space: nowrap; flex-shrink: 0;
             display: flex; align-items: center; gap: 6px;
+            justify-content: center;
             background: rgba(180, 120, 40, 0.15);
             border: 1px solid rgba(210, 150, 70, 0.40);
             color: #e8c88a;
@@ -281,10 +282,8 @@
             white-space: normal;
         }
 
-        /* モーダル用パーツ（PC時は完全に非表示） */
-        .btn-mobile-filter, .resist-modal-header, .modal-backdrop { display: none; }
+        .btn-mobile-only { display: none !important; }
 
-        /* スマホ画面用の最適化 */
         @media (max-width: 900px) {
             .controls-row { gap: 12px; }
             .separator-strong, .separator-weak, .separator-horizontal { display: none; }
@@ -294,62 +293,54 @@
             .table-wrapper { overflow-x: auto; }
             
             th { white-space: normal; word-break: break-word; }
+            
             table { font-size: 12px; }
             th, td { padding: 4px 6px; }
             
-            .col-耐性アイコン { width: auto; min-width: 110px; max-width: 150px; }
-            .resist-row-inline { flex-wrap: wrap; }
-            .col-ボス日本語, .col-ボス英語 { line-height: 1.5; }
-
-            /* --- 【新規】モーダル（ボトムシート）のスマホ専用CSS --- */
-            /* 1. モーダルを開くボタン */
-            .btn-mobile-filter {
-                display: flex; align-items: center; justify-content: center; gap: 8px;
-                width: 100%; height: 44px; padding: 10px;
-                background: rgba(203, 166, 95, 0.12); 
-                border: 1px solid var(--accent-gold);
-                color: var(--accent-gold); font-weight: bold; border-radius: var(--radius-sm);
+            .col-耐性アイコン {
+                width: auto;
+                min-width: 110px;
+                max-width: 150px;
             }
-            .btn-mobile-filter:hover { background: rgba(203, 166, 95, 0.25); }
-
-            /* 2. 背景の暗幕（スモークレイヤー） */
-            .modal-backdrop {
-                display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-                background: rgba(0, 0, 0, 0.6); z-index: 998;
-                opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+            .resist-row-inline {
+                flex-wrap: wrap; 
             }
-            .modal-backdrop.show { opacity: 1; pointer-events: auto; }
 
-            /* 3. 下からせり上がるコンテナ本体 */
-            .resist-modal-container {
-                position: fixed; bottom: 0; left: 0; width: 100%;
-                background-color: var(--bg-panel); 
-                border-top: 2px solid var(--border-color);
-                border-top-left-radius: 16px; border-top-right-radius: 16px;
-                padding: 20px 16px 32px 16px; box-sizing: border-box; z-index: 999;
-                transform: translateY(100%); 
-                transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-                display: flex; flex-direction: column; align-items: center; gap: 16px;
-                box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+            .col-ボス日本語, .col-ボス英語 {
+                line-height: 1.5;
             }
-            .resist-modal-container.show { transform: translateY(0); }
 
-            /* 4. モーダルのヘッダー（タイトルと閉じるボタン） */
-            .resist-modal-header {
-                display: flex; justify-content: space-between; align-items: center; width: 100%;
-                border-bottom: 1px solid rgba(87, 83, 78, 0.4); padding-bottom: 10px;
+            .btn-mobile-only {
+                display: flex !important;
+                width: 100%;
             }
-            .resist-modal-header span { font-weight: bold; color: #fff; font-size: 16px; }
-            .resist-modal-header button {
-                background: rgba(255, 255, 255, 0.1); border: none; color: var(--text-main);
-                padding: 6px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: bold;
+            
+            #resist-grid-wrapper {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; width: 100%; height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 1000;
+                align-items: center; justify-content: center;
+                flex-direction: column;
+                backdrop-filter: blur(2px);
+            }
+            
+            #resist-grid-wrapper.show {
+                display: flex;
+            }
+            
+            #resist-grid-wrapper .resist-filter-grid {
+                background-color: var(--bg-panel);
+                padding: 24px;
+                border-radius: var(--radius-md);
+                border: 1px solid var(--border-color);
+                box-shadow: 0 10px 25px rgba(0,0,0,0.8);
             }
         }
     </style>
 </head>
 <body>
-
-    <div class="modal-backdrop" id="modalBackdrop"></div>
 
     <a href="poe2index.html" class="back-link">
         <svg style="width:18px;height:18px;margin-right:6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
@@ -432,15 +423,11 @@
                 <button class="clear-text-btn" data-action="clearSearchText" title="文字を消去">✖</button>
             </div>
 
-            <button class="btn-mobile-filter" id="btnOpenFilter">🛡️ 耐性フィルターで絞り込む</button>
-
             <div class="separator-weak"></div>
 
-            <div class="resist-modal-container" id="resistModalContainer">
-                <div class="resist-modal-header">
-                    <span>🛡️ ボス耐性フィルター</span>
-                    <button id="btnCloseFilter">✕ 閉じる</button>
-                </div>
+            <button id="btn-mobile-filter" class="btn-action btn-mobile-only">🛡 耐性フィルターを設定</button>
+
+            <div id="resist-grid-wrapper">
                 <div class="resist-filter-grid" id="resist-grid">
                     <div class="icon-dummy" title="ArmourWeak">-</div>
                     <div class="icon-dummy" title="EvasionWeak">-</div>
@@ -463,6 +450,7 @@
                     <div class="icon-wrapper" data-resist="LightningStrong" title="LightningStrong"><img src="images/IconEnemy/IconEnemyResistanceLightningStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
                     <div class="icon-wrapper" data-resist="ChaosStrong" title="ChaosStrong"><img src="images/IconEnemy/IconEnemyResistanceChaosStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
                 </div>
+                <button id="btn-close-filter" class="btn-action btn-mobile-only" style="margin-top: 24px;">✖ 閉じる</button>
             </div>
 
             <div class="separator-weak"></div>
@@ -495,6 +483,9 @@
     <script src="js/wanakana.min.js"></script>
 
     <script>
+        // ==========================================
+        // 1. 定数と状態管理 (AppState)
+        // ==========================================
         const RESIST_DEFINITIONS = {
             Armour: { normal: 'images/IconEnemy/IconEnemyArmour.png', strong: 'images/IconEnemy/IconEnemyArmourStrong.png' },
             Evasion: { normal: 'images/IconEnemy/IconEnemyEvasion.png', strong: 'images/IconEnemy/IconEnemyEvasionStrong.png' },
@@ -519,28 +510,52 @@
         };
 
         const COLUMN_CONFIG = {
-            'よみがな': false, 'マップ日本語': true, 'ボス日本語': true, 'マップ英語': true, 'ボス英語': true,
-            '耐性アイコン': true, '元ボスアクト/エリア': true, '元ボス名': true, '元ボス特徴': true, 'メモ': true
+            'よみがな': false,
+            'マップ日本語': true,
+            'ボス日本語': true,
+            'マップ英語': true,
+            'ボス英語': true,
+            '耐性アイコン': true,
+            '元ボスアクト/エリア': true,
+            '元ボス名': true,
+            '元ボス特徴': true,
+            'メモ': true
         };
 
         const REQUIRED_HEADERS = Object.keys(COLUMN_CONFIG);
         const SEARCH_KEYS = ['よみがな','マップ日本語','ボス日本語','マップ英語','ボス英語','元ボスアクト','元ボスエリア','元ボス名','元ボス特徴','メモ'];
 
         const AppState = {
-            currentData: [], rowMap: new Map(), rows: [],
-            columnState: structuredClone(COLUMN_CONFIG), currentSort: 'default',
-            filterState: { text: '', resists: new Set() }
+            currentData: [],
+            rowMap: new Map(),
+            rows: [],
+            columnState: structuredClone(COLUMN_CONFIG),
+            currentSort: 'default',
+            filterState: {
+                text: '',
+                resists: new Set()
+            }
         };
 
         const TOTAL_COLUMNS = Object.keys(AppState.columnState).length;
 
+        // ==========================================
+        // 2. DOM要素のキャッシュ
+        // ==========================================
         const DOM = {
-            searchInput: null, searchCounter: null, resistGrid: null,
-            btnSortText: null, btnColumnText: null, tbody: null, fallbackMessage: null, noResultRow: null,
-            // 追加分
-            btnOpenFilter: null, btnCloseFilter: null, resistModalContainer: null, modalBackdrop: null
+            searchInput: null,
+            searchCounter: null,
+            resistGrid: null,
+            btnSortText: null,
+            btnColumnText: null,
+            tbody: null,
+            fallbackMessage: null,
+            noResultRow: null
         };
 
+        // ==========================================
+        // 3. 初期化とイベントのバインド
+        // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
             DOM.searchInput = document.getElementById('searchInput');
             DOM.searchCounter = document.getElementById('search-counter');
@@ -549,28 +564,6 @@
             DOM.btnColumnText = document.getElementById('btn-column-text');
             DOM.tbody = document.getElementById('boss-table-body');
             DOM.fallbackMessage = document.getElementById('fallback-message');
-            
-            // 追加分のキャッシュ
-            DOM.btnOpenFilter = document.getElementById('btnOpenFilter');
-            DOM.btnCloseFilter = document.getElementById('btnCloseFilter');
-            DOM.resistModalContainer = document.getElementById('resistModalContainer');
-            DOM.modalBackdrop = document.getElementById('modalBackdrop');
-
-            // --- 【新規】モーダル開閉用のJSロジック ---
-            if (DOM.btnOpenFilter && DOM.btnCloseFilter && DOM.resistModalContainer && DOM.modalBackdrop) {
-                DOM.btnOpenFilter.addEventListener('click', () => {
-                    DOM.resistModalContainer.classList.add('show');
-                    DOM.modalBackdrop.classList.add('show');
-                });
-
-                const closeModal = () => {
-                    DOM.resistModalContainer.classList.remove('show');
-                    DOM.modalBackdrop.classList.remove('show');
-                };
-
-                DOM.btnCloseFilter.addEventListener('click', closeModal);
-                DOM.modalBackdrop.addEventListener('click', closeModal);
-            }
 
             DOM.searchInput.addEventListener('input', (e) => {
                 let text = normalizeText(e.target.value);
@@ -590,6 +583,20 @@
                     document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
                     if (!isAlreadyOpen) parent.classList.add('show');
                     e.stopPropagation();
+                    return;
+                }
+
+                // スマホ用モーダルの開閉処理
+                const mobileFilterBtn = e.target.closest('#btn-mobile-filter');
+                if (mobileFilterBtn) {
+                    document.getElementById('resist-grid-wrapper').classList.add('show');
+                    return;
+                }
+
+                const closeFilterBtn = e.target.closest('#btn-close-filter');
+                const isWrapperClick = e.target === document.getElementById('resist-grid-wrapper');
+                if (closeFilterBtn || isWrapperClick) {
+                    document.getElementById('resist-grid-wrapper').classList.remove('show');
                     return;
                 }
 
@@ -640,25 +647,60 @@
 
             fetch('poe2mapboss.json')
                 .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-                .then(data => { initializeApp(data); })
+                .then(data => {
+                    initializeApp(data);
+                })
                 .catch(() => {
+                    console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。");
                     DOM.fallbackMessage.classList.remove('is-hidden');
                     const dummyData = [
-                        { "よみがな": "こうざんのおね", "マップ日本語": "高山の尾根", "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ", "マップ英語": "Alpine Ridge", "ボス英語": "Ignatia, the Flame-Sworn\nGelida, the Frost-Tongue", "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong", "元ボスアクト": "幕間", "元ボスエリア": "焼け焦げた農場", "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ", "元ボス特徴": "炎と氷", "メモ": "" },
-                        { "よみがな": "いおうのどうくつ", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
+                          {
+    "よみがな": "こうざんのおね",
+    "マップ日本語": "高山の尾根",
+    "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ",
+    "マップ英語": "Alpine Ridge",
+    "ボス英語": "Ignatia, the Flame-Sworn\nGelida, the Frost-Tongue",
+    "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
+    "元ボスアクト": "幕間",
+    "元ボスエリア": "焼け焦げた農場",
+    "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
+    "元ボス特徴": "炎と氷",
+    "メモ": ""
+  },{ "よみがな": "いおうのどうくつ", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
                         { "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
-                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" }
+                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" },
                     ];
                     initializeApp(dummyData);
                 });
         });
 
+        // ==========================================
+        // 4. データ・UI操作関数
+        // ==========================================
+
         function initializeApp(data) {
             AppState.currentData = data.map((item, idx) => {
-                const resistIndex = new Set(String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-'));
-                const searchIndex = normalizeText(SEARCH_KEYS.map(k => item[k] || '').join(' '));
-                return { ...item, id: idx, defaultOrder: idx, searchIndex, resistIndex };
+                const resistIndex = new Set(
+                    String(item.耐性アイコン || '-')
+                        .replace(/\r\n/g, '\n')
+                        .split(/[\n,]+/)
+                        .map(r => r.trim())
+                        .filter(r => r && r !== '-')
+                );
+
+                const searchIndex = normalizeText(
+                    SEARCH_KEYS.map(k => item[k] || '').join(' ')
+                );
+
+                return {
+                    ...item,
+                    id: idx,
+                    defaultOrder: idx,
+                    searchIndex,
+                    resistIndex
+                };
             });
+            
             buildTable(AppState.currentData);
             filterTable();
             updateButtonUI();
@@ -670,8 +712,13 @@
             return RESIST_DEFINITIONS[resistKey]?.normal;
         }
 
-        function escapeRegExp(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-        function normalizeText(str) { return !str ? '' : String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); }
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
+        function normalizeText(str) { 
+            return !str ? '' : String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); 
+        }
 
         function updateButtonUI() {
             let visibleCount = 0;
@@ -687,110 +734,279 @@
         }
 
         function clearSearchText() {
-            DOM.searchInput.value = ''; AppState.filterState.text = ''; filterTable(); DOM.searchInput.focus();
+            DOM.searchInput.value = '';
+            AppState.filterState.text = '';
+            filterTable();
+            DOM.searchInput.focus();
         }
 
         function clearAllFilters() {
-            DOM.searchInput.value = ''; AppState.filterState.text = ''; AppState.filterState.resists.clear();
+            DOM.searchInput.value = '';
+            AppState.filterState.text = '';
+            AppState.filterState.resists.clear();
+            
             document.querySelectorAll('.icon-wrapper').forEach(w => w.classList.remove('active'));
             DOM.resistGrid.classList.remove('has-active');
+            
             filterTable();
         }
 
-        function parseResistRows(resistStr) { return String(resistStr || '-').replace(/\r\n/g, '\n').split('\n').map(row => row.split(',').map(k => k.trim()).filter(Boolean)); }
+        // ==========================================
+        // 5. テーブル構築
+        // ==========================================
+
+        function parseResistRows(resistStr) {
+            return String(resistStr || '-')
+                .replace(/\r\n/g, '\n')
+                .split('\n')
+                .map(row => 
+                    row
+                        .split(',')
+                        .map(k => k.trim())
+                        .filter(Boolean)
+                );
+        }
 
         function createResistIcon(foundKey) {
             if (foundKey && getIconPath(foundKey)) {
-                const img = document.createElement('img'); img.src = getIconPath(foundKey); img.title = foundKey; img.className = 'icon-img'; return img;
+                const img = document.createElement('img');
+                img.src = getIconPath(foundKey); 
+                img.title = foundKey; 
+                img.className = 'icon-img';
+                return img;
             } else {
-                const span = document.createElement('span'); span.className = 'icon-text'; span.textContent = '-'; return span;
+                const span = document.createElement('span');
+                span.className = 'icon-text'; 
+                span.textContent = '-';
+                return span;
             }
         }
 
         function createResistRow(keysInRow) {
-            const rowDiv = document.createElement('div'); rowDiv.className = 'resist-row-inline';
-            RESIST_TYPES.forEach(attr => { const foundKey = keysInRow.find(k => k.startsWith(attr)); const iconElement = createResistIcon(foundKey); rowDiv.appendChild(iconElement); });
+            const rowDiv = document.createElement('div');
+            rowDiv.className = 'resist-row-inline';
+
+            RESIST_TYPES.forEach(attr => {
+                const foundKey = keysInRow.find(k => k.startsWith(attr));
+                const iconElement = createResistIcon(foundKey);
+                rowDiv.appendChild(iconElement);
+            });
+
             return rowDiv;
         }
 
-        function createResistCell(item, td) { const parsedRows = parseResistRows(item.耐性アイコン); parsedRows.forEach(keysInRow => { const rowElement = createResistRow(keysInRow); td.appendChild(rowElement); }); }
+        function createResistCell(item, td) {
+            const parsedRows = parseResistRows(item.耐性アイコン);
+            
+            parsedRows.forEach(keysInRow => {
+                const rowElement = createResistRow(keysInRow);
+                td.appendChild(rowElement);
+            });
+        }
 
         function createRow(item, hiddenColumns) {
             const tr = document.createElement('tr');
-            REQUIRED_HEADERS.forEach(key => { const isHidden = hiddenColumns.has(key); const td = createCell(key, item, isHidden); tr.appendChild(td); });
+
+            REQUIRED_HEADERS.forEach(key => {
+                const isHidden = hiddenColumns.has(key);
+                const td = createCell(key, item, isHidden);
+                tr.appendChild(td);
+            });
+            
             return tr;
         }
 
         function createCell(key, item, isHidden) {
-            const safeKey = key.replace(/\//g, ''); const td = document.createElement('td'); td.className = `col-${safeKey}`;
-            if (isHidden) { td.classList.add('is-hidden'); }
-            if (key === '耐性アイコン') { createResistCell(item, td); }
-            else if (key === '元ボスアクト/エリア') {
-                const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : ''; const area = item['元ボスエリア'] || ''; const combined = [act, area].filter(Boolean).join('\n'); td.textContent = combined;
-            } else { td.textContent = item[key] || ''; }
+            const safeKey = key.replace(/\//g, '');
+            const td = document.createElement('td');
+            td.className = `col-${safeKey}`;
+            
+            if (isHidden) {
+                td.classList.add('is-hidden');
+            }
+
+            if (key === '耐性アイコン') {
+                createResistCell(item, td);
+            } else if (key === '元ボスアクト/エリア') {
+                const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : '';
+                const area = item['元ボスエリア'] || '';
+                const combined = [act, area].filter(Boolean).join('\n');
+                td.textContent = combined;
+            } else {
+                td.textContent = item[key] || '';
+            }
+            
             return td;
         }
 
         function buildTable(data) {
-            DOM.tbody.innerHTML = ''; AppState.rowMap.clear(); AppState.rows = [];
+            DOM.tbody.innerHTML = ''; 
+            AppState.rowMap.clear();
+            AppState.rows = []; 
+            
             const hiddenColumns = new Set();
             for (const [key, visible] of Object.entries(AppState.columnState)) if (!visible) hiddenColumns.add(key);
 
             if (data.length === 0) {
                 DOM.tbody.innerHTML = `<tr class="no-hover-row"><td colspan="${TOTAL_COLUMNS}" class="msg-container">データが空です。</td></tr>`;
-                DOM.searchCounter.textContent = "検索結果: 0件 / 全0件"; return;
+                DOM.searchCounter.textContent = "検索結果: 0件 / 全0件";
+                return;
             }
 
-            data.forEach(item => { const tr = createRow(item, hiddenColumns); AppState.rowMap.set(item.id, tr); AppState.rows.push(tr); DOM.tbody.appendChild(tr); });
-            DOM.noResultRow = document.createElement('tr'); DOM.noResultRow.className = 'is-hidden no-hover-row'; DOM.tbody.appendChild(DOM.noResultRow);
-            document.querySelectorAll('th[data-key]').forEach(th => { th.classList.toggle('is-hidden', hiddenColumns.has(th.dataset.key)); });
-        }
+            data.forEach(item => {
+                const tr = createRow(item, hiddenColumns);
+                AppState.rowMap.set(item.id, tr);
+                AppState.rows.push(tr); 
+                DOM.tbody.appendChild(tr);
+            });
 
-        function getViewState() { const hasVisibleColumn = Object.values(AppState.columnState).some(v => v); const matchedRows = getFilteredRows(hasVisibleColumn); return { matchedRows: matchedRows, visibleCount: matchedRows.length, hasVisibleColumn: hasVisibleColumn }; }
-        function filterTable() { renderView(getViewState()); }
+            DOM.noResultRow = document.createElement('tr');
+            DOM.noResultRow.className = 'is-hidden no-hover-row';
+            DOM.tbody.appendChild(DOM.noResultRow);
 
-        function getFilteredData() {
-            const activeResists = Array.from(AppState.filterState.resists); const rawKeyword = AppState.filterState.text.trim();
-            let hiraRegex = null;
-            if (rawKeyword) {
-                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
-                hiraConverted = hiraConverted.replace(/ん+/g, 'ん').replace(/んn$/i, 'ん');
-                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
-                try {
-                    if (tailMatch) {
-                        const tailAlpha = tailMatch[1].toLowerCase(); const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length)); const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
-                        if (regexSuffix === undefined) { hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha)); } else { hiraRegex = new RegExp(prefix + regexSuffix); }
-                    } else { hiraRegex = new RegExp(escapeRegExp(hiraConverted)); }
-                } catch (e) { hiraRegex = null; }
-            }
-            return AppState.currentData.filter(item => {
-                if (rawKeyword) { const isRawMatch = item.searchIndex.includes(rawKeyword); const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな); if (!isRawMatch && !isKanaMatch) return false; }
-                return activeResists.every(r => item.resistIndex.has(r));
+            document.querySelectorAll('th[data-key]').forEach(th => {
+                th.classList.toggle('is-hidden', hiddenColumns.has(th.dataset.key));
             });
         }
 
-        function getFilteredRows(hasVisibleColumn) { if (!hasVisibleColumn) return []; return getFilteredData().map(item => AppState.rowMap.get(item.id)); }
+        // ==========================================
+        // 6. フィルタリング と レンダリング
+        // ==========================================
 
-        function renderView(viewState) { renderRows(viewState); renderCounter(viewState); renderNoResult(viewState); }
+        function getViewState() {
+            const hasVisibleColumn = Object.values(AppState.columnState).some(v => v);
+            const matchedRows = getFilteredRows(hasVisibleColumn);
+            
+            return {
+                matchedRows: matchedRows,
+                visibleCount: matchedRows.length,
+                hasVisibleColumn: hasVisibleColumn
+            };
+        }
+
+        function filterTable() {
+            renderView(getViewState());
+        }
+
+       function getFilteredData() {
+           const activeResists = Array.from(AppState.filterState.resists);
+           const rawKeyword = AppState.filterState.text.trim();
+
+           let hiraRegex = null;
+           if (rawKeyword) {
+               let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+
+               hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
+
+               hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
+
+               const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+
+               try {
+                   if (tailMatch) {
+                       const tailAlpha = tailMatch[1].toLowerCase();
+                       const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+
+                       const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                       if (regexSuffix === undefined) {
+                           hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha));
+                       } else {
+                           hiraRegex = new RegExp(prefix + regexSuffix);
+                       }
+                   } else {
+                       hiraRegex = new RegExp(escapeRegExp(hiraConverted));
+                   }
+               } catch (e) {
+                   hiraRegex = null;
+               }
+           }
+
+           return AppState.currentData.filter(item => {
+               if (rawKeyword) {
+                   const isRawMatch = item.searchIndex.includes(rawKeyword);
+                   const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
+
+                   if (!isRawMatch && !isKanaMatch) return false;
+               }
+
+               return activeResists.every(r => item.resistIndex.has(r));
+           });
+}
+
+        function getFilteredRows(hasVisibleColumn) {
+            if (!hasVisibleColumn) return [];
+            return getFilteredData().map(item => AppState.rowMap.get(item.id));
+        }
+
+        function renderView(viewState) {
+            renderRows(viewState);
+            renderCounter(viewState);
+            renderNoResult(viewState);
+        }
 
         function renderRows(viewState) {
-            let visibleCount = 0; const matchedSet = new Set(viewState.matchedRows);
+            let visibleCount = 0;
+            const matchedSet = new Set(viewState.matchedRows);
+            
             for (const row of AppState.rows) {
-                if (matchedSet.has(row) && viewState.hasVisibleColumn) { row.classList.remove('is-hidden'); row.classList.toggle('row-even', visibleCount++ % 2 === 1); }
-                else { row.classList.add('is-hidden'); row.classList.remove('row-even'); }
+                if (matchedSet.has(row) && viewState.hasVisibleColumn) {
+                    row.classList.remove('is-hidden');
+                    row.classList.toggle('row-even', visibleCount++ % 2 === 1);
+                } else {
+                    row.classList.add('is-hidden');
+                    row.classList.remove('row-even');
+                }
             }
         }
 
-        function renderCounter(viewState) { DOM.searchCounter.textContent = `検索結果: ${viewState.visibleCount}件 / 全${AppState.currentData.length}件`; }
+        function renderCounter(viewState) {
+            DOM.searchCounter.textContent = `検索結果: ${viewState.visibleCount}件 / 全${AppState.currentData.length}件`;
+        }
 
         function renderNoResult(viewState) {
             if (!DOM.noResultRow) return;
-            if (!viewState.hasVisibleColumn) { showNoColumnMessage(); } else if (viewState.visibleCount === 0) { showNoDataMessage(); } else { hideNoResultMessage(); }
+
+            if (!viewState.hasVisibleColumn) {
+                showNoColumnMessage();
+            } else if (viewState.visibleCount === 0) {
+                showNoDataMessage();
+            } else {
+                hideNoResultMessage();
+            }
         }
 
-        function showNoColumnMessage() { DOM.noResultRow.classList.remove('is-hidden'); DOM.noResultRow.innerHTML = `<td colspan="${TOTAL_COLUMNS}" class="msg-container"><span>選択項目がありません</span><br><button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">↺ ソート・表示項目の初期化</button></td>`; }
-        function showNoDataMessage() { DOM.noResultRow.classList.remove('is-hidden'); DOM.noResultRow.innerHTML = `<td colspan="${TOTAL_COLUMNS}" class="msg-container"><span>該当するデータが見つかりませんでした。</span><br><button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">✖ 検索・フィルターの全解除</button></td>`; }
-        function hideNoResultMessage() { DOM.noResultRow.classList.add('is-hidden'); DOM.noResultRow.innerHTML = ''; }
+        function showNoColumnMessage() {
+            DOM.noResultRow.classList.remove('is-hidden');
+            DOM.noResultRow.innerHTML = `
+                <td colspan="${TOTAL_COLUMNS}" class="msg-container">
+                    <span>選択項目がありません</span><br>
+                    <button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">
+                        ↺ ソート・表示項目の初期化
+                    </button>
+                </td>
+            `;
+        }
+
+        function showNoDataMessage() {
+            DOM.noResultRow.classList.remove('is-hidden');
+            DOM.noResultRow.innerHTML = `
+                <td colspan="${TOTAL_COLUMNS}" class="msg-container">
+                    <span>該当するデータが見つかりませんでした。</span><br>
+                    <button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">
+                        ✖ 検索・フィルターの全解除
+                    </button>
+                </td>
+            `;
+        }
+
+        function hideNoResultMessage() {
+            DOM.noResultRow.classList.add('is-hidden');
+            DOM.noResultRow.innerHTML = '';
+        }
+
+        // ==========================================
+        // 7. ソートと表示項目切り替え
+        // ==========================================
 
         const SORTERS = {
             'default': (a, b) => a.defaultOrder - b.defaultOrder,
@@ -800,32 +1016,91 @@
             'eng-desc': (a, b) => String(b["マップ英語"] || '').localeCompare(String(a["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder
         };
 
-        function reorderRows() { AppState.currentData.forEach(item => { const tr = AppState.rowMap.get(item.id); if (tr) DOM.tbody.appendChild(tr); }); if (DOM.noResultRow) DOM.tbody.appendChild(DOM.noResultRow); }
+        function reorderRows() {
+            AppState.currentData.forEach(item => {
+                const tr = AppState.rowMap.get(item.id);
+                if (tr) DOM.tbody.appendChild(tr);
+            });
+            if (DOM.noResultRow) DOM.tbody.appendChild(DOM.noResultRow);
+        }
 
-        function sortTable(mode, textName) { updateSortUI(mode, textName); applySortData(mode); reorderRows(); filterTable(); }
+        function sortTable(mode, textName) {
+            updateSortUI(mode, textName);
+            applySortData(mode);
+            reorderRows();
+            filterTable();
+        }
 
         function updateSortUI(mode, textName) {
             document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
             document.querySelector(`[data-sort="${mode}"]`)?.classList.add('sort-active');
-            if (textName) { DOM.btnSortText.innerText = `マップ名ソート: ${textName}`; }
+            
+            if (textName) {
+                DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
+            }
         }
 
-        function applySortData(mode) { AppState.currentSort = mode; if (SORTERS[mode]) { AppState.currentData.sort(SORTERS[mode]); } else { console.warn(`Unknown sort mode: ${mode}`); } }
+        function applySortData(mode) {
+            AppState.currentSort = mode; 
+            
+            if (SORTERS[mode]) {
+                AppState.currentData.sort(SORTERS[mode]);
+            } else {
+                console.warn(`Unknown sort mode: ${mode}`);
+            }
+        }
 
-        function updateColumnVisibility(columnKey, visible) { const safeKey = columnKey.replace(/\//g, ''); document.querySelectorAll(`.col-${safeKey}`).forEach(el => { el.classList.toggle('is-hidden', !visible); }); }
+        function updateColumnVisibility(columnKey, visible) {
+            const safeKey = columnKey.replace(/\//g, '');
+            document.querySelectorAll(`.col-${safeKey}`).forEach(el => {
+                el.classList.toggle('is-hidden', !visible);
+            });
+        }
 
-        function toggleColumn(stateKey) { if (AppState.columnState[stateKey] !== undefined) { AppState.columnState[stateKey] = !AppState.columnState[stateKey]; updateColumnVisibility(stateKey, AppState.columnState[stateKey]); updateButtonUI(); filterTable(); } }
+        function toggleColumn(stateKey) {
+            if (AppState.columnState[stateKey] !== undefined) {
+                AppState.columnState[stateKey] = !AppState.columnState[stateKey];
+                
+                updateColumnVisibility(stateKey, AppState.columnState[stateKey]);
+                
+                updateButtonUI();
+                filterTable();
+            }
+        }
         
-        function setAllColumns(visible) { Object.keys(AppState.columnState).forEach(k => { AppState.columnState[k] = visible; updateColumnVisibility(k, visible); }); updateButtonUI(); filterTable(); }
+        function setAllColumns(visible) {
+            Object.keys(AppState.columnState).forEach(k => {
+                AppState.columnState[k] = visible;
+                updateColumnVisibility(k, visible);
+            });
+            
+            updateButtonUI();
+            filterTable();
+        }
 
         function resetSort() {
-            document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active')); document.querySelector('[data-sort="default"]')?.classList.add('sort-active'); DOM.btnSortText.innerText = 'マップ名ソート: 初期順';
-            AppState.currentSort = 'default'; AppState.currentData.sort((a, b) => a.defaultOrder - b.defaultOrder); reorderRows();
+            document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
+            document.querySelector('[data-sort="default"]')?.classList.add('sort-active');
+            DOM.btnSortText.innerText = 'マップ名ソート: 初期順';
+            
+            AppState.currentSort = 'default'; 
+            AppState.currentData.sort((a, b) => a.defaultOrder - b.defaultOrder);
+            reorderRows();
         }
 
-        function resetColumns() { Object.keys(AppState.columnState).forEach(k => { AppState.columnState[k] = COLUMN_CONFIG[k]; updateColumnVisibility(k, COLUMN_CONFIG[k]); }); updateButtonUI(); }
+        function resetColumns() {
+            Object.keys(AppState.columnState).forEach(k => {
+                AppState.columnState[k] = COLUMN_CONFIG[k];
+                updateColumnVisibility(k, COLUMN_CONFIG[k]);
+            });
+            updateButtonUI();
+        }
 
-        function resetView() { resetSort(); resetColumns(); filterTable(); }
+        function resetView() {
+            resetSort();
+            resetColumns();
+            filterTable();
+        }
     </script>
 </body>
 </html>
