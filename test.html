@@ -318,15 +318,15 @@
             #resist-grid-wrapper {
                 display: none;
                 position: fixed;
-                top: 0; left: 0; width: 100%; 
-                height: 100dvh; /* スマホのUIバーを考慮した高さ指定 */
+                /* ★ height: 100dvh を廃止し、上下左右を0に固定して確実に全画面を覆う */
+                top: 0; left: 0; right: 0; bottom: 0; 
                 background-color: rgba(0, 0, 0, 0.7);
                 z-index: 1000;
-                align-items: center;      /* 横方向は中央揃え */
-                justify-content: flex-end; /* ★縦方向を下側（末尾）に揃える */
+                align-items: center;      
                 flex-direction: column;
                 backdrop-filter: blur(2px);
-                padding-bottom: 32px; /* ★画面の一番下からの余白 */
+                /* ★ セーフエリア（iPhoneのホームバーなど）を考慮した余白 */
+                padding-bottom: max(32px, env(safe-area-inset-bottom)); 
                 box-sizing: border-box;
             }
             
@@ -335,15 +335,16 @@
             }
             
             #resist-grid-wrapper .resist-filter-grid {
+                /* ★ ここが魔法の1行。上部の余白をすべて吸収し、要素を画面下部に確実に押し下げます */
+                margin-top: auto; 
                 background-color: var(--bg-panel);
                 padding: 24px;
                 border-radius: var(--radius-md);
                 border: 1px solid var(--border-color);
                 box-shadow: 0 10px 25px rgba(0,0,0,0.8);
-                margin-bottom: 16px; /* ★閉じるボタンとの間の余白 */
+                margin-bottom: 16px; 
             }
 
-            /* 閉じるボタンの横幅を少し絞って押しやすくする調整（任意） */
             #btn-close-filter {
                 width: 80% !important;
                 max-width: 300px;
