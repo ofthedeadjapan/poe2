@@ -318,12 +318,16 @@
             #resist-grid-wrapper {
                 display: none;
                 position: fixed;
-                top: 0; left: 0; width: 100%; height: 100%;
+                top: 0; left: 0; width: 100%; 
+                height: 100dvh; /* スマホのUIバーを考慮した高さ指定 */
                 background-color: rgba(0, 0, 0, 0.7);
                 z-index: 1000;
-                align-items: center; justify-content: center;
+                align-items: center;      /* 横方向は中央揃え */
+                justify-content: flex-end; /* ★縦方向を下側（末尾）に揃える */
                 flex-direction: column;
                 backdrop-filter: blur(2px);
+                padding-bottom: 32px; /* ★画面の一番下からの余白 */
+                box-sizing: border-box;
             }
             
             #resist-grid-wrapper.show {
@@ -336,6 +340,14 @@
                 border-radius: var(--radius-md);
                 border: 1px solid var(--border-color);
                 box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+                margin-bottom: 16px; /* ★閉じるボタンとの間の余白 */
+            }
+
+            /* 閉じるボタンの横幅を少し絞って押しやすくする調整（任意） */
+            #btn-close-filter {
+                width: 80% !important;
+                max-width: 300px;
+                margin-top: 0 !important;
             }
         }
     </style>
