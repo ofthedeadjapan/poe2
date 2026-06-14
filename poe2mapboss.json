@@ -1,10 +1,10 @@
 [
   {
-    "マップ日本語": "難破",
     "検索用よみがな": "なんぱ",
     "検索用ローマ字": "nanpa nannpa",
-    "マップ英語": "Castaway",
+    "マップ日本語": "難破",
     "ボス日本語": "沈没艦隊のトーレック",
+    "マップ英語": "Castaway",
     "ボス英語": "Torrek of the Drowned Fleet",
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "４",
@@ -14,11 +14,11 @@
     "メモ": "攻撃属性書く列？"
   },
   {
-    "マップ日本語": "花咲く野原",
     "検索用よみがな": "はなさくのはら",
     "検索用ローマ字": "hanasakunohara",
-    "マップ英語": "Blooming Field",
+    "マップ日本語": "花咲く野原",
     "ボス日本語": "ブラッククロウ",
+    "マップ英語": "Blooming Field",
     "ボス英語": "The Black Crow",
     "耐性アイコン": "-",
     "元ボスアクト": "１",
@@ -28,11 +28,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "サバンナ",
     "検索用よみがな": "さばんな",
     "検索用ローマ字": "sabanna",
-    "マップ英語": "Savannah",
+    "マップ日本語": "サバンナ",
     "ボス日本語": "ハイエナロード、カエドロン",
+    "マップ英語": "Savannah",
     "ボス英語": "Caedron, the Hyena Lord",
     "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "２",
@@ -42,11 +42,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "要塞",
     "検索用よみがな": "ようさい",
     "検索用ローマ字": "yousai",
-    "マップ英語": "Fortress",
+    "マップ日本語": "要塞",
     "ボス日本語": "忘れ去られた囚人、ピラシャ",
+    "マップ英語": "Fortress",
     "ボス英語": "Pirasha, the Forgotten Prisoner",
     "耐性アイコン": "EvasionStrong,Fire,ColdWeak",
     "元ボスアクト": "２",
@@ -56,11 +56,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "刑務所",
     "検索用よみがな": "けいむしょ",
     "検索用ローマ字": "keimusho keimusyo",
-    "マップ英語": "Penitentiary",
+    "マップ日本語": "刑務所",
     "ボス日本語": "死の権化",
+    "マップ英語": "Penitentiary",
     "ボス英語": "Incarnation of Death",
     "耐性アイコン": "Armour,Fire",
     "元ボスアクト": "１",
@@ -70,11 +70,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "失われた塔",
     "検索用よみがな": "うしなわれたとう",
     "検索用ローマ字": "ushinawaretatou usinawaretatou",
-    "マップ英語": "Lost Towers",
+    "マップ日本語": "失われた塔",
     "ボス日本語": "羽を持つ疫病、チェツァ",
+    "マップ英語": "Lost Towers",
     "ボス英語": "Chetza, the Feathered Plague",
     "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "４",
@@ -84,11 +84,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "砂の岬",
     "検索用よみがな": "すなのみさき",
     "検索用ローマ字": "sunanomisaki",
-    "マップ英語": "Sandspit",
+    "マップ日本語": "砂の岬",
     "ボス日本語": "サンドストライダー",
+    "マップ英語": "Sandspit",
     "ボス英語": "The Sandstrider",
     "耐性アイコン": "Armour,ColdStrong,LightningWeak",
     "元ボスアクト": "４",
@@ -98,11 +98,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "鍜治炉",
     "検索用よみがな": "かじろ",
     "検索用ローマ字": "kajiro kaziro",
-    "マップ英語": "Forge",
+    "マップ日本語": "鍜治炉",
     "ボス日本語": "巨大な守護者、ヴァストウェルド",
+    "マップ英語": "Forge",
     "ボス英語": "Vastweld, the Colossal Guardian",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "２",
@@ -112,11 +112,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "硫黄の洞窟",
     "検索用よみがな": "いおうのどうくつ",
     "検索用ローマ字": "iounodoukutu",
-    "マップ英語": "Sulphuric Caverns",
+    "マップ日本語": "硫黄の洞窟",
     "ボス日本語": "骨の巨像\n大穴の領主",
+    "マップ英語": "Sulphuric Caverns",
     "ボス英語": "The Bone Colossus\nLord of the Pit",
     "耐性アイコン": "-\nLightning",
     "元ボスアクト": "２",
@@ -126,11 +126,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "泥沼",
     "検索用よみがな": "どろぬま",
     "検索用ローマ字": "doronuma",
-    "マップ英語": "Mire",
+    "マップ日本語": "泥沼",
     "ボス日本語": "冬の笑声、リオナ",
+    "マップ英語": "Mire",
     "ボス英語": "Riona, Winter's Cackle",
     "耐性アイコン": "FireWeak,ColdStrong",
     "元ボスアクト": "１",
@@ -140,11 +140,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "森林地帯",
     "検索用よみがな": "しんりんちたい",
     "検索用ローマ字": "shinnrinnchitai shinnrinntitai shinnrinchitai shinnrintitai shinrinnchitai shinrinntitai shinrinchitai shinrintitai sinnrinnchitai sinnrinntitai sinnrinchitai sinnrintitai sinrinnchitai sinrinntitai sinrinchitai sinrintitai",
-    "マップ英語": "Woodland",
+    "マップ日本語": "森林地帯",
     "ボス日本語": "肥大したマータ\n怨嗟のコルム",
+    "マップ英語": "Woodland",
     "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous",
     "耐性アイコン": "Armour\nArmour",
     "元ボスアクト": "１",
@@ -154,11 +154,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "汚水溜め",
     "検索用よみがな": "おすいだめ",
     "検索用ローマ字": "osuidame",
-    "マップ英語": "Sump",
+    "マップ日本語": "汚水溜め",
     "ボス日本語": "萎れた老婆、ブラッカ",
+    "マップ英語": "Sump",
     "ボス英語": "Brakka, the Withered Crone",
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "３",
@@ -168,11 +168,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "柳",
     "検索用よみがな": "やなぎ",
     "検索用ローマ字": "yanagi",
-    "マップ英語": "Willow",
+    "マップ日本語": "柳",
     "ボス日本語": "苦悩する者、コンナル",
+    "マップ英語": "Willow",
     "ボス英語": "Connal, the Tormented",
     "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "１",
@@ -182,11 +182,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "岬",
     "検索用よみがな": "みさき",
     "検索用ローマ字": "misaki",
-    "マップ英語": "Headland",
+    "マップ日本語": "岬",
     "ボス日本語": "堕ちし息子、ハスク",
+    "マップ英語": "Headland",
     "ボス英語": "Hask, the Fallen Son",
     "耐性アイコン": "Armour,FireStrong",
     "元ボスアクト": "２",
@@ -196,11 +196,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "そびえる山頂",
     "検索用よみがな": "そびえるさんちょう",
     "検索用ローマ字": "sobierusanchou sobierusantyou sobierusannchou sobierusanntyou",
-    "マップ英語": "Lofty Summit",
+    "マップ日本語": "そびえる山頂",
     "ボス日本語": "良心なきオロトン",
+    "マップ英語": "Lofty Summit",
     "ボス英語": "Oloton, the Remorseless",
     "耐性アイコン": "ArmourStrong,FireStrong,FireWeak",
     "元ボスアクト": "３",
@@ -210,11 +210,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "共同墓地",
     "検索用よみがな": "きょうどうぼち",
     "検索用ローマ字": "kyoudoubochi kyoudouboti",
-    "マップ英語": "Necropolis",
+    "マップ日本語": "共同墓地",
     "ボス日本語": "黒の法務官、ティコ",
+    "マップ英語": "Necropolis",
     "ボス英語": "Tycho, the Black Praetor",
     "耐性アイコン": "ArmourStrong,Fire",
     "元ボスアクト": "１",
@@ -224,11 +224,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "地下納骨堂",
     "検索用よみがな": "ちかのうこつどう",
     "検索用ローマ字": "chikanoukotsudou chikanoukotudou tikanoukotsudou tikanoukotudou",
-    "マップ英語": "Crypt",
+    "マップ日本語": "地下納骨堂",
     "ボス日本語": "信仰の真似事、メルトワックス",
+    "マップ英語": "Crypt",
     "ボス英語": "Meltwax, Mockery of Faith",
     "耐性アイコン": "ArmourStrong,Fire,Cold",
     "元ボスアクト": "１",
@@ -238,11 +238,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "蒸気泉",
     "検索用よみがな": "じょうきせん",
     "検索用ローマ字": "joukisen jyoukisen zyoukisen",
-    "マップ英語": "Steaming Springs",
+    "マップ日本語": "蒸気泉",
     "ボス日本語": "サーペントクィーン、マナッサ",
+    "マップ英語": "Steaming Springs",
     "ボス英語": "Manassa, the Serpent Queen",
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "２",
@@ -252,11 +252,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "漏出",
     "検索用よみがな": "ろうしゅつ",
     "検索用ローマ字": "roushutsu roushutu rousyutsu rousyutu",
-    "マップ英語": "Seepage",
+    "マップ日本語": "漏出",
     "ボス日本語": "真菌のベヒモス",
+    "マップ英語": "Seepage",
     "ボス英語": "The Fungus Behemoth",
     "耐性アイコン": "-",
     "元ボスアクト": "１",
@@ -266,11 +266,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "川辺",
     "検索用よみがな": "かわべ",
     "検索用ローマ字": "kawabe",
-    "マップ英語": "Riverside",
+    "マップ日本語": "川辺",
     "ボス日本語": "頭砕き、ゼコア",
+    "マップ英語": "Riverside",
     "ボス英語": "Zekoa, the Headcrusher",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "３",
@@ -280,11 +280,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "草原",
     "検索用よみがな": "そうげん",
     "検索用ローマ字": "sougen sougenn",
-    "マップ英語": "Steppe",
+    "マップ日本語": "草原",
     "ボス日本語": "反逆のラストロード、ゴゼン",
+    "マップ英語": "Steppe",
     "ボス英語": "Gozen, Rebellious Rustlord",
     "耐性アイコン": "ArmourStrong,Fire,LightningWeak",
     "元ボスアクト": "１",
@@ -294,11 +294,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "水面",
     "検索用よみがな": "みなも",
     "検索用ローマ字": "minamo",
-    "マップ英語": "Slick",
+    "マップ日本語": "水面",
     "ボス日本語": "地獄の技師、ヴォリック",
+    "マップ英語": "Slick",
     "ボス英語": "Vorrik, The Infernal Engineer",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "２",
@@ -308,11 +308,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "蜘蛛の森",
     "検索用よみがな": "くものもり",
     "検索用ローマ字": "kumonomori",
-    "マップ英語": "Spider Woods",
+    "マップ日本語": "蜘蛛の森",
     "ボス日本語": "憎むべき森、ルートグラスプ",
+    "マップ英語": "Spider Woods",
     "ボス英語": "Rootgrasp, the Hateful Forest",
     "耐性アイコン": "ArmourStrong,FireWeak,Cold",
     "元ボスアクト": "１",
@@ -322,11 +322,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "骨髄",
     "検索用よみがな": "こつずい",
     "検索用ローマ字": "kotsuzui kotuzui",
-    "マップ英語": "Marrow",
+    "マップ日本語": "骨髄",
     "ボス日本語": "骨の暴君、ザー・ワリ",
+    "マップ英語": "Marrow",
     "ボス英語": "Zar Wali, the Bone Tyrant",
     "耐性アイコン": "ArmourStrong,FireStrong",
     "元ボスアクト": "２",
@@ -336,11 +336,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ヴァールの都市",
     "検索用よみがな": "ヴぁーるのとし",
     "検索用ローマ字": "va-runotoshi va-runotosi",
-    "マップ英語": "Vaal City",
+    "マップ日本語": "ヴァールの都市",
     "ボス日本語": "ヴァイパー・ナプアツィ",
+    "マップ英語": "Vaal City",
     "ボス英語": "Viper Napuatzi",
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "３",
@@ -350,11 +350,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ブラッドウッド",
     "検索用よみがな": "ぶらっどうっど",
     "検索用ローマ字": "buraddouddo",
-    "マップ英語": "Bloodwood",
+    "マップ日本語": "ブラッドウッド",
     "ボス日本語": "動く大地、ゴリアン",
+    "マップ英語": "Bloodwood",
     "ボス英語": "Gorian, the Moving Earth",
     "耐性アイコン": "Armour,Lightning",
     "元ボスアクト": "１",
@@ -364,11 +364,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "セノーテ",
     "検索用よみがな": "せのーて",
     "検索用ローマ字": "seno-te",
-    "マップ英語": "Cenotes",
+    "マップ日本語": "セノーテ",
     "ボス日本語": "空を見る者、バーラク",
+    "マップ英語": "Cenotes",
     "ボス英語": "Bahlak, the Sky Seer",
     "耐性アイコン": "Evasion,FireWeak,LightningStrong",
     "元ボスアクト": "３",
@@ -378,11 +378,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "隠れ岩屋",
     "検索用よみがな": "かくれいわや",
     "検索用ローマ字": "kakureiwaya",
-    "マップ英語": "Hidden Grotto",
+    "マップ日本語": "隠れ岩屋",
     "ボス日本語": "骨の暴君、ザー・ワリ",
+    "マップ英語": "Hidden Grotto",
     "ボス英語": "Zar Wali, the Bone Tyrant",
     "耐性アイコン": "ArmourStrong,FireStrong",
     "元ボスアクト": "２",
@@ -392,11 +392,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "渓谷",
     "検索用よみがな": "けいこく",
     "検索用ローマ字": "keikoku",
-    "マップ英語": "Ravine",
+    "マップ日本語": "渓谷",
     "ボス日本語": "灼熱の守護者、テツカトル",
+    "マップ英語": "Ravine",
     "ボス英語": "Tetzcatl, the Blazing Guardian",
     "耐性アイコン": "ArmourStrong,Fire,Cold,LightningWeak",
     "元ボスアクト": "３",
@@ -406,11 +406,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "高山の尾根",
     "検索用よみがな": "こうざんのおね",
     "検索用ローマ字": "kouzannoone",
-    "マップ英語": "Alpine Ridge",
+    "マップ日本語": "高山の尾根",
     "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ",
+    "マップ英語": "Alpine Ridge",
     "ボス英語": "Ignatia, the Flame-Sworn\nGelida, the Frost-Tongue",
     "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
     "元ボスアクト": "幕間",
@@ -420,11 +420,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "予兆",
     "検索用よみがな": "よちょう",
     "検索用ローマ字": "yochou yotyou",
-    "マップ英語": "Augury",
+    "マップ日本語": "予兆",
     "ボス日本語": "頂点、グレッサー・クル",
+    "マップ英語": "Augury",
     "ボス英語": "Gressor-Kul, the Apex",
     "耐性アイコン": "Fire,Cold,Lightning",
     "元ボスアクト": "３",
@@ -434,11 +434,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "監獄",
     "検索用よみがな": "かんごく",
     "検索用ローマ字": "kangoku kanngoku",
-    "マップ英語": "Bastille",
+    "マップ日本語": "監獄",
     "ボス日本語": "フロストベイン、ヴェイナー",
+    "マップ英語": "Bastille",
     "ボス英語": "Veynar, the Frostbane",
     "耐性アイコン": "ArmourStrong,Fire,ColdStrong",
     "元ボスアクト": "幕間",
@@ -448,11 +448,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "小川",
     "検索用よみがな": "おがわ",
     "検索用ローマ字": "ogawa",
-    "マップ英語": "Creek",
+    "マップ日本語": "小川",
     "ボス日本語": "憎む者、ティアニー",
+    "マップ英語": "Creek",
     "ボス英語": "Tierney, the Hateful",
     "耐性アイコン": "Armour",
     "元ボスアクト": "１",
@@ -462,11 +462,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "深紅の岸",
     "検索用よみがな": "しんくのきし",
     "検索用ローマ字": "sinkunokisi sinkunokishi sinnkunokisi sinnkunokishi",
-    "マップ英語": "Crimson Shores",
+    "マップ日本語": "深紅の岸",
     "ボス日本語": "残り火より生まれし者、ヴォルカー",
+    "マップ英語": "Crimson Shores",
     "ボス英語": "Volkhar, the Emberborn",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak,Lightning",
     "元ボスアクト": "２",
@@ -476,11 +476,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "腐敗",
     "検索用よみがな": "ふはい",
     "検索用ローマ字": "fuhai huhai",
-    "マップ英語": "Decay",
+    "マップ日本語": "腐敗",
     "ボス日本語": "真菌のベヒモス",
+    "マップ英語": "Decay",
     "ボス英語": "The Fungus Behemoth",
     "耐性アイコン": "-",
     "元ボスアクト": "１",
@@ -490,11 +490,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "荒涼地",
     "検索用よみがな": "こうりょうち",
     "検索用ローマ字": "kouryouchi kouryouti",
-    "マップ英語": "Deserted",
+    "マップ日本語": "荒涼地",
     "ボス日本語": "大穴の領主",
+    "マップ英語": "Deserted",
     "ボス英語": "Lord of the Pit",
     "耐性アイコン": "Lightning",
     "元ボスアクト": "２",
@@ -504,11 +504,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "グリムヘブン",
     "検索用よみがな": "ぐりむへぶん",
     "検索用ローマ字": "gurimuhebun",
-    "マップ英語": "Grimhaven",
+    "マップ日本語": "グリムヘブン",
     "ボス日本語": "恐ろしき妻、サフィラ",
+    "マップ英語": "Grimhaven",
     "ボス英語": "Saphira, The Dread Consort",
     "耐性アイコン": "ArmourStrong,Cold",
     "元ボスアクト": "１",
@@ -518,11 +518,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "巣穴",
     "検索用よみがな": "すあな",
     "検索用ローマ字": "suana",
-    "マップ英語": "Hive",
+    "マップ日本語": "巣穴",
     "ボス日本語": "真菌のベヒモス",
+    "マップ英語": "Hive",
     "ボス英語": "The Fungus Behemoth",
     "耐性アイコン": "-",
     "元ボスアクト": "１",
@@ -532,11 +532,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "業火",
     "検索用よみがな": "ごうか",
     "検索用ローマ字": "gouka",
-    "マップ英語": "Inferno",
+    "マップ日本語": "業火",
     "ボス日本語": "[DNT-UNUSED] Dog Trader",
+    "マップ英語": "Inferno",
     "ボス英語": "[DNT-UNUSED] Dog Trader",
     "耐性アイコン": "",
     "元ボスアクト": "",
@@ -546,11 +546,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "坑道",
     "検索用よみがな": "こうどう",
     "検索用ローマ字": "koudou",
-    "マップ英語": "Mineshaft",
+    "マップ日本語": "坑道",
     "ボス日本語": "地獄の技師、ヴォリック",
+    "マップ英語": "Mineshaft",
     "ボス英語": "Vorrik, The Infernal Engineer",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "２",
@@ -560,11 +560,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "オアシス",
     "検索用よみがな": "おあしす",
     "検索用ローマ字": "oasisu",
-    "マップ英語": "Oasis",
+    "マップ日本語": "オアシス",
     "ボス日本語": "永期なるイシュタロス",
+    "マップ英語": "Oasis",
     "ボス英語": "Ishtaroth, the Perennial",
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "２",
@@ -574,11 +574,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "潮だまり",
     "検索用よみがな": "しおだまり",
     "検索用ローマ字": "shiodamari siodamari",
-    "マップ英語": "Rockpools",
+    "マップ日本語": "潮だまり",
     "ボス日本語": "飽くなき者、ブルゴール",
+    "マップ英語": "Rockpools",
     "ボス英語": "Brughor, the Insatiable",
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "４",
@@ -588,11 +588,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "沈む尖塔",
     "検索用よみがな": "しずむせんとう",
     "検索用ローマ字": "shizumusentou shizumusenntou sizumusentou sizumusenntou",
-    "マップ英語": "Sinking Spire",
+    "マップ日本語": "沈む尖塔",
     "ボス日本語": "守護者、ストームゴア",
+    "マップ英語": "Sinking Spire",
     "ボス英語": "Stormgore, the Guardian",
     "耐性アイコン": "ArmourStrong,ColdWeak,LightningStrong",
     "元ボスアクト": "幕間",
@@ -602,11 +602,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "鉄の城塞",
     "検索用よみがな": "てつのじょうさい",
     "検索用ローマ字": "tetsunojousai tetunojousai",
-    "マップ英語": "The Iron Citadel",
+    "マップ日本語": "鉄の城塞",
     "ボス日本語": "ジオノール伯爵\n堕落した狼、ジオノール",
+    "マップ英語": "The Iron Citadel",
     "ボス英語": "Count Geonor\nGeonor, the Putrid Wolf",
     "耐性アイコン": "ArmourStrong,ColdStrong\nColdStrong",
     "元ボスアクト": "１",
@@ -616,11 +616,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "石の城塞",
     "検索用よみがな": "いしのじょうさい",
     "検索用ローマ字": "isinojousai",
-    "マップ英語": "The Stone Citadel",
+    "マップ日本語": "石の城塞",
     "ボス日本語": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
+    "マップ英語": "The Stone Citadel",
     "ボス英語": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "耐性アイコン": "FireStrong,LightningStrong\nArmourStrong,Fire,Lightning",
     "元ボスアクト": "３",
@@ -630,11 +630,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "銅の城塞",
     "検索用よみがな": "どうのじょうさい",
     "検索用ローマ字": "dounojousai",
-    "マップ英語": "The Copper Citadel",
+    "マップ日本語": "銅の城塞",
     "ボス日本語": "アボミネーション、ジャマンラ",
+    "マップ英語": "The Copper Citadel",
     "ボス英語": "Jamanra, the Abomination",
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
     "元ボスアクト": "２",
@@ -644,11 +644,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ヴァールの村",
     "検索用よみがな": "ヴぁーるのむら",
     "検索用ローマ字": "va-runomura",
-    "マップ英語": "Vaal Village",
+    "マップ日本語": "ヴァールの村",
     "ボス日本語": "[DNT-UNUSED] Dog Trader",
+    "マップ英語": "Vaal Village",
     "ボス英語": "[DNT-UNUSED] Dog Trader",
     "耐性アイコン": "-",
     "元ボスアクト": "",
@@ -658,11 +658,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "錆の窪地",
     "検索用よみがな": "さびのくぼち",
     "検索用ローマ字": "sabinokubochi sabinokuboti",
-    "マップ英語": "Rustbowl",
+    "マップ日本語": "錆の窪地",
     "ボス日本語": "反逆のラストロード、ゴゼン",
+    "マップ英語": "Rustbowl",
     "ボス英語": "Gozen, Rebellious Rustlord",
     "耐性アイコン": "ArmourStrong,Fire,LightningWeak",
     "元ボスアクト": "１",
@@ -672,11 +672,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "引き波",
     "検索用よみがな": "ひきなみ",
     "検索用ローマ字": "hikinami",
-    "マップ英語": "Backwash",
+    "マップ日本語": "引き波",
     "ボス日本語": "不快な者、ヤオタ",
+    "マップ英語": "Backwash",
     "ボス英語": "Yaota, the Loathsome",
     "耐性アイコン": "Armour",
     "元ボスアクト": "３",
@@ -686,11 +686,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "埋葬の沼",
     "検索用よみがな": "まいそうのぬま",
     "検索用ローマ字": "maisounonuma",
-    "マップ英語": "Burial Bog",
+    "マップ日本語": "埋葬の沼",
     "ボス日本語": "邪悪な棘、グラッジラッシュ",
+    "マップ英語": "Burial Bog",
     "ボス英語": "Grudgelash, Vile Thorn",
     "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "３",
@@ -700,11 +700,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "湿地帯",
     "検索用よみがな": "しっちたい",
     "検索用ローマ字": "sittitai siltutitai sixtutitai",
-    "マップ英語": "Wetlands",
+    "マップ日本語": "湿地帯",
     "ボス日本語": "ハイエナロード、カエドロン",
+    "マップ英語": "Wetlands",
     "ボス英語": "Caedron, the Hyena Lord",
     "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "２",
@@ -714,11 +714,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "太陽の神殿",
     "検索用よみがな": "たいようのしんでん",
     "検索用ローマ字": "taiyounoshinden",
-    "マップ英語": "Sun Temple",
+    "マップ日本語": "太陽の神殿",
     "ボス日本語": "太陽の預言者、トンキ",
+    "マップ英語": "Sun Temple",
     "ボス英語": "Tonqui, Seer of the Sun",
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "３",
@@ -728,11 +728,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "水路",
     "検索用よみがな": "すいろ",
     "検索用ローマ字": "suiro",
-    "マップ英語": "Channel",
+    "マップ日本語": "水路",
     "ボス日本語": "堕ちし息子、ハスク",
+    "マップ英語": "Channel",
     "ボス英語": "Hask, the Fallen Son",
     "耐性アイコン": "Armour,FireStrong",
     "元ボスアクト": "２",
@@ -742,11 +742,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "鍛冶場",
     "検索用よみがな": "かじば",
     "検索用ローマ字": "kajiba kaziba",
-    "マップ英語": "Molten Vault",
+    "マップ日本語": "鍛冶場",
     "ボス日本語": "生ける炉、ガルザル",
+    "マップ英語": "Molten Vault",
     "ボス英語": "Gulzal, the Living Furnace",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "３",
@@ -756,11 +756,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "工場",
     "検索用よみがな": "こうじょう",
     "検索用ローマ字": "koujou",
-    "マップ英語": "The Assembly",
+    "マップ日本語": "工場",
     "ボス日本語": "灼熱の守護者、テツカトル",
+    "マップ英語": "The Assembly",
     "ボス英語": "Tetzcatl, the Blazing Guardian",
     "耐性アイコン": "ArmourStrong,Fire,Cold,LightningWeak",
     "元ボスアクト": "３",
@@ -770,11 +770,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "台地",
     "検索用よみがな": "だいち",
     "検索用ローマ字": "daichi daiti",
-    "マップ英語": "Mesa",
+    "マップ日本語": "台地",
     "ボス日本語": "砂丘の住人、カラッシュ",
+    "マップ英語": "Mesa",
     "ボス英語": "Karash, The Dune Dweller",
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
     "元ボスアクト": "２",
@@ -784,11 +784,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "絶壁",
     "検索用よみがな": "ぜっぺき",
     "検索用ローマ字": "zeppeki zeltupeki zextupeki",
-    "マップ英語": "Bluff",
+    "マップ日本語": "絶壁",
     "ボス日本語": "頂点、グレッサー・クル",
+    "マップ英語": "Bluff",
     "ボス英語": "Gressor-Kul, the Apex",
     "耐性アイコン": "Fire,Cold,Lightning",
     "元ボスアクト": "３",
@@ -798,11 +798,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "アズメリ山脈",
     "検索用よみがな": "あずめりさんみゃく",
     "検索用ローマ字": "azumerisanmyaku azumerisannmyaku",
-    "マップ英語": "Azmerian Ranges",
+    "マップ日本語": "アズメリ山脈",
     "ボス日本語": "同胞殺しのモーウィン",
+    "マップ英語": "Azmerian Ranges",
     "ボス英語": "Morwyn, the Kinslayer",
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "幕間",
@@ -812,11 +812,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "凍った滝",
     "検索用よみがな": "こおったたき",
     "検索用ローマ字": "koottataki kooltutataki kooxtutataki",
-    "マップ英語": "Frozen Falls",
+    "マップ日本語": "凍った滝",
     "ボス日本語": "冬の翼、スレイブン",
+    "マップ英語": "Frozen Falls",
     "ボス英語": "Thraeven, Wing of Winter",
     "耐性アイコン": "Evasion,FireWeak,LightningStrong",
     "元ボスアクト": "幕間",
@@ -826,11 +826,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "塹壕",
     "検索用よみがな": "ざんごう",
     "検索用ローマ字": "zangou",
-    "マップ英語": "Trenches",
+    "マップ日本語": "塹壕",
     "ボス日本語": "動く大地、ゴリアン",
+    "マップ英語": "Trenches",
     "ボス英語": "Gorian, the Moving Earth",
     "耐性アイコン": "Armour,Lightning",
     "元ボスアクト": "１",
@@ -840,67 +840,67 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ヒスイの島",
-    "検索用よみがな": "ひすいのしま",
-    "検索用ローマ字": "hisuinosima hisuinoshima",
-    "マップ英語": "The Jade Isles",
+    "検索用よみがな": "あらしのめ\nひすいのしま",
+    "検索用ローマ字": "arashinome arasinome\nhisuinosima hisuinoshima",
+    "マップ日本語": "嵐の目\nヒスイの島",
     "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ",
+    "マップ英語": "The Jade Isles",
     "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled",
     "耐性アイコン": "ArmourStrong,Fire\nArmourStrong\nArmourStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "部族の中心",
     "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
     "元ボス特徴": "4章ボス",
-    "メモ": "嵐の目\nカオムの狂気\nラキアタの流れ\nタウホアの加護"
+    "メモ": "カオムの狂気\nラキアタの流れ\nタウホアの加護"
   },
   {
-    "マップ日本語": "神聖な貯水池",
-    "検索用よみがな": "しんせいなちょすいち",
-    "検索用ローマ字": "shinseinachosuiti shinseinachosuiti shinseinatyosuiti shinseinatyosuiti sinseinachosuiti sinseinachosuiti sinseinatyosuiti sinseinatyosuiti",
-    "マップ英語": "Sacred Reservoir",
+    "検索用よみがな": "じくうのすなあらし\nしんせいなちょすいち",
+    "検索用ローマ字": "jikuunosunaarashi jikuunosunaarasi\nshinseinachosuiti shinseinachosuiti shinseinatyosuiti shinseinatyosuiti sinseinachosuiti sinseinachosuiti sinseinatyosuiti sinseinatyosuiti",
+    "マップ日本語": "時空の砂嵐\n神聖な貯水池",
     "ボス日本語": "剣の王、ザーミル",
+    "マップ英語": "Sacred Reservoir",
     "ボス英語": "Zahmir, the Blade Sovereign",
     "耐性アイコン": "Fire",
     "元ボスアクト": "幕間",
     "元ボスエリア": "キーマの貯水池",
     "元ボス名": "ファリドゥンの王子、アズマディ",
     "元ボス特徴": "王子",
-    "メモ": "時空の砂嵐\nガルカーンの決意\nヴァラシュタの祝福\nザロクの反復"
+    "メモ": "ガルカーンの決意\nヴァラシュタの祝福\nザロクの反復"
   },
   {
-    "マップ日本語": "廃屋敷",
-    "検索用よみがな": "はいやしき",
-    "検索用ローマ字": "haiyasiki haiyashiki",
-    "マップ英語": "Derelict Mansion",
+    "検索用よみがな": "きりのなかのごうてい\nはいやしき",
+    "検索用ローマ字": "kirinonakanogoutei\nhaiyasiki haiyashiki",
+    "マップ日本語": "霧の中の豪邸\n廃屋敷",
     "ボス日本語": "灰の王、ヴァ―ロック\n枯れ薔薇のアヴェリン",
+    "マップ英語": "Derelict Mansion",
     "ボス英語": "Varloch, the Ashen Lord\nAvelyne, the Withered Rose",
     "耐性アイコン": "ArmourStrong\nArmour,Fire",
     "元ボスアクト": "幕間",
     "元ボスエリア": "ホルテンの豪邸",
     "元ボス名": "ウルフリック族長\nエルズウィス婦人",
     "元ボス特徴": "",
-    "メモ": "霧の中の豪邸\nリグワルドの獰猛\nエイリスの鐘"
+    "メモ": "リグワルドの獰猛\nエイリスの鐘"
   },
   {
-    "マップ日本語": "封印された地下室",
-    "検索用よみがな": "ふういんされたちかしつ",
-    "検索用ローマ字": "fuuinsaretachikashitsu fuuinsaretachikashitu fuuinsaretachikasitsu fuuinsaretachikasitu fuuinsaretatikashitsu fuuinsaretatikashitu fuuinsaretatikasitsu fuuinsaretatikasitu fuuinnsaretachikashitsu fuuinnsaretachikashitu fuuinnsaretachikasitsu fuuinnsaretachikasitu fuuinnsaretatikashitsu fuuinnsaretatikashitu fuuinnsaretatikasitsu fuuinnsaretatikasitu huuinsaretachikashitsu huuinsaretachikashitu huuinsaretachikasitsu huuinsaretachikasitu huuinsaretatikashitsu huuinsaretatikashitu huuinsaretatikasitsu huuinsaretatikasitu huuinnsaretachikashitsu huuinnsaretachikashitu huuinnsaretachikasitsu huuinnsaretachikasitu huuinnsaretatikashitsu huuinnsaretatikashitu huuinnsaretatikasitsu huuinnsaretatikasit",
-    "マップ英語": "Sealed Vault",
+    "検索用よみがな": "えすたずんてぃのひなんじょ\nふういんされたちかしつ",
+    "検索用ローマ字": "esutazunthinohinanjo esutazunnthinohinanjo\nfuuinsaretachikashitsu fuuinsaretachikashitu fuuinsaretachikasitsu fuuinsaretachikasitu fuuinsaretatikashitsu fuuinsaretatikashitu fuuinsaretatikasitsu fuuinsaretatikasitu fuuinnsaretachikashitsu fuuinnsaretachikashitu fuuinnsaretachikasitsu fuuinnsaretachikasitu fuuinnsaretatikashitsu fuuinnsaretatikashitu fuuinnsaretatikasitsu fuuinnsaretatikasitu huuinsaretachikashitsu huuinsaretachikashitu huuinsaretachikasitsu huuinsaretachikasitu huuinsaretatikashitsu huuinsaretatikashitu huuinsaretatikasitsu huuinsaretatikasitu huuinnsaretachikashitsu huuinnsaretachikashitu huuinnsaretachikasitsu huuinnsaretachikasitu huuinnsaretatikashitsu huuinnsaretatikashitu huuinnsaretatikasitsu huuinnsaretatikasit",
+    "マップ日本語": "エスタズンティの避難所\n封印された地下室",
     "ボス日本語": "血の神託者、イツァラ\n肉体改造者、マズトリ",
+    "マップ英語": "Sealed Vault",
     "ボス英語": "Ytzara, Blood Oracle\nMaztli, Flesh-Shaper",
     "耐性アイコン": "EvasionStrong,Cold\nEvasion,Cold",
     "元ボスアクト": "幕間",
     "元ボスエリア": "クアチクの地下避難所",
     "元ボス名": "血の巫女、ゼリナ\n血の司祭、ゾリン",
     "元ボス特徴": "",
-    "メモ": "封印された宝物庫?\nアタルイの血抜き\nタカティの怒り\nパクアテの契約"
+    "メモ": "アタルイの血抜き\nタカティの怒り\nパクアテの契約"
   },
   {
-    "マップ日本語": "合流点",
     "検索用よみがな": "ごうりゅうてん",
     "検索用ローマ字": "gouryuuten",
-    "マップ英語": "Confluence",
+    "マップ日本語": "合流点",
     "ボス日本語": "サーペントクィーン、マナッサ",
+    "マップ英語": "Confluence",
     "ボス英語": "Manassa, the Serpent Queen",
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "２",
@@ -910,11 +910,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "鬱蒼地",
     "検索用よみがな": "うっそうち",
     "検索用ローマ字": "ussoutchi ussouti ultusouchi ultusouti uxtusouchi uxtusouti",
-    "マップ英語": "Overgrown",
+    "マップ日本語": "鬱蒼地",
     "ボス日本語": "灼熱の守護者、テツカトル",
+    "マップ英語": "Overgrown",
     "ボス英語": "Tetzcatl, the Blazing Guardian",
     "耐性アイコン": "ArmourStrong,Fire,Cold,LightningWeak",
     "元ボスアクト": "３",
@@ -924,11 +924,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "拠点",
     "検索用よみがな": "きょてん",
     "検索用ローマ字": "kyotenn",
-    "マップ英語": "Stronghold",
+    "マップ日本語": "拠点",
     "ボス日本語": "鎖に繋がれた恐怖",
+    "マップ英語": "Stronghold",
     "ボス英語": "The Shackled Horror",
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "４",
@@ -938,11 +938,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "断裂",
     "検索用よみがな": "だんれつ",
     "検索用ローマ字": "danretu dannretsu danretu dannretsu",
-    "マップ英語": "Rupture",
+    "マップ日本語": "断裂",
     "ボス日本語": "頭砕き、ゼコア",
+    "マップ英語": "Rupture",
     "ボス英語": "Zekoa, the Headcrusher",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "３",
@@ -952,11 +952,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "泉",
     "検索用よみがな": "いずみ",
     "検索用ローマ字": "izumi",
-    "マップ英語": "Spring",
+    "マップ日本語": "泉",
     "ボス日本語": "サーペントクィーン、マナッサ",
+    "マップ英語": "Spring",
     "ボス英語": "Manassa, the Serpent Queen",
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "２",
@@ -966,11 +966,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "気まぐれな島",
     "検索用よみがな": "きまぐれなしま",
     "検索用ローマ字": "kimagurenasima kimagurenashima",
-    "マップ英語": "Wayward Isle",
+    "マップ日本語": "気まぐれな島",
     "ボス日本語": "大穴の領主",
+    "マップ英語": "Wayward Isle",
     "ボス英語": "Lord of the Pit",
     "耐性アイコン": "Lightning",
     "元ボスアクト": "２",
@@ -980,11 +980,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "碑文",
     "検索用よみがな": "ひぶん",
     "検索用ローマ字": "hibunn",
-    "マップ英語": "Epitaph",
+    "マップ日本語": "碑文",
     "ボス日本語": "恐ろしき妻、サフィラ",
+    "マップ英語": "Epitaph",
     "ボス英語": "Saphira, The Dread Consort",
     "耐性アイコン": "ArmourStrong,Cold",
     "元ボスアクト": "１",
@@ -994,11 +994,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "断崖",
     "検索用よみがな": "だんがい",
     "検索用ローマ字": "dangai danngai",
-    "マップ英語": "Cliffside",
+    "マップ日本語": "断崖",
     "ボス日本語": "重巨兵、ブラッカス",
+    "マップ英語": "Cliffside",
     "ボス英語": "Brakkus, the Juggernaut",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "４",
@@ -1008,11 +1008,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "陥没穴",
     "検索用よみがな": "かんぼつあな",
     "検索用ローマ字": "kanbotuana kannbotuana kanbotsuana kannbotsuana",
-    "マップ英語": "Sinkhole",
+    "マップ日本語": "陥没穴",
     "ボス日本語": "白猿のヤマ",
+    "マップ英語": "Sinkhole",
     "ボス英語": "Yama The White",
     "耐性アイコン": "EvasionStrong",
     "元ボスアクト": "４",
@@ -1022,11 +1022,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "カルデラ",
     "検索用よみがな": "かるでら",
     "検索用ローマ字": "karudera",
-    "マップ英語": "Caldera",
+    "マップ日本語": "カルデラ",
     "ボス日本語": "ラヴェナスファング",
+    "マップ英語": "Caldera",
     "ボス英語": "The Ravenous Fang",
     "耐性アイコン": "Armour,LightningStrong",
     "元ボスアクト": "４",
@@ -1036,11 +1036,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "漂流物",
     "検索用よみがな": "ひょうりゅうぶつ",
     "検索用ローマ字": "hyouryuubutu hyouryuubutsu",
-    "マップ英語": "Flotsam",
+    "マップ日本語": "漂流物",
     "ボス日本語": "深海の王、マルゴル",
+    "マップ英語": "Flotsam",
     "ボス英語": "Malgor, the Nautilord",
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "４",
@@ -1050,11 +1050,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ハイヴコロニー",
     "検索用よみがな": "はいヴころにー",
     "検索用ローマ字": "haivukoroni- haivucoroni-",
-    "マップ英語": "Hive Colony",
+    "マップ日本語": "ハイヴコロニー",
     "ボス日本語": "トゥルだったもの\nエッシュだったもの",
+    "マップ英語": "Hive Colony",
     "ボス英語": "It That Was Tul\nIt That Was Esh",
     "耐性アイコン": "ArmourStrong,Cold\nLightning",
     "元ボスアクト": "#N/A",
@@ -1064,11 +1064,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "西のゲートウェイ",
     "検索用よみがな": "にしのげーとうぇい",
     "検索用ローマ字": "nisinoge-towei nishinoge-towei",
-    "マップ英語": "Western Gateway",
+    "マップ日本語": "西のゲートウェイ",
     "ボス日本語": "先人の分離機",
+    "マップ英語": "Western Gateway",
     "ボス英語": "Precursor Separator",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "#N/A",
@@ -1078,11 +1078,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "東のゲートウェイ",
     "検索用よみがな": "ひがしのげーとうぇい",
     "検索用ローマ字": "higasinoge-towei higashinoge-towei",
-    "マップ英語": "Eastern Gateway",
+    "マップ日本語": "東のゲートウェイ",
     "ボス日本語": "先人の製錬機",
+    "マップ英語": "Eastern Gateway",
     "ボス英語": "Precursor Refiner",
     "耐性アイコン": "ArmourStrong,FireWeak,ColdWeak",
     "元ボスアクト": "#N/A",
@@ -1092,11 +1092,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "オリジンタワー",
     "検索用よみがな": "おりじんたわー",
     "検索用ローマ字": "orijintawa- orijinntawa-",
-    "マップ英語": "The Origin Tower",
+    "マップ日本語": "オリジンタワー",
     "ボス日本語": "神性のアービター",
+    "マップ英語": "The Origin Tower",
     "ボス英語": "The Arbiter of Divinity",
     "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
     "元ボスアクト": "#N/A",
@@ -1106,11 +1106,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "父祖の広間",
     "検索用よみがな": "ふそのひろま",
     "検索用ローマ字": "fusonohiroma husonohiroma",
-    "マップ英語": "The Patriarch Halls",
+    "マップ日本語": "父祖の広間",
     "ボス日本語": "火花の番人、フィックス",
+    "マップ英語": "The Patriarch Halls",
     "ボス英語": "Phyx, Sentinel of the Spark",
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "#N/A",
@@ -1120,11 +1120,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "母祖の広間",
     "検索用よみがな": "ぼそのひろま",
     "検索用ローマ字": "bosonohiroma",
-    "マップ英語": "The Matriarch Halls",
+    "マップ日本語": "母祖の広間",
     "ボス日本語": "揺りかごの番人、フィア",
+    "マップ英語": "The Matriarch Halls",
     "ボス英語": "Phya, Sentinel of the Cradle",
     "耐性アイコン": "FireWeak,ColdStrong",
     "元ボスアクト": "#N/A",
@@ -1134,11 +1134,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "燃えるモノリス",
     "検索用よみがな": "もえるものりす",
     "検索用ローマ字": "moerumonorisu",
-    "マップ英語": "The Burning Monolith",
+    "マップ日本語": "燃えるモノリス",
     "ボス日本語": "灰のアービター",
+    "マップ英語": "The Burning Monolith",
     "ボス英語": "The Arbiter of Ash",
     "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
     "元ボスアクト": "#N/A",
@@ -1148,11 +1148,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "西のエニグマの間",
     "検索用よみがな": "にしのえにぐまのま",
     "検索用ローマ字": "nisinoeniguma nishinoeniguma",
-    "マップ英語": "Western Enigma Chamber",
+    "マップ日本語": "西のエニグマの間",
     "ボス日本語": "ジオノール伯爵\n堕落した狼、ジオノール",
+    "マップ英語": "Western Enigma Chamber",
     "ボス英語": "Count Geonor\nGeonor, the Putrid Wolf",
     "耐性アイコン": "ArmourStrong,ColdStrong\nColdStrong",
     "元ボスアクト": "１",
@@ -1162,11 +1162,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "東のエニグマの間",
     "検索用よみがな": "ひがしのえにぐまのま",
     "検索用ローマ字": "higasinoeniguma higashinoeniguma",
-    "マップ英語": "Eastern Enigma Chamber",
+    "マップ日本語": "東のエニグマの間",
     "ボス日本語": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
+    "マップ英語": "Eastern Enigma Chamber",
     "ボス英語": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "耐性アイコン": "FireStrong,LightningStrong\nArmourStrong,Fire,Lightning",
     "元ボスアクト": "３",
@@ -1176,11 +1176,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "降雪",
     "検索用よみがな": "こうせつ",
     "検索用ローマ字": "kousetu kousetsu",
-    "マップ英語": "Snowfall",
+    "マップ日本語": "降雪",
     "ボス日本語": "影の幽鬼、サリエル",
+    "マップ英語": "Snowfall",
     "ボス英語": "Thariel, the Umbral Wraith",
     "耐性アイコン": "Armour,EvasionStrong,FireWeak,LightningStrong",
     "元ボスアクト": "幕間",
@@ -1190,11 +1190,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "温室",
     "検索用よみがな": "おんしつ",
     "検索用ローマ字": "onsitu onsitsu onshitu onshitsu",
-    "マップ英語": "Greenhouse",
+    "マップ日本語": "温室",
     "ボス日本語": "憎むべき森、ルートグラスプ",
+    "マップ英語": "Greenhouse",
     "ボス英語": "Rootgrasp, the Hateful Forest",
     "耐性アイコン": "ArmourStrong,FireWeak,Cold",
     "元ボスアクト": "１",
@@ -1204,11 +1204,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "谷間",
     "検索用よみがな": "たにま",
     "検索用ローマ字": "tanima",
-    "マップ英語": "Chasm",
+    "マップ日本語": "谷間",
     "ボス日本語": "死の歌、ディアモラ",
+    "マップ英語": "Chasm",
     "ボス英語": "Diamora, Song of Death",
     "耐性アイコン": "ColdStrong,LightningWeak",
     "元ボスアクト": "４",
@@ -1218,11 +1218,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "闘拳場",
     "検索用よみがな": "とうけんじょう",
     "検索用ローマ字": "toukenjou",
-    "マップ英語": "Pit",
+    "マップ日本語": "闘拳場",
     "ボス日本語": "重巨兵、ブラッカス",
+    "マップ英語": "Pit",
     "ボス英語": "Brakkus, the Juggernaut",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "４",
@@ -1232,11 +1232,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "港",
     "検索用よみがな": "みなと",
     "検索用ローマ字": "minato",
-    "マップ英語": "Port",
+    "マップ日本語": "港",
     "ボス日本語": "深海の王、マルゴル",
+    "マップ英語": "Port",
     "ボス英語": "Malgor, the Nautilord",
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "４",
@@ -1246,11 +1246,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "乾燥平原",
     "検索用よみがな": "かんそうへいげん",
     "検索用ローマ字": "kansouheigenn",
-    "マップ英語": "Arid Plains",
+    "マップ日本語": "乾燥平原",
     "ボス日本語": "最後の一刺し、アクティ\nサンドワーム、アナンドル",
+    "マップ英語": "Arid Plains",
     "ボス英語": "Akthi, the Final Sting\nAnundr, the Sandworm",
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning\nArmour,Lightning",
     "元ボスアクト": "幕間",
@@ -1260,11 +1260,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "バザー",
     "検索用よみがな": "ばざー",
     "検索用ローマ字": "baza-",
-    "マップ英語": "Bazaar",
+    "マップ日本語": "バザー",
     "ボス日本語": "ヴァイパー・ナプアツィ",
+    "マップ英語": "Bazaar",
     "ボス英語": "Viper Napuatzi",
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "３",
@@ -1274,11 +1274,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "焼結の裂け目",
     "検索用よみがな": "しょうけつのさけめ",
     "検索用ローマ字": "shouketunosakeme shyouketsunosakeme syouketunosakeme syouketsunosakeme shouketsunosakeme shyouketunosakeme",
-    "マップ英語": "Sinter Rift",
+    "マップ日本語": "焼結の裂け目",
     "ボス日本語": "飽くなき者、ブルゴール",
+    "マップ英語": "Sinter Rift",
     "ボス英語": "Brughor, the Insatiable",
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "４",
@@ -1288,11 +1288,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "貯水池",
     "検索用よみがな": "ちょすいち",
     "検索用ローマ字": "chosuichi chosuiti tyosuichi tyosuiti",
-    "マップ英語": "Reservoir",
+    "マップ日本語": "貯水池",
     "ボス日本語": "邪悪な棘、グラッジラッシュ",
+    "マップ英語": "Reservoir",
     "ボス英語": "Grudgelash, Vile Thorn",
     "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "３",
@@ -1302,11 +1302,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "横断",
     "検索用よみがな": "おうだん",
     "検索用ローマ字": "oudann",
-    "マップ英語": "Slash",
+    "マップ日本語": "横断",
     "ボス日本語": "ブラッククロウ",
+    "マップ英語": "Slash",
     "ボス英語": "The Black Crow",
     "耐性アイコン": "-",
     "元ボスアクト": "１",
@@ -1316,11 +1316,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "大農園",
     "検索用よみがな": "だいのうえん",
     "検索用ローマ字": "dainouenn",
-    "マップ英語": "Plantation",
+    "マップ日本語": "大農園",
     "ボス日本語": "灰の王、ヴァ―ロック",
+    "マップ英語": "Plantation",
     "ボス英語": "Varloch, the Ashen Lord",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "幕間",
@@ -1330,11 +1330,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "オルバラの渡り路",
     "検索用よみがな": "おるばらのわたりじ",
     "検索用ローマ字": "orubaranowatariji orubaranowatarizi",
-    "マップ英語": "Orbala's Crossing",
+    "マップ日本語": "オルバラの渡り路",
     "ボス日本語": "鱗をもつもの、セラス",
+    "マップ英語": "Orbala's Crossing",
     "ボス英語": "Serath, the Scaled One",
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "幕間",
@@ -1344,11 +1344,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "聖域",
     "検索用よみがな": "せいいき",
     "検索用ローマ字": "seiiki",
-    "マップ英語": "Sanctuary",
+    "マップ日本語": "聖域",
     "ボス日本語": "忘れ去られた囚人、ピラシャ",
+    "マップ英語": "Sanctuary",
     "ボス英語": "Pirasha, the Forgotten Prisoner",
     "耐性アイコン": "EvasionStrong,Fire,ColdWeak",
     "元ボスアクト": "２",
@@ -1358,11 +1358,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "群れ",
     "検索用よみがな": "むれ",
     "検索用ローマ字": "mure",
-    "マップ英語": "Swarm",
+    "マップ日本語": "群れ",
     "ボス日本語": "残り火より生まれし者、ヴォルカー",
+    "マップ英語": "Swarm",
     "ボス英語": "Volkhar, the Emberborn",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak,Lightning",
     "元ボスアクト": "２",
@@ -1372,11 +1372,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "伐り尽くされた森",
     "検索用よみがな": "きりつくされたもり",
     "検索用ローマ字": "kiritukusaretamori kiritsukusaretamori",
-    "マップ英語": "Deforestation",
+    "マップ日本語": "伐り尽くされた森",
     "ボス日本語": "同胞殺しのモーウィン",
+    "マップ英語": "Deforestation",
     "ボス英語": "Morwyn, the Kinslayer",
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "幕間",
@@ -1386,11 +1386,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "絶壁",
     "検索用よみがな": "ぜっぺき",
     "検索用ローマ字": "zeppeki zeltupeki zextupeki zeltsupeki zextsupeki",
-    "マップ英語": "Precipice",
+    "マップ日本語": "絶壁",
     "ボス日本語": "地獄の業火、モルヴァク",
+    "マップ英語": "Precipice",
     "ボス英語": "Morvak, the Infernal",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "幕間",
@@ -1400,11 +1400,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "キングスマーチの廃墟",
     "検索用よみがな": "きんぐすまーちのはいきょ",
     "検索用ローマ字": "kingusuma-chinohaikyo kingusuma-tinohaikyo kinngusuma-chinohaikyo kinngusuma-tinohaikyo",
-    "マップ英語": "Ruins of Kingsmarch",
+    "マップ日本語": "キングスマーチの廃墟",
     "ボス日本語": "異形",
+    "マップ英語": "Ruins of Kingsmarch",
     "ボス英語": "The Aberration",
     "耐性アイコン": "ArmourStrong,Fire",
     "元ボスアクト": "#N/A",
@@ -1414,11 +1414,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ケル・タース",
     "検索用よみがな": "ける・たーす",
     "検索用ローマ字": "keru/ta-su",
-    "マップ英語": "Caer Tarth",
+    "マップ日本語": "ケル・タース",
     "ボス日本語": "ボダック",
+    "マップ英語": "Caer Tarth",
     "ボス英語": "The Bodach",
     "耐性アイコン": "ArmourStrong,ChaosStrong",
     "元ボスアクト": "#N/A",
@@ -1428,11 +1428,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "枯れ柳",
     "検索用よみがな": "かれやなぎ",
     "検索用ローマ字": "kareyanagi",
-    "マップ英語": "The Withered Willow",
+    "マップ日本語": "枯れ柳",
     "ボス日本語": "鴉の欺く者",
+    "マップ英語": "The Withered Willow",
     "ボス英語": "The Raven Trickster",
     "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
     "元ボスアクト": "#N/A",
@@ -1442,11 +1442,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "魂の井戸",
     "検索用よみがな": "たましいのいど",
     "検索用ローマ字": "tamasiinoido tamashiinoido",
-    "マップ英語": "The Well of Souls",
+    "マップ日本語": "魂の井戸",
     "ボス日本語": "クーラマクの器",
+    "マップ英語": "The Well of Souls",
     "ボス英語": "Vessel of Kulemak",
     "耐性アイコン": "Armour",
     "元ボスアクト": "#N/A",
@@ -1456,11 +1456,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "広がるジャングル",
     "検索用よみがな": "ひろがるじゃんぐる",
     "検索用ローマ字": "hirogaruzyanguru hirogarujyanguru hirogarujannguru hirogaruzyannguru",
-    "マップ英語": "Sprawling Jungle",
+    "マップ日本語": "広がるジャングル",
     "ボス日本語": "堕ちた予言者、メドヴェッド",
+    "マップ英語": "Sprawling Jungle",
     "ボス英語": "Medved, the Fallen Seer",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "#N/A",
@@ -1470,11 +1470,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "嘆きの崖",
     "検索用よみがな": "なげきのがけ",
     "検索用ローマ字": "nagekinogake",
-    "マップ英語": "Mournful Cliffside",
+    "マップ日本語": "嘆きの崖",
     "ボス日本語": "最後に倒れる者、ヴォラナ",
+    "マップ英語": "Mournful Cliffside",
     "ボス英語": "Vorana, Last to Fall",
     "耐性アイコン": "ArmourStrong,Evasion,ColdStrong",
     "元ボスアクト": "#N/A",
@@ -1484,11 +1484,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "孤立した寺院",
     "検索用よみがな": "こりつしたじいん",
     "検索用ローマ字": "koritusitaziin koritusitaziinn koritusitajiin koritusitajiinn koritushitaziin koritushitaziinn koritushitajiin koritushitajiinn koritsusitaziin koritsusitaziinn koritsusitajiin koritsusitajiinn koritsushitaziin koritsushitaziinn koritsushitajiin koritsushitajiinn",
-    "マップ英語": "Secluded Temple",
+    "マップ日本語": "孤立した寺院",
     "ボス日本語": "星を飲むもの、ウートレッド",
+    "マップ英語": "Secluded Temple",
     "ボス英語": "Uhtred, the Stardrinker",
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "#N/A",
@@ -1498,11 +1498,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "隠れた島",
     "検索用よみがな": "かくれたしま",
     "検索用ローマ字": "kakuretasima kakuretashima",
-    "マップ英語": "Obscure Island",
+    "マップ日本語": "隠れた島",
     "ボス日本語": "破滅の元凶、オルロス",
+    "マップ英語": "Obscure Island",
     "ボス英語": "Olroth, Origin of the Fall",
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "#N/A",
@@ -1512,11 +1512,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "先人の塔",
     "検索用よみがな": "せんじんのとう",
     "検索用ローマ字": "senjinnnotou senjinnnotou senjinnnotou senjinnnotou senzinnnotou senzinnnotou senzinnnotou senzinnnotou",
-    "マップ英語": "Precursor Tower",
+    "マップ日本語": "先人の塔",
     "ボス日本語": "先人の転移機\n先人の抽出機",
+    "マップ英語": "Precursor Tower",
     "ボス英語": "Precursor Displacer\nPrecursor Extractor",
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "#N/A",
@@ -1526,11 +1526,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "先人の塔",
     "検索用よみがな": "せんじんのとう",
     "検索用ローマ字": "senjinnnotou senjinnnotou senjinnnotou senjinnnotou senzinnnotou senzinnnotou senzinnnotou senzinnnotou",
-    "マップ英語": "Precursor Tower",
+    "マップ日本語": "先人の塔",
     "ボス日本語": "先人の転移機\n先人の抽出機",
+    "マップ英語": "Precursor Tower",
     "ボス英語": "Precursor Displacer\nPrecursor Extractor",
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "#N/A",
@@ -1540,11 +1540,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "先人の塔",
     "検索用よみがな": "せんじんのとう",
     "検索用ローマ字": "senjinnnotou senjinnnotou senjinnnotou senjinnnotou senzinnnotou senzinnnotou senzinnnotou senzinnnotou",
-    "マップ英語": "Precursor Tower",
+    "マップ日本語": "先人の塔",
     "ボス日本語": "先人の転移機\n先人の抽出機",
+    "マップ英語": "Precursor Tower",
     "ボス英語": "Precursor Displacer\nPrecursor Extractor",
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "#N/A",
@@ -1554,11 +1554,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "先人の塔",
     "検索用よみがな": "せんじんのとう",
     "検索用ローマ字": "senjinnnotou senjinnnotou senjinnnotou senjinnnotou senzinnnotou senzinnnotou senzinnnotou senzinnnotou",
-    "マップ英語": "Precursor Tower",
+    "マップ日本語": "先人の塔",
     "ボス日本語": "先人の転移機\n先人の抽出機",
+    "マップ英語": "Precursor Tower",
     "ボス英語": "Precursor Displacer\nPrecursor Extractor",
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "#N/A",
@@ -1568,11 +1568,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "先人の塔",
     "検索用よみがな": "せんじんのとう",
     "検索用ローマ字": "senjinnnotou senjinnnotou senjinnnotou senjinnnotou senzinnnotou senzinnnotou senzinnnotou senzinnnotou",
-    "マップ英語": "Precursor Tower",
+    "マップ日本語": "先人の塔",
     "ボス日本語": "先人の転移機\n先人の抽出機",
+    "マップ英語": "Precursor Tower",
     "ボス英語": "Precursor Displacer\nPrecursor Extractor",
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "#N/A",
@@ -1582,11 +1582,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "無の中核",
     "検索用よみがな": "むのちゅうかく",
     "検索用ローマ字": "munochuukaku munotyuukaku",
-    "マップ英語": "Crux of Nothingness",
+    "マップ日本語": "無の中核",
     "ボス日本語": "霧の王\n霧の王",
+    "マップ英語": "Crux of Nothingness",
     "ボス英語": "The King in the Mists\nThe King in the Mists",
     "耐性アイコン": "Armour,Evasion\nArmourStrong",
     "元ボスアクト": "#N/A",
@@ -1596,11 +1596,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "発掘現場",
     "検索用よみがな": "はっくつげんば",
     "検索用ローマ字": "hakkutugenba hakkutugennba hakkutsuugenba hakkutsuugennba haltukutugenba haltukutugennba haltukutsuugenba haltukutsuugennba haxtukutugenba haxtukutugennba haxtukutsuugenba haxtukutsuugennba",
-    "マップ英語": "Digsite",
+    "マップ日本語": "発掘現場",
     "ボス日本語": "大裁定者、オーレリアン",
+    "マップ英語": "Digsite",
     "ボス英語": "Aurelian, the Grand Adjudicator",
     "耐性アイコン": "LightningStrong",
     "元ボスアクト": "#N/A",
@@ -1610,11 +1610,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "氷の洞窟",
     "検索用よみがな": "こおりのどうくつ",
     "検索用ローマ字": "koorinodoukutu koorinodoukutsu",
-    "マップ英語": "Ice Cave",
+    "マップ日本語": "氷の洞窟",
     "ボス日本語": "フロストボーンの化け物",
+    "マップ英語": "Ice Cave",
     "ボス英語": "The Frostborn Fiend",
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "幕間",
@@ -1624,11 +1624,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "焦土",
     "検索用よみがな": "しょうど",
     "検索用ローマ字": "shoudo syoudo",
-    "マップ英語": "Razed Fields",
+    "マップ日本語": "焦土",
     "ボス日本語": "野蛮な炎のエルヴァラ\n霜手のラエル",
+    "マップ英語": "Razed Fields",
     "ボス英語": "Elvara, the Savage Flame\nRael, the Frost Hand",
     "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
     "元ボスアクト": "幕間",
@@ -1638,11 +1638,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "リバーホールド",
     "検索用よみがな": "りばーほーるど",
     "検索用ローマ字": "riba-ho-rudo",
-    "マップ英語": "Riverhold",
+    "マップ日本語": "リバーホールド",
     "ボス日本語": "影の幽鬼、サリエル",
+    "マップ英語": "Riverhold",
     "ボス英語": "Thariel, the Umbral Wraith",
     "耐性アイコン": "Armour,EvasionStrong,FireWeak,LightningStrong",
     "元ボスアクト": "幕間",
@@ -1652,11 +1652,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "ルゴサ",
     "検索用よみがな": "るごさ",
     "検索用ローマ字": "rugosa",
-    "マップ英語": "Rugosa",
+    "マップ日本語": "ルゴサ",
     "ボス日本語": "深みの娘、シヴォラ",
+    "マップ英語": "Rugosa",
     "ボス英語": "Syvora, Daughter of the Deep",
     "耐性アイコン": "ColdStrong,LightningWeak",
     "元ボスアクト": "４",
@@ -1666,11 +1666,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "霊安場",
     "検索用よみがな": "れいあんじょう",
     "検索用ローマ字": "reianjou reiannjou reianjyou reiannjyou reianzyou reiannzyou",
-    "マップ英語": "Mortuary",
+    "マップ日本語": "霊安場",
     "ボス日本語": "再造のミカタ",
+    "マップ英語": "Mortuary",
     "ボス英語": "Micata, the Remade",
     "耐性アイコン": "ArmourStrong,LightningStrong",
     "元ボスアクト": "#N/A",
@@ -1680,11 +1680,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "父祖の広間",
     "検索用よみがな": "ふそのひろま",
     "検索用ローマ字": "fusonohiroma husonohiroma",
-    "マップ英語": "The Patriarch Halls",
+    "マップ日本語": "父祖の広間",
     "ボス日本語": "火花の番人、フィックス",
+    "マップ英語": "The Patriarch Halls",
     "ボス英語": "Phyx, Sentinel of the Spark",
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "#N/A",
@@ -1694,11 +1694,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "母祖の広間",
     "検索用よみがな": "ぼそのひろま",
     "検索用ローマ字": "bosonohiroma",
-    "マップ英語": "The Matriarch Halls",
+    "マップ日本語": "母祖の広間",
     "ボス日本語": "揺りかごの番人、フィア",
+    "マップ英語": "The Matriarch Halls",
     "ボス英語": "Phya, Sentinel of the Cradle",
     "耐性アイコン": "FireWeak,ColdStrong",
     "元ボスアクト": "#N/A",
@@ -1708,11 +1708,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "先人の塔",
     "検索用よみがな": "せんじんのとう",
     "検索用ローマ字": "senjinnotou senzinnotou sennjinnotou sennzinnotou sennjinnnotou sennzinnnotou",
-    "マップ英語": "Precursor Tower",
+    "マップ日本語": "先人の塔",
     "ボス日本語": "砂丘の住人、カラッシュ",
+    "マップ英語": "Precursor Tower",
     "ボス英語": "Karash, The Dune Dweller",
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
     "元ボスアクト": "２",
@@ -1722,11 +1722,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "渓谷",
     "検索用よみがな": "けいこく",
     "検索用ローマ字": "keikoku",
-    "マップ英語": "Canyon",
+    "マップ日本語": "渓谷",
     "ボス日本語": "地獄の業火、モルヴァク",
+    "マップ英語": "Canyon",
     "ボス英語": "Morvak, the Infernal",
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "幕間",
@@ -1736,11 +1736,11 @@
     "メモ": ""
   },
   {
-    "マップ日本語": "豪華な広間",
     "検索用よみがな": "ごうかなひろま",
     "検索用ローマ字": "goukanahiroma",
-    "マップ英語": "Ornate Chambers",
+    "マップ日本語": "豪華な広間",
     "ボス日本語": "鱗をもつもの、セラス",
+    "マップ英語": "Ornate Chambers",
     "ボス英語": "Serath, the Scaled One",
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "幕間",
