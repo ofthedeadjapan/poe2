@@ -164,6 +164,37 @@
 
         .search-counter { font-size: 15px; font-weight: bold; color: var(--accent-gold); white-space: nowrap; }
 
+        /* --- 【修正】耐性フィルターモーダルの基本スタイル（PC・スマホ共通共通） --- */
+        #resist-grid-wrapper {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center; /* PC環境では画面中央にポップアップ */
+            flex-direction: column;
+            backdrop-filter: blur(2px);
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        #resist-grid-wrapper.show {
+            display: flex;
+        }
+        #resist-grid-wrapper .resist-filter-grid {
+            background-color: var(--bg-panel);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+        }
+        #btn-close-filter {
+            width: 100%;
+            max-width: 200px;
+            margin-top: 16px;
+        }
+
         .resist-filter-grid { display: grid; grid-template-columns: repeat(6, 36px); grid-template-rows: repeat(3, 36px); gap: 8px; }
         
         .icon-wrapper { position: relative; width: 36px; height: 36px; cursor: pointer; border-radius: 50%; transition: 0.2s; }
@@ -310,42 +341,18 @@
                 line-height: 1.5;
             }
 
-            .btn-mobile-only {
-                display: flex !important;
-                width: 100%;
-            }
-            
+            /* --- 【修正】スマホ表示時の位置調整 --- */
             #resist-grid-wrapper {
-                display: none;
-                position: fixed;
-                /* ★ height: 100dvh を廃止し、上下左右を0に固定して確実に全画面を覆う */
-                top: 0; left: 0; right: 0; bottom: 0; 
-                background-color: rgba(0, 0, 0, 0.7);
-                z-index: 1000;
-                align-items: center;      
-                flex-direction: column;
-                backdrop-filter: blur(2px);
-                /* ★ セーフエリア（iPhoneのホームバーなど）を考慮した余白 */
-                padding-bottom: max(32px, env(safe-area-inset-bottom)); 
-                box-sizing: border-box;
-            }
-            
-            #resist-grid-wrapper.show {
-                display: flex;
+                justify-content: flex-end; /* スマホ画面では下側に揃える */
+                padding-bottom: 32px;
             }
             
             #resist-grid-wrapper .resist-filter-grid {
-                /* ★ ここが魔法の1行。上部の余白をすべて吸収し、要素を画面下部に確実に押し下げます */
-                margin-top: auto; 
-                background-color: var(--bg-panel);
-                padding: 24px;
-                border-radius: var(--radius-md);
-                border: 1px solid var(--border-color);
-                box-shadow: 0 10px 25px rgba(0,0,0,0.8);
-                margin-bottom: 16px; 
+                margin-bottom: 16px;
             }
 
             #btn-close-filter {
+                display: flex !important;
                 width: 80% !important;
                 max-width: 300px;
                 margin-top: 0 !important;
@@ -438,33 +445,7 @@
 
             <div class="separator-weak"></div>
 
-            <button id="btn-mobile-filter" class="btn-action btn-mobile-only">🛡 耐性フィルターを設定</button>
-
-            <div id="resist-grid-wrapper">
-                <div class="resist-filter-grid" id="resist-grid">
-                    <div class="icon-dummy" title="ArmourWeak">-</div>
-                    <div class="icon-dummy" title="EvasionWeak">-</div>
-                    <div class="icon-wrapper" data-resist="FireWeak" title="FireWeak"><img src="images/IconEnemy/IconEnemyResistanceFireWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="ColdWeak" title="ColdWeak"><img src="images/IconEnemy/IconEnemyResistanceColdWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="LightningWeak" title="LightningWeak"><img src="images/IconEnemy/IconEnemyResistanceLightningWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-dummy" title="ChaosWeak">-</div>
-                    
-                    <div class="icon-wrapper" data-resist="Armour" title="Armour"><img src="images/IconEnemy/IconEnemyArmour.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="Evasion" title="Evasion"><img src="images/IconEnemy/IconEnemyEvasion.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="Fire" title="Fire"><img src="images/IconEnemy/IconEnemyResistanceFire.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="Cold" title="Cold"><img src="images/IconEnemy/IconEnemyResistanceCold.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="Lightning" title="Lightning"><img src="images/IconEnemy/IconEnemyResistanceLightning.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="Chaos" title="Chaos"><img src="images/IconEnemy/IconEnemyResistanceChaos.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    
-                    <div class="icon-wrapper" data-resist="ArmourStrong" title="ArmourStrong"><img src="images/IconEnemy/IconEnemyArmourStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="EvasionStrong" title="EvasionStrong"><img src="images/IconEnemy/IconEnemyEvasionStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="FireStrong" title="FireStrong"><img src="images/IconEnemy/IconEnemyResistanceFireStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="ColdStrong" title="ColdStrong"><img src="images/IconEnemy/IconEnemyResistanceColdStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="LightningStrong" title="LightningStrong"><img src="images/IconEnemy/IconEnemyResistanceLightningStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                    <div class="icon-wrapper" data-resist="ChaosStrong" title="ChaosStrong"><img src="images/IconEnemy/IconEnemyResistanceChaosStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
-                </div>
-                <button id="btn-close-filter" class="btn-action btn-mobile-only" style="margin-top: 24px;">✖ 閉じる</button>
-            </div>
+            <button id="btn-mobile-filter" class="btn-action">🛡 耐性フィルターを設定</button>
 
             <div class="separator-weak"></div>
             
@@ -493,6 +474,32 @@
         </table>
     </div>
 
+    <div id="resist-grid-wrapper">
+        <div class="resist-filter-grid" id="resist-grid">
+            <div class="icon-dummy" title="ArmourWeak">-</div>
+            <div class="icon-dummy" title="EvasionWeak">-</div>
+            <div class="icon-wrapper" data-resist="FireWeak" title="FireWeak"><img src="images/IconEnemy/IconEnemyResistanceFireWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="ColdWeak" title="ColdWeak"><img src="images/IconEnemy/IconEnemyResistanceColdWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="LightningWeak" title="LightningWeak"><img src="images/IconEnemy/IconEnemyResistanceLightningWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-dummy" title="ChaosWeak">-</div>
+            
+            <div class="icon-wrapper" data-resist="Armour" title="Armour"><img src="images/IconEnemy/IconEnemyArmour.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="Evasion" title="Evasion"><img src="images/IconEnemy/IconEnemyEvasion.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="Fire" title="Fire"><img src="images/IconEnemy/IconEnemyResistanceFire.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="Cold" title="Cold"><img src="images/IconEnemy/IconEnemyResistanceCold.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="Lightning" title="Lightning"><img src="images/IconEnemy/IconEnemyResistanceLightning.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="Chaos" title="Chaos"><img src="images/IconEnemy/IconEnemyResistanceChaos.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            
+            <div class="icon-wrapper" data-resist="ArmourStrong" title="ArmourStrong"><img src="images/IconEnemy/IconEnemyArmourStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="EvasionStrong" title="EvasionStrong"><img src="images/IconEnemy/IconEnemyEvasionStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="FireStrong" title="FireStrong"><img src="images/IconEnemy/IconEnemyResistanceFireStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="ColdStrong" title="ColdStrong"><img src="images/IconEnemy/IconEnemyResistanceColdStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="LightningStrong" title="LightningStrong"><img src="images/IconEnemy/IconEnemyResistanceLightningStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+            <div class="icon-wrapper" data-resist="ChaosStrong" title="ChaosStrong"><img src="images/IconEnemy/IconEnemyResistanceChaosStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+        </div>
+        <button id="btn-close-filter" class="btn-action">✖ 閉じる</button>
+    </div>
+
     <script src="js/wanakana.min.js"></script>
 
     <script>
@@ -518,7 +525,7 @@
             'f': '[ふぁふぃふふぇふぉ]', 'm': '[まみむめもみゃみゅみょ]', 'y': '[やゆよゃゅょ]',
             'r': '[らりるれろりゃりゅりょ]', 'w': '[わをん]', 'g': '[がぎぐげごぎゃぎゅぎょ]',
             'z': '[ざじずぜぞじゃじゅじょ]', 'j': '[じゃじゅじょじ]', 'd': '[だぢづでど]',
-            'b': '[ばびぶべぼびゃびゅびょ]', 'p': '[ぱぴぷぺぽぴゃぴゅぴょ]', 'v': '[ゔぁゔぃゔゔぇゔぉ]',
+            'b': '[ばびぶべぼびゃびゅびょ]', 'p': '[ぱぴぷぺぽぴゃぴゅびょ]', 'v': '[ゔぁゔぃゔゔぇゔぉ]',
             'q': '[くぁくぃくくぇくぉ]', 'x': '[ぁぃぅぇぉっゃゅょ]', 'l': '[ぁぃぅぇぉっゃゅょ]'
         };
 
