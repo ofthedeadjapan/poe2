@@ -16,7 +16,6 @@
             --text-muted: #a8a29e;
             --border-color: #57534e;
             --separator-color: #78716c;
-            --scrollbar-color: var(--border-color);
             --accent-gold: #cba65f;
             --btn-on: #10b981;
             --btn-sort-active: #60a5fa;
@@ -241,6 +240,11 @@
 
         /* 【変更】216pxから180pxへ列幅を縮小 */
         .col-耐性アイコン { width: 180px; min-width: 180px; max-width: 180px; text-align: center; white-space: normal; }
+
+        /* ボス名と耐性アイコンの改行ピッチ（高さ）を合わせる */
+        .col-ボス日本語, .col-ボス英語 {
+            line-height: 30px;
+        }
         
         /* 【変更】アイコンサイズを30pxから24pxへ縮小 */
         .icon-img, .icon-text { display: inline-block; width: 24px; height: 24px; margin: 2px; vertical-align: middle; border-radius: 50%; }
@@ -280,7 +284,6 @@
             color: var(--text-muted);
             white-space: normal;
         }
-        .msg-error { color: #f87171; }
 
         /* 【追加・変更】スマホ画面用の最適化 */
         @media (max-width: 900px) {
@@ -306,6 +309,11 @@
             }
             .resist-row-inline {
                 flex-wrap: wrap; 
+            }
+
+            /* スマホ表示時は元に戻す（必要に応じて） */
+            .col-ボス日本語, .col-ボス英語 {
+                line-height: 1.5;
             }
         }
     </style>
@@ -530,8 +538,10 @@
             DOM.tbody = document.getElementById('boss-table-body');
             DOM.fallbackMessage = document.getElementById('fallback-message');
 
+            // 固定入力イベント
             DOM.searchInput.addEventListener('input', (e) => {
-                AppState.filterState.text = e.target.value;
+                let text = normalizeText(e.target.value);
+                AppState.filterState.text = text;
                 filterTable();
             });
 
@@ -605,8 +615,7 @@
                     DOM.fallbackMessage.classList.remove('is-hidden');
                     const dummyData = [
                           {
-    "検索用よみがな": "こうざんのおね",
-    "検索用ローマ字": "kouzannoone",
+    "よみがな": "こうざんのおね",
     "マップ日本語": "高山の尾根",
     "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ",
     "マップ英語": "Alpine Ridge",
@@ -840,41 +849,53 @@
         }
 
        function getFilteredData() {
-            const activeResists = Array.from(AppState.filterState.resists);
-            const rawKeyword = AppState.filterState.text.trim().toLowerCase();
-            
-            let hiraRegex = null;
-            if (rawKeyword) {
-                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
-                hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
-                
-                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
-                
-                try {
-                    if (tailMatch) {
-                        const tailAlpha = tailMatch[1].toLowerCase();
-                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
-                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha] || '';
-                        hiraRegex = new RegExp(prefix + regexSuffix);
-                    } else {
-                        hiraRegex = new RegExp(escapeRegExp(hiraConverted));
-                    }
-                } catch (e) {
-                    hiraRegex = null;
-                }
-            }
+           const activeResists = Array.from(AppState.filterState.resists);
+           // 重複していた toLowerCase() を削除
+           const rawKeyword = AppState.filterState.text.trim();
 
-            return AppState.currentData.filter(item => {
-                if (rawKeyword) {
-                    const isRawMatch = item.searchIndex.includes(rawKeyword);
-                    const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
-                    
-                    if (!isRawMatch && !isKanaMatch) return false;
-                }
+           let hiraRegex = null;
+           if (rawKeyword) {
+               let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
 
-                return activeResists.every(r => item.resistIndex.has(r));
-            });
-        }
+               // 連続する「ん」を一つにまとめる
+               hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
+
+               // 「ん」の直後に「n」が余っている状態（奇数回のn連打）の末尾nを消す
+               hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
+
+               const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+
+               try {
+                   if (tailMatch) {
+                       const tailAlpha = tailMatch[1].toLowerCase();
+                       const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+
+                       const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                       if (regexSuffix === undefined) {
+                           // リストにない無効なローマ字（zzやqxなど）の場合はそのまま検索
+                           hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha));
+                       } else {
+                           hiraRegex = new RegExp(prefix + regexSuffix);
+                       }
+                   } else {
+                       hiraRegex = new RegExp(escapeRegExp(hiraConverted));
+                   }
+               } catch (e) {
+                   hiraRegex = null;
+               }
+           }
+
+           return AppState.currentData.filter(item => {
+               if (rawKeyword) {
+                   const isRawMatch = item.searchIndex.includes(rawKeyword);
+                   const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
+
+                   if (!isRawMatch && !isKanaMatch) return false;
+               }
+
+               return activeResists.every(r => item.resistIndex.has(r));
+           });
+}
 
         function getFilteredRows(hasVisibleColumn) {
             if (!hasVisibleColumn) return [];
