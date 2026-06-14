@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 ver0.5 マップボスリスト</title>
     <style>
         :root {
@@ -23,11 +24,6 @@
             --radius-md: 12px;
             --radius-sm: 8px;
         }
-
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-body); }
-        ::-webkit-scrollbar-thumb { background: var(--scrollbar-color); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
 
         body {
             background-color: var(--bg-body);
@@ -231,7 +227,6 @@
         tr:last-child td { border-bottom: none; }
 
         th {
-            position: sticky; top: 0; z-index: 10;
             background-color: var(--bg-th); color: #ffffff; white-space: nowrap; text-align: center; font-weight: 600;
             box-shadow: 0 1px 0 var(--border-color);
         }
@@ -244,9 +239,15 @@
         tr:not(.no-hover-row):hover { background-color: var(--bg-tr-hover); }
         tr:not(.no-hover-row):hover td:first-child { box-shadow: inset 4px 0 0 var(--accent-gold); }
 
-        .col-耐性アイコン { width: 216px; min-width: 216px; max-width: 216px; text-align: center; white-space: normal; }
-        .icon-img, .icon-text { display: inline-block; width: 30px; height: 30px; margin: 2px; vertical-align: middle; border-radius: 50%; }
-        .icon-text { line-height: 30px; text-align: center; color: var(--text-muted); font-weight: bold; font-size: 16px; }
+        /* 【変更】216pxから180pxへ列幅を縮小 */
+        .col-耐性アイコン { width: 180px; min-width: 180px; max-width: 180px; text-align: center; white-space: normal; }
+        
+        /* 【変更】アイコンサイズを30pxから24pxへ縮小 */
+        .icon-img, .icon-text { display: inline-block; width: 24px; height: 24px; margin: 2px; vertical-align: middle; border-radius: 50%; }
+        
+        /* 【変更】フォントサイズと行高さをアイコンサイズ(24px)に合わせる */
+        .icon-text { line-height: 24px; text-align: center; color: var(--text-muted); font-weight: bold; font-size: 14px; }
+        
         .resist-row-inline { display: inline-flex; justify-content: center; align-items: center; flex-wrap: nowrap; width: 100%; gap: 2px; margin-bottom: 2px; }
 
         .icon-img[title$="Weak"] { --table-status-color: 239, 68, 68; }
@@ -281,6 +282,7 @@
         }
         .msg-error { color: #f87171; }
 
+        /* 【追加・変更】スマホ画面用の最適化 */
         @media (max-width: 900px) {
             .controls-row { gap: 12px; }
             .separator-strong, .separator-weak, .separator-horizontal { display: none; }
@@ -288,6 +290,23 @@
             .search-counter { width: 100%; text-align: left; }
             .btn-dropdown, .btn-action { flex: 1; width: 100%; }
             .table-wrapper { overflow-x: auto; }
+            
+            /* 見出しの折り返し許可 */
+            th { white-space: normal; word-break: break-word; }
+            
+            /* 全体的な文字サイズと余白の縮小 */
+            table { font-size: 12px; }
+            th, td { padding: 4px 6px; }
+            
+            /* 耐性アイコン列のスマホ用調整（折り返し許可） */
+            .col-耐性アイコン {
+                width: auto;
+                min-width: 110px;
+                max-width: 150px;
+            }
+            .resist-row-inline {
+                flex-wrap: wrap; 
+            }
         }
     </style>
 </head>
@@ -339,7 +358,7 @@
                 <button class="btn-dropdown">
                     <span class="btn-left-icon">⊞</span>
                     <span id="btn-column-text" class="btn-label">
-                        表示項目: 10/12
+                        表示項目: 9/10
                     </span>
                     <span class="dropdown-icon">▼</span>
                 </button>
@@ -347,15 +366,13 @@
                     <div class="dropdown-item action-item" data-column-action="showAll">☑ すべて表示</div>
                     <div class="dropdown-item action-item" data-column-action="hideAll">☐ すべて非表示</div>
                     <div class="dropdown-divider"></div>
-                    <div class="dropdown-item" data-column="検索用よみがな"><span class="checkmark">✔</span>検索用よみがな</div>
-                    <div class="dropdown-item" data-column="検索用ローマ字"><span class="checkmark">✔</span>検索用ローマ字</div>
+                    <div class="dropdown-item" data-column="よみがな"><span class="checkmark">✔</span>よみがな</div>
                     <div class="dropdown-item" data-column="マップ日本語"><span class="checkmark">✔</span>マップ日本語</div>
                     <div class="dropdown-item" data-column="ボス日本語"><span class="checkmark">✔</span>ボス日本語</div>
                     <div class="dropdown-item" data-column="マップ英語"><span class="checkmark">✔</span>マップ英語</div>
                     <div class="dropdown-item" data-column="ボス英語"><span class="checkmark">✔</span>ボス英語</div>
                     <div class="dropdown-item" data-column="耐性アイコン"><span class="checkmark">✔</span>耐性アイコン</div>
-                    <div class="dropdown-item" data-column="元ボスアクト"><span class="checkmark">✔</span>元ボスアクト</div>
-                    <div class="dropdown-item" data-column="元ボスエリア"><span class="checkmark">✔</span>元ボスエリア</div>
+                    <div class="dropdown-item" data-column="元ボスアクト/エリア"><span class="checkmark">✔</span>元ボスアクト/エリア</div>
                     <div class="dropdown-item" data-column="元ボス名"><span class="checkmark">✔</span>元ボス名</div>
                     <div class="dropdown-item" data-column="元ボス特徴"><span class="checkmark">✔</span>元ボス特徴</div>
                     <div class="dropdown-item" data-column="メモ"><span class="checkmark">✔</span>メモ</div>
@@ -411,15 +428,13 @@
         <table id="boss-table">
             <thead>
                 <tr>
-                    <th class="col-検索用よみがな" data-key="検索用よみがな">検索用よみがな</th>
-                    <th class="col-検索用ローマ字" data-key="検索用ローマ字">検索用ローマ字</th>
+                    <th class="col-よみがな" data-key="よみがな">よみがな</th>
                     <th class="col-マップ日本語" data-key="マップ日本語">マップ日本語</th>
                     <th class="col-ボス日本語" data-key="ボス日本語">ボス日本語</th>
                     <th class="col-マップ英語" data-key="マップ英語">マップ英語</th>
                     <th class="col-ボス英語" data-key="ボス英語">ボス英語</th>
                     <th class="col-耐性アイコン" data-key="耐性アイコン">耐性アイコン</th>
-                    <th class="col-元ボスアクト" data-key="元ボスアクト">元ボスアクト</th>
-                    <th class="col-元ボスエリア" data-key="元ボスエリア">元ボスエリア</th>
+                    <th class="col-元ボスアクトエリア" data-key="元ボスアクト/エリア">元ボスアクト/エリア</th>
                     <th class="col-元ボス名" data-key="元ボス名">元ボス名</th>
                     <th class="col-元ボス特徴" data-key="元ボス特徴">元ボス特徴</th>
                     <th class="col-メモ" data-key="メモ">メモ</th>
@@ -429,6 +444,8 @@
             </tbody>
         </table>
     </div>
+
+    <script src="js/wanakana.min.js"></script>
 
     <script>
         // ==========================================
@@ -445,23 +462,33 @@
 
         const RESIST_TYPES = Object.keys(RESIST_DEFINITIONS);
 
+        const ROMAJI_TO_KANA_REGEX = {
+            'a': '[あぁ]', 'i': '[いぃ]', 'u': '[うぅ]', 'e': '[えぇ]', 'o': '[おぉ]',
+            'k': '[かきくけこきゃきゅきょ]', 's': '[さしすせそしゃしゅしょ]', 'sh': '[しゃしゅしょし]',
+            't': '[たちつてとちゃちゅちょっ]', 'c': '[かきくけこさしすせそちゃちゅちょ]', 'ch': '[ちゃちゅちょち]',
+            'ts': '[つ]', 'n': '[なにぬねのんにゃにゅにょ]', 'h': '[はひふへほひゃひゅひょ]',
+            'f': '[ふぁふぃふふぇふぉ]', 'm': '[まみむめもみゃみゅみょ]', 'y': '[やゆよゃゅょ]',
+            'r': '[らりるれろりゃりゅりょ]', 'w': '[わをん]', 'g': '[がぎぐげごぎゃぎゅぎょ]',
+            'z': '[ざじずぜぞじゃじゅじょ]', 'j': '[じゃじゅじょじ]', 'd': '[だぢづでど]',
+            'b': '[ばびぶべぼびゃびゅびょ]', 'p': '[ぱぴぷぺぽぴゃぴゅぴょ]', 'v': '[ゔぁゔぃゔゔぇゔぉ]',
+            'q': '[くぁくぃくくぇくぉ]', 'x': '[ぁぃぅぇぉっゃゅょ]', 'l': '[ぁぃぅぇぉっゃゅょ]'
+        };
+
         const COLUMN_CONFIG = {
-            '検索用よみがな': false,
-            '検索用ローマ字': false,
+            'よみがな': false,
             'マップ日本語': true,
             'ボス日本語': true,
             'マップ英語': true,
             'ボス英語': true,
             '耐性アイコン': true,
-            '元ボスアクト': true,
-            '元ボスエリア': true,
+            '元ボスアクト/エリア': true,
             '元ボス名': true,
             '元ボス特徴': true,
             'メモ': true
         };
 
         const REQUIRED_HEADERS = Object.keys(COLUMN_CONFIG);
-        const SEARCH_KEYS = ['検索用よみがな','検索用ローマ字','マップ日本語','ボス日本語','マップ英語','ボス英語','元ボスアクト','元ボスエリア','元ボス名','元ボス特徴','メモ'];
+        const SEARCH_KEYS = ['よみがな','マップ日本語','ボス日本語','マップ英語','ボス英語','元ボスアクト','元ボスエリア','元ボス名','元ボス特徴','メモ'];
 
         const AppState = {
             currentData: [],
@@ -495,7 +522,6 @@
         // 3. 初期化とイベントのバインド
         // ==========================================
         document.addEventListener('DOMContentLoaded', () => {
-            // DOMキャッシュの構築
             DOM.searchInput = document.getElementById('searchInput');
             DOM.searchCounter = document.getElementById('search-counter');
             DOM.resistGrid = document.getElementById('resist-grid');
@@ -504,20 +530,16 @@
             DOM.tbody = document.getElementById('boss-table-body');
             DOM.fallbackMessage = document.getElementById('fallback-message');
 
-            // 固定入力イベント
             DOM.searchInput.addEventListener('input', (e) => {
-                AppState.filterState.text = normalizeText(e.target.value);
+                AppState.filterState.text = e.target.value;
                 filterTable();
             });
 
-            // イベント委譲 (Event Delegation) による統合イベント管理
             document.addEventListener('click', (e) => {
-                // Dropdownを閉じる処理
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
                     if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
                 });
 
-                // Dropdownの開閉
                 const dropdownBtn = e.target.closest('.btn-dropdown');
                 if (dropdownBtn) {
                     const parent = dropdownBtn.parentElement;
@@ -528,7 +550,6 @@
                     return;
                 }
 
-                // 汎用アクションボタン
                 const actionBtn = e.target.closest('[data-action]');
                 if (actionBtn) {
                     const action = actionBtn.dataset.action;
@@ -538,28 +559,24 @@
                     return;
                 }
 
-                // ソート切り替え
                 const sortItem = e.target.closest('[data-sort]');
                 if (sortItem) {
                     sortTable(sortItem.dataset.sort, sortItem.dataset.sortName);
                     return;
                 }
 
-                // カラムの全表示/全非表示
                 const colAction = e.target.closest('[data-column-action]');
                 if (colAction) {
                     setAllColumns(colAction.dataset.columnAction === 'showAll');
                     return;
                 }
 
-                // カラムの個別トグル
                 const colToggle = e.target.closest('[data-column]');
                 if (colToggle) {
                     toggleColumn(colToggle.dataset.column);
                     return;
                 }
 
-                // 耐性フィルターアイコン
                 const resistIcon = e.target.closest('.icon-wrapper[data-resist]');
                 if (resistIcon) {
                     resistIcon.classList.toggle('active');
@@ -578,7 +595,6 @@
                 }
             });
 
-            // データ取得とテーブル構築
             fetch('poe2mapboss.json')
                 .then(r => { if (!r.ok) throw new Error(); return r.json(); })
                 .then(data => {
@@ -588,9 +604,22 @@
                     console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。");
                     DOM.fallbackMessage.classList.remove('is-hidden');
                     const dummyData = [
-                        { "検索用よみがな": "いおうのどうくつ", "検索用ローマ字": "iounodoukutu", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
-                        { "検索用よみがな": "しんりんちたい", "検索用ローマ字": "shinnrinnchitai shinnrinntitai shinnrinchitai shinnrintitai shinrinnchitai shinrinntitai shinrinchitai shinrintitai sinnrinnchitai sinnrinntitai sinnrinchitai sinnrintitai sinrinnchitai sinrinntitai sinrinchitai sinrintitai", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
-                        { "検索用よみがな": "ひすいのしま", "検索用ローマ字": "hisuinosima hisuinoshima", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" },
+                          {
+    "検索用よみがな": "こうざんのおね",
+    "検索用ローマ字": "kouzannoone",
+    "マップ日本語": "高山の尾根",
+    "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ",
+    "マップ英語": "Alpine Ridge",
+    "ボス英語": "Ignatia, the Flame-Sworn\nGelida, the Frost-Tongue",
+    "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
+    "元ボスアクト": "幕間",
+    "元ボスエリア": "焼け焦げた農場",
+    "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
+    "元ボス特徴": "炎と氷",
+    "メモ": ""
+  },{ "よみがな": "いおうのどうくつ", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
+                        { "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
+                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" },
                     ];
                     initializeApp(dummyData);
                 });
@@ -634,6 +663,10 @@
             return RESIST_DEFINITIONS[resistKey]?.normal;
         }
 
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+
         function normalizeText(str) { 
             return !str ? '' : String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); 
         }
@@ -673,9 +706,6 @@
         // 5. テーブル構築
         // ==========================================
 
-        /**
-         * 改行とカンマ区切りの耐性文字列をパースし、キーの二次元配列を返す
-         */
         function parseResistRows(resistStr) {
             return String(resistStr || '-')
                 .replace(/\r\n/g, '\n')
@@ -688,9 +718,6 @@
                 );
         }
 
-        /**
-         * 個別の耐性アイコン（またはダミーテキスト）のDOM要素を生成する
-         */
         function createResistIcon(foundKey) {
             if (foundKey && getIconPath(foundKey)) {
                 const img = document.createElement('img');
@@ -706,9 +733,6 @@
             }
         }
 
-        /**
-         * 1行分の耐性アイコン群を含むコンテナ(div)を生成する
-         */
         function createResistRow(keysInRow) {
             const rowDiv = document.createElement('div');
             rowDiv.className = 'resist-row-inline';
@@ -722,9 +746,6 @@
             return rowDiv;
         }
 
-        /**
-         * 耐性セル全体の構築処理
-         */
         function createResistCell(item, td) {
             const parsedRows = parseResistRows(item.耐性アイコン);
             
@@ -747,8 +768,9 @@
         }
 
         function createCell(key, item, isHidden) {
+            const safeKey = key.replace(/\//g, '');
             const td = document.createElement('td');
-            td.className = `col-${key}`;
+            td.className = `col-${safeKey}`;
             
             if (isHidden) {
                 td.classList.add('is-hidden');
@@ -756,6 +778,11 @@
 
             if (key === '耐性アイコン') {
                 createResistCell(item, td);
+            } else if (key === '元ボスアクト/エリア') {
+                const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : '';
+                const area = item['元ボスエリア'] || '';
+                const combined = [act, area].filter(Boolean).join('\n');
+                td.textContent = combined;
             } else {
                 td.textContent = item[key] || '';
             }
@@ -788,7 +815,9 @@
             DOM.noResultRow.className = 'is-hidden no-hover-row';
             DOM.tbody.appendChild(DOM.noResultRow);
 
-            document.querySelectorAll('th[data-key]').forEach(th => th.classList.toggle('is-hidden', hiddenColumns.has(th.dataset.key)));
+            document.querySelectorAll('th[data-key]').forEach(th => {
+                th.classList.toggle('is-hidden', hiddenColumns.has(th.dataset.key));
+            });
         }
 
         // ==========================================
@@ -810,13 +839,37 @@
             renderView(getViewState());
         }
 
-        function getFilteredData() {
+       function getFilteredData() {
             const activeResists = Array.from(AppState.filterState.resists);
-            const searchText = AppState.filterState.text;
+            const rawKeyword = AppState.filterState.text.trim().toLowerCase();
+            
+            let hiraRegex = null;
+            if (rawKeyword) {
+                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+                hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
+                
+                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+                
+                try {
+                    if (tailMatch) {
+                        const tailAlpha = tailMatch[1].toLowerCase();
+                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha] || '';
+                        hiraRegex = new RegExp(prefix + regexSuffix);
+                    } else {
+                        hiraRegex = new RegExp(escapeRegExp(hiraConverted));
+                    }
+                } catch (e) {
+                    hiraRegex = null;
+                }
+            }
 
             return AppState.currentData.filter(item => {
-                if (searchText && !item.searchIndex.includes(searchText)) {
-                    return false;
+                if (rawKeyword) {
+                    const isRawMatch = item.searchIndex.includes(rawKeyword);
+                    const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
+                    
+                    if (!isRawMatch && !isKanaMatch) return false;
                 }
 
                 return activeResists.every(r => item.resistIndex.has(r));
@@ -900,8 +953,8 @@
 
         const SORTERS = {
             'default': (a, b) => a.defaultOrder - b.defaultOrder,
-            'kana-asc': (a, b) => String(a["検索用よみがな"] || '').localeCompare(String(b["検索用よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-            'kana-desc': (a, b) => String(b["検索用よみがな"] || '').localeCompare(String(a["検索用よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'kana-asc': (a, b) => String(a["よみがな"] || '').localeCompare(String(b["よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'kana-desc': (a, b) => String(b["よみがな"] || '').localeCompare(String(a["よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
             'eng-asc': (a, b) => String(a["マップ英語"] || '').localeCompare(String(b["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder,
             'eng-desc': (a, b) => String(b["マップ英語"] || '').localeCompare(String(a["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder
         };
@@ -941,7 +994,8 @@
         }
 
         function updateColumnVisibility(columnKey, visible) {
-            document.querySelectorAll(`.col-${columnKey}`).forEach(el => {
+            const safeKey = columnKey.replace(/\//g, '');
+            document.querySelectorAll(`.col-${safeKey}`).forEach(el => {
                 el.classList.toggle('is-hidden', !visible);
             });
         }
