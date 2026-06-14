@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE2 ver0.5 マップボスリスト</title>
+    <style>
+        :root {
+            --bg-body: #1c1917;
+            --bg-panel: #292524;
+            --bg-table: #292524;
+            --bg-th: #44403c;
+            --bg-tr-even: #23201e;
+            --bg-tr-hover: rgba(203, 166, 95, 0.15);
+            --text-main: #e7e5e4;
+            --text-muted: #a8a29e;
+            --border-color: #57534e;
+            --separator-color: #78716c;
+            --accent-gold: #cba65f;
+            --btn-on: #10b981;
+            --btn-sort-active: #60a5fa;
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+            --radius-md: 12px;
+            --radius-sm: 8px;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 20px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        a.back-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            margin-left: 2.5%;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+        a.back-link:hover { color: #fef08a; transform: translateX(-4px); }
+
+        .header-container {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            width: 95%; margin: 0 auto 20px auto; padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        h1 { margin: 0; font-size: 26px; font-weight: 700; color: #ffffff; }
+        .reference-link-top a { color: #60a5fa; text-decoration: none; }
+        .reference-link-top a:hover { text-decoration: underline; }
+
+        .controls-wrapper {
+            display: flex; flex-direction: column; gap: 16px;
+            width: 95%; margin: 0 auto 20px auto;
+            background-color: var(--bg-panel);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            box-sizing: border-box;
+        }
+
+        .controls-row {
+            display: flex; align-items: center; flex-wrap: wrap; gap: 16px; width: 100%;
+        }
+
+        .separator-horizontal {
+            width: 100%; height: 1px; background-color: rgba(87, 83, 78, 0.4);
+        }
+
+        .separator-strong { width: 2px; height: 32px; background-color: var(--separator-color); flex-shrink: 0; border-radius: 1px; }
+        .separator-weak { width: 1px; height: 26px; background-color: rgba(87, 83, 78, 0.6); flex-shrink: 0; }
+
+        button {
+            cursor: pointer; border: 1px solid transparent; border-radius: var(--radius-sm);
+            font-size: 15px; font-weight: 600; transition: all 0.2s ease; outline: none;
+        }
+        button:active { transform: translateY(1px); }
+
+        .btn-action {
+            padding: 10px 16px; white-space: nowrap; flex-shrink: 0;
+            display: flex; align-items: center; gap: 6px;
+            background: rgba(180, 120, 40, 0.15);
+            border: 1px solid rgba(210, 150, 70, 0.40);
+            color: #e8c88a;
+        }
+        .btn-action:hover {
+            background-color: rgba(180, 120, 40, 0.3);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(210, 150, 70, 0.3);
+        }
+
+       .btn-dropdown {
+            display: grid;
+            grid-template-columns: 24px 1fr 24px;
+            align-items: center;
+            width: 270px;
+            height: 44px;
+            padding: 0 12px;
+            background-color: var(--bg-th);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            box-sizing: border-box;
+            white-space: nowrap;
+        }
+        .btn-left-icon { text-align: center; font-size: 15px; }
+        .btn-label { text-align: center; overflow: hidden; text-overflow: ellipsis; }
+        .btn-dropdown:hover { background-color: var(--border-color); color: #fff; }
+        .dropdown-icon { text-align: center; font-size: 12px; pointer-events: none; }
+
+        .dropdown { position: relative; display: inline-block; }
+        
+        .dropdown-content {
+            display: none; position: absolute; top: calc(100% + 6px); left: 0;
+            background-color: var(--bg-panel); border: 1px solid var(--border-color);
+            border-radius: var(--radius-md); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            z-index: 100; padding: 8px; min-width: 260px;
+        }
+
+        .dropdown.show .dropdown-content { display: block; }
+
+        .dropdown-item {
+            padding: 10px 16px; font-size: 15px; color: var(--text-main); cursor: pointer;
+            display: flex; align-items: center; gap: 12px; border-radius: var(--radius-sm);
+            user-select: none; transition: background-color 0.15s;
+        }
+        .dropdown-item:hover { background-color: var(--bg-th); color: #ffffff; }
+        .dropdown-item .checkmark { width: 18px; font-weight: bold; color: var(--btn-on); visibility: hidden; }
+        .dropdown-item.sort-active { color: var(--btn-sort-active); font-weight: 700; }
+        .dropdown-item.sort-active .checkmark { visibility: visible; }
+        
+        .dropdown-divider { height: 1px; background-color: var(--border-color); margin: 6px 0; }
+        .action-item { color: var(--accent-gold); font-weight: 600; }
+
+        .search-wrapper {
+            position: relative; display: flex; align-items: center; flex-grow: 1; min-width: 260px; max-width: 450px;
+        }
+        .search-icon {
+            position: absolute; left: 14px; font-size: 16px; color: var(--text-muted); pointer-events: none;
+        }
+        #searchInput {
+            width: 100%; height: 44px; padding: 10px 40px 10px 42px; font-size: 16px;
+            border: 1px solid var(--border-color); background-color: rgba(0,0,0,0.2);
+            color: white; border-radius: var(--radius-sm); box-sizing: border-box;
+            transition: all 0.2s;
+        }
+        #searchInput:focus { outline: none; border-color: #ffffff; box-shadow: 0 0 10px 2px rgba(255,255,255,0.2); }
+        
+        .clear-text-btn {
+            position: absolute; right: 10px; background: rgba(255,255,255,0.1); border: none;
+            color: var(--text-main); width: 24px; height: 24px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 12px;
+            cursor: pointer; transition: 0.2s; visibility: hidden; opacity: 0;
+        }
+        .clear-text-btn:hover { background: rgba(255,255,255,0.3); color: #fff; }
+        #searchInput:not(:placeholder-shown) ~ .clear-text-btn { visibility: visible; opacity: 1; }
+
+        .search-counter { font-size: 15px; font-weight: bold; color: var(--accent-gold); white-space: nowrap; }
+
+        .resist-filter-grid { display: grid; grid-template-columns: repeat(6, 36px); grid-template-rows: repeat(3, 36px); gap: 8px; }
+        
+        .icon-wrapper { position: relative; width: 36px; height: 36px; cursor: pointer; border-radius: 50%; transition: 0.2s; }
+        .icon-filter { width: 100%; height: 100%; border-radius: 50%; border: 2px solid transparent; background-color: var(--bg-th); object-fit: contain; box-sizing: border-box; transition: 0.2s; }
+        
+        .icon-wrapper:not(.active):hover { transform: translateY(-2px); }
+        
+        .icon-wrapper[data-resist$="Weak"] { --status-color: 239, 68, 68; }
+        .icon-wrapper[data-resist$="Strong"] { --status-color: 234, 179, 8; }
+        .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) { --status-color: 208, 206, 205; }
+
+        .icon-wrapper[data-resist] .icon-filter {
+            border: 2px solid rgba(var(--status-color), 0.4);
+            background-color: rgba(var(--status-color), 0.1);
+        }
+        .icon-wrapper[data-resist]:hover .icon-filter {
+            border-color: rgba(var(--status-color), 0.8);
+            background-color: rgba(var(--status-color), 0.2);
+        }
+        .icon-wrapper.active[data-resist] .icon-filter {
+            border-color: rgb(var(--status-color));
+            box-shadow: 0 0 10px rgba(var(--status-color), 0.6);
+            background-color: rgba(var(--status-color), 0.3);
+        }
+
+        .resist-filter-grid.has-active .icon-wrapper:not(.active) { opacity: 0.35; filter: grayscale(50%); }
+        .resist-filter-grid.has-active .icon-wrapper:not(.active):hover { opacity: 0.8; }
+
+        .badge-check {
+            position: absolute; bottom: -4px; right: -4px; background-color: var(--btn-on); color: #fff;
+            width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: bold; border: 2px solid var(--bg-panel);
+            opacity: 0; transform: scale(0.5); transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .icon-wrapper.active .badge-check { opacity: 1; transform: scale(1); }
+        .icon-wrapper.active[data-resist] .badge-check {
+            background-color: var(--btn-on);
+            border-color: var(--bg-panel);
+        }
+
+        .icon-dummy {
+            width: 100%; height: 100%; border-radius: 50%; background-color: rgba(0,0,0,0.2);
+            display: flex; align-items: center; justify-content: center; color: var(--border-color);
+            font-weight: bold; border: 1px solid rgba(255,255,255,0.05); pointer-events: none;
+        }
+
+        .table-wrapper {
+            width: 95%;
+            margin: 0 auto;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background-color: var(--bg-table);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 14px; }
+        
+        th, td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 8px 10px; line-height: 1.5; white-space: pre-wrap; }
+        th:last-child, td:last-child { border-right: none; }
+        tr:last-child td { border-bottom: none; }
+
+        th {
+            background-color: var(--bg-th); color: #ffffff; white-space: nowrap; text-align: center; font-weight: 600;
+            box-shadow: 0 1px 0 var(--border-color);
+        }
+
+        td { text-align: left; }
+        tr { transition: background-color 0.2s ease; }
+        tr td:first-child { transition: box-shadow 0.2s ease; }
+        tr.row-even { background-color: var(--bg-tr-even); }
+        
+        tr:not(.no-hover-row):hover { background-color: var(--bg-tr-hover); }
+        tr:not(.no-hover-row):hover td:first-child { box-shadow: inset 4px 0 0 var(--accent-gold); }
+
+        .col-耐性アイコン { width: 180px; min-width: 180px; max-width: 180px; text-align: center; white-space: normal; }
+
+        .col-ボス日本語, .col-ボス英語 {
+            line-height: 30px;
+        }
+        
+        .icon-img, .icon-text { display: inline-block; width: 24px; height: 24px; margin: 2px; vertical-align: middle; border-radius: 50%; }
+        
+        .icon-text { line-height: 24px; text-align: center; color: var(--text-muted); font-weight: bold; font-size: 14px; }
+        
+        .resist-row-inline { display: inline-flex; justify-content: center; align-items: center; flex-wrap: nowrap; width: 100%; gap: 2px; margin-bottom: 2px; }
+
+        .icon-img[title$="Weak"] { --table-status-color: 239, 68, 68; }
+        .icon-img[title$="Strong"] { --table-status-color: 234, 179, 8; }
+        .icon-img[title]:not([title$="Weak"]):not([title$="Strong"]) { --table-status-color: 208, 206, 205; }
+
+        .icon-img {
+            object-fit: contain;
+            padding: 0; 
+            background-color: rgba(var(--table-status-color), 0.15);
+            box-shadow: 0 0 0 2px rgba(var(--table-status-color), 0.5), 
+                        0 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease; 
+        }
+
+        .icon-img:hover {
+            box-shadow: 0 0 0 2px rgb(var(--table-status-color)), 
+                        0 0 8px rgba(var(--table-status-color), 0.6);
+            background-color: rgba(var(--table-status-color), 0.3);
+            transform: translateY(-1px);
+        }
+
+        .is-hidden { display: none !important; }
+
+        .msg-container {
+            text-align: center;
+            padding: 48px 20px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-muted);
+            white-space: normal;
+        }
+
+        /* モーダル用パーツ（PC時は完全に非表示） */
+        .btn-mobile-filter, .resist-modal-header, .modal-backdrop { display: none; }
+
+        /* スマホ画面用の最適化 */
+        @media (max-width: 900px) {
+            .controls-row { gap: 12px; }
+            .separator-strong, .separator-weak, .separator-horizontal { display: none; }
+            .search-wrapper { max-width: 100%; width: 100%; }
+            .search-counter { width: 100%; text-align: left; }
+            .btn-dropdown, .btn-action { flex: 1; width: 100%; }
+            .table-wrapper { overflow-x: auto; }
+            
+            th { white-space: normal; word-break: break-word; }
+            table { font-size: 12px; }
+            th, td { padding: 4px 6px; }
+            
+            .col-耐性アイコン { width: auto; min-width: 110px; max-width: 150px; }
+            .resist-row-inline { flex-wrap: wrap; }
+            .col-ボス日本語, .col-ボス英語 { line-height: 1.5; }
+
+            /* --- 【新規】モーダル（ボトムシート）のスマホ専用CSS --- */
+            /* 1. モーダルを開くボタン */
+            .btn-mobile-filter {
+                display: flex; align-items: center; justify-content: center; gap: 8px;
+                width: 100%; height: 44px; padding: 10px;
+                background: rgba(203, 166, 95, 0.12); 
+                border: 1px solid var(--accent-gold);
+                color: var(--accent-gold); font-weight: bold; border-radius: var(--radius-sm);
+            }
+            .btn-mobile-filter:hover { background: rgba(203, 166, 95, 0.25); }
+
+            /* 2. 背景の暗幕（スモークレイヤー） */
+            .modal-backdrop {
+                display: block; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0, 0, 0, 0.6); z-index: 998;
+                opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+            }
+            .modal-backdrop.show { opacity: 1; pointer-events: auto; }
+
+            /* 3. 下からせり上がるコンテナ本体 */
+            .resist-modal-container {
+                position: fixed; bottom: 0; left: 0; width: 100%;
+                background-color: var(--bg-panel); 
+                border-top: 2px solid var(--border-color);
+                border-top-left-radius: 16px; border-top-right-radius: 16px;
+                padding: 20px 16px 32px 16px; box-sizing: border-box; z-index: 999;
+                transform: translateY(100%); 
+                transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+                display: flex; flex-direction: column; align-items: center; gap: 16px;
+                box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+            }
+            .resist-modal-container.show { transform: translateY(0); }
+
+            /* 4. モーダルのヘッダー（タイトルと閉じるボタン） */
+            .resist-modal-header {
+                display: flex; justify-content: space-between; align-items: center; width: 100%;
+                border-bottom: 1px solid rgba(87, 83, 78, 0.4); padding-bottom: 10px;
+            }
+            .resist-modal-header span { font-weight: bold; color: #fff; font-size: 16px; }
+            .resist-modal-header button {
+                background: rgba(255, 255, 255, 0.1); border: none; color: var(--text-main);
+                padding: 6px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: bold;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+
+    <a href="poe2index.html" class="back-link">
+        <svg style="width:18px;height:18px;margin-right:6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Indexに戻る
+    </a>
+
+    <div class="header-container">
+        <div>
+            <h1>PoE2 ver0.5 マップボスリスト</h1>
+            <div id="fallback-message" class="is-hidden" style="color: #f87171; font-size: 14px; margin-top: 8px;">
+                ※JSONファイルが読み込めなかったため、テスト用のダミーデータを表示しています。
+            </div>
+        </div>
+        <div class="reference-link-top">
+            参考データ: <a href="https://poe2db.tw/jp/Waystones#EndGameMaps" target="_blank" rel="noopener noreferrer">PoE2DB (Waystones)</a>
+        </div>
+    </div>
+
+    <div class="controls-wrapper">
+        <div class="controls-row">
+            <button class="btn-action" data-action="resetView">↺ ソート・表示項目の初期化</button>
+            
+            <div class="separator-strong"></div>
+            
+            <div class="dropdown">
+                <button class="btn-dropdown">
+                    <span class="btn-left-icon">↕</span>
+                    <span id="btn-sort-text" class="btn-label">
+                        マップ名ソート: 初期順
+                    </span>
+                    <span class="dropdown-icon">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    <div class="dropdown-item sort-active" data-sort="default" data-sort-name="初期順"><span class="checkmark">✔</span>初期順</div>
+                    <div class="dropdown-item" data-sort="kana-asc" data-sort-name="五十音順"><span class="checkmark">✔</span>五十音順</div>
+                    <div class="dropdown-item" data-sort="kana-desc" data-sort-name="五十音逆順"><span class="checkmark">✔</span>五十音逆順</div>
+                    <div class="dropdown-item" data-sort="eng-asc" data-sort-name="英語順"><span class="checkmark">✔</span>英語順</div>
+                    <div class="dropdown-item" data-sort="eng-desc" data-sort-name="英語逆順"><span class="checkmark">✔</span>英語逆順</div>
+                </div>
+            </div>
+            
+            <div class="separator-weak"></div>
+            
+            <div class="dropdown">
+                <button class="btn-dropdown">
+                    <span class="btn-left-icon">⊞</span>
+                    <span id="btn-column-text" class="btn-label">
+                        表示項目: 9/10
+                    </span>
+                    <span class="dropdown-icon">▼</span>
+                </button>
+                <div class="dropdown-content">
+                    <div class="dropdown-item action-item" data-column-action="showAll">☑ すべて表示</div>
+                    <div class="dropdown-item action-item" data-column-action="hideAll">☐ すべて非表示</div>
+                    <div class="dropdown-divider"></div>
+                    <div class="dropdown-item" data-column="よみがな"><span class="checkmark">✔</span>よみがな</div>
+                    <div class="dropdown-item" data-column="マップ日本語"><span class="checkmark">✔</span>マップ日本語</div>
+                    <div class="dropdown-item" data-column="ボス日本語"><span class="checkmark">✔</span>ボス日本語</div>
+                    <div class="dropdown-item" data-column="マップ英語"><span class="checkmark">✔</span>マップ英語</div>
+                    <div class="dropdown-item" data-column="ボス英語"><span class="checkmark">✔</span>ボス英語</div>
+                    <div class="dropdown-item" data-column="耐性アイコン"><span class="checkmark">✔</span>耐性アイコン</div>
+                    <div class="dropdown-item" data-column="元ボスアクト/エリア"><span class="checkmark">✔</span>元ボスアクト/エリア</div>
+                    <div class="dropdown-item" data-column="元ボス名"><span class="checkmark">✔</span>元ボス名</div>
+                    <div class="dropdown-item" data-column="元ボス特徴"><span class="checkmark">✔</span>元ボス特徴</div>
+                    <div class="dropdown-item" data-column="メモ"><span class="checkmark">✔</span>メモ</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator-horizontal"></div>
+
+        <div class="controls-row">
+            <button class="btn-action" data-action="clearAllFilters">✖ 検索・フィルターの全解除</button>
+            
+            <div class="separator-strong"></div>
+            
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" placeholder="マップ名やボス名で検索..." autocomplete="off">
+                <button class="clear-text-btn" data-action="clearSearchText" title="文字を消去">✖</button>
+            </div>
+
+            <button class="btn-mobile-filter" id="btnOpenFilter">🛡️ 耐性フィルターで絞り込む</button>
+
+            <div class="separator-weak"></div>
+
+            <div class="resist-modal-container" id="resistModalContainer">
+                <div class="resist-modal-header">
+                    <span>🛡️ ボス耐性フィルター</span>
+                    <button id="btnCloseFilter">✕ 閉じる</button>
+                </div>
+                <div class="resist-filter-grid" id="resist-grid">
+                    <div class="icon-dummy" title="ArmourWeak">-</div>
+                    <div class="icon-dummy" title="EvasionWeak">-</div>
+                    <div class="icon-wrapper" data-resist="FireWeak" title="FireWeak"><img src="images/IconEnemy/IconEnemyResistanceFireWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="ColdWeak" title="ColdWeak"><img src="images/IconEnemy/IconEnemyResistanceColdWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="LightningWeak" title="LightningWeak"><img src="images/IconEnemy/IconEnemyResistanceLightningWeak.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-dummy" title="ChaosWeak">-</div>
+                    
+                    <div class="icon-wrapper" data-resist="Armour" title="Armour"><img src="images/IconEnemy/IconEnemyArmour.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="Evasion" title="Evasion"><img src="images/IconEnemy/IconEnemyEvasion.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="Fire" title="Fire"><img src="images/IconEnemy/IconEnemyResistanceFire.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="Cold" title="Cold"><img src="images/IconEnemy/IconEnemyResistanceCold.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="Lightning" title="Lightning"><img src="images/IconEnemy/IconEnemyResistanceLightning.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="Chaos" title="Chaos"><img src="images/IconEnemy/IconEnemyResistanceChaos.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    
+                    <div class="icon-wrapper" data-resist="ArmourStrong" title="ArmourStrong"><img src="images/IconEnemy/IconEnemyArmourStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="EvasionStrong" title="EvasionStrong"><img src="images/IconEnemy/IconEnemyEvasionStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="FireStrong" title="FireStrong"><img src="images/IconEnemy/IconEnemyResistanceFireStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="ColdStrong" title="ColdStrong"><img src="images/IconEnemy/IconEnemyResistanceColdStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="LightningStrong" title="LightningStrong"><img src="images/IconEnemy/IconEnemyResistanceLightningStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                    <div class="icon-wrapper" data-resist="ChaosStrong" title="ChaosStrong"><img src="images/IconEnemy/IconEnemyResistanceChaosStrong.png" class="icon-filter"><div class="badge-check">✔</div></div>
+                </div>
+            </div>
+
+            <div class="separator-weak"></div>
+            
+            <div id="search-counter" class="search-counter">検索結果: -件 / 全-件</div>
+        </div>
+    </div>
+
+    <div class="table-wrapper">
+        <table id="boss-table">
+            <thead>
+                <tr>
+                    <th class="col-よみがな" data-key="よみがな">よみがな</th>
+                    <th class="col-マップ日本語" data-key="マップ日本語">マップ日本語</th>
+                    <th class="col-ボス日本語" data-key="ボス日本語">ボス日本語</th>
+                    <th class="col-マップ英語" data-key="マップ英語">マップ英語</th>
+                    <th class="col-ボス英語" data-key="ボス英語">ボス英語</th>
+                    <th class="col-耐性アイコン" data-key="耐性アイコン">耐性アイコン</th>
+                    <th class="col-元ボスアクトエリア" data-key="元ボスアクト/エリア">元ボスアクト/エリア</th>
+                    <th class="col-元ボス名" data-key="元ボス名">元ボス名</th>
+                    <th class="col-元ボス特徴" data-key="元ボス特徴">元ボス特徴</th>
+                    <th class="col-メモ" data-key="メモ">メモ</th>
+                </tr>
+            </thead>
+            <tbody id="boss-table-body">
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/wanakana.min.js"></script>
+
+    <script>
+        const RESIST_DEFINITIONS = {
+            Armour: { normal: 'images/IconEnemy/IconEnemyArmour.png', strong: 'images/IconEnemy/IconEnemyArmourStrong.png' },
+            Evasion: { normal: 'images/IconEnemy/IconEnemyEvasion.png', strong: 'images/IconEnemy/IconEnemyEvasionStrong.png' },
+            Fire: { normal: 'images/IconEnemy/IconEnemyResistanceFire.png', strong: 'images/IconEnemy/IconEnemyResistanceFireStrong.png', weak: 'images/IconEnemy/IconEnemyResistanceFireWeak.png' },
+            Cold: { normal: 'images/IconEnemy/IconEnemyResistanceCold.png', strong: 'images/IconEnemy/IconEnemyResistanceColdStrong.png', weak: 'images/IconEnemy/IconEnemyResistanceColdWeak.png' },
+            Lightning: { normal: 'images/IconEnemy/IconEnemyResistanceLightning.png', strong: 'images/IconEnemy/IconEnemyResistanceLightningStrong.png', weak: 'images/IconEnemy/IconEnemyResistanceLightningWeak.png' },
+            Chaos: { normal: 'images/IconEnemy/IconEnemyResistanceChaos.png', strong: 'images/IconEnemy/IconEnemyResistanceChaosStrong.png' }
+        };
+
+        const RESIST_TYPES = Object.keys(RESIST_DEFINITIONS);
+
+        const ROMAJI_TO_KANA_REGEX = {
+            'a': '[あぁ]', 'i': '[いぃ]', 'u': '[うぅ]', 'e': '[えぇ]', 'o': '[おぉ]',
+            'k': '[かきくけこきゃきゅきょ]', 's': '[さしすせそしゃしゅしょ]', 'sh': '[しゃしゅしょし]',
+            't': '[たちつてとちゃちゅちょっ]', 'c': '[かきくけこさしすせそちゃちゅちょ]', 'ch': '[ちゃちゅちょち]',
+            'ts': '[つ]', 'n': '[なにぬねのんにゃにゅにょ]', 'h': '[はひふへほひゃひゅひょ]',
+            'f': '[ふぁふぃふふぇふぉ]', 'm': '[まみむめもみゃみゅみょ]', 'y': '[やゆよゃゅょ]',
+            'r': '[らりるれろりゃりゅりょ]', 'w': '[わをん]', 'g': '[がぎぐげごぎゃぎゅぎょ]',
+            'z': '[ざじずぜぞじゃじゅじょ]', 'j': '[じゃじゅじょじ]', 'd': '[だぢづでど]',
+            'b': '[ばびぶべぼびゃびゅびょ]', 'p': '[ぱぴぷぺぽぴゃぴゅぴょ]', 'v': '[ゔぁゔぃゔゔぇゔぉ]',
+            'q': '[くぁくぃくくぇくぉ]', 'x': '[ぁぃぅぇぉっゃゅょ]', 'l': '[ぁぃぅぇぉっゃゅょ]'
+        };
+
+        const COLUMN_CONFIG = {
+            'よみがな': false, 'マップ日本語': true, 'ボス日本語': true, 'マップ英語': true, 'ボス英語': true,
+            '耐性アイコン': true, '元ボスアクト/エリア': true, '元ボス名': true, '元ボス特徴': true, 'メモ': true
+        };
+
+        const REQUIRED_HEADERS = Object.keys(COLUMN_CONFIG);
+        const SEARCH_KEYS = ['よみがな','マップ日本語','ボス日本語','マップ英語','ボス英語','元ボスアクト','元ボスエリア','元ボス名','元ボス特徴','メモ'];
+
+        const AppState = {
+            currentData: [], rowMap: new Map(), rows: [],
+            columnState: structuredClone(COLUMN_CONFIG), currentSort: 'default',
+            filterState: { text: '', resists: new Set() }
+        };
+
+        const TOTAL_COLUMNS = Object.keys(AppState.columnState).length;
+
+        const DOM = {
+            searchInput: null, searchCounter: null, resistGrid: null,
+            btnSortText: null, btnColumnText: null, tbody: null, fallbackMessage: null, noResultRow: null,
+            // 追加分
+            btnOpenFilter: null, btnCloseFilter: null, resistModalContainer: null, modalBackdrop: null
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            DOM.searchInput = document.getElementById('searchInput');
+            DOM.searchCounter = document.getElementById('search-counter');
+            DOM.resistGrid = document.getElementById('resist-grid');
+            DOM.btnSortText = document.getElementById('btn-sort-text');
+            DOM.btnColumnText = document.getElementById('btn-column-text');
+            DOM.tbody = document.getElementById('boss-table-body');
+            DOM.fallbackMessage = document.getElementById('fallback-message');
+            
+            // 追加分のキャッシュ
+            DOM.btnOpenFilter = document.getElementById('btnOpenFilter');
+            DOM.btnCloseFilter = document.getElementById('btnCloseFilter');
+            DOM.resistModalContainer = document.getElementById('resistModalContainer');
+            DOM.modalBackdrop = document.getElementById('modalBackdrop');
+
+            // --- 【新規】モーダル開閉用のJSロジック ---
+            if (DOM.btnOpenFilter && DOM.btnCloseFilter && DOM.resistModalContainer && DOM.modalBackdrop) {
+                DOM.btnOpenFilter.addEventListener('click', () => {
+                    DOM.resistModalContainer.classList.add('show');
+                    DOM.modalBackdrop.classList.add('show');
+                });
+
+                const closeModal = () => {
+                    DOM.resistModalContainer.classList.remove('show');
+                    DOM.modalBackdrop.classList.remove('show');
+                };
+
+                DOM.btnCloseFilter.addEventListener('click', closeModal);
+                DOM.modalBackdrop.addEventListener('click', closeModal);
+            }
+
+            DOM.searchInput.addEventListener('input', (e) => {
+                let text = normalizeText(e.target.value);
+                AppState.filterState.text = text;
+                filterTable();
+            });
+
+            document.addEventListener('click', (e) => {
+                document.querySelectorAll('.dropdown').forEach(dropdown => {
+                    if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
+                });
+
+                const dropdownBtn = e.target.closest('.btn-dropdown');
+                if (dropdownBtn) {
+                    const parent = dropdownBtn.parentElement;
+                    const isAlreadyOpen = parent.classList.contains('show');
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+                    if (!isAlreadyOpen) parent.classList.add('show');
+                    e.stopPropagation();
+                    return;
+                }
+
+                const actionBtn = e.target.closest('[data-action]');
+                if (actionBtn) {
+                    const action = actionBtn.dataset.action;
+                    if (action === 'resetView') resetView();
+                    else if (action === 'clearAllFilters') clearAllFilters();
+                    else if (action === 'clearSearchText') clearSearchText();
+                    return;
+                }
+
+                const sortItem = e.target.closest('[data-sort]');
+                if (sortItem) {
+                    sortTable(sortItem.dataset.sort, sortItem.dataset.sortName);
+                    return;
+                }
+
+                const colAction = e.target.closest('[data-column-action]');
+                if (colAction) {
+                    setAllColumns(colAction.dataset.columnAction === 'showAll');
+                    return;
+                }
+
+                const colToggle = e.target.closest('[data-column]');
+                if (colToggle) {
+                    toggleColumn(colToggle.dataset.column);
+                    return;
+                }
+
+                const resistIcon = e.target.closest('.icon-wrapper[data-resist]');
+                if (resistIcon) {
+                    resistIcon.classList.toggle('active');
+                    const resist = resistIcon.dataset.resist;
+                    
+                    if (resistIcon.classList.contains('active')) {
+                        AppState.filterState.resists.add(resist);
+                    } else {
+                        AppState.filterState.resists.delete(resist);
+                    }
+                    
+                    AppState.filterState.resists.size > 0 ? DOM.resistGrid.classList.add('has-active') : DOM.resistGrid.classList.remove('has-active');
+                    
+                    filterTable();
+                    return;
+                }
+            });
+
+            fetch('poe2mapboss.json')
+                .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+                .then(data => { initializeApp(data); })
+                .catch(() => {
+                    DOM.fallbackMessage.classList.remove('is-hidden');
+                    const dummyData = [
+                        { "よみがな": "こうざんのおね", "マップ日本語": "高山の尾根", "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ", "マップ英語": "Alpine Ridge", "ボス英語": "Ignatia, the Flame-Sworn\nGelida, the Frost-Tongue", "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong", "元ボスアクト": "幕間", "元ボスエリア": "焼け焦げた農場", "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ", "元ボス特徴": "炎と氷", "メモ": "" },
+                        { "よみがな": "いおうのどうくつ", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
+                        { "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
+                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" }
+                    ];
+                    initializeApp(dummyData);
+                });
+        });
+
+        function initializeApp(data) {
+            AppState.currentData = data.map((item, idx) => {
+                const resistIndex = new Set(String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-'));
+                const searchIndex = normalizeText(SEARCH_KEYS.map(k => item[k] || '').join(' '));
+                return { ...item, id: idx, defaultOrder: idx, searchIndex, resistIndex };
+            });
+            buildTable(AppState.currentData);
+            filterTable();
+            updateButtonUI();
+        }
+
+        function getIconPath(resistKey) {
+            if (resistKey.endsWith('Strong')) return RESIST_DEFINITIONS[resistKey.replace('Strong', '')]?.strong;
+            if (resistKey.endsWith('Weak')) return RESIST_DEFINITIONS[resistKey.replace('Weak', '')]?.weak;
+            return RESIST_DEFINITIONS[resistKey]?.normal;
+        }
+
+        function escapeRegExp(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+        function normalizeText(str) { return !str ? '' : String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); }
+
+        function updateButtonUI() {
+            let visibleCount = 0;
+            for (const key of Object.keys(AppState.columnState)) {
+                const colItem = document.querySelector(`[data-column="${key}"]`);
+                if (colItem) {
+                    const checkmark = colItem.querySelector('.checkmark');
+                    if (checkmark) checkmark.style.visibility = AppState.columnState[key] ? 'visible' : 'hidden';
+                }
+                if (AppState.columnState[key]) visibleCount++;
+            }
+            DOM.btnColumnText.innerText = `表示項目: ${visibleCount}/${TOTAL_COLUMNS}`;
+        }
+
+        function clearSearchText() {
+            DOM.searchInput.value = ''; AppState.filterState.text = ''; filterTable(); DOM.searchInput.focus();
+        }
+
+        function clearAllFilters() {
+            DOM.searchInput.value = ''; AppState.filterState.text = ''; AppState.filterState.resists.clear();
+            document.querySelectorAll('.icon-wrapper').forEach(w => w.classList.remove('active'));
+            DOM.resistGrid.classList.remove('has-active');
+            filterTable();
+        }
+
+        function parseResistRows(resistStr) { return String(resistStr || '-').replace(/\r\n/g, '\n').split('\n').map(row => row.split(',').map(k => k.trim()).filter(Boolean)); }
+
+        function createResistIcon(foundKey) {
+            if (foundKey && getIconPath(foundKey)) {
+                const img = document.createElement('img'); img.src = getIconPath(foundKey); img.title = foundKey; img.className = 'icon-img'; return img;
+            } else {
+                const span = document.createElement('span'); span.className = 'icon-text'; span.textContent = '-'; return span;
+            }
+        }
+
+        function createResistRow(keysInRow) {
+            const rowDiv = document.createElement('div'); rowDiv.className = 'resist-row-inline';
+            RESIST_TYPES.forEach(attr => { const foundKey = keysInRow.find(k => k.startsWith(attr)); const iconElement = createResistIcon(foundKey); rowDiv.appendChild(iconElement); });
+            return rowDiv;
+        }
+
+        function createResistCell(item, td) { const parsedRows = parseResistRows(item.耐性アイコン); parsedRows.forEach(keysInRow => { const rowElement = createResistRow(keysInRow); td.appendChild(rowElement); }); }
+
+        function createRow(item, hiddenColumns) {
+            const tr = document.createElement('tr');
+            REQUIRED_HEADERS.forEach(key => { const isHidden = hiddenColumns.has(key); const td = createCell(key, item, isHidden); tr.appendChild(td); });
+            return tr;
+        }
+
+        function createCell(key, item, isHidden) {
+            const safeKey = key.replace(/\//g, ''); const td = document.createElement('td'); td.className = `col-${safeKey}`;
+            if (isHidden) { td.classList.add('is-hidden'); }
+            if (key === '耐性アイコン') { createResistCell(item, td); }
+            else if (key === '元ボスアクト/エリア') {
+                const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : ''; const area = item['元ボスエリア'] || ''; const combined = [act, area].filter(Boolean).join('\n'); td.textContent = combined;
+            } else { td.textContent = item[key] || ''; }
+            return td;
+        }
+
+        function buildTable(data) {
+            DOM.tbody.innerHTML = ''; AppState.rowMap.clear(); AppState.rows = [];
+            const hiddenColumns = new Set();
+            for (const [key, visible] of Object.entries(AppState.columnState)) if (!visible) hiddenColumns.add(key);
+
+            if (data.length === 0) {
+                DOM.tbody.innerHTML = `<tr class="no-hover-row"><td colspan="${TOTAL_COLUMNS}" class="msg-container">データが空です。</td></tr>`;
+                DOM.searchCounter.textContent = "検索結果: 0件 / 全0件"; return;
+            }
+
+            data.forEach(item => { const tr = createRow(item, hiddenColumns); AppState.rowMap.set(item.id, tr); AppState.rows.push(tr); DOM.tbody.appendChild(tr); });
+            DOM.noResultRow = document.createElement('tr'); DOM.noResultRow.className = 'is-hidden no-hover-row'; DOM.tbody.appendChild(DOM.noResultRow);
+            document.querySelectorAll('th[data-key]').forEach(th => { th.classList.toggle('is-hidden', hiddenColumns.has(th.dataset.key)); });
+        }
+
+        function getViewState() { const hasVisibleColumn = Object.values(AppState.columnState).some(v => v); const matchedRows = getFilteredRows(hasVisibleColumn); return { matchedRows: matchedRows, visibleCount: matchedRows.length, hasVisibleColumn: hasVisibleColumn }; }
+        function filterTable() { renderView(getViewState()); }
+
+        function getFilteredData() {
+            const activeResists = Array.from(AppState.filterState.resists); const rawKeyword = AppState.filterState.text.trim();
+            let hiraRegex = null;
+            if (rawKeyword) {
+                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+                hiraConverted = hiraConverted.replace(/ん+/g, 'ん').replace(/んn$/i, 'ん');
+                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+                try {
+                    if (tailMatch) {
+                        const tailAlpha = tailMatch[1].toLowerCase(); const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length)); const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                        if (regexSuffix === undefined) { hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha)); } else { hiraRegex = new RegExp(prefix + regexSuffix); }
+                    } else { hiraRegex = new RegExp(escapeRegExp(hiraConverted)); }
+                } catch (e) { hiraRegex = null; }
+            }
+            return AppState.currentData.filter(item => {
+                if (rawKeyword) { const isRawMatch = item.searchIndex.includes(rawKeyword); const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな); if (!isRawMatch && !isKanaMatch) return false; }
+                return activeResists.every(r => item.resistIndex.has(r));
+            });
+        }
+
+        function getFilteredRows(hasVisibleColumn) { if (!hasVisibleColumn) return []; return getFilteredData().map(item => AppState.rowMap.get(item.id)); }
+
+        function renderView(viewState) { renderRows(viewState); renderCounter(viewState); renderNoResult(viewState); }
+
+        function renderRows(viewState) {
+            let visibleCount = 0; const matchedSet = new Set(viewState.matchedRows);
+            for (const row of AppState.rows) {
+                if (matchedSet.has(row) && viewState.hasVisibleColumn) { row.classList.remove('is-hidden'); row.classList.toggle('row-even', visibleCount++ % 2 === 1); }
+                else { row.classList.add('is-hidden'); row.classList.remove('row-even'); }
+            }
+        }
+
+        function renderCounter(viewState) { DOM.searchCounter.textContent = `検索結果: ${viewState.visibleCount}件 / 全${AppState.currentData.length}件`; }
+
+        function renderNoResult(viewState) {
+            if (!DOM.noResultRow) return;
+            if (!viewState.hasVisibleColumn) { showNoColumnMessage(); } else if (viewState.visibleCount === 0) { showNoDataMessage(); } else { hideNoResultMessage(); }
+        }
+
+        function showNoColumnMessage() { DOM.noResultRow.classList.remove('is-hidden'); DOM.noResultRow.innerHTML = `<td colspan="${TOTAL_COLUMNS}" class="msg-container"><span>選択項目がありません</span><br><button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">↺ ソート・表示項目の初期化</button></td>`; }
+        function showNoDataMessage() { DOM.noResultRow.classList.remove('is-hidden'); DOM.noResultRow.innerHTML = `<td colspan="${TOTAL_COLUMNS}" class="msg-container"><span>該当するデータが見つかりませんでした。</span><br><button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">✖ 検索・フィルターの全解除</button></td>`; }
+        function hideNoResultMessage() { DOM.noResultRow.classList.add('is-hidden'); DOM.noResultRow.innerHTML = ''; }
+
+        const SORTERS = {
+            'default': (a, b) => a.defaultOrder - b.defaultOrder,
+            'kana-asc': (a, b) => String(a["よみがな"] || '').localeCompare(String(b["よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'kana-desc': (a, b) => String(b["よみがな"] || '').localeCompare(String(a["よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'eng-asc': (a, b) => String(a["マップ英語"] || '').localeCompare(String(b["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder,
+            'eng-desc': (a, b) => String(b["マップ英語"] || '').localeCompare(String(a["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder
+        };
+
+        function reorderRows() { AppState.currentData.forEach(item => { const tr = AppState.rowMap.get(item.id); if (tr) DOM.tbody.appendChild(tr); }); if (DOM.noResultRow) DOM.tbody.appendChild(DOM.noResultRow); }
+
+        function sortTable(mode, textName) { updateSortUI(mode, textName); applySortData(mode); reorderRows(); filterTable(); }
+
+        function updateSortUI(mode, textName) {
+            document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
+            document.querySelector(`[data-sort="${mode}"]`)?.classList.add('sort-active');
+            if (textName) { DOM.btnSortText.innerText = `マップ名ソート: ${textName}`; }
+        }
+
+        function applySortData(mode) { AppState.currentSort = mode; if (SORTERS[mode]) { AppState.currentData.sort(SORTERS[mode]); } else { console.warn(`Unknown sort mode: ${mode}`); } }
+
+        function updateColumnVisibility(columnKey, visible) { const safeKey = columnKey.replace(/\//g, ''); document.querySelectorAll(`.col-${safeKey}`).forEach(el => { el.classList.toggle('is-hidden', !visible); }); }
+
+        function toggleColumn(stateKey) { if (AppState.columnState[stateKey] !== undefined) { AppState.columnState[stateKey] = !AppState.columnState[stateKey]; updateColumnVisibility(stateKey, AppState.columnState[stateKey]); updateButtonUI(); filterTable(); } }
+        
+        function setAllColumns(visible) { Object.keys(AppState.columnState).forEach(k => { AppState.columnState[k] = visible; updateColumnVisibility(k, visible); }); updateButtonUI(); filterTable(); }
+
+        function resetSort() {
+            document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active')); document.querySelector('[data-sort="default"]')?.classList.add('sort-active'); DOM.btnSortText.innerText = 'マップ名ソート: 初期順';
+            AppState.currentSort = 'default'; AppState.currentData.sort((a, b) => a.defaultOrder - b.defaultOrder); reorderRows();
+        }
+
+        function resetColumns() { Object.keys(AppState.columnState).forEach(k => { AppState.columnState[k] = COLUMN_CONFIG[k]; updateColumnVisibility(k, COLUMN_CONFIG[k]); }); updateButtonUI(); }
+
+        function resetView() { resetSort(); resetColumns(); filterTable(); }
+    </script>
+</body>
+</html>
