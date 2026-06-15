@@ -22,15 +22,26 @@
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
             --radius-md: 12px;
             --radius-sm: 8px;
+            
+            /* アニメーション用の変数定義を追加 */
+            --transition-normal: 0.2s ease;
+            --transition-bounce: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
             font-family: system-ui, -apple-system, sans-serif;
-            padding: 20px;
+            padding: 20px 10px;
             margin: 0;
             line-height: 1.5;
+        }
+
+        .content-width {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         a.back-link {
@@ -41,55 +52,108 @@
             display: inline-flex;
             align-items: center;
             margin-bottom: 20px;
-            margin-left: 2.5%;
-            transition: color 0.2s ease, transform 0.2s ease;
+            transition: color var(--transition-normal), transform var(--transition-normal);
         }
-        a.back-link:hover { color: #fef08a; transform: translateX(-4px); }
+
+        a.back-link:hover {
+            color: #fef08a;
+            transform: translateX(-4px);
+        }
 
         .header-container {
-            display: flex; justify-content: space-between; align-items: flex-end;
-            width: 95%; margin: 0 auto 20px auto; padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
             border-bottom: 1px solid var(--border-color);
         }
-        h1 { margin: 0; font-size: 26px; font-weight: 700; color: #ffffff; }
-        .reference-link-top a { color: #60a5fa; text-decoration: none; }
-        .reference-link-top a:hover { text-decoration: underline; }
+
+        h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .reference-link-top a {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+
+        .reference-link-top a:hover {
+            text-decoration: underline;
+        }
 
         .controls-wrapper {
-            display: flex; flex-direction: column; gap: 16px;
-            width: 95%; margin: 0 auto 20px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 20px;
             background-color: var(--bg-panel);
             padding: 16px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
             box-shadow: var(--shadow-md);
-            box-sizing: border-box;
         }
 
         .controls-row {
-            display: flex; align-items: center; flex-wrap: wrap; gap: 16px; width: 100%;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
         }
 
         .separator-horizontal {
-            width: 100%; height: 1px; background-color: rgba(87, 83, 78, 0.4);
+            width: 100%;
+            height: 1px;
+            background-color: rgba(87, 83, 78, 0.4);
         }
 
-        .separator-strong { width: 2px; height: 32px; background-color: var(--separator-color); flex-shrink: 0; border-radius: 1px; }
-        .separator-weak { width: 1px; height: 26px; background-color: rgba(87, 83, 78, 0.6); flex-shrink: 0; }
-
-        button {
-            cursor: pointer; border: 1px solid transparent; border-radius: var(--radius-sm);
-            font-size: 15px; font-weight: 600; transition: all 0.2s ease; outline: none;
+        .separator-strong {
+            width: 2px;
+            height: 32px;
+            background-color: var(--separator-color);
+            flex-shrink: 0;
+            border-radius: 1px;
         }
-        button:active { transform: translateY(1px); }
+
+        .separator-weak {
+            width: 1px;
+            height: 26px;
+            background-color: rgba(87, 83, 78, 0.6);
+            flex-shrink: 0;
+        }
+
+        .btn-action, .btn-dropdown {
+            height: 44px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            font-size: 15px;
+            font-weight: 600;
+            transition: all var(--transition-normal);
+            outline: none;
+        }
+
+        .btn-action:active, .btn-dropdown:active {
+            transform: translateY(1px);
+        }
 
         .btn-action {
-            padding: 10px 16px; white-space: nowrap; flex-shrink: 0;
-            display: flex; align-items: center; gap: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 0 16px;
+            white-space: nowrap;
+            flex-shrink: 0;
             background: rgba(180, 120, 40, 0.15);
             border: 1px solid rgba(210, 150, 70, 0.40);
             color: #e8c88a;
         }
+
         .btn-action:hover {
             background-color: rgba(180, 120, 40, 0.3);
             color: #fff;
@@ -101,74 +165,205 @@
             grid-template-columns: 24px 1fr 24px;
             align-items: center;
             width: 270px;
-            height: 44px;
             padding: 0 12px;
             background-color: var(--bg-th);
             border: 1px solid var(--border-color);
             color: var(--text-main);
-            box-sizing: border-box;
             white-space: nowrap;
         }
-        .btn-left-icon { text-align: center; font-size: 15px; }
-        .btn-label { text-align: center; overflow: hidden; text-overflow: ellipsis; }
-        .btn-dropdown:hover { background-color: var(--border-color); color: #fff; }
-        .dropdown-icon { text-align: center; font-size: 12px; pointer-events: none; }
 
-        .dropdown { position: relative; display: inline-block; }
+        .btn-dropdown:hover {
+            background-color: var(--border-color);
+            color: #fff;
+        }
         
+        .btn-left-icon {
+            text-align: center;
+            font-size: 15px;
+        }
+
+        .btn-label {
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .dropdown-icon {
+            text-align: center;
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
         .dropdown-content {
-            display: none; position: absolute; top: calc(100% + 6px); left: 0;
-            background-color: var(--bg-panel); border: 1px solid var(--border-color);
-            border-radius: var(--radius-md); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
-            z-index: 100; padding: 8px; min-width: 260px;
+            display: none;
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            padding: 8px;
+            min-width: 260px;
+            box-sizing: border-box;
         }
 
-        .dropdown.show .dropdown-content { display: block; }
-
-        .dropdown-item {
-            padding: 10px 16px; font-size: 15px; color: var(--text-main); cursor: pointer;
-            display: flex; align-items: center; gap: 12px; border-radius: var(--radius-sm);
-            user-select: none; transition: background-color 0.15s;
+        .dropdown.show .dropdown-content {
+            display: block;
         }
-        .dropdown-item:hover { background-color: var(--bg-th); color: #ffffff; }
-        .dropdown-item .checkmark { width: 18px; font-weight: bold; color: var(--btn-on); visibility: hidden; }
-        .dropdown-item.sort-active { color: var(--btn-sort-active); font-weight: 700; }
-        .dropdown-item.sort-active .checkmark { visibility: visible; }
         
-        .dropdown-divider { height: 1px; background-color: var(--border-color); margin: 6px 0; }
-        .action-item { color: var(--accent-gold); font-weight: 600; }
+        .dropdown-item {
+            padding: 10px 16px;
+            font-size: 15px;
+            color: var(--text-main);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-radius: var(--radius-sm);
+            user-select: none;
+            transition: background-color var(--transition-normal);
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--bg-th);
+            color: #ffffff;
+        }
+
+        .dropdown-item .checkmark {
+            width: 18px;
+            font-weight: bold;
+            color: var(--btn-on);
+            visibility: hidden;
+        }
+
+        .dropdown-item.sort-active {
+            color: var(--btn-sort-active);
+            font-weight: 700;
+        }
+
+        .dropdown-item.sort-active .checkmark {
+            visibility: visible;
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 6px 0;
+        }
+
+        .action-item {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
 
         .search-wrapper {
-            position: relative; display: flex; align-items: center; flex-grow: 1; min-width: 260px; max-width: 450px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            max-width: 450px;
         }
+
         .search-icon {
-            position: absolute; left: 14px; font-size: 16px; color: var(--text-muted); pointer-events: none;
+            position: absolute;
+            left: 14px;
+            font-size: 16px;
+            color: var(--text-muted);
+            pointer-events: none;
         }
+
         #searchInput {
-            width: 100%; height: 44px; padding: 10px 40px 10px 42px; font-size: 16px;
-            border: 1px solid var(--border-color); background-color: rgba(0,0,0,0.2);
-            color: white; border-radius: var(--radius-sm); box-sizing: border-box;
-            transition: all 0.2s;
+            width: 100%;
+            height: 44px;
+            padding: 10px 40px 10px 42px;
+            font-size: 16px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(0,0,0,0.2);
+            color: white;
+            border-radius: var(--radius-sm);
+            box-sizing: border-box;
+            transition: all var(--transition-normal);
         }
-        #searchInput:focus { outline: none; border-color: #ffffff; box-shadow: 0 0 10px 2px rgba(255,255,255,0.2); }
+
+        #searchInput:focus {
+            outline: none;
+            border-color: #ffffff;
+            box-shadow: 0 0 10px 2px rgba(255,255,255,0.2);
+        }
         
         .clear-text-btn {
-            position: absolute; right: 10px; background: rgba(255,255,255,0.1); border: none;
-            color: var(--text-main); width: 24px; height: 24px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 12px;
-            cursor: pointer; transition: 0.2s; visibility: hidden; opacity: 0;
+            position: absolute;
+            right: 10px;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: var(--text-main);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all var(--transition-normal);
+            visibility: hidden;
+            opacity: 0;
         }
-        .clear-text-btn:hover { background: rgba(255,255,255,0.3); color: #fff; }
-        #searchInput:not(:placeholder-shown) ~ .clear-text-btn { visibility: visible; opacity: 1; }
 
-        .search-counter { font-size: 15px; font-weight: bold; color: var(--accent-gold); white-space: nowrap; }
+        .clear-text-btn:hover {
+            background: rgba(255,255,255,0.3);
+            color: #fff;
+        }
 
-        .resist-filter-grid { display: grid; grid-template-columns: repeat(6, 36px); grid-template-rows: repeat(3, 36px); gap: 8px; }
+        #searchInput:not(:placeholder-shown) ~ .clear-text-btn {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .search-counter {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--accent-gold);
+            white-space: nowrap;
+        }
+
+        .resist-filter-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 36px);
+            grid-template-rows: repeat(3, 36px);
+            gap: 8px;
+        }
         
-        .icon-wrapper { position: relative; width: 36px; height: 36px; cursor: pointer; border-radius: 50%; transition: 0.2s; }
-        .icon-filter { width: 100%; height: 100%; border-radius: 50%; border: 2px solid transparent; background-color: var(--bg-th); object-fit: contain; box-sizing: border-box; transition: 0.2s; }
+        .icon-wrapper {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all var(--transition-normal);
+        }
+
+        .icon-filter {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            background-color: var(--bg-th);
+            object-fit: contain;
+            box-sizing: border-box;
+            transition: all var(--transition-normal);
+        }
         
-        .icon-wrapper:not(.active):hover { transform: translateY(-2px); }
+        .icon-wrapper:not(.active):hover {
+            transform: translateY(-2px);
+        }
         
         .icon-wrapper[data-resist$="Weak"] { --status-color: 239, 68, 68; }
         .icon-wrapper[data-resist$="Strong"] { --status-color: 234, 179, 8; }
@@ -178,40 +373,72 @@
             border: 2px solid rgba(var(--status-color), 0.4);
             background-color: rgba(var(--status-color), 0.1);
         }
+
         .icon-wrapper[data-resist]:hover .icon-filter {
             border-color: rgba(var(--status-color), 0.8);
             background-color: rgba(var(--status-color), 0.2);
         }
+
         .icon-wrapper.active[data-resist] .icon-filter {
             border-color: rgb(var(--status-color));
             box-shadow: 0 0 10px rgba(var(--status-color), 0.6);
             background-color: rgba(var(--status-color), 0.3);
         }
 
-        .resist-filter-grid.has-active .icon-wrapper:not(.active) { opacity: 0.35; filter: grayscale(50%); }
-        .resist-filter-grid.has-active .icon-wrapper:not(.active):hover { opacity: 0.8; }
+        .resist-filter-grid.has-active .icon-wrapper:not(.active) {
+            opacity: 0.35;
+            filter: grayscale(50%);
+        }
+
+        .resist-filter-grid.has-active .icon-wrapper:not(.active):hover {
+            opacity: 0.8;
+        }
 
         .badge-check {
-            position: absolute; bottom: -4px; right: -4px; background-color: var(--btn-on); color: #fff;
-            width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: bold; border: 2px solid var(--bg-panel);
-            opacity: 0; transform: scale(0.5); transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: absolute;
+            bottom: -4px;
+            right: -4px;
+            background-color: var(--btn-on);
+            color: #fff;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            border: 2px solid var(--bg-panel);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all var(--transition-bounce);
         }
-        .icon-wrapper.active .badge-check { opacity: 1; transform: scale(1); }
+
+        .icon-wrapper.active .badge-check {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         .icon-wrapper.active[data-resist] .badge-check {
             background-color: var(--btn-on);
             border-color: var(--bg-panel);
         }
 
         .icon-dummy {
-            width: 100%; height: 100%; border-radius: 50%; background-color: rgba(0,0,0,0.2);
-            display: flex; align-items: center; justify-content: center; color: var(--border-color);
-            font-weight: bold; border: 1px solid rgba(255,255,255,0.05); pointer-events: none;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--border-color);
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.05);
+            pointer-events: none;
         }
 
         .table-wrapper {
-            width: 95%;
-            margin: 0 auto;
             border-radius: var(--radius-md);
             overflow: hidden;
             background-color: var(--bg-table);
@@ -219,40 +446,76 @@
             border: 1px solid var(--border-color);
         }
 
-        table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 14px; }
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            font-size: 14px;
+        }
         
-        th, td { border-bottom: 1px solid var(--border-color); border-right: 1px solid var(--border-color); padding: 8px 10px; line-height: 1.5; white-space: pre-wrap; }
+        th, td {
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            padding: 8px 10px;
+            line-height: 2.0;
+            white-space: pre-wrap;
+        }
+
         th:last-child, td:last-child { border-right: none; }
         tr:last-child td { border-bottom: none; }
 
         th {
-            background-color: var(--bg-th); color: #ffffff; white-space: nowrap; text-align: center; font-weight: 600;
+            background-color: var(--bg-th);
+            color: #ffffff;
+            white-space: nowrap;
+            text-align: center;
+            font-weight: 600;
             box-shadow: 0 1px 0 var(--border-color);
         }
 
         td { text-align: left; }
-        tr { transition: background-color 0.2s ease; }
-        tr td:first-child { transition: box-shadow 0.2s ease; }
+        
+        tr { transition: background-color var(--transition-normal); }
+        tr td:first-child { transition: box-shadow var(--transition-normal); }
         tr.row-even { background-color: var(--bg-tr-even); }
         
         tr:not(.no-hover-row):hover { background-color: var(--bg-tr-hover); }
         tr:not(.no-hover-row):hover td:first-child { box-shadow: inset 4px 0 0 var(--accent-gold); }
 
-        /* 【変更】216pxから180pxへ列幅を縮小 */
-        .col-耐性アイコン { width: 180px; min-width: 180px; max-width: 180px; text-align: center; white-space: normal; }
-
-        /* ボス名と耐性アイコンの改行ピッチ（高さ）を合わせる */
-        .col-ボス日本語, .col-ボス英語 {
-            line-height: 30px;
+        .col-耐性アイコン {
+            width: 180px;
+            min-width: 180px;
+            max-width: 180px;
+            text-align: center;
+            white-space: normal;
         }
-        
-        /* 【変更】アイコンサイズを30pxから24pxへ縮小 */
-        .icon-img, .icon-text { display: inline-block; width: 24px; height: 24px; margin: 2px; vertical-align: middle; border-radius: 50%; }
-        
-        /* 【変更】フォントサイズと行高さをアイコンサイズ(24px)に合わせる */
-        .icon-text { line-height: 24px; text-align: center; color: var(--text-muted); font-weight: bold; font-size: 14px; }
-        
-        .resist-row-inline { display: inline-flex; justify-content: center; align-items: center; flex-wrap: nowrap; width: 100%; gap: 2px; margin-bottom: 2px; }
+
+        .icon-img, .icon-text {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin: 2px;
+            vertical-align: middle;
+            border-radius: 50%;
+        }
+
+        .icon-text {
+            line-height: 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .resist-row-inline {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            width: 100%;
+            gap: 2px;
+            margin-bottom: 2px;
+        }
 
         .icon-img[title$="Weak"] { --table-status-color: 239, 68, 68; }
         .icon-img[title$="Strong"] { --table-status-color: 234, 179, 8; }
@@ -260,22 +523,20 @@
 
         .icon-img {
             object-fit: contain;
-            padding: 0; 
+            padding: 0;
             background-color: rgba(var(--table-status-color), 0.15);
-            box-shadow: 0 0 0 2px rgba(var(--table-status-color), 0.5), 
-                        0 1px 2px rgba(0, 0, 0, 0.3);
-            transition: all 0.2s ease; 
+            box-shadow: 0 0 0 2px rgba(var(--table-status-color), 0.5), 0 1px 2px rgba(0, 0, 0, 0.3);
+            transition: all var(--transition-normal); 
         }
 
         .icon-img:hover {
-            box-shadow: 0 0 0 2px rgb(var(--table-status-color)), 
-                        0 0 8px rgba(var(--table-status-color), 0.6);
+            box-shadow: 0 0 0 2px rgb(var(--table-status-color)), 0 0 8px rgba(var(--table-status-color), 0.6);
             background-color: rgba(var(--table-status-color), 0.3);
             transform: translateY(-1px);
         }
 
         .is-hidden { display: none !important; }
-
+        
         .msg-container {
             text-align: center;
             padding: 48px 20px;
@@ -285,66 +546,47 @@
             white-space: normal;
         }
 
-        /* トグルボタンはPC画面では隠す */
-        #toggleFilterBtn { display: none; }
-
-        /* 【追加・変更】スマホ画面用の最適化 */
+        /* スマホ画面用の最適化 */
         @media (max-width: 900px) {
-            .controls-row { gap: 12px; }
+            .controls-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
             .separator-strong, .separator-weak, .separator-horizontal { display: none; }
-            .search-wrapper { max-width: 100%; width: 100%; }
-            .search-counter { width: 100%; text-align: left; }
-            .btn-dropdown, .btn-action { flex: 1; width: 100%; }
+            .search-wrapper { max-width: 100%; width: 100%; min-width: 0; }
+            .search-counter { width: 100%; text-align: center; }
+            .btn-dropdown, .btn-action, .dropdown { width: 100%; min-width: 0; }
+            .dropdown-content { min-width: 100%; box-sizing: border-box; }
+            .resist-filter-grid { justify-content: center; }
             .table-wrapper { overflow-x: auto; }
-            
-            /* 見出しの折り返し許可 */
             th { white-space: normal; word-break: break-word; }
-            
-            /* 全体的な文字サイズと余白の縮小 */
             table { font-size: 12px; }
             th, td { padding: 4px 6px; }
+            .col-耐性アイコン { width: auto; min-width: 110px; max-width: 150px; }
+            .resist-row-inline { flex-wrap: wrap; }
+            .col-ボス日本語, .col-ボス英語 { line-height: 1.5; }
             
-            /* 耐性アイコン列のスマホ用調整（折り返し許可） */
-            .col-耐性アイコン {
-                width: auto;
-                min-width: 110px;
-                max-width: 150px;
-            }
-            .resist-row-inline {
-                flex-wrap: wrap; 
-            }
-
-            /* スマホ表示時は元に戻す（必要に応じて） */
-            .col-ボス日本語, .col-ボス英語 {
-                line-height: 1.5;
-            }
-
-            /* ▼▼ 今回の追加・変更部分 ▼▼ */
-            .btn-action { justify-content: center; }
-            #toggleFilterBtn { display: flex; } /* スマホでは開閉ボタンを表示 */
-
-            /* 並び順の入れ替え */
-            .controls-row:last-child {
-                display: flex;
-                flex-direction: column;
-            }
-            .controls-row:last-child > [data-action="clearAllFilters"] { order: 1; } /* 1: 解除ボタン */
-            #toggleFilterBtn { order: 2; margin-bottom: 4px; }                     /* 2: 開閉ボタン */
-            #resist-grid { order: 3; margin-bottom: 8px; }                         /* 3: 耐性アイコン */
-            .search-wrapper { order: 4; }                                          /* 4: 検索窓 */
-            #search-counter { order: 5; }                                          /* 5: 検索結果件数 */
-            /* ▲▲ 今回の追加・変更部分 ▲▲ */
+            /* スマホ時の要素の並び順（order）設定 */
+            #btn-clear-filters { order: 1; }
+            #resist-grid { order: 2; }
+            #search-wrap { order: 3; }
+            #search-counter { order: 4; }
         }
     </style>
 </head>
 <body>
 
-    <a href="poe2index.html" class="back-link">
-        <svg style="width:18px;height:18px;margin-right:6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-        Indexに戻る
-    </a>
+    <div class="content-width">
+        <a href="poe2index.html" class="back-link">
+            <svg style="width:18px;height:18px;margin-right:6px;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+            </svg>
+            Indexに戻る
+        </a>
+    </div>
 
-    <div class="header-container">
+    <div class="header-container content-width">
         <div>
             <h1>PoE2 ver0.5 マップボスリスト</h1>
             <div id="fallback-message" class="is-hidden" style="color: #f87171; font-size: 14px; margin-top: 8px;">
@@ -356,7 +598,7 @@
         </div>
     </div>
 
-    <div class="controls-wrapper">
+    <div class="controls-wrapper content-width">
         <div class="controls-row">
             <button class="btn-action" data-action="resetView">↺ ソート・表示項目の初期化</button>
             
@@ -365,9 +607,7 @@
             <div class="dropdown">
                 <button class="btn-dropdown">
                     <span class="btn-left-icon">↕</span>
-                    <span id="btn-sort-text" class="btn-label">
-                        マップ名ソート: 初期順
-                    </span>
+                    <span id="btn-sort-text" class="btn-label">マップ名ソート: 初期順</span>
                     <span class="dropdown-icon">▼</span>
                 </button>
                 <div class="dropdown-content">
@@ -384,9 +624,7 @@
             <div class="dropdown">
                 <button class="btn-dropdown">
                     <span class="btn-left-icon">⊞</span>
-                    <span id="btn-column-text" class="btn-label">
-                        表示項目: 9/10
-                    </span>
+                    <span id="btn-column-text" class="btn-label">表示項目: 9/10</span>
                     <span class="dropdown-icon">▼</span>
                 </button>
                 <div class="dropdown-content">
@@ -410,11 +648,11 @@
         <div class="separator-horizontal"></div>
 
         <div class="controls-row">
-            <button class="btn-action" data-action="clearAllFilters">✖ 検索・フィルターの全解除</button>
+            <button class="btn-action" data-action="clearAllFilters" id="btn-clear-filters">✖ 検索・フィルターの全解除</button>
             
             <div class="separator-strong"></div>
-            
-            <div class="search-wrapper">
+
+            <div class="search-wrapper" id="search-wrap">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="searchInput" placeholder="マップ名やボス名で検索..." autocomplete="off">
                 <button class="clear-text-btn" data-action="clearSearchText" title="文字を消去">✖</button>
@@ -422,9 +660,6 @@
 
             <div class="separator-weak"></div>
 
-            <button id="toggleFilterBtn" class="btn-action">
-                ▼ 耐性フィルターを開く
-            </button>
             <div class="resist-filter-grid" id="resist-grid">
                 <div class="icon-dummy" title="ArmourWeak">-</div>
                 <div class="icon-dummy" title="EvasionWeak">-</div>
@@ -454,7 +689,7 @@
         </div>
     </div>
 
-    <div class="table-wrapper">
+    <div class="table-wrapper content-width">
         <table id="boss-table">
             <thead>
                 <tr>
@@ -518,7 +753,7 @@
         };
 
         const REQUIRED_HEADERS = Object.keys(COLUMN_CONFIG);
-        const SEARCH_KEYS = ['よみがな','マップ日本語','ボス日本語','マップ英語','ボス英語','元ボスアクト','元ボスエリア','元ボス名','元ボス特徴','メモ'];
+        const SEARCH_KEYS = ['よみがな', 'マップ日本語', 'ボス日本語', 'マップ英語', 'ボス英語', '元ボスアクト', '元ボスエリア', '元ボス名', '元ボス特徴', 'メモ'];
 
         const AppState = {
             currentData: [],
@@ -560,39 +795,23 @@
             DOM.tbody = document.getElementById('boss-table-body');
             DOM.fallbackMessage = document.getElementById('fallback-message');
 
-            // ▼▼ ここから追加（折りたたみ機能の処理） ▼▼
-            const toggleFilterBtn = document.getElementById('toggleFilterBtn');
-            
-            // 画面幅が900px以下のスマホ環境なら、初期表示でアイコンを隠す
-            if (window.innerWidth <= 900) {
-                DOM.resistGrid.classList.add('is-hidden');
-            }
-
-            // ボタンクリックで開閉
-            toggleFilterBtn.addEventListener('click', () => {
-                const isHidden = DOM.resistGrid.classList.contains('is-hidden');
-                if (isHidden) {
-                    DOM.resistGrid.classList.remove('is-hidden');
-                    toggleFilterBtn.innerText = '▲ 耐性フィルターを閉じる';
-                } else {
-                    DOM.resistGrid.classList.add('is-hidden');
-                    toggleFilterBtn.innerText = '▼ 耐性フィルターを開く';
-                }
-            });
-            // ▲▲ ここまで追加 ▲▲
-
-            // 固定入力イベント
+            // 検索入力イベント（デバウンス処理）
+            let searchTimer;
             DOM.searchInput.addEventListener('input', (e) => {
-                let text = normalizeText(e.target.value);
-                AppState.filterState.text = text;
-                filterTable();
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(() => {
+                    AppState.filterState.text = normalizeText(e.target.value);
+                    filterTable();
+                }, 100);
             });
 
             document.addEventListener('click', (e) => {
+                // ドロップダウン外クリックで閉じる処理
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
                     if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
                 });
 
+                // ドロップダウンのトグル処理
                 const dropdownBtn = e.target.closest('.btn-dropdown');
                 if (dropdownBtn) {
                     const parent = dropdownBtn.parentElement;
@@ -603,6 +822,7 @@
                     return;
                 }
 
+                // 各種アクションボタンの処理
                 const actionBtn = e.target.closest('[data-action]');
                 if (actionBtn) {
                     const action = actionBtn.dataset.action;
@@ -612,24 +832,28 @@
                     return;
                 }
 
+                // ソート項目の処理
                 const sortItem = e.target.closest('[data-sort]');
                 if (sortItem) {
                     sortTable(sortItem.dataset.sort, sortItem.dataset.sortName);
                     return;
                 }
 
+                // 表示項目（すべて表示/非表示）の処理
                 const colAction = e.target.closest('[data-column-action]');
                 if (colAction) {
                     setAllColumns(colAction.dataset.columnAction === 'showAll');
                     return;
                 }
 
+                // 個別の表示項目トグル処理
                 const colToggle = e.target.closest('[data-column]');
                 if (colToggle) {
                     toggleColumn(colToggle.dataset.column);
                     return;
                 }
 
+                // 耐性アイコンのトグル処理
                 const resistIcon = e.target.closest('.icon-wrapper[data-resist]');
                 if (resistIcon) {
                     resistIcon.classList.toggle('active');
@@ -641,37 +865,71 @@
                         AppState.filterState.resists.delete(resist);
                     }
                     
-                    AppState.filterState.resists.size > 0 ? DOM.resistGrid.classList.add('has-active') : DOM.resistGrid.classList.remove('has-active');
+                    if (AppState.filterState.resists.size > 0) {
+                        DOM.resistGrid.classList.add('has-active');
+                    } else {
+                        DOM.resistGrid.classList.remove('has-active');
+                    }
                     
                     filterTable();
                     return;
                 }
             });
 
+            // JSONデータの取得
             fetch('poe2mapboss.json')
-                .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+                .then(r => {
+                    if (!r.ok) throw new Error();
+                    return r.json();
+                })
                 .then(data => {
                     initializeApp(data);
                 })
                 .catch(() => {
                     console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。");
                     DOM.fallbackMessage.classList.remove('is-hidden');
+                    
+                    // ダミーデータを見やすく整理
                     const dummyData = [
-                          {
-    "よみがな": "こうざんのおね",
-    "マップ日本語": "高山の尾根",
-    "ボス日本語": "炎の誓い、イグナティア\n霜舌のゲリダ",
-    "マップ英語": "Alpine Ridge",
-    "ボス英語": "Ignatia, the Flame-Sworn\nGelida, the Frost-Tongue",
-    "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
-    "元ボスアクト": "幕間",
-    "元ボスエリア": "焼け焦げた農場",
-    "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
-    "元ボス特徴": "炎と氷",
-    "メモ": ""
-  },{ "よみがな": "いおうのどうくつ", "マップ日本語": "硫黄の洞窟", "ボス日本語": "骨の巨像\n大穴の領主", "マップ英語": "Sulphuric Caverns", "ボス英語": "The Bone Colossus\nLord of the Pit", "耐性アイコン": "\n", "元ボスアクト": "２", "元ボスエリア": "骨の穴", "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ", "元ボス特徴": "象と魔術師", "メモ": "だみー１" },
-                        { "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
-                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心        ", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" },
+                        {
+                            "よみがな": "だみーまっぷ",
+                            "マップ日本語": "ダミーマップ",
+                            "ボス日本語": "ダミーボス",
+                            "マップ英語": "DummyMap",
+                            "ボス英語": "DummyBoss",
+                            "耐性アイコン": "FireWeak,ColdWeak,LightningWeak",
+                            "元ボスアクト": "元ダミーアクト",
+                            "元ボスエリア": "元ダミーエリア",
+                            "元ボス名": "元ダミーボス",
+                            "元ボス特徴": "ダミー",
+                            "メモ": "ダミーメモ"
+                        },
+                        {
+                            "よみがな": "しんりんちたい",
+                            "マップ日本語": "森林地帯",
+                            "ボス日本語": "肥大したマータ\n怨嗟のコルム",
+                            "マップ英語": "Woodland",
+                            "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous",
+                            "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n",
+                            "元ボスアクト": "１",
+                            "元ボスエリア": "川岸",
+                            "元ボス名": "腐乱した粉屋\n腐乱した粉屋",
+                            "元ボス特徴": "粉屋×２",
+                            "メモ": "だみー２"
+                        },
+                        {
+                            "よみがな": "ひすいのしま",
+                            "マップ日本語": "ヒスイの島",
+                            "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ",
+                            "マップ英語": "The Jade Isles",
+                            "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled",
+                            "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n",
+                            "元ボスアクト": "４",
+                            "元ボスエリア": "部族の中心",
+                            "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
+                            "元ボス特徴": "4章ボス",
+                            "メモ": "だみー３"
+                        }
                     ];
                     initializeApp(dummyData);
                 });
@@ -720,7 +978,8 @@
         }
 
         function normalizeText(str) { 
-            return !str ? '' : String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); 
+            if (!str) return '';
+            return String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); 
         }
 
         function updateButtonUI() {
@@ -729,7 +988,9 @@
                 const colItem = document.querySelector(`[data-column="${key}"]`);
                 if (colItem) {
                     const checkmark = colItem.querySelector('.checkmark');
-                    if (checkmark) checkmark.style.visibility = AppState.columnState[key] ? 'visible' : 'hidden';
+                    if (checkmark) {
+                        checkmark.style.visibility = AppState.columnState[key] ? 'visible' : 'hidden';
+                    }
                 }
                 if (AppState.columnState[key]) visibleCount++;
             }
@@ -848,7 +1109,9 @@
             AppState.rows = []; 
             
             const hiddenColumns = new Set();
-            for (const [key, visible] of Object.entries(AppState.columnState)) if (!visible) hiddenColumns.add(key);
+            for (const [key, visible] of Object.entries(AppState.columnState)) {
+                if (!visible) hiddenColumns.add(key);
+            }
 
             if (data.length === 0) {
                 DOM.tbody.innerHTML = `<tr class="no-hover-row"><td colspan="${TOTAL_COLUMNS}" class="msg-container">データが空です。</td></tr>`;
@@ -891,54 +1154,53 @@
             renderView(getViewState());
         }
 
-       function getFilteredData() {
-           const activeResists = Array.from(AppState.filterState.resists);
-           // 重複していた toLowerCase() を削除
-           const rawKeyword = AppState.filterState.text.trim();
+        function getFilteredData() {
+            const activeResists = Array.from(AppState.filterState.resists);
+            const rawKeyword = AppState.filterState.text.trim();
 
-           let hiraRegex = null;
-           if (rawKeyword) {
-               let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+            let hiraRegex = null;
+            if (rawKeyword) {
+                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
 
-               // 連続する「ん」を一つにまとめる
-               hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
+                // 連続する「ん」を一つにまとめる
+                hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
 
-               // 「ん」の直後に「n」が余っている状態（奇数回のn連打）の末尾nを消す
-               hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
+                // 「ん」の直後に「n」が余っている状態（奇数回のn連打）の末尾nを消す
+                hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
 
-               const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
 
-               try {
-                   if (tailMatch) {
-                       const tailAlpha = tailMatch[1].toLowerCase();
-                       const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+                try {
+                    if (tailMatch) {
+                        const tailAlpha = tailMatch[1].toLowerCase();
+                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
 
-                       const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
-                       if (regexSuffix === undefined) {
-                           // リストにない無効なローマ字（zzやqxなど）の場合はそのまま検索
-                           hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha));
-                       } else {
-                           hiraRegex = new RegExp(prefix + regexSuffix);
-                       }
-                   } else {
-                       hiraRegex = new RegExp(escapeRegExp(hiraConverted));
-                   }
-               } catch (e) {
-                   hiraRegex = null;
-               }
-           }
+                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                        if (regexSuffix === undefined) {
+                            // リストにない無効なローマ字（zzやqxなど）の場合はそのまま検索
+                            hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha));
+                        } else {
+                            hiraRegex = new RegExp(prefix + regexSuffix);
+                        }
+                    } else {
+                        hiraRegex = new RegExp(escapeRegExp(hiraConverted));
+                    }
+                } catch (e) {
+                    hiraRegex = null;
+                }
+            }
 
-           return AppState.currentData.filter(item => {
-               if (rawKeyword) {
-                   const isRawMatch = item.searchIndex.includes(rawKeyword);
-                   const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
+            return AppState.currentData.filter(item => {
+                if (rawKeyword) {
+                    const isRawMatch = item.searchIndex.includes(rawKeyword);
+                    const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
 
-                   if (!isRawMatch && !isKanaMatch) return false;
-               }
+                    if (!isRawMatch && !isKanaMatch) return false;
+                }
 
-               return activeResists.every(r => item.resistIndex.has(r));
-           });
-}
+                return activeResists.every(r => item.resistIndex.has(r));
+            });
+        }
 
         function getFilteredRows(hasVisibleColumn) {
             if (!hasVisibleColumn) return [];
@@ -1067,9 +1329,7 @@
         function toggleColumn(stateKey) {
             if (AppState.columnState[stateKey] !== undefined) {
                 AppState.columnState[stateKey] = !AppState.columnState[stateKey];
-                
                 updateColumnVisibility(stateKey, AppState.columnState[stateKey]);
-                
                 updateButtonUI();
                 filterTable();
             }
