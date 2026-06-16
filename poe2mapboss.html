@@ -26,6 +26,11 @@
             /* アニメーション用の変数定義を追加 */
             --transition-normal: 0.2s ease;
             --transition-bounce: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            /* 【改善4】耐性ステータスカラーの共通化 */
+            --color-weak: 239, 68, 68;
+            --color-strong: 234, 179, 8;
+            --color-normal: 208, 206, 205;
         }
 
         body {
@@ -365,9 +370,10 @@
             transform: translateY(-2px);
         }
         
-        .icon-wrapper[data-resist$="Weak"] { --status-color: 239, 68, 68; }
-        .icon-wrapper[data-resist$="Strong"] { --status-color: 234, 179, 8; }
-        .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) { --status-color: 208, 206, 205; }
+        /* 【改善4】共通変数を適用（フィルターアイコン） */
+        .icon-wrapper[data-resist$="Weak"] { --status-color: var(--color-weak); }
+        .icon-wrapper[data-resist$="Strong"] { --status-color: var(--color-strong); }
+        .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) { --status-color: var(--color-normal); }
 
         .icon-wrapper[data-resist] .icon-filter {
             border: 2px solid rgba(var(--status-color), 0.4);
@@ -458,6 +464,7 @@
             border-right: 1px solid var(--border-color);
             padding: 8px 10px;
             line-height: 2.0;
+            min-width: 6em;word-break: auto-phrase;
             white-space: pre-wrap;
         }
 
@@ -517,9 +524,10 @@
             margin-bottom: 2px;
         }
 
-        .icon-img[title$="Weak"] { --table-status-color: 239, 68, 68; }
-        .icon-img[title$="Strong"] { --table-status-color: 234, 179, 8; }
-        .icon-img[title]:not([title$="Weak"]):not([title$="Strong"]) { --table-status-color: 208, 206, 205; }
+        /* 【改善4】共通変数を適用（テーブル内アイコン） */
+        .icon-img[title$="Weak"] { --table-status-color: var(--color-weak); }
+        .icon-img[title$="Strong"] { --table-status-color: var(--color-strong); }
+        .icon-img[title]:not([title$="Weak"]):not([title$="Strong"]) { --table-status-color: var(--color-normal); }
 
         .icon-img {
             object-fit: contain;
@@ -560,7 +568,7 @@
             .dropdown-content { min-width: 100%; box-sizing: border-box; }
             .resist-filter-grid { justify-content: center; }
             .table-wrapper { overflow-x: auto; }
-            th { white-space: normal; word-break: break-word; }
+            th { white-space: normal; }
             table { font-size: 12px; }
             th, td { padding: 4px 6px; }
             .col-耐性アイコン { width: auto; min-width: 110px; max-width: 150px; }
@@ -774,6 +782,7 @@
             currentSort: 'default',
             filterState: {
                 text: '',
+                regex: null, // 【改善3】正規表現のキャッシュ用に追加
                 resists: new Set()
             }
         };
@@ -806,12 +815,14 @@
             DOM.tbody = document.getElementById('boss-table-body');
             DOM.fallbackMessage = document.getElementById('fallback-message');
 
-            // 検索入力イベント（デバウンス処理）
+            // 検索入力イベント（デバウンス処理 + 正規表現キャッシュ化）
             let searchTimer;
             DOM.searchInput.addEventListener('input', (e) => {
                 clearTimeout(searchTimer);
                 searchTimer = setTimeout(() => {
                     AppState.filterState.text = normalizeText(e.target.value);
+                    // 【改善3】入力時にのみ正規表現を生成する
+                    AppState.filterState.regex = generateSearchRegex(AppState.filterState.text);
                     filterTable();
                 }, 100);
             });
@@ -1008,22 +1019,26 @@
             DOM.btnColumnText.innerText = `表示項目: ${visibleCount}/${TOTAL_COLUMNS}`;
         }
 
-        function clearSearchText() {
+        // 【改善2】検索クリア・フィルタ全解除の処理を一本化
+        function clearSearchText(skipFilter = false) {
             DOM.searchInput.value = '';
             AppState.filterState.text = '';
-            filterTable();
-            DOM.searchInput.focus();
+            AppState.filterState.regex = null; // キャッシュもクリア
+            
+            if (!skipFilter) {
+                filterTable();
+                DOM.searchInput.focus();
+            }
         }
 
         function clearAllFilters() {
-            DOM.searchInput.value = '';
-            AppState.filterState.text = '';
+            clearSearchText(true); // 検索枠のみリセット
             AppState.filterState.resists.clear();
             
             document.querySelectorAll('.icon-wrapper').forEach(w => w.classList.remove('active'));
             DOM.resistGrid.classList.remove('has-active');
             
-            filterTable();
+            filterTable(); // ここで一括フィルター実行
         }
 
         // ==========================================
@@ -1165,41 +1180,40 @@
             renderView(getViewState());
         }
 
+        // 【改善3】キャッシュ化に伴い正規表現の生成部分を分離
+        function generateSearchRegex(rawKeyword) {
+            if (!rawKeyword) return null;
+            
+            let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+            hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
+            hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
+
+            const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+
+            try {
+                if (tailMatch) {
+                    const tailAlpha = tailMatch[1].toLowerCase();
+                    const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+
+                    const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                    if (regexSuffix === undefined) {
+                        return new RegExp(prefix + escapeRegExp(tailAlpha));
+                    } else {
+                        return new RegExp(prefix + regexSuffix);
+                    }
+                } else {
+                    return new RegExp(escapeRegExp(hiraConverted));
+                }
+            } catch (e) {
+                return null;
+            }
+        }
+
+        // 【改善3】キャッシュされた正規表現を再利用するように変更
         function getFilteredData() {
             const activeResists = Array.from(AppState.filterState.resists);
-            const rawKeyword = AppState.filterState.text.trim();
-
-            let hiraRegex = null;
-            if (rawKeyword) {
-                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
-
-                // 連続する「ん」を一つにまとめる
-                hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
-
-                // 「ん」の直後に「n」が余っている状態（奇数回のn連打）の末尾nを消す
-                hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
-
-                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
-
-                try {
-                    if (tailMatch) {
-                        const tailAlpha = tailMatch[1].toLowerCase();
-                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
-
-                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
-                        if (regexSuffix === undefined) {
-                            // リストにない無効なローマ字（zzやqxなど）の場合はそのまま検索
-                            hiraRegex = new RegExp(prefix + escapeRegExp(tailAlpha));
-                        } else {
-                            hiraRegex = new RegExp(prefix + regexSuffix);
-                        }
-                    } else {
-                        hiraRegex = new RegExp(escapeRegExp(hiraConverted));
-                    }
-                } catch (e) {
-                    hiraRegex = null;
-                }
-            }
+            const rawKeyword = AppState.filterState.text;
+            const hiraRegex = AppState.filterState.regex;
 
             return AppState.currentData.filter(item => {
                 if (rawKeyword) {
@@ -1356,13 +1370,10 @@
             filterTable();
         }
 
+        // 【改善1】ソートの初期化を既存の関数に一本化
         function resetSort() {
-            document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
-            document.querySelector('[data-sort="default"]')?.classList.add('sort-active');
-            DOM.btnSortText.innerText = 'マップ名ソート: 初期順';
-            
-            AppState.currentSort = 'default'; 
-            AppState.currentData.sort((a, b) => a.defaultOrder - b.defaultOrder);
+            updateSortUI('default', '初期順');
+            applySortData('default');
             reorderRows();
         }
 
