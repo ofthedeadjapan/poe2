@@ -827,6 +827,17 @@
                 }, 100);
             });
 
+            // Ctrl+Fで検索窓にフォーカスを当てる
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+                    if (DOM.searchInput) {
+                        e.preventDefault(); // ブラウザ標準の検索バーが開くのを防ぐ
+                        DOM.searchInput.focus();
+                        DOM.searchInput.select(); // 既に入力されている文字があれば全選択状態にする
+                    }
+                }
+            });
+
             document.addEventListener('click', (e) => {
                 // ドロップダウン外クリックで閉じる処理
                 document.querySelectorAll('.dropdown').forEach(dropdown => {
