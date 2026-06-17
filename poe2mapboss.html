@@ -6,33 +6,59 @@
     <title>PoE2 ver0.5 マップボスリスト</title>
     <style>
         :root {
+            /* =========================
+               背景色 (Backgrounds)
+            ========================= */
             --bg-body: #1c1917;
             --bg-panel: #292524;
             --bg-table: #292524;
             --bg-th: #44403c;
             --bg-tr-even: #23201e;
             --bg-tr-hover: rgba(203, 166, 95, 0.15);
+
+            /* =========================
+               テキスト (Typography)
+            ========================= */
             --text-main: #e7e5e4;
             --text-muted: #a8a29e;
+
+            /* =========================
+               ボーダー・ライン (Borders & Lines)
+            ========================= */
             --border-color: #57534e;
             --separator-color: #78716c;
+
+            /* =========================
+               アクセント・UIカラー (Accents & UI)
+            ========================= */
             --accent-gold: #cba65f;
             --btn-on: #10b981;
             --btn-sort-active: #60a5fa;
+
+            /* =========================
+               耐性ステータスカラー (RGB値)
+            ========================= */
+            --color-weak: 239, 68, 68;     /* 赤 */
+            --color-strong: 234, 179, 8;   /* 黄 */
+            --color-normal: 208, 206, 205; /* 灰 */
+
+            /* =========================
+               装飾・サイズ (Effects & Radius)
+            ========================= */
             --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
             --radius-md: 12px;
             --radius-sm: 8px;
             
-            /* アニメーション用の変数定義を追加 */
+            /* =========================
+               アニメーション (Transitions)
+            ========================= */
             --transition-normal: 0.2s ease;
             --transition-bounce: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-            /* 【改善4】耐性ステータスカラーの共通化 */
-            --color-weak: 239, 68, 68;
-            --color-strong: 234, 179, 8;
-            --color-normal: 208, 206, 205;
         }
 
+        /* ==========================================
+           基盤設定 (Base & Layout)
+        ========================================== */
         body {
             background-color: var(--bg-body);
             color: var(--text-main);
@@ -49,6 +75,9 @@
             box-sizing: border-box;
         }
 
+        /* ==========================================
+           ヘッダーエリア (Header)
+        ========================================== */
         a.back-link {
             color: var(--accent-gold);
             text-decoration: none;
@@ -90,6 +119,9 @@
             text-decoration: underline;
         }
 
+        /* ==========================================
+           コントロールパネル (Controls)
+        ========================================== */
         .controls-wrapper {
             display: flex;
             flex-direction: column;
@@ -110,6 +142,7 @@
             width: 100%;
         }
 
+        /* --- 区切り線 --- */
         .separator-horizontal {
             width: 100%;
             height: 1px;
@@ -131,6 +164,9 @@
             flex-shrink: 0;
         }
 
+        /* ==========================================
+           ボタン類 (Buttons)
+        ========================================== */
         .btn-action, .btn-dropdown {
             height: 44px;
             box-sizing: border-box;
@@ -165,6 +201,9 @@
             box-shadow: 0 0 10px rgba(210, 150, 70, 0.3);
         }
 
+        /* ==========================================
+           ドロップダウン (Dropdown)
+        ========================================== */
        .btn-dropdown {
             display: grid;
             grid-template-columns: 24px 1fr 24px;
@@ -182,21 +221,20 @@
             color: #fff;
         }
         
-        .btn-left-icon {
+        .btn-left-icon, .dropdown-icon {
             text-align: center;
             font-size: 15px;
+        }
+
+        .dropdown-icon {
+            font-size: 12px;
+            pointer-events: none;
         }
 
         .btn-label {
             text-align: center;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-
-        .dropdown-icon {
-            text-align: center;
-            font-size: 12px;
-            pointer-events: none;
         }
 
         .dropdown {
@@ -268,6 +306,9 @@
             font-weight: 600;
         }
 
+        /* ==========================================
+           検索ボックス (Search Box)
+        ========================================== */
         .search-wrapper {
             position: relative;
             display: flex;
@@ -339,6 +380,9 @@
             white-space: nowrap;
         }
 
+        /* ==========================================
+           耐性フィルター (Resist Icons)
+        ========================================== */
         .resist-filter-grid {
             display: grid;
             grid-template-columns: repeat(6, 36px);
@@ -370,7 +414,7 @@
             transform: translateY(-2px);
         }
         
-        /* 【改善4】共通変数を適用（フィルターアイコン） */
+        /* --- 耐性ステータスカラーの適用 --- */
         .icon-wrapper[data-resist$="Weak"] { --status-color: var(--color-weak); }
         .icon-wrapper[data-resist$="Strong"] { --status-color: var(--color-strong); }
         .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) { --status-color: var(--color-normal); }
@@ -400,6 +444,7 @@
             opacity: 0.8;
         }
 
+        /* --- 選択時のチェックマーク --- */
         .badge-check {
             position: absolute;
             bottom: -4px;
@@ -444,6 +489,9 @@
             pointer-events: none;
         }
 
+        /* ==========================================
+           テーブル全体 (Table Settings)
+        ========================================== */
         .table-wrapper {
             border-radius: var(--radius-md);
             overflow: hidden;
@@ -464,7 +512,10 @@
             border-right: 1px solid var(--border-color);
             padding: 8px 10px;
             line-height: 2.0;
-            min-width: 6em;word-break: auto-phrase;
+            min-width: 6em;
+            word-break: break-all;
+            word-break: auto-phrase;
+            overflow-wrap: anywhere;
             white-space: pre-wrap;
         }
 
@@ -489,12 +540,36 @@
         tr:not(.no-hover-row):hover { background-color: var(--bg-tr-hover); }
         tr:not(.no-hover-row):hover td:first-child { box-shadow: inset 4px 0 0 var(--accent-gold); }
 
+        .is-hidden { display: none !important; }
+        
+        .msg-container {
+            text-align: center;
+            padding: 48px 20px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-muted);
+            white-space: normal;
+        }
+
+        /* ==========================================
+           テーブル内の個別列設定 (Table Columns)
+        ========================================== */
         .col-耐性アイコン {
             width: 180px;
             min-width: 180px;
             max-width: 180px;
             text-align: center;
             white-space: normal;
+        }
+
+        .resist-row-inline {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: nowrap;
+            width: 100%;
+            gap: 2px;
+            margin-bottom: 2px;
         }
 
         .icon-img, .icon-text {
@@ -514,17 +589,7 @@
             font-size: 14px;
         }
 
-        .resist-row-inline {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: nowrap;
-            width: 100%;
-            gap: 2px;
-            margin-bottom: 2px;
-        }
-
-        /* 【改善4】共通変数を適用（テーブル内アイコン） */
+        /* --- テーブル内アイコンのステータスカラー適用 --- */
         .icon-img[title$="Weak"] { --table-status-color: var(--color-weak); }
         .icon-img[title$="Strong"] { --table-status-color: var(--color-strong); }
         .icon-img[title]:not([title$="Weak"]):not([title$="Strong"]) { --table-status-color: var(--color-normal); }
@@ -543,18 +608,9 @@
             transform: translateY(-1px);
         }
 
-        .is-hidden { display: none !important; }
-        
-        .msg-container {
-            text-align: center;
-            padding: 48px 20px;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text-muted);
-            white-space: normal;
-        }
-
-        /* スマホ画面用の最適化 */
+        /* ==========================================
+           レスポンシブ・スマホ最適化 (Mobile)
+        ========================================== */
         @media (max-width: 900px) {
             .controls-row {
                 flex-direction: column;
@@ -567,11 +623,13 @@
             .btn-dropdown, .btn-action, .dropdown { width: 100%; min-width: 0; }
             .dropdown-content { min-width: 100%; box-sizing: border-box; }
             .resist-filter-grid { justify-content: center; }
+            
             .table-wrapper { overflow-x: auto; }
             th { white-space: normal; }
             table { font-size: 12px; }
             th, td { padding: 4px 6px; }
-            .col-耐性アイコン { width: auto; min-width: 110px; max-width: 150px; }
+            
+            .col-耐性アイコン { min-width: 110px; max-width: 150px; }
             .resist-row-inline { flex-wrap: wrap; }
             .col-ボス日本語, .col-ボス英語 { line-height: 1.5; }
             
@@ -632,24 +690,14 @@
             <div class="dropdown">
                 <button class="btn-dropdown">
                     <span class="btn-left-icon">⊞</span>
-                    <span id="btn-column-text" class="btn-label">表示項目: 9/10</span>
+                    <span id="btn-column-text" class="btn-label">表示項目</span>
                     <span class="dropdown-icon">▼</span>
                 </button>
-                <div class="dropdown-content">
+                <div class="dropdown-content" id="column-dropdown-content">
                     <div class="dropdown-item action-item" data-column-action="showAll">☑ すべて表示</div>
                     <div class="dropdown-item action-item" data-column-action="hideAll">☐ すべて非表示</div>
                     <div class="dropdown-divider"></div>
-                    <div class="dropdown-item" data-column="よみがな"><span class="checkmark">✔</span>よみがな</div>
-                    <div class="dropdown-item" data-column="マップ日本語"><span class="checkmark">✔</span>マップ日本語</div>
-                    <div class="dropdown-item" data-column="ボス日本語"><span class="checkmark">✔</span>ボス日本語</div>
-                    <div class="dropdown-item" data-column="マップ英語"><span class="checkmark">✔</span>マップ英語</div>
-                    <div class="dropdown-item" data-column="ボス英語"><span class="checkmark">✔</span>ボス英語</div>
-                    <div class="dropdown-item" data-column="耐性アイコン"><span class="checkmark">✔</span>耐性アイコン</div>
-                    <div class="dropdown-item" data-column="元ボスアクト/エリア"><span class="checkmark">✔</span>元ボスアクト/エリア</div>
-                    <div class="dropdown-item" data-column="元ボス名"><span class="checkmark">✔</span>元ボス名</div>
-                    <div class="dropdown-item" data-column="元ボス特徴"><span class="checkmark">✔</span>元ボス特徴</div>
-                    <div class="dropdown-item" data-column="メモ"><span class="checkmark">✔</span>メモ</div>
-                </div>
+                    </div>
             </div>
         </div>
 
@@ -700,18 +748,7 @@
     <div class="table-wrapper content-width">
         <table id="boss-table">
             <thead>
-                <tr>
-                    <th class="col-よみがな" data-key="よみがな">よみがな</th>
-                    <th class="col-マップ日本語" data-key="マップ日本語">マップ日本語</th>
-                    <th class="col-ボス日本語" data-key="ボス日本語">ボス日本語</th>
-                    <th class="col-マップ英語" data-key="マップ英語">マップ英語</th>
-                    <th class="col-ボス英語" data-key="ボス英語">ボス英語</th>
-                    <th class="col-耐性アイコン" data-key="耐性アイコン">耐性アイコン</th>
-                    <th class="col-元ボスアクトエリア" data-key="元ボスアクト/エリア">元ボスアクト/エリア</th>
-                    <th class="col-元ボス名" data-key="元ボス名">元ボス名</th>
-                    <th class="col-元ボス特徴" data-key="元ボス特徴">元ボス特徴</th>
-                    <th class="col-メモ" data-key="メモ">メモ</th>
-                </tr>
+                <tr id="boss-table-head-row"></tr>
             </thead>
             <tbody id="boss-table-body">
             </tbody>
@@ -722,8 +759,39 @@
 
     <script>
         // ==========================================
-        // 1. 定数と状態管理 (AppState)
+        // 1. 列定義の一元管理 (Single Source of Truth)
         // ==========================================
+        
+        const COLUMN_DEFINITIONS = [
+            { id: 'よみがな', label: 'よみがな', defaultVisible: false, isSearchable: true, type: 'text' },
+            { id: 'マップ日本語', label: 'マップ日本語', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: 'ボス日本語', label: 'ボス日本語', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: 'マップ英語', label: 'マップ英語', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: 'ボス英語', label: 'ボス英語', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: '耐性アイコン', label: '耐性アイコン', defaultVisible: true, isSearchable: false, type: 'resistIcon' },
+            { 
+                id: '元ボスアクト/エリア', 
+                label: '元ボスアクト/エリア', 
+                defaultVisible: true, 
+                isSearchable: true, 
+                searchKeys: ['元ボスアクト', '元ボスエリア'],
+                type: 'custom', 
+                render: (item) => {
+                    const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : '';
+                    const area = item['元ボスエリア'] || '';
+                    return [act, area].filter(Boolean).join('\n');
+                }
+            },
+            { id: '元ボス名', label: '元ボス名', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: '元ボス特徴', label: '元ボス特徴', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: 'メモ', label: 'メモ', defaultVisible: true, isSearchable: true, type: 'text' }
+        ];
+        
+        
+        // ==========================================
+        // 2. 定数と状態管理 (AppState)
+        // ==========================================
+        
         const RESIST_DEFINITIONS = {
             Armour: { normal: 'images/IconEnemy/IconEnemyArmour.png', strong: 'images/IconEnemy/IconEnemyArmourStrong.png' },
             Evasion: { normal: 'images/IconEnemy/IconEnemyEvasion.png', strong: 'images/IconEnemy/IconEnemyEvasionStrong.png' },
@@ -732,9 +800,8 @@
             Lightning: { normal: 'images/IconEnemy/IconEnemyResistanceLightning.png', strong: 'images/IconEnemy/IconEnemyResistanceLightningStrong.png', weak: 'images/IconEnemy/IconEnemyResistanceLightningWeak.png' },
             Chaos: { normal: 'images/IconEnemy/IconEnemyResistanceChaos.png', strong: 'images/IconEnemy/IconEnemyResistanceChaosStrong.png' }
         };
-
         const RESIST_TYPES = Object.keys(RESIST_DEFINITIONS);
-
+        
         const ROMAJI_TO_KANA_REGEX = {
             'a': '[あぁ]', 'i': '[いぃ]', 'u': '[うぅ]', 'e': '[えぇ]', 'o': '[おぉ]',
             'k': '[かきくけこきゃきゅきょ]', 'ky': '[きゃきゅきょ]', 
@@ -757,55 +824,51 @@
             'q': '[くぁくぃくくぇくぉ]', 
             'x': '[ぁぃぅぇぉっゃゅょ]', 'l': '[ぁぃぅぇぉっゃゅょ]'
         };
-
-        const COLUMN_CONFIG = {
-            'よみがな': false,
-            'マップ日本語': true,
-            'ボス日本語': true,
-            'マップ英語': true,
-            'ボス英語': true,
-            '耐性アイコン': true,
-            '元ボスアクト/エリア': true,
-            '元ボス名': true,
-            '元ボス特徴': true,
-            'メモ': true
-        };
-
-        const REQUIRED_HEADERS = Object.keys(COLUMN_CONFIG);
-        const SEARCH_KEYS = ['よみがな', 'マップ日本語', 'ボス日本語', 'マップ英語', 'ボス英語', '元ボスアクト', '元ボスエリア', '元ボス名', '元ボス特徴', 'メモ'];
-
+        
+        const JA_COLLATOR = new Intl.Collator('ja', { numeric: true });
+        const EN_COLLATOR = new Intl.Collator('en', { numeric: true });
+        
         const AppState = {
             currentData: [],
-            rowMap: new Map(),
-            rows: [],
-            columnState: structuredClone(COLUMN_CONFIG),
+            columnState: {},
             currentSort: 'default',
             filterState: {
                 text: '',
-                regex: null, // 【改善3】正規表現のキャッシュ用に追加
                 resists: new Set()
             }
         };
-
-        const TOTAL_COLUMNS = Object.keys(AppState.columnState).length;
-
-        // ==========================================
-        // 2. DOM要素のキャッシュ
-        // ==========================================
+        
         const DOM = {
-            searchInput: null,
-            searchCounter: null,
-            resistGrid: null,
-            btnSortText: null,
-            btnColumnText: null,
-            tbody: null,
-            fallbackMessage: null,
-            noResultRow: null
+            searchInput: null, searchCounter: null, resistGrid: null,
+            btnSortText: null, btnColumnText: null, tbody: null,
+            fallbackMessage: null, noResultRow: null
         };
-
+        
+        
         // ==========================================
-        // 3. 初期化とイベントのバインド
+        // 3. ユーティリティ関数
         // ==========================================
+        
+        function normalizeText(str) { 
+            if (!str) return '';
+            return String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); 
+        }
+        
+        function escapeRegExp(string) {
+            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        }
+        
+        function getIconPath(resistKey) {
+            if (resistKey.endsWith('Strong')) return RESIST_DEFINITIONS[resistKey.replace('Strong', '')]?.strong;
+            if (resistKey.endsWith('Weak')) return RESIST_DEFINITIONS[resistKey.replace('Weak', '')]?.weak;
+            return RESIST_DEFINITIONS[resistKey]?.normal;
+        }
+        
+        
+        // ==========================================
+        // 4. 初期化処理 (UI動的生成とデータ読み込み)
+        // ==========================================
+        
         document.addEventListener('DOMContentLoaded', () => {
             DOM.searchInput = document.getElementById('searchInput');
             DOM.searchCounter = document.getElementById('search-counter');
@@ -814,184 +877,78 @@
             DOM.btnColumnText = document.getElementById('btn-column-text');
             DOM.tbody = document.getElementById('boss-table-body');
             DOM.fallbackMessage = document.getElementById('fallback-message');
-
-            // 検索入力イベント（デバウンス処理 + 正規表現キャッシュ化）
-            let searchTimer;
-            DOM.searchInput.addEventListener('input', (e) => {
-                clearTimeout(searchTimer);
-                searchTimer = setTimeout(() => {
-                    AppState.filterState.text = normalizeText(e.target.value);
-                    // 【改善3】入力時にのみ正規表現を生成する
-                    AppState.filterState.regex = generateSearchRegex(AppState.filterState.text);
-                    filterTable();
-                }, 100);
+        
+            setupDynamicUI();
+            setupEventListeners();
+            loadData();
+        });
+        
+        function setupDynamicUI() {
+            const headerRow = document.getElementById('boss-table-head-row');
+            const colDropdown = document.getElementById('column-dropdown-content');
+        
+            COLUMN_DEFINITIONS.forEach(def => {
+                const safeKey = def.id.replace(/\//g, '');
+                
+                const th = document.createElement('th');
+                th.className = `col-${safeKey}`;
+                th.dataset.key = def.id;
+                th.textContent = def.label;
+                headerRow.appendChild(th);
+        
+                const div = document.createElement('div');
+                div.className = 'dropdown-item';
+                div.dataset.column = def.id;
+                div.innerHTML = `<span class="checkmark">✔</span>${def.label}`;
+                colDropdown.appendChild(div);
+        
+                AppState.columnState[def.id] = def.defaultVisible;
             });
-
-            // Ctrl+Fで検索窓にフォーカスを当てる
-            window.addEventListener('keydown', (e) => {
-                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
-                    if (DOM.searchInput) {
-                        e.preventDefault(); // ブラウザ標準の検索バーが開くのを防ぐ
-                        DOM.searchInput.focus();
-                        DOM.searchInput.select(); // 既に入力されている文字があれば全選択状態にする
-                    }
-                }
-            });
-
-            document.addEventListener('click', (e) => {
-                // ドロップダウン外クリックで閉じる処理
-                document.querySelectorAll('.dropdown').forEach(dropdown => {
-                    if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
-                });
-
-                // ドロップダウンのトグル処理
-                const dropdownBtn = e.target.closest('.btn-dropdown');
-                if (dropdownBtn) {
-                    const parent = dropdownBtn.parentElement;
-                    const isAlreadyOpen = parent.classList.contains('show');
-                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
-                    if (!isAlreadyOpen) parent.classList.add('show');
-                    e.stopPropagation();
-                    return;
-                }
-
-                // 各種アクションボタンの処理
-                const actionBtn = e.target.closest('[data-action]');
-                if (actionBtn) {
-                    const action = actionBtn.dataset.action;
-                    if (action === 'resetView') resetView();
-                    else if (action === 'clearAllFilters') clearAllFilters();
-                    else if (action === 'clearSearchText') clearSearchText();
-                    return;
-                }
-
-                // ソート項目の処理
-                const sortItem = e.target.closest('[data-sort]');
-                if (sortItem) {
-                    sortTable(sortItem.dataset.sort, sortItem.dataset.sortName);
-                    return;
-                }
-
-                // 表示項目（すべて表示/非表示）の処理
-                const colAction = e.target.closest('[data-column-action]');
-                if (colAction) {
-                    setAllColumns(colAction.dataset.columnAction === 'showAll');
-                    return;
-                }
-
-                // 個別の表示項目トグル処理
-                const colToggle = e.target.closest('[data-column]');
-                if (colToggle) {
-                    toggleColumn(colToggle.dataset.column);
-                    return;
-                }
-
-                // 耐性アイコンのトグル処理
-                const resistIcon = e.target.closest('.icon-wrapper[data-resist]');
-                if (resistIcon) {
-                    resistIcon.classList.toggle('active');
-                    const resist = resistIcon.dataset.resist;
-                    
-                    if (resistIcon.classList.contains('active')) {
-                        AppState.filterState.resists.add(resist);
-                    } else {
-                        AppState.filterState.resists.delete(resist);
-                    }
-                    
-                    if (AppState.filterState.resists.size > 0) {
-                        DOM.resistGrid.classList.add('has-active');
-                    } else {
-                        DOM.resistGrid.classList.remove('has-active');
-                    }
-                    
-                    filterTable();
-                    return;
-                }
-            });
-
-            // JSONデータの取得
+        }
+        
+        function loadData() {
             fetch('poe2mapboss.json')
                 .then(r => {
                     if (!r.ok) throw new Error();
                     return r.json();
                 })
-                .then(data => {
-                    initializeApp(data);
-                })
+                .then(data => initializeApp(data))
                 .catch(() => {
                     console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。");
                     DOM.fallbackMessage.classList.remove('is-hidden');
-                    
-                    // ダミーデータを見やすく整理
                     const dummyData = [
-                        {
-                            "よみがな": "だみーまっぷ",
-                            "マップ日本語": "ダミーマップ",
-                            "ボス日本語": "ダミーボス",
-                            "マップ英語": "DummyMap",
-                            "ボス英語": "DummyBoss",
-                            "耐性アイコン": "FireWeak,ColdWeak,LightningWeak",
-                            "元ボスアクト": "元ダミーアクト",
-                            "元ボスエリア": "元ダミーエリア",
-                            "元ボス名": "元ダミーボス",
-                            "元ボス特徴": "ダミー",
-                            "メモ": "ダミーメモ"
-                        },
-                        {
-                            "よみがな": "しんりんちたい",
-                            "マップ日本語": "森林地帯",
-                            "ボス日本語": "肥大したマータ\n怨嗟のコルム",
-                            "マップ英語": "Woodland",
-                            "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous",
-                            "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n",
-                            "元ボスアクト": "１",
-                            "元ボスエリア": "川岸",
-                            "元ボス名": "腐乱した粉屋\n腐乱した粉屋",
-                            "元ボス特徴": "粉屋×２",
-                            "メモ": "だみー２"
-                        },
-                        {
-                            "よみがな": "ひすいのしま",
-                            "マップ日本語": "ヒスイの島",
-                            "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ",
-                            "マップ英語": "The Jade Isles",
-                            "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled",
-                            "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n",
-                            "元ボスアクト": "４",
-                            "元ボスエリア": "部族の中心",
-                            "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
-                            "元ボス特徴": "4章ボス",
-                            "メモ": "だみー３"
-                        }
+                        { "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ" },
+                        { "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
+                        { "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" }
                     ];
                     initializeApp(dummyData);
                 });
-        });
-
-        // ==========================================
-        // 4. データ・UI操作関数
-        // ==========================================
-
+        }
+        
         function initializeApp(data) {
+            const searchIndexKeys = [];
+            COLUMN_DEFINITIONS.filter(d => d.isSearchable).forEach(d => {
+                if (d.searchKeys) searchIndexKeys.push(...d.searchKeys);
+                else searchIndexKeys.push(d.id);
+            });
+        
             AppState.currentData = data.map((item, idx) => {
                 const resistIndex = new Set(
-                    String(item.耐性アイコン || '-')
-                        .replace(/\r\n/g, '\n')
-                        .split(/[\n,]+/)
-                        .map(r => r.trim())
-                        .filter(r => r && r !== '-')
+                    String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-')
                 );
-
-                const searchIndex = normalizeText(
-                    SEARCH_KEYS.map(k => item[k] || '').join(' ')
-                );
-
-                return {
-                    ...item,
-                    id: idx,
-                    defaultOrder: idx,
-                    searchIndex,
-                    resistIndex
+                const searchIndex = normalizeText(searchIndexKeys.map(k => item[k] || '').join(' '));
+                const kanaIndex = normalizeText(item.よみがな);
+                
+                return { 
+                    ...item, 
+                    id: idx, 
+                    defaultOrder: idx, 
+                    searchIndex, 
+                    resistIndex, 
+                    kanaIndex, 
+                    element: null,
+                    visible: true,      
+                    isEven: undefined    
                 };
             });
             
@@ -999,219 +956,212 @@
             filterTable();
             updateButtonUI();
         }
+        
+        
+        // ==========================================
+        // 5. イベントリスナーとアクションマップ
+        // ==========================================
+        
+        const ACTIONS = {
+            resetView: () => resetView(),
+            clearAllFilters: () => clearAllFilters(),
+            clearSearchText: () => clearSearchText()
+        };
 
-        function getIconPath(resistKey) {
-            if (resistKey.endsWith('Strong')) return RESIST_DEFINITIONS[resistKey.replace('Strong', '')]?.strong;
-            if (resistKey.endsWith('Weak')) return RESIST_DEFINITIONS[resistKey.replace('Weak', '')]?.weak;
-            return RESIST_DEFINITIONS[resistKey]?.normal;
+        function setupEventListeners() {
+            setupSearchEvents();
+            setupKeyboardEvents();
+            setupClickDelegation(); 
         }
 
-        function escapeRegExp(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        function setupSearchEvents() {
+            let searchTimer;
+            DOM.searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(() => {
+                    AppState.filterState.text = normalizeText(e.target.value);
+                    filterTable();
+                }, 150); 
+            });
         }
 
-        function normalizeText(str) { 
-            if (!str) return '';
-            return String(str).normalize('NFKC').replace(/[\u30a1-\u30f6]/g, m => String.fromCharCode(m.charCodeAt(0) - 0x60)).toLowerCase(); 
-        }
-
-        function updateButtonUI() {
-            let visibleCount = 0;
-            for (const key of Object.keys(AppState.columnState)) {
-                const colItem = document.querySelector(`[data-column="${key}"]`);
-                if (colItem) {
-                    const checkmark = colItem.querySelector('.checkmark');
-                    if (checkmark) {
-                        checkmark.style.visibility = AppState.columnState[key] ? 'visible' : 'hidden';
+        function setupKeyboardEvents() {
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+                    if (DOM.searchInput) {
+                        e.preventDefault();
+                        DOM.searchInput.focus();
+                        DOM.searchInput.select(); 
                     }
                 }
-                if (AppState.columnState[key]) visibleCount++;
-            }
-            DOM.btnColumnText.innerText = `表示項目: ${visibleCount}/${TOTAL_COLUMNS}`;
+            });
         }
 
-        // 【改善2】検索クリア・フィルタ全解除の処理を一本化
-        function clearSearchText(skipFilter = false) {
-            DOM.searchInput.value = '';
-            AppState.filterState.text = '';
-            AppState.filterState.regex = null; // キャッシュもクリア
-            
-            if (!skipFilter) {
+        function setupClickDelegation() {
+            document.addEventListener('click', (e) => {
+                handleDropdownClick(e);
+                handleActionClick(e);
+                handleSortClick(e);
+                handleColumnClick(e);
+                handleResistClick(e);
+            });
+        }
+
+        function handleDropdownClick(e) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+                if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
+            });
+
+            const dropdownBtn = e.target.closest('.btn-dropdown');
+            if (dropdownBtn) {
+                const parent = dropdownBtn.parentElement;
+                const isAlreadyOpen = parent.classList.contains('show');
+                document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('show'));
+                if (!isAlreadyOpen) parent.classList.add('show');
+            }
+        }
+
+        function handleActionClick(e) {
+            const actionBtn = e.target.closest('[data-action]');
+            if (actionBtn) {
+                const action = actionBtn.dataset.action;
+                ACTIONS[action]?.();
+            }
+        }
+
+        function handleSortClick(e) {
+            const sortItem = e.target.closest('[data-sort]');
+            if (sortItem) {
+                applySort(sortItem.dataset.sort, sortItem.dataset.sortName);
+            }
+        }
+
+        function handleColumnClick(e) {
+            const colAction = e.target.closest('[data-column-action]');
+            if (colAction) {
+                setAllColumns(colAction.dataset.columnAction === 'showAll');
+                return;
+            }
+
+            const colToggle = e.target.closest('[data-column]');
+            if (colToggle) {
+                toggleColumn(colToggle.dataset.column);
+            }
+        }
+
+        function handleResistClick(e) {
+            const resistIcon = e.target.closest('.icon-wrapper[data-resist]');
+            if (resistIcon) {
+                resistIcon.classList.toggle('active');
+                const resist = resistIcon.dataset.resist;
+                
+                if (resistIcon.classList.contains('active')) AppState.filterState.resists.add(resist);
+                else AppState.filterState.resists.delete(resist);
+                
+                DOM.resistGrid.classList.toggle('has-active', AppState.filterState.resists.size > 0);
                 filterTable();
-                DOM.searchInput.focus();
             }
         }
-
-        function clearAllFilters() {
-            clearSearchText(true); // 検索枠のみリセット
-            AppState.filterState.resists.clear();
-            
-            document.querySelectorAll('.icon-wrapper').forEach(w => w.classList.remove('active'));
-            DOM.resistGrid.classList.remove('has-active');
-            
-            filterTable(); // ここで一括フィルター実行
-        }
-
+        
+        
         // ==========================================
-        // 5. テーブル構築
+        // 6. テーブル構築
         // ==========================================
-
-        function parseResistRows(resistStr) {
-            return String(resistStr || '-')
-                .replace(/\r\n/g, '\n')
-                .split('\n')
-                .map(row => 
-                    row
-                        .split(',')
-                        .map(k => k.trim())
-                        .filter(Boolean)
-                );
-        }
-
-        function createResistIcon(foundKey) {
-            if (foundKey && getIconPath(foundKey)) {
-                const img = document.createElement('img');
-                img.src = getIconPath(foundKey); 
-                img.title = foundKey; 
-                img.className = 'icon-img';
-                return img;
-            } else {
-                const span = document.createElement('span');
-                span.className = 'icon-text'; 
-                span.textContent = '-';
-                return span;
-            }
-        }
-
-        function createResistRow(keysInRow) {
-            const rowDiv = document.createElement('div');
-            rowDiv.className = 'resist-row-inline';
-
-            RESIST_TYPES.forEach(attr => {
-                const foundKey = keysInRow.find(k => k.startsWith(attr));
-                const iconElement = createResistIcon(foundKey);
-                rowDiv.appendChild(iconElement);
-            });
-
-            return rowDiv;
-        }
-
-        function createResistCell(item, td) {
-            const parsedRows = parseResistRows(item.耐性アイコン);
-            
-            parsedRows.forEach(keysInRow => {
-                const rowElement = createResistRow(keysInRow);
-                td.appendChild(rowElement);
-            });
-        }
-
-        function createRow(item, hiddenColumns) {
-            const tr = document.createElement('tr');
-
-            REQUIRED_HEADERS.forEach(key => {
-                const isHidden = hiddenColumns.has(key);
-                const td = createCell(key, item, isHidden);
-                tr.appendChild(td);
-            });
-            
-            return tr;
-        }
-
-        function createCell(key, item, isHidden) {
-            const safeKey = key.replace(/\//g, '');
-            const td = document.createElement('td');
-            td.className = `col-${safeKey}`;
-            
-            if (isHidden) {
-                td.classList.add('is-hidden');
-            }
-
-            if (key === '耐性アイコン') {
-                createResistCell(item, td);
-            } else if (key === '元ボスアクト/エリア') {
-                const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : '';
-                const area = item['元ボスエリア'] || '';
-                const combined = [act, area].filter(Boolean).join('\n');
-                td.textContent = combined;
-            } else {
-                td.textContent = item[key] || '';
-            }
-            
-            return td;
-        }
-
+        
         function buildTable(data) {
             DOM.tbody.innerHTML = ''; 
-            AppState.rowMap.clear();
-            AppState.rows = []; 
-            
+        
             const hiddenColumns = new Set();
             for (const [key, visible] of Object.entries(AppState.columnState)) {
                 if (!visible) hiddenColumns.add(key);
             }
-
+        
             if (data.length === 0) {
-                DOM.tbody.innerHTML = `<tr class="no-hover-row"><td colspan="${TOTAL_COLUMNS}" class="msg-container">データが空です。</td></tr>`;
+                DOM.tbody.innerHTML = `<tr class="no-hover-row"><td colspan="${COLUMN_DEFINITIONS.length}" class="msg-container">データが空です。</td></tr>`;
                 DOM.searchCounter.textContent = "検索結果: 0件 / 全0件";
                 return;
             }
-
+        
+            const fragment = document.createDocumentFragment();
+        
             data.forEach(item => {
                 const tr = createRow(item, hiddenColumns);
-                AppState.rowMap.set(item.id, tr);
-                AppState.rows.push(tr); 
-                DOM.tbody.appendChild(tr);
+                item.element = tr;
+                fragment.appendChild(tr);
             });
-
+        
             DOM.noResultRow = document.createElement('tr');
             DOM.noResultRow.className = 'is-hidden no-hover-row';
-            DOM.tbody.appendChild(DOM.noResultRow);
-
+            fragment.appendChild(DOM.noResultRow);
+        
+            DOM.tbody.appendChild(fragment);
+        
             document.querySelectorAll('th[data-key]').forEach(th => {
                 th.classList.toggle('is-hidden', hiddenColumns.has(th.dataset.key));
             });
         }
-
-        // ==========================================
-        // 6. フィルタリング と レンダリング
-        // ==========================================
-
-        function getViewState() {
-            const hasVisibleColumn = Object.values(AppState.columnState).some(v => v);
-            const matchedRows = getFilteredRows(hasVisibleColumn);
-            
-            return {
-                matchedRows: matchedRows,
-                visibleCount: matchedRows.length,
-                hasVisibleColumn: hasVisibleColumn
-            };
+        
+        function createRow(item, hiddenColumns) {
+            const tr = document.createElement('tr');
+            COLUMN_DEFINITIONS.forEach(def => {
+                const td = createCell(def, item, hiddenColumns.has(def.id));
+                tr.appendChild(td);
+            });
+            return tr;
         }
-
-        function filterTable() {
-            renderView(getViewState());
+        
+        function createCell(def, item, isHidden) {
+            const safeKey = def.id.replace(/\//g, '');
+            const td = document.createElement('td');
+            td.className = `col-${safeKey}`;
+            if (isHidden) td.classList.add('is-hidden');
+        
+            if (def.type === 'resistIcon') {
+                createResistCell(item, td);
+            } else if (def.type === 'custom') {
+                td.textContent = def.render(item);
+            } else {
+                td.textContent = item[def.id] || '';
+            }
+            return td;
         }
-
-        // 【改善3】キャッシュ化に伴い正規表現の生成部分を分離
+        
+        function createResistCell(item, td) {
+            const resistStr = String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split('\n');
+            resistStr.forEach(row => {
+                const keysInRow = row.split(',').map(k => k.trim()).filter(Boolean);
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'resist-row-inline';
+        
+                RESIST_TYPES.forEach(attr => {
+                    const foundKey = keysInRow.find(k => k.startsWith(attr));
+                    const el = foundKey && getIconPath(foundKey) ? Object.assign(document.createElement('img'), { src: getIconPath(foundKey), title: foundKey, className: 'icon-img' }) 
+                                                                 : Object.assign(document.createElement('span'), { className: 'icon-text', textContent: '-' });
+                    rowDiv.appendChild(el);
+                });
+                td.appendChild(rowDiv);
+            });
+        }
+        
+        
+        // ==========================================
+        // 7. 検索・フィルタリング・レンダリング
+        // ==========================================
+        
         function generateSearchRegex(rawKeyword) {
             if (!rawKeyword) return null;
             
+            // 【修正箇所】 .replace(...) の過剰な補正を削除しました。
+            // Wanakanaの標準のローマ字変換をそのまま使用します。
             let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
-            hiraConverted = hiraConverted.replace(/ん+/g, 'ん');
-            hiraConverted = hiraConverted.replace(/んn$/i, 'ん');
-
+            
             const tailMatch = hiraConverted.match(/([a-z]+)$/i);
-
             try {
                 if (tailMatch) {
                     const tailAlpha = tailMatch[1].toLowerCase();
                     const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
-
                     const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
-                    if (regexSuffix === undefined) {
-                        return new RegExp(prefix + escapeRegExp(tailAlpha));
-                    } else {
-                        return new RegExp(prefix + regexSuffix);
-                    }
+                    return new RegExp(prefix + (regexSuffix !== undefined ? regexSuffix : escapeRegExp(tailAlpha)));
                 } else {
                     return new RegExp(escapeRegExp(hiraConverted));
                 }
@@ -1219,149 +1169,167 @@
                 return null;
             }
         }
-
-        // 【改善3】キャッシュされた正規表現を再利用するように変更
-        function getFilteredData() {
-            const activeResists = Array.from(AppState.filterState.resists);
+        
+        function getFilterContext() {
             const rawKeyword = AppState.filterState.text;
-            const hiraRegex = AppState.filterState.regex;
-
-            return AppState.currentData.filter(item => {
-                if (rawKeyword) {
-                    const isRawMatch = item.searchIndex.includes(rawKeyword);
-                    const isKanaMatch = hiraRegex && item.よみがな && hiraRegex.test(item.よみがな);
-
-                    if (!isRawMatch && !isKanaMatch) return false;
-                }
-
-                return activeResists.every(r => item.resistIndex.has(r));
-            });
+            const needsRegex = /[a-z]/i.test(rawKeyword);
+        
+            return {
+                hasVisibleColumn: Object.values(AppState.columnState).some(v => v),
+                activeResists: Array.from(AppState.filterState.resists),
+                rawKeyword: rawKeyword,
+                needsRegex: needsRegex,
+                searchRegex: needsRegex ? generateSearchRegex(rawKeyword) : null
+            };
         }
-
-        function getFilteredRows(hasVisibleColumn) {
-            if (!hasVisibleColumn) return [];
-            return getFilteredData().map(item => AppState.rowMap.get(item.id));
-        }
-
-        function renderView(viewState) {
-            renderRows(viewState);
-            renderCounter(viewState);
-            renderNoResult(viewState);
-        }
-
-        function renderRows(viewState) {
-            let visibleCount = 0;
-            const matchedSet = new Set(viewState.matchedRows);
-            
-            for (const row of AppState.rows) {
-                if (matchedSet.has(row) && viewState.hasVisibleColumn) {
-                    row.classList.remove('is-hidden');
-                    row.classList.toggle('row-even', visibleCount++ % 2 === 1);
-                } else {
-                    row.classList.add('is-hidden');
-                    row.classList.remove('row-even');
-                }
+        
+        function matchesFilter(item, ctx) {
+            if (!ctx.hasVisibleColumn) return false;
+        
+            if (ctx.activeResists.length > 0) {
+                if (!ctx.activeResists.every(r => item.resistIndex.has(r))) return false;
             }
+        
+            if (ctx.rawKeyword) {
+                const isRawMatch = item.searchIndex.includes(ctx.rawKeyword);
+                let isKanaMatch = false;
+        
+                if (ctx.needsRegex && ctx.searchRegex) {
+                    isKanaMatch = item.よみがな && ctx.searchRegex.test(item.よみがな);
+                } else if (!ctx.needsRegex) {
+                    isKanaMatch = item.kanaIndex && item.kanaIndex.includes(ctx.rawKeyword);
+                }
+        
+                if (!isRawMatch && !isKanaMatch) return false;
+            }
+        
+            return true;
         }
-
-        function renderCounter(viewState) {
-            DOM.searchCounter.textContent = `検索結果: ${viewState.visibleCount}件 / 全${AppState.currentData.length}件`;
-        }
-
-        function renderNoResult(viewState) {
-            if (!DOM.noResultRow) return;
-
-            if (!viewState.hasVisibleColumn) {
-                showNoColumnMessage();
-            } else if (viewState.visibleCount === 0) {
-                showNoDataMessage();
+        
+        function renderVisibilityAndStripe(item, isVisible, visibleCount) {
+            const tr = item.element;
+            if (!tr) return;
+        
+            if (item.visible !== isVisible) {
+                item.visible = isVisible;
+                tr.classList.toggle('is-hidden', !isVisible);
+            }
+        
+            if (isVisible) {
+                const isEvenRow = (visibleCount % 2 === 1); 
+                if (item.isEven !== isEvenRow) {
+                    item.isEven = isEvenRow;
+                    tr.classList.toggle('row-even', isEvenRow);
+                }
             } else {
-                hideNoResultMessage();
+                if (item.isEven !== undefined) {
+                    tr.classList.remove('row-even');
+                    item.isEven = undefined;
+                }
             }
         }
-
-        function showNoColumnMessage() {
-            DOM.noResultRow.classList.remove('is-hidden');
-            DOM.noResultRow.innerHTML = `
-                <td colspan="${TOTAL_COLUMNS}" class="msg-container">
-                    <span>選択項目がありません</span><br>
-                    <button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">
-                        ↺ ソート・表示項目の初期化
-                    </button>
-                </td>
-            `;
+        
+        function filterTable() {
+            const ctx = getFilterContext();
+            let visibleCount = 0;
+        
+            for (const item of AppState.currentData) {
+                const isVisible = matchesFilter(item, ctx);
+                if (isVisible) visibleCount++;
+                renderVisibilityAndStripe(item, isVisible, visibleCount);
+            }
+        
+            updateFooter(visibleCount, ctx.hasVisibleColumn);
         }
-
-        function showNoDataMessage() {
-            DOM.noResultRow.classList.remove('is-hidden');
-            DOM.noResultRow.innerHTML = `
-                <td colspan="${TOTAL_COLUMNS}" class="msg-container">
-                    <span>該当するデータが見つかりませんでした。</span><br>
-                    <button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">
-                        ✖ 検索・フィルターの全解除
-                    </button>
-                </td>
-            `;
+        
+        function updateFooter(visibleCount, hasVisibleColumn) {
+            DOM.searchCounter.textContent = `検索結果: ${visibleCount}件 / 全${AppState.currentData.length}件`;
+        
+            if (!DOM.noResultRow) return;
+        
+            if (!hasVisibleColumn) {
+                DOM.noResultRow.classList.remove('is-hidden');
+                DOM.noResultRow.innerHTML = `<td colspan="${COLUMN_DEFINITIONS.length}" class="msg-container"><span>選択項目がありません</span><br><button class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">↺ ソート・表示項目の初期化</button></td>`;
+            } else if (visibleCount === 0) {
+                DOM.noResultRow.classList.remove('is-hidden');
+                DOM.noResultRow.innerHTML = `<td colspan="${COLUMN_DEFINITIONS.length}" class="msg-container"><span>該当するデータが見つかりませんでした。</span><br><button class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">✖ 検索・フィルターの全解除</button></td>`;
+            } else {
+                DOM.noResultRow.classList.add('is-hidden');
+                DOM.noResultRow.innerHTML = '';
+            }
         }
-
-        function hideNoResultMessage() {
-            DOM.noResultRow.classList.add('is-hidden');
-            DOM.noResultRow.innerHTML = '';
-        }
-
+        
+        
         // ==========================================
-        // 7. ソートと表示項目切り替え
+        // 8. ソート機能
         // ==========================================
-
+        
         const SORTERS = {
             'default': (a, b) => a.defaultOrder - b.defaultOrder,
-            'kana-asc': (a, b) => String(a["よみがな"] || '').localeCompare(String(b["よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-            'kana-desc': (a, b) => String(b["よみがな"] || '').localeCompare(String(a["よみがな"] || ''), 'ja', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-            'eng-asc': (a, b) => String(a["マップ英語"] || '').localeCompare(String(b["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder,
-            'eng-desc': (a, b) => String(b["マップ英語"] || '').localeCompare(String(a["マップ英語"] || ''), 'en', { numeric: true }) || a.defaultOrder - b.defaultOrder
+            'kana-asc': (a, b) => JA_COLLATOR.compare(a["よみがな"] || '', b["よみがな"] || '') || a.defaultOrder - b.defaultOrder,
+            'kana-desc': (a, b) => JA_COLLATOR.compare(b["よみがな"] || '', a["よみがな"] || '') || a.defaultOrder - b.defaultOrder,
+            'eng-asc': (a, b) => EN_COLLATOR.compare(a["マップ英語"] || '', b["マップ英語"] || '') || a.defaultOrder - b.defaultOrder,
+            'eng-desc': (a, b) => EN_COLLATOR.compare(b["マップ英語"] || '', a["マップ英語"] || '') || a.defaultOrder - b.defaultOrder
         };
-
-        function reorderRows() {
-            AppState.currentData.forEach(item => {
-                const tr = AppState.rowMap.get(item.id);
-                if (tr) DOM.tbody.appendChild(tr);
-            });
-            if (DOM.noResultRow) DOM.tbody.appendChild(DOM.noResultRow);
-        }
-
-        function sortTable(mode, textName) {
+        
+        // ソート処理のファサード（窓口）
+        function applySort(mode, textName) {
+            setSortMode(mode);
             updateSortUI(mode, textName);
-            applySortData(mode);
+            sortData();
             reorderRows();
             filterTable();
         }
 
+        // 状態の更新
+        function setSortMode(mode) {
+            AppState.currentSort = mode; 
+        }
+
+        // UIの更新
         function updateSortUI(mode, textName) {
             document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
             document.querySelector(`[data-sort="${mode}"]`)?.classList.add('sort-active');
-            
-            if (textName) {
-                DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
-            }
+            if (textName) DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
         }
 
-        function applySortData(mode) {
-            AppState.currentSort = mode; 
-            
-            if (SORTERS[mode]) {
-                AppState.currentData.sort(SORTERS[mode]);
-            } else {
-                console.warn(`Unknown sort mode: ${mode}`);
-            }
+        // データのソート
+        function sortData() {
+            const mode = AppState.currentSort;
+            if (SORTERS[mode]) AppState.currentData.sort(SORTERS[mode]);
         }
 
+        // DOMツリーへの並び順の反映
+        function reorderRows() {
+            const fragment = document.createDocumentFragment();
+            AppState.currentData.forEach(item => {
+                if (item.element) fragment.appendChild(item.element);
+            });
+            if (DOM.noResultRow) fragment.appendChild(DOM.noResultRow);
+            
+            DOM.tbody.appendChild(fragment);
+        }
+        
+        
+        // ==========================================
+        // 9. 表示項目・UIリセット操作
+        // ==========================================
+        
+        function updateButtonUI() {
+            let visibleCount = 0;
+            for (const key of Object.keys(AppState.columnState)) {
+                const checkmark = document.querySelector(`[data-column="${key}"] .checkmark`);
+                if (checkmark) checkmark.style.visibility = AppState.columnState[key] ? 'visible' : 'hidden';
+                if (AppState.columnState[key]) visibleCount++;
+            }
+            DOM.btnColumnText.innerText = `表示項目: ${visibleCount}/${COLUMN_DEFINITIONS.length}`;
+        }
+        
         function updateColumnVisibility(columnKey, visible) {
             const safeKey = columnKey.replace(/\//g, '');
-            document.querySelectorAll(`.col-${safeKey}`).forEach(el => {
-                el.classList.toggle('is-hidden', !visible);
-            });
+            document.querySelectorAll(`.col-${safeKey}`).forEach(el => el.classList.toggle('is-hidden', !visible));
         }
-
+        
         function toggleColumn(stateKey) {
             if (AppState.columnState[stateKey] !== undefined) {
                 AppState.columnState[stateKey] = !AppState.columnState[stateKey];
@@ -1376,29 +1344,36 @@
                 AppState.columnState[k] = visible;
                 updateColumnVisibility(k, visible);
             });
-            
             updateButtonUI();
             filterTable();
         }
-
-        // 【改善1】ソートの初期化を既存の関数に一本化
-        function resetSort() {
-            updateSortUI('default', '初期順');
-            applySortData('default');
-            reorderRows();
+        
+        function clearSearchText(skipFilter = false) {
+            DOM.searchInput.value = '';
+            AppState.filterState.text = '';
+            if (!skipFilter) {
+                filterTable();
+                DOM.searchInput.focus();
+            }
         }
-
-        function resetColumns() {
-            Object.keys(AppState.columnState).forEach(k => {
-                AppState.columnState[k] = COLUMN_CONFIG[k];
-                updateColumnVisibility(k, COLUMN_CONFIG[k]);
-            });
-            updateButtonUI();
+        
+        function clearAllFilters() {
+            clearSearchText(true); 
+            AppState.filterState.resists.clear();
+            document.querySelectorAll('.icon-wrapper').forEach(w => w.classList.remove('active'));
+            DOM.resistGrid.classList.remove('has-active');
+            filterTable(); 
         }
-
+        
         function resetView() {
-            resetSort();
-            resetColumns();
+            applySort('default', '初期順');
+        
+            COLUMN_DEFINITIONS.forEach(def => {
+                AppState.columnState[def.id] = def.defaultVisible;
+                updateColumnVisibility(def.id, def.defaultVisible);
+            });
+            
+            updateButtonUI();
             filterTable();
         }
     </script>
