@@ -825,8 +825,9 @@
         // ==========================================
 
         const STORAGE_KEYS = {
-            MARKS: 'poe2_marks',
-            COLUMN_STATE: 'poe2_column_state'
+            VERSION: 'poe2:version',
+            MARKS: 'poe2:marks',
+            COLUMNS: 'poe2:columns'
         };
 
         const StorageService = {
@@ -868,8 +869,8 @@
                 searchKeys: ['元ボスアクト', '元ボスエリア'],
                 type: 'custom', 
                 render: (item) => {
-                    const act = item['元ボスアクト'] ? `${item['元ボスアクト']}章` : '';
-                    const area = item['元ボスエリア'] || '';
+                    const act = item.data['元ボスアクト'] ? `${item.data['元ボスアクト']}章` : '';
+                    const area = item.data['元ボスエリア'] || '';
                     return [act, area].filter(Boolean).join('\n');
                 }
             },
@@ -891,7 +892,7 @@
 
         const AppState = {
             currentData: [],
-            itemMap: new Map(), // O(1) アクセス用 (永続ID -> item)
+            itemMap: new Map(), // O(1) アクセス用 (id -> item)
             columnState: {}, 
             currentSort: 'default',
             filterState: {
@@ -905,7 +906,7 @@
         };
 
         const ViewStore = {
-            rows: new Map(),     // item._uid -> <tr> element
+            rows: new Map(),     // item.id -> <tr> element
             columns: new Map()   // columnId -> <td> elements array
         };
 
@@ -983,7 +984,7 @@
             // 列の定義からのヘッダ/ドロップダウン生成
             const headerRow = document.getElementById('boss-table-head-row');
             const colDropdown = document.getElementById('column-dropdown-content');
-            const savedState = StorageService.load(STORAGE_KEYS.COLUMN_STATE, null);
+            const savedState = StorageService.load(STORAGE_KEYS.COLUMNS, null);
 
             COLUMN_DEFINITIONS.forEach(def => {
                 const safeKey = def.id.replace(/\//g, '');
@@ -1033,9 +1034,9 @@
                     console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。");
                     DOM.fallbackMessage.classList.remove('is-hidden');
                     const dummyData = [
-                        { "id": "dummy_1", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ" },
-                        { "id": "dummy_2", "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
-                        { "id": "dummy_3", "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" }
+                        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ" },
+                        { "id": "map_002", "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
+                        { "id": "map_003", "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" }
                     ];
                     initializeApp(dummyData);
                 });
@@ -1048,35 +1049,44 @@
                 else searchIndexKeys.push(d.id);
             });
 
-            // 永続化されたマークの読み込み
-            const savedMarks = StorageService.load(STORAGE_KEYS.MARKS, []);
-            const markMap = new Map(savedMarks.map(v => [v.key, v.marks]));
+            // 永続化されたマークの読み込み (O(1) dictionary format)
+            const savedMarks = StorageService.load(STORAGE_KEYS.MARKS, {});
 
             data.forEach((item, idx) => {
-                const uid = item.id || item['マップ英語'] || `id_fallback_${idx}`;
+                if (!item.id) {
+                    throw new Error('id is required: データにidが含まれていません');
+                }
 
                 const resistIndex = new Set(
                     String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-')
                 );
-                const searchIndex = normalizeText(searchIndexKeys.map(k => item[k] || '').join(' '));
+                
+                const searchIndex = searchIndexKeys
+                    .map(k => normalizeText(item[k]))
+                    .filter(Boolean);
+                    
                 const kanaIndex = normalizeText(item.よみがな);
-                const markIndex = new Set(markMap.get(uid) || []);
+                const markIndex = new Set(savedMarks[item.id] || []);
 
-                const enhancedItem = { 
-                    ...item, 
-                    _uid: uid,
-                    defaultOrder: idx, 
-                    searchIndex, 
-                    resistIndex, 
-                    kanaIndex, 
-                    markIndex,
-                    visible: true,      
-                    lastVisible: undefined, // 差分更新用
-                    lastIsEven: undefined   // 差分更新用
+                const enhancedItem = {
+                    id: item.id,
+                    data: { ...item },
+                    user: {
+                        marks: markIndex
+                    },
+                    state: {
+                        defaultOrder: idx, 
+                        searchIndex: searchIndex, 
+                        resistIndex: resistIndex, 
+                        kanaIndex: kanaIndex, 
+                        visible: true,      
+                        lastVisible: undefined,
+                        lastIsEven: undefined
+                    }
                 };
 
                 AppState.currentData.push(enhancedItem);
-                AppState.itemMap.set(uid, enhancedItem);
+                AppState.itemMap.set(item.id, enhancedItem);
             });
 
             TableRenderer.buildTable();
@@ -1089,13 +1099,13 @@
         }
 
         function saveMarks() {
-            const markedItems = AppState.currentData
-                .filter(item => item.markIndex.size > 0)
-                .map(item => ({
-                    key: item._uid,
-                    marks: [...item.markIndex]
-                }));
-            StorageService.save(STORAGE_KEYS.MARKS, markedItems);
+            const markDict = {};
+            AppState.currentData.forEach(item => {
+                if (item.user.marks.size > 0) {
+                    markDict[item.id] = [...item.user.marks];
+                }
+            });
+            StorageService.save(STORAGE_KEYS.MARKS, markDict);
         }
 
         // ==========================================
@@ -1179,14 +1189,12 @@
             if (resistIcon) {
                 const resist = resistIcon.dataset.resist;
                 
-                // AppStateを更新
                 if (AppState.filterState.resists.has(resist)) {
                     AppState.filterState.resists.delete(resist);
                 } else {
                     AppState.filterState.resists.add(resist);
                 }
                 
-                // UIへ反映してフィルタ適用
                 FilterUIRenderer.updateResistUI();
                 FilterService.apply();
             }
@@ -1197,14 +1205,12 @@
             if (markIcon) {
                 const mark = markIcon.dataset.mark;
                 
-                // AppStateを更新
                 if (AppState.filterState.marks.has(mark)) {
                     AppState.filterState.marks.delete(mark);
                 } else {
                     AppState.filterState.marks.add(mark);
                 }
                 
-                // UIへ反映してフィルタ適用
                 FilterUIRenderer.updateMarkUI();
                 FilterService.apply();
             }
@@ -1218,18 +1224,15 @@
                 
                 const item = AppState.itemMap.get(mapKey);
                 if (item) {
-                    // AppStateの更新
-                    if (item.markIndex.has(markType)) {
-                        item.markIndex.delete(markType);
+                    if (item.user.marks.has(markType)) {
+                        item.user.marks.delete(markType);
                     } else {
-                        item.markIndex.add(markType);
+                        item.user.marks.add(markType);
                     }
                     saveMarks();
 
-                    // 該当行のUI更新
-                    TableRenderer.updateRowMarkUI(btn, item.markIndex.has(markType));
+                    TableRenderer.updateRowMarkUI(btn, item.user.marks.has(markType));
 
-                    // フィルタ条件に関わる変更なら全体を再評価
                     if (AppState.filterState.marks.has(markType)) {
                         FilterService.apply();
                     }
@@ -1238,7 +1241,7 @@
         }
 
         // ==========================================
-        // 5. Filter Service (論理状態の更新)
+        // 5. Filter Service (論理状態の更新とパイプライン)
         // ==========================================
 
         const FilterService = {
@@ -1248,8 +1251,8 @@
                 AppState.hasVisibleColumn = ctx.hasVisibleColumn;
 
                 AppState.currentData.forEach(item => {
-                    item.visible = this.matchesFilter(item, ctx);
-                    if (item.visible) AppState.visibleCount++;
+                    item.state.visible = this.matchesFilter(item, ctx);
+                    if (item.state.visible) AppState.visibleCount++;
                 });
 
                 TableRenderer.updateTableState();
@@ -1271,50 +1274,55 @@
             },
 
             generateSearchRegex(rawKeyword) {
-                if (!rawKeyword || typeof wanakana === 'undefined') return null;
+            if (!rawKeyword || typeof wanakana === 'undefined') {
+                return null;
+            }
 
-                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
-                hiraConverted = hiraConverted.replace(/([a-z])\1+/gi, 'っ$1');
-                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
-                try {
-                    if (tailMatch) {
-                        const tailAlpha = tailMatch[1].toLowerCase();
-                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
-                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
-                        return new RegExp(prefix + (regexSuffix !== undefined ? regexSuffix : escapeRegExp(tailAlpha)));
-                    } else {
-                        return new RegExp(escapeRegExp(hiraConverted));
-                    }
-                } catch (e) {
-                    return null;
-                }
-            },
+            // 同一文字3連続以上はタイプミスとみなす
+            if (/([a-z])\1{2,}/i.test(rawKeyword)) {
+                return null;
+            }
 
-            matchesFilter(item, ctx) {
-                if (!ctx.hasVisibleColumn) return false;
-            
-                if (ctx.activeResists.length > 0) {
-                    if (!ctx.activeResists.every(r => item.resistIndex.has(r))) return false;
+            let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+            hiraConverted = hiraConverted.replace(/([a-z])\1+/gi, 'っ$1');
+            const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+            try {
+                if (tailMatch) {
+                    const tailAlpha = tailMatch[1].toLowerCase();
+                    const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+                    const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                    return new RegExp(prefix + (regexSuffix !== undefined ? regexSuffix : escapeRegExp(tailAlpha)));
+                } else {
+                    return new RegExp(escapeRegExp(hiraConverted));
                 }
+            } catch (e) {
+                return null;
+            }
+        },
 
-                if (ctx.activeMarks.length > 0) {
-                    if (!ctx.activeMarks.every(m => item.markIndex.has(m))) return false;
-                }
-            
-                if (ctx.rawKeyword) {
-                    const isRawMatch = item.searchIndex.includes(ctx.rawKeyword);
+            // フィルターのパイプライン定義
+            filters: [
+                (item, ctx) => ctx.hasVisibleColumn,
+                (item, ctx) => ctx.activeResists.length === 0 || ctx.activeResists.every(r => item.state.resistIndex.has(r)),
+                (item, ctx) => ctx.activeMarks.length === 0 || ctx.activeMarks.every(m => item.user.marks.has(m)),
+                (item, ctx) => {
+                    if (!ctx.rawKeyword) return true;
+                    
+                    const isRawMatch = item.state.searchIndex.some(v => v.includes(ctx.rawKeyword));
                     let isKanaMatch = false;
             
                     if (ctx.needsRegex && ctx.searchRegex) {
-                        isKanaMatch = item.kanaIndex && ctx.searchRegex.test(item.kanaIndex);
+                        isKanaMatch = item.state.kanaIndex && ctx.searchRegex.test(item.state.kanaIndex);
                     } else if (!ctx.needsRegex) {
-                        isKanaMatch = item.kanaIndex && item.kanaIndex.includes(ctx.rawKeyword);
+                        isKanaMatch = item.state.kanaIndex && item.state.kanaIndex.includes(ctx.rawKeyword);
                     }
             
-                    if (!isRawMatch && !isKanaMatch) return false;
+                    return isRawMatch || isKanaMatch;
                 }
-            
-                return true;
+            ],
+
+            matchesFilter(item, ctx) {
+                return this.filters.every(fn => fn(item, ctx));
             }
         };
 
@@ -1328,7 +1336,15 @@
                 ViewStore.columns.clear();
 
                 if (AppState.currentData.length === 0) {
-                    DOM.tbody.innerHTML = `<tr class="no-hover-row"><td colspan="${COLUMN_DEFINITIONS.length}" class="msg-container">データが空です。</td></tr>`;
+                    const tr = document.createElement('tr');
+                    tr.className = 'no-hover-row';
+                    const td = document.createElement('td');
+                    td.colSpan = COLUMN_DEFINITIONS.length;
+                    td.className = 'msg-container';
+                    td.textContent = 'データが空です。';
+                    tr.appendChild(td);
+                    
+                    DOM.tbody.replaceChildren(tr);
                     DOM.searchCounter.textContent = "検索結果: 0件 / 全0件";
                     return;
                 }
@@ -1337,7 +1353,7 @@
 
                 AppState.currentData.forEach(item => {
                     const tr = document.createElement('tr');
-                    ViewStore.rows.set(item._uid, tr);
+                    ViewStore.rows.set(item.id, tr);
 
                     COLUMN_DEFINITIONS.forEach(def => {
                         const isHidden = AppState.columnState[def.id] === false;
@@ -1379,10 +1395,10 @@
                     const container = document.createElement('div');
                     Object.keys(MARK_DEFINITIONS).forEach(markKey => {
                         const markDef = MARK_DEFINITIONS[markKey];
-                        const isActive = item.markIndex.has(markKey);
+                        const isActive = item.user.marks.has(markKey);
                         const span = document.createElement('span');
                         span.className = `mark-btn-table ${isActive ? 'active' : ''}`;
-                        span.dataset.mapKey = item._uid;
+                        span.dataset.mapKey = item.id;
                         span.dataset.markType = markKey;
                         span.textContent = markDef.icon;
                         span.title = markDef.title;
@@ -1392,13 +1408,13 @@
                 } else if (def.type === 'custom') {
                     td.textContent = def.render(item);
                 } else {
-                    td.textContent = item[def.id] || '';
+                    td.textContent = item.data[def.id] || '';
                 }
                 return td;
             },
 
             createResistCell(item, td) {
-                const resistStr = String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split('\n');
+                const resistStr = String(item.data.耐性アイコン || '-').replace(/\r\n/g, '\n').split('\n');
                 resistStr.forEach(row => {
                     const keysInRow = row.split(',').map(k => k.trim()).filter(Boolean);
                     const rowDiv = document.createElement('div');
@@ -1424,15 +1440,14 @@
                 });
             },
 
-            // 差分更新を用いたテーブルの表示更新
             updateTableState() {
                 let currentVisibleIndex = 0;
                 
                 AppState.currentData.forEach(item => {
-                    const wasVisible = item.lastVisible;
-                    const wasEven = item.lastIsEven;
+                    const wasVisible = item.state.lastVisible;
+                    const wasEven = item.state.lastIsEven;
                     
-                    const isVisible = item.visible;
+                    const isVisible = item.state.visible;
                     let isEven = undefined;
                     
                     if (isVisible) {
@@ -1440,9 +1455,8 @@
                         isEven = (currentVisibleIndex % 2 === 1);
                     }
                     
-                    // 状態に変化があった場合のみDOMを操作する
                     if (wasVisible !== isVisible || wasEven !== isEven) {
-                        const tr = ViewStore.rows.get(item._uid);
+                        const tr = ViewStore.rows.get(item.id);
                         if (tr) {
                             if (wasVisible !== isVisible) {
                                 tr.classList.toggle('is-hidden', !isVisible);
@@ -1453,9 +1467,8 @@
                                 tr.classList.remove('row-even');
                             }
                         }
-                        // 更新内容を記録
-                        item.lastVisible = isVisible;
-                        item.lastIsEven = isEven;
+                        item.state.lastVisible = isVisible;
+                        item.state.lastIsEven = isEven;
                     }
                 });
             },
@@ -1463,7 +1476,7 @@
             reorderRows() {
                 const fragment = document.createDocumentFragment();
                 AppState.currentData.forEach(item => {
-                    const tr = ViewStore.rows.get(item._uid);
+                    const tr = ViewStore.rows.get(item.id);
                     if (tr) fragment.appendChild(tr);
                 });
                 if (DOM.noResultRow) fragment.appendChild(DOM.noResultRow);
@@ -1524,16 +1537,40 @@
                 if (!DOM.noResultRow) return;
 
                 const visibleColCount = Object.values(AppState.columnState).filter(v => v).length || 1;
-            
-                if (!AppState.hasVisibleColumn) {
+                
+                DOM.noResultRow.replaceChildren(); // innerHTMLによるXSSを防ぐためクリア
+
+                if (!AppState.hasVisibleColumn || AppState.visibleCount === 0) {
                     DOM.noResultRow.classList.remove('is-hidden');
-                    DOM.noResultRow.innerHTML = `<td colspan="${visibleColCount}" class="msg-container"><span>選択項目がありません</span><br><button type="button" class="btn-action" data-action="resetView" style="margin-top:16px; display:inline-flex;">↺ ソート・表示項目の初期化</button></td>`;
-                } else if (AppState.visibleCount === 0) {
-                    DOM.noResultRow.classList.remove('is-hidden');
-                    DOM.noResultRow.innerHTML = `<td colspan="${visibleColCount}" class="msg-container"><span>該当するデータが見つかりませんでした。</span><br><button type="button" class="btn-action" data-action="clearAllFilters" style="margin-top:16px; display:inline-flex;">✖ 検索・フィルターの全解除</button></td>`;
+                    
+                    const td = document.createElement('td');
+                    td.colSpan = visibleColCount;
+                    td.className = 'msg-container';
+
+                    const span = document.createElement('span');
+                    const br = document.createElement('br');
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'btn-action';
+                    btn.style.marginTop = '16px';
+                    btn.style.display = 'inline-flex';
+
+                    if (!AppState.hasVisibleColumn) {
+                        span.textContent = '選択項目がありません';
+                        btn.dataset.action = 'resetView';
+                        btn.textContent = '↺ ソート・表示項目の初期化';
+                    } else {
+                        span.textContent = '該当するデータが見つかりませんでした。';
+                        btn.dataset.action = 'clearAllFilters';
+                        btn.textContent = '✖ 検索・フィルターの全解除';
+                    }
+
+                    td.appendChild(span);
+                    td.appendChild(br);
+                    td.appendChild(btn);
+                    DOM.noResultRow.appendChild(td);
                 } else {
                     DOM.noResultRow.classList.add('is-hidden');
-                    DOM.noResultRow.innerHTML = '';
                 }
             }
         };
@@ -1543,11 +1580,11 @@
         // ==========================================
 
         const SORTERS = {
-            'default': (a, b) => a.defaultOrder - b.defaultOrder,
-            'kana-asc': (a, b) => JA_COLLATOR.compare(a["よみがな"] || '', b["よみがな"] || '') || a.defaultOrder - b.defaultOrder,
-            'kana-desc': (a, b) => JA_COLLATOR.compare(b["よみがな"] || '', a["よみがな"] || '') || a.defaultOrder - b.defaultOrder,
-            'eng-asc': (a, b) => EN_COLLATOR.compare(a["マップ英語"] || '', b["マップ英語"] || '') || a.defaultOrder - b.defaultOrder,
-            'eng-desc': (a, b) => EN_COLLATOR.compare(b["マップ英語"] || '', a["マップ英語"] || '') || a.defaultOrder - b.defaultOrder
+            'default': (a, b) => a.state.defaultOrder - b.state.defaultOrder,
+            'kana-asc': (a, b) => JA_COLLATOR.compare(a.data["よみがな"] || '', b.data["よみがな"] || '') || a.state.defaultOrder - b.state.defaultOrder,
+            'kana-desc': (a, b) => JA_COLLATOR.compare(b.data["よみがな"] || '', a.data["よみがな"] || '') || a.state.defaultOrder - b.state.defaultOrder,
+            'eng-asc': (a, b) => EN_COLLATOR.compare(a.data["マップ英語"] || '', b.data["マップ英語"] || '') || a.state.defaultOrder - b.state.defaultOrder,
+            'eng-desc': (a, b) => EN_COLLATOR.compare(b.data["マップ英語"] || '', a.data["マップ英語"] || '') || a.state.defaultOrder - b.state.defaultOrder
         };
 
         function applySort(mode, textName) {
@@ -1560,8 +1597,6 @@
             if (SORTERS[mode]) AppState.currentData.sort(SORTERS[mode]);
             
             TableRenderer.reorderRows();
-            
-            // ソート時は可視状態は変わらないが、ストライプ(isEven)の再計算のため TableState だけ更新する
             TableRenderer.updateTableState();
         }
 
@@ -1573,7 +1608,7 @@
             if (AppState.columnState[stateKey] !== undefined) {
                 AppState.columnState[stateKey] = !AppState.columnState[stateKey];
                 ColumnRenderer.updateColumnVisibility(stateKey, AppState.columnState[stateKey]);
-                StorageService.save(STORAGE_KEYS.COLUMN_STATE, AppState.columnState);
+                StorageService.save(STORAGE_KEYS.COLUMNS, AppState.columnState);
                 ColumnRenderer.updateButtonUI();
                 FilterService.apply();
             }
@@ -1584,7 +1619,7 @@
                 AppState.columnState[k] = visible;
                 ColumnRenderer.updateColumnVisibility(k, visible);
             });
-            StorageService.save(STORAGE_KEYS.COLUMN_STATE, AppState.columnState);
+            StorageService.save(STORAGE_KEYS.COLUMNS, AppState.columnState);
             ColumnRenderer.updateButtonUI();
             FilterService.apply();
         }
@@ -1616,7 +1651,7 @@
                 ColumnRenderer.updateColumnVisibility(def.id, def.defaultVisible);
             });
             
-            StorageService.save(STORAGE_KEYS.COLUMN_STATE, AppState.columnState);
+            StorageService.save(STORAGE_KEYS.COLUMNS, AppState.columnState);
             ColumnRenderer.updateButtonUI();
             FilterService.apply();
         }
