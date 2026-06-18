@@ -50,16 +50,6 @@
             text-align: center;
         }
 
-        h2 {
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            text-align: center;
-        }
         ul {
             list-style-type: none;
             padding: 0;
@@ -67,6 +57,12 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
+        }
+
+        .link-wrapper {
+            display: flex;
+            gap: 10px;
+            align-items: center;
         }
 
         a.menu-link {
@@ -101,6 +97,13 @@
         a.menu-link:hover::before {
             color: var(--accent-gold-hover);
         }
+
+        /* 旧リンク用スタイル */
+        a.old-link {
+            font-size: 14px;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
     </style>
 </head>
 <body>
@@ -108,9 +111,13 @@
         <h1>データ</h1>
         <ul>
             <li><a href="poe2actboss.html" class="menu-link">PoE2 アクトボスリスト</a></li>
-            <li><a href="poe2mapboss.html" class="menu-link">PoE2 マップボスリスト</a></li>
+            <li>
+                <div class="link-wrapper">
+                    <a href="poe2_endgame_maps.html" class="menu-link">PoE2 エンドゲームマップ</a>
+                    <a href="poe2mapboss.html" class="menu-link old-link">（旧）PoE2マップボスリスト</a>
+                </div>
+            </li>
             <li><a href="poe2memo.html" class="menu-link">PoE2 メモ・データ集</a></li>
-        <h2></h2>
             <li><a href="poe2jsoneditor.html" class="menu-link">PoE2 JSON Editor</a></li>
         </ul>
     </div>
