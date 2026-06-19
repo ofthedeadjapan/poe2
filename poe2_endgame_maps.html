@@ -1589,7 +1589,7 @@
 
             generateSearchRegex(rawKeyword) {
                 if (!rawKeyword || typeof wanakana === 'undefined') return null;
-                if (/([a-z])\1{2,}/i.test(rawKeyword)) return null;
+                if (/([a-mop-z])\1{2,}/i.test(rawKeyword) || /n{4,}/i.test(rawKeyword)) return null;
 
                 let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
                 hiraConverted = hiraConverted.replace(/([a-z])\1+/gi, 'っ$1');
