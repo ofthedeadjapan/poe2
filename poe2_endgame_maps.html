@@ -604,7 +604,7 @@
         }
 
         .resist-row-inline {
-            display: inline-flex;
+            display: flex;
             justify-content: center;
             align-items: center;
             flex-wrap: nowrap;
@@ -658,7 +658,6 @@
             justify-content: center;
             margin: 0 2px;
             
-            /* フィルターアイコンと統一したデザイン */
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -672,8 +671,8 @@
         .mark-btn-table:hover {
             border-color: rgba(255, 255, 255, 0.5);
             background-color: rgba(255, 255, 255, 0.1);
-            opacity: 0.8;
-            filter: grayscale(50%);
+            opacity: 0.25;
+            filter: grayscale(25%);
             transform: scale(1.1);
         }
 
@@ -739,7 +738,7 @@
 
     <div class="controls-wrapper content-width">
         <div class="controls-row">
-            <button type="button" class="btn-action" data-action="resetView">↺ ソート・表示項目の初期化</button>
+            <button type="button" class="btn-action" data-click="resetView">↺ ソート・表示項目の初期化</button>
             
             <div class="separator-strong"></div>
             
@@ -750,11 +749,11 @@
                     <span class="dropdown-icon">▼</span>
                 </button>
                 <div class="dropdown-content">
-                    <div class="dropdown-item sort-active" data-sort="default" data-sort-name="初期順"><span class="checkmark">✔</span>初期順</div>
-                    <div class="dropdown-item" data-sort="kana-asc" data-sort-name="五十音順"><span class="checkmark">✔</span>五十音順</div>
-                    <div class="dropdown-item" data-sort="kana-desc" data-sort-name="五十音逆順"><span class="checkmark">✔</span>五十音逆順</div>
-                    <div class="dropdown-item" data-sort="eng-asc" data-sort-name="英語順"><span class="checkmark">✔</span>英語順</div>
-                    <div class="dropdown-item" data-sort="eng-desc" data-sort-name="英語逆順"><span class="checkmark">✔</span>英語逆順</div>
+                    <div class="dropdown-item" data-click="sort" data-sort="default" data-sort-name="初期順"><span class="checkmark">✔</span>初期順</div>
+                    <div class="dropdown-item" data-click="sort" data-sort="kana-asc" data-sort-name="五十音順"><span class="checkmark">✔</span>五十音順</div>
+                    <div class="dropdown-item" data-click="sort" data-sort="kana-desc" data-sort-name="五十音逆順"><span class="checkmark">✔</span>五十音逆順</div>
+                    <div class="dropdown-item" data-click="sort" data-sort="eng-asc" data-sort-name="英語順"><span class="checkmark">✔</span>英語順</div>
+                    <div class="dropdown-item" data-click="sort" data-sort="eng-desc" data-sort-name="英語逆順"><span class="checkmark">✔</span>英語逆順</div>
                 </div>
             </div>
 
@@ -767,8 +766,8 @@
                     <span class="dropdown-icon">▼</span>
                 </button>
                 <div class="dropdown-content" id="column-dropdown-content">
-                    <div class="dropdown-item action-item" data-column-action="showAll">☑ すべて表示</div>
-                    <div class="dropdown-item action-item" data-column-action="hideAll">☐ すべて非表示</div>
+                    <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="true">☑ すべて表示</div>
+                    <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="false">☐ すべて非表示</div>
                     <div class="dropdown-divider"></div>
                 </div>
             </div>
@@ -777,20 +776,19 @@
         <div class="separator-horizontal"></div>
 
         <div class="controls-row">
-            <button type="button" class="btn-action" data-action="clearAllFilters" id="btn-clear-filters">✖ 検索・フィルターの全解除</button>
+            <button type="button" class="btn-action" data-click="clearAllFilters" id="btn-clear-filters">✖ 検索・フィルターの全解除</button>
             
             <div class="separator-strong"></div>
 
             <div class="search-wrapper" id="search-wrap">
                 <span class="search-icon">🔍</span>
                 <input type="text" id="searchInput" placeholder="読み込み中..." disabled autocomplete="off">
-                <button type="button" class="clear-text-btn" data-action="clearSearchText" aria-label="検索文字を消去" title="文字を消去">✖</button>
+                <button type="button" class="clear-text-btn" data-click="clearSearchText" aria-label="検索文字を消去" title="文字を消去">✖</button>
             </div>
 
             <div class="separator-weak"></div>
 
-            <div class="resist-filter-grid" id="resist-grid">
-                </div>
+            <div class="resist-filter-grid" id="resist-grid"></div>
 
             <div class="separator-weak"></div>
 
@@ -823,12 +821,6 @@
         const STORAGE_KEYS = {
             USER_STATE: 'poe2:userState'
         };
-
-        const DEFAULT_USER_STATE = Object.freeze({
-            version: STORAGE_VERSION,
-            marks: {},
-            columns: {}
-        });
 
         const MARK_DEFINITIONS = {
             skull: { icon: '💀', title: '強敵' }
@@ -900,23 +892,23 @@
             }
         };
 
-        function createDefaultColumns() {
-            return Object.fromEntries(
-                COLUMN_DEFINITIONS.map(col => [col.id, col.defaultVisible])
-            );
-        }
-
-        function normalizeColumns(savedColumns = {}) {
-            const defaults = createDefaultColumns();
-            return Object.fromEntries(
-                Object.keys(defaults).map(key => [
-                    key,
-                    savedColumns[key] ?? defaults[key]
-                ])
-            );
-        }
-
         const UserStateService = {
+            createDefaultColumns() {
+                return Object.fromEntries(
+                    COLUMN_DEFINITIONS.map(col => [col.id, col.defaultVisible])
+                );
+            },
+
+            normalizeColumns(savedColumns = {}) {
+                const defaults = this.createDefaultColumns();
+                return Object.fromEntries(
+                    Object.keys(defaults).map(key => [
+                        key,
+                        savedColumns[key] ?? defaults[key]
+                    ])
+                );
+            },
+
             load() {
                 const saved = StorageService.load(STORAGE_KEYS.USER_STATE, null);
 
@@ -933,7 +925,7 @@
                     }
                 }
 
-                const normalizedColumns = normalizeColumns(saved?.columns || {});
+                const normalizedColumns = this.normalizeColumns(saved?.columns || {});
 
                 return {
                     version: STORAGE_VERSION,
@@ -975,7 +967,7 @@
         window.addEventListener('pagehide', () => PersistenceService.flush());
 
         // ==========================================
-        // 3. 状態管理 (State & DOM Cache)
+        // 3. 状態管理 (State & SSOT)
         // ==========================================
 
         const AppState = {
@@ -984,7 +976,8 @@
                 itemMap: new Map() 
             },
             ui: {
-                currentSort: 'default'
+                currentSort: 'default',
+                currentSortName: '初期順'
             },
             filters: {
                 text: '',
@@ -995,33 +988,27 @@
                 visibleCount: 0,
                 hasVisibleColumn: true
             },
-            user: null 
+            user: null // 初期化時に UserStateService から読み込む
         };
 
-        const ViewStore = {
-            rows: new Map(),           
-            columns: new Map(),        
-            headers: new Map(),        
-            columnMenuItems: new Map() 
-        };
+        // ==========================================
+        // 4. DOM キャッシュ (静的・動的)
+        // ==========================================
 
         const DOM = {
             initCache() {
-                const map = {
-                    searchInput: 'searchInput',
-                    searchCounter: 'search-counter',
-                    resistGrid: 'resist-grid',
-                    markGrid: 'mark-grid',
-                    btnSortText: 'btn-sort-text',
-                    btnColumnText: 'btn-column-text',
-                    tbody: 'boss-table-body',
-                    fallbackMessage: 'fallback-message',
-                    fatalErrorMessage: 'fatal-error-message'
-                };
-            
-                Object.entries(map).forEach(([prop, id]) => {
-                    this[prop] = document.getElementById(id);
-                });
+                this.searchInput = document.getElementById('searchInput');
+                this.searchCounter = document.getElementById('search-counter');
+                this.resistGrid = document.getElementById('resist-grid');
+                this.markGrid = document.getElementById('mark-grid');
+                this.btnSortText = document.getElementById('btn-sort-text');
+                this.btnColumnText = document.getElementById('btn-column-text');
+                this.tbody = document.getElementById('boss-table-body');
+                this.theadRow = document.getElementById('boss-table-head-row');
+                this.columnDropdownContent = document.getElementById('column-dropdown-content');
+                this.fallbackMessage = document.getElementById('fallback-message');
+                this.fatalErrorMessage = document.getElementById('fatal-error-message');
+                this.sortMenuItems = Array.from(document.querySelectorAll('[data-sort]'));
             },
             showFatalError(msg) {
                 if (this.fatalErrorMessage) {
@@ -1031,8 +1018,18 @@
             }
         };
 
+        const ViewStore = {
+            rows: new Map(),           
+            columns: new Map(),        
+            headers: new Map(),        
+            columnMenuItems: new Map(),
+            resistFilters: new Map(),
+            markFilters: new Map(),
+            rowMarkButtons: new Map() 
+        };
+
         // ==========================================
-        // 4. RenderCoordinator (調停役)
+        // 5. RenderCoordinator (調停役)
         // ==========================================
         const RenderCoordinator = {
             refreshAll() {
@@ -1053,17 +1050,18 @@
                 this.refreshAll();
             },
             refreshSort() {
+                SortUIRenderer.updateSortUI();
                 TableRenderer.reorderRows();
                 TableRenderer.updateTableState();
             }
         };
 
         // ==========================================
-        // 5. コントローラー層 (Controllers)
+        // 6. コントローラー層 (Controllers)
         // ==========================================
 
         const MarkController = {
-            toggleRowMark(itemId, markType, btnElement) {
+            toggleRowMark(itemId, markType) {
                 const item = AppState.data.itemMap.get(itemId);
                 if (!item) return;
 
@@ -1081,6 +1079,8 @@
 
                 PersistenceService.scheduleSave();
 
+                // UIの更新 (単一要素への即時反映)
+                const btnElement = ViewStore.rowMarkButtons.get(`${itemId}_${markType}`);
                 if (btnElement) {
                     TableRenderer.updateRowMarkUI(btnElement, marks.has(markType));
                 }
@@ -1092,8 +1092,9 @@
         };
 
         const ColumnController = {
-            setVisibility(columnId, visible) {
-                AppState.user.columns[columnId] = visible;
+            toggleVisibility(columnId) {
+                const currentVisible = AppState.user.columns[columnId];
+                AppState.user.columns[columnId] = !currentVisible;
                 PersistenceService.scheduleSave();
                 RenderCoordinator.refreshColumns();
             },
@@ -1110,10 +1111,7 @@
         const SortController = {
             apply(mode, textName) {
                 AppState.ui.currentSort = mode;
-                
-                document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
-                document.querySelector(`[data-sort="${mode}"]`)?.classList.add('sort-active');
-                if (textName) DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
+                if (textName) AppState.ui.currentSortName = textName;
 
                 if (SORTERS[mode]) AppState.data.items.sort(SORTERS[mode]);
                 
@@ -1166,7 +1164,7 @@
             resetView() {
                 SortController.apply('default', '初期順');
             
-                const defaults = createDefaultColumns();
+                const defaults = UserStateService.createDefaultColumns();
                 Object.keys(AppState.user.columns).forEach(k => {
                     AppState.user.columns[k] = defaults[k];
                 });
@@ -1178,7 +1176,71 @@
         };
 
         // ==========================================
-        // 6. ユーティリティとファクトリ
+        // 7. イベント委譲 (Event Delegation)
+        // ==========================================
+
+        const CLICK_ACTIONS = {
+            resetView: () => AppController.resetView(),
+            clearAllFilters: () => SearchController.clearAllFilters(),
+            clearSearchText: () => SearchController.clearText(),
+            sort: el => SortController.apply(el.dataset.sort, el.dataset.sortName),
+            toggleColumn: el => ColumnController.toggleVisibility(el.dataset.column),
+            setAllColumns: el => ColumnController.setAllVisibility(el.dataset.visible === 'true'),
+            toggleResist: el => SearchController.toggleResist(el.dataset.resist),
+            toggleMark: el => SearchController.toggleMark(el.dataset.mark),
+            toggleRowMark: el => MarkController.toggleRowMark(el.dataset.mapKey, el.dataset.markType)
+        };
+
+        function setupEventListeners() {
+            let searchTimer;
+            DOM.searchInput.addEventListener('input', (e) => {
+                clearTimeout(searchTimer);
+                searchTimer = setTimeout(() => {
+                    SearchController.updateText(normalizeText(e.target.value));
+                }, 150); 
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+                    if (DOM.searchInput && !DOM.searchInput.disabled) {
+                        e.preventDefault();
+                        DOM.searchInput.focus();
+                        DOM.searchInput.select(); 
+                    }
+                }
+            });
+
+            document.addEventListener('click', e => {
+                handleDropdownClick(e);
+
+                const el = e.target.closest('[data-click]');
+                if (!el) return;
+
+                CLICK_ACTIONS[el.dataset.click]?.(el);
+            });
+        }
+
+        function handleDropdownClick(e) {
+            const dropdownBtn = e.target.closest('.btn-dropdown');
+            const isInsideDropdownContent = e.target.closest('.dropdown-content');
+            if (isInsideDropdownContent) return;
+
+            const openDropdowns = document.querySelectorAll('.dropdown.show');
+
+            if (!dropdownBtn) {
+                openDropdowns.forEach(d => d.classList.remove('show'));
+                return;
+            }
+
+            const parent = dropdownBtn.parentElement;
+            const wasOpen = parent.classList.contains('show');
+            openDropdowns.forEach(d => d.classList.remove('show'));
+
+            if (!wasOpen) parent.classList.add('show');
+        }
+
+        // ==========================================
+        // 8. ユーティリティとファクトリ
         // ==========================================
 
         const ROMAJI_TO_KANA_REGEX = {
@@ -1229,44 +1291,56 @@
             return `images/IconEnemy/IconEnemy${hasRes ? 'Resistance' : ''}${key}.png`;
         }
 
-        function createSearchIndex(item, searchIndexKeys) {
-            return searchIndexKeys
-                .map(k => normalizeText(item[k]))
-                .filter(Boolean)
-                .join('\t');
-        }
+        const ItemFactory = {
+            createSearchIndex(item, searchIndexKeys) {
+                return searchIndexKeys
+                    .map(k => normalizeText(item[k]))
+                    .filter(Boolean)
+                    .join('\t');
+            },
 
-        function createResistIndex(item) {
-            return new Set(
-                String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-')
-            );
-        }
+            createResistIndex(item) {
+                return new Set(
+                    String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-')
+                );
+            },
 
-        function createEnhancedItem(item, idx, searchIndexKeys) {
-            const savedMarks = AppState.user.marks[item.id] || [];
+            createEnhancedItem(item, idx, searchIndexKeys) {
+                const savedMarks = AppState.user.marks[item.id] || [];
 
-            return {
-                id: item.id,
-                data: { ...item },
-                user: {
-                    marks: new Set(savedMarks)
-                },
-                cache: {
-                    defaultOrder: idx, 
-                    searchIndex: createSearchIndex(item, searchIndexKeys), 
-                    resistIndex: createResistIndex(item), 
-                    kanaIndex: normalizeText(item.よみがな)
-                },
-                view: { 
-                    visible: true,      
-                    lastVisible: undefined,
-                    lastIsEven: undefined
-                }
-            };
-        }
+                return {
+                    id: item.id,
+                    data: { ...item },
+                    user: {
+                        marks: new Set(savedMarks)
+                    },
+                    cache: {
+                        defaultOrder: idx, 
+                        searchIndex: this.createSearchIndex(item, searchIndexKeys), 
+                        resistIndex: this.createResistIndex(item), 
+                        kanaIndex: normalizeText(item.よみがな)
+                    },
+                    view: { 
+                        visible: true,      
+                        lastVisible: undefined,
+                        lastIsEven: undefined
+                    }
+                };
+            },
+
+            buildItems(rawData) {
+                const searchIndexKeys = [];
+                COLUMN_DEFINITIONS.filter(d => d.isSearchable).forEach(d => {
+                    if (d.searchKeys) searchIndexKeys.push(...d.searchKeys);
+                    else searchIndexKeys.push(d.id);
+                });
+
+                return rawData.map((item, idx) => this.createEnhancedItem(item, idx, searchIndexKeys));
+            }
+        };
 
         // ==========================================
-        // 7. アプリ初期化
+        // 9. アプリ初期化
         // ==========================================
 
         const App = {
@@ -1294,9 +1368,9 @@
                     console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。", e);
                     DOM.fallbackMessage.classList.remove('is-hidden');
                     const dummyData = [
-                        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ" },
-                        { "id": "map_002", "よみがな": "しんりんちたい", "マップ日本語": "森林地帯", "ボス日本語": "肥大したマータ\n怨嗟のコルム", "マップ英語": "Woodland", "ボス英語": "Murtagh, the Engorged\nColm, the Rancorous", "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning,Chaos\n", "元ボスアクト": "１", "元ボスエリア": "川岸", "元ボス名": "腐乱した粉屋\n腐乱した粉屋", "元ボス特徴": "粉屋×２", "メモ": "だみー２" },
-                        { "id": "map_003", "よみがな": "ひすいのしま", "マップ日本語": "ヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong\n\n", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "だみー３" }
+                        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ" },
+            { "id": "map_002", "よみがな": "だみーさばんな", "マップ日本語": "ダミーサバンナ", "ボス日本語": "ハイエナロード、カエドロン", "マップ英語": "Savannah", "ボス英語": "Caedron, the Hyena Lord", "耐性アイコン": "FireWeak,Cold", "元ボスアクト": "２", "元ボスエリア": "ヴァスティリ郊外", "元ボス名": "ラスブレイカー", "元ボス特徴": "獣一杯、槍一杯", "メモ": "" },
+                        { "id": "map_003", "よみがな": "だみーひすいのしま", "マップ日本語": "ダミーヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak\nArmour,Evasion,Fire,Cold,Lightning,Chaos\nArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "" }
                     ];
                     this.validateAndInitialize(dummyData);
                 }
@@ -1310,20 +1384,16 @@
                     idSet.add(item.id);
                 });
 
-                const searchIndexKeys = [];
-                COLUMN_DEFINITIONS.filter(d => d.isSearchable).forEach(d => {
-                    if (d.searchKeys) searchIndexKeys.push(...d.searchKeys);
-                    else searchIndexKeys.push(d.id);
-                });
+                const items = ItemFactory.buildItems(data);
 
-                data.forEach((item, idx) => {
-                    const enhancedItem = createEnhancedItem(item, idx, searchIndexKeys);
-                    AppState.data.items.push(enhancedItem);
-                    AppState.data.itemMap.set(item.id, enhancedItem);
+                items.forEach(item => {
+                    AppState.data.items.push(item);
+                    AppState.data.itemMap.set(item.id, item);
                 });
 
                 TableRenderer.buildTable();
                 RenderCoordinator.refreshColumns();
+                RenderCoordinator.refreshSort(); 
                 RenderCoordinator.refreshAll();
             }
         };
@@ -1354,8 +1424,43 @@
         }
 
         // ==========================================
-        // 8. UI構築とイベントリスナー (Views & Events)
+        // 10. UI構築 (Views)
         // ==========================================
+
+        const UIFactory = {
+            createMenuItem({ dataset = {}, text, checked = false }) {
+                const div = document.createElement('div');
+                div.className = 'dropdown-item';
+                Object.assign(div.dataset, dataset);
+
+                div.innerHTML = `
+                    <span class="checkmark" style="visibility:${checked ? 'visible' : 'hidden'}">✔</span>
+                    ${text}
+                `;
+                return div;
+            },
+
+            createFilterButton({ dataset = {}, title = '', iconType = 'text', iconValue = '', isDummy = false }) {
+                const wrapper = document.createElement('div');
+                wrapper.className = isDummy ? 'icon-dummy' : 'icon-wrapper';
+                Object.assign(wrapper.dataset, dataset);
+                wrapper.title = title;
+
+                if (isDummy) {
+                    wrapper.textContent = '-';
+                    return wrapper;
+                }
+
+                wrapper.innerHTML = `
+                    ${iconType === 'image' 
+                        ? `<img src="${iconValue}" class="icon-filter" alt="${title}">` 
+                        : `<span class="icon-filter">${iconValue}</span>`
+                    }
+                    <div class="badge-check">✔</div>
+                `;
+                return wrapper;
+            }
+        };
 
         function setupDynamicUI() {
             buildTableHeader();
@@ -1365,36 +1470,27 @@
         }
 
         function buildTableHeader() {
-            const headerRow = document.getElementById('boss-table-head-row');
             COLUMN_DEFINITIONS.forEach(def => {
                 const th = document.createElement('th');
                 th.className = `col-${def.className}`; 
                 th.dataset.key = def.id;
                 th.textContent = def.label;
-                headerRow.appendChild(th);
+                DOM.theadRow.appendChild(th);
                 
                 ViewStore.headers.set(def.id, th);
             });
         }
 
         function buildColumnMenu() {
-            const colDropdown = document.getElementById('column-dropdown-content');
             COLUMN_DEFINITIONS.forEach(def => {
-                const div = document.createElement('div');
-                div.className = 'dropdown-item';
-                div.dataset.column = def.id;
+                const item = UIFactory.createMenuItem({
+                    dataset: { click: 'toggleColumn', column: def.id },
+                    text: def.label,
+                    checked: AppState.user.columns[def.id]
+                });
                 
-                const span = document.createElement('span');
-                span.className = 'checkmark';
-                span.textContent = '✔';
-                
-                const textNode = document.createTextNode(def.label);
-                
-                div.appendChild(span);
-                div.appendChild(textNode);
-                colDropdown.appendChild(div);
-
-                ViewStore.columnMenuItems.set(def.id, div);
+                DOM.columnDropdownContent.insertBefore(item, DOM.columnDropdownContent.lastElementChild);
+                ViewStore.columnMenuItems.set(def.id, item);
             });
         }
 
@@ -1405,32 +1501,17 @@
             suffixes.forEach(suffix => {
                 RESIST_TYPES.forEach(type => {
                     const key = `${type}${suffix}`;
-
-                    if (DUMMY_RESISTS.has(key)) {
-                        const dummy = document.createElement('div');
-                        dummy.className = 'icon-dummy';
-                        dummy.title = key;
-                        dummy.textContent = '-';
-
-                        fragment.appendChild(dummy);
-                        return;
+                    const btn = UIFactory.createFilterButton({
+                        dataset: { click: 'toggleResist', resist: key },
+                        title: key,
+                        iconType: 'image',
+                        iconValue: getIconPath(key),
+                        isDummy: DUMMY_RESISTS.has(key)
+                    });
+                    fragment.appendChild(btn);
+                    if (!DUMMY_RESISTS.has(key)) {
+                        ViewStore.resistFilters.set(key, btn);
                     }
-
-                    const wrapper = document.createElement('div');
-                    wrapper.className = 'icon-wrapper';
-                    wrapper.dataset.resist = key;
-                    wrapper.title = key;
-
-                    const img = document.createElement('img');
-                    img.src = getIconPath(key);
-                    img.className = 'icon-filter';
-
-                    const badge = document.createElement('div');
-                    badge.className = 'badge-check';
-                    badge.textContent = '✔';
-
-                    wrapper.append(img, badge);
-                    fragment.appendChild(wrapper);
                 });
             });
 
@@ -1440,126 +1521,58 @@
         function buildMarkFilter() {
             Object.keys(MARK_DEFINITIONS).forEach(key => {
                 const def = MARK_DEFINITIONS[key];
-                const wrapper = document.createElement('div');
-                wrapper.className = 'icon-wrapper';
-                wrapper.dataset.mark = key;
-                wrapper.title = def.title;
-                
-                const iconSpan = document.createElement('span');
-                iconSpan.className = 'icon-filter';
-                iconSpan.textContent = def.icon;
-                
-                const badge = document.createElement('div');
-                badge.className = 'badge-check';
-                badge.textContent = '✔';
-                
-                wrapper.appendChild(iconSpan);
-                wrapper.appendChild(badge);
-                DOM.markGrid.appendChild(wrapper);
+                const btn = UIFactory.createFilterButton({
+                    dataset: { click: 'toggleMark', mark: key },
+                    title: def.title,
+                    iconType: 'text',
+                    iconValue: def.icon
+                });
+                DOM.markGrid.appendChild(btn);
+                ViewStore.markFilters.set(key, btn);
             });
         }
 
-        const ACTIONS = {
-            resetView: () => AppController.resetView(),
-            clearAllFilters: () => SearchController.clearAllFilters(),
-            clearSearchText: () => SearchController.clearText()
+        // ==========================================
+        // 11. 検索・フィルターサービス (Search & Filter)
+        // ==========================================
+
+        const SearchService = {
+            createRegex(rawKeyword) {
+                if (!rawKeyword || typeof wanakana === 'undefined') return null;
+                if (/([a-mop-z])\1{2,}/i.test(rawKeyword) || /n{4,}/i.test(rawKeyword)) return null;
+
+                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
+                hiraConverted = hiraConverted.replace(/([a-z])\1+/gi, 'っ$1');
+                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
+                try {
+                    if (tailMatch) {
+                        const tailAlpha = tailMatch[1].toLowerCase();
+                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
+                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
+                        return new RegExp(prefix + (regexSuffix !== undefined ? regexSuffix : escapeRegExp(tailAlpha)));
+                    } else {
+                        return new RegExp(escapeRegExp(hiraConverted));
+                    }
+                } catch (e) {
+                    return null;
+                }
+            },
+
+            match(item, ctx) {
+                if (!ctx.rawKeyword) return true;
+                
+                const isRawMatch = item.cache.searchIndex.includes(ctx.rawKeyword);
+                let isKanaMatch = false;
+        
+                if (ctx.needsRegex && ctx.searchRegex) {
+                    isKanaMatch = item.cache.kanaIndex && ctx.searchRegex.test(item.cache.kanaIndex);
+                } else if (!ctx.needsRegex) {
+                    isKanaMatch = item.cache.kanaIndex && item.cache.kanaIndex.includes(ctx.rawKeyword);
+                }
+        
+                return isRawMatch || isKanaMatch;
+            }
         };
-
-        function setupEventListeners() {
-            let searchTimer;
-            DOM.searchInput.addEventListener('input', (e) => {
-                clearTimeout(searchTimer);
-                searchTimer = setTimeout(() => {
-                    SearchController.updateText(normalizeText(e.target.value));
-                }, 150); 
-            });
-
-            window.addEventListener('keydown', (e) => {
-                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
-                    if (DOM.searchInput && !DOM.searchInput.disabled) {
-                        e.preventDefault();
-                        DOM.searchInput.focus();
-                        DOM.searchInput.select(); 
-                    }
-                }
-            });
-
-            const handlers = [
-                // 優先順位順
-                { sel: '[data-action]', fn: handleActionClick },
-                { sel: '[data-sort]', fn: handleSortClick },
-                { sel: '[data-column-action], [data-column]', fn: handleColumnClick },
-                { sel: '.icon-wrapper[data-resist]', fn: handleResistClick },
-                { sel: '.icon-wrapper[data-mark]', fn: handleMarkClick },
-                { sel: '.mark-btn-table', fn: handleRowMarkClick }
-            ];
-
-            document.addEventListener('click', (e) => {
-                handleDropdownClick(e);
-
-                for (const { sel, fn } of handlers) {
-                    const matched = e.target.closest(sel);
-                    if (matched) {
-                        return fn(e, matched);
-                    }
-                }
-            });
-        }
-
-        function handleDropdownClick(e) {
-            const dropdownBtn = e.target.closest('.btn-dropdown');
-            const isInsideDropdownContent = e.target.closest('.dropdown-content');
-            if (isInsideDropdownContent) return;
-
-            const openDropdowns = document.querySelectorAll('.dropdown.show');
-
-            if (!dropdownBtn) {
-                openDropdowns.forEach(d => d.classList.remove('show'));
-                return;
-            }
-
-            const parent = dropdownBtn.parentElement;
-            const wasOpen = parent.classList.contains('show');
-            openDropdowns.forEach(d => d.classList.remove('show'));
-
-            if (!wasOpen) parent.classList.add('show');
-        }
-
-        function handleActionClick(e, target) {
-            if (target) ACTIONS[target.dataset.action]?.();
-        }
-
-        function handleSortClick(e, target) {
-            if (target) SortController.apply(target.dataset.sort, target.dataset.sortName);
-        }
-
-        function handleColumnClick(e, target) {
-            if (target.dataset.columnAction) {
-                ColumnController.setAllVisibility(target.dataset.columnAction === 'showAll');
-                return;
-            }
-            if (target.dataset.column) {
-                const colId = target.dataset.column;
-                const currentVisible = AppState.user.columns[colId];
-                ColumnController.setVisibility(colId, !currentVisible);
-            }
-        }
-
-        function handleResistClick(e, target) {
-            if (target) SearchController.toggleResist(target.dataset.resist);
-        }
-
-        function handleMarkClick(e, target) {
-            if (target) SearchController.toggleMark(target.dataset.mark);
-        }
-
-        function handleRowMarkClick(e, target) {
-            if (target) MarkController.toggleRowMark(target.dataset.mapKey, target.dataset.markType, target);
-        }
-
-        // ==========================================
-        // 9. フィルターサービス (FilterService)
-        // ==========================================
 
         const FilterService = {
             apply() {
@@ -1583,61 +1596,22 @@
                     activeMarks: Array.from(AppState.filters.marks),
                     rawKeyword: rawKeyword,
                     needsRegex: needsRegex,
-                    searchRegex: needsRegex ? this.generateSearchRegex(rawKeyword) : null
+                    searchRegex: needsRegex ? SearchService.createRegex(rawKeyword) : null
                 };
             },
 
-            generateSearchRegex(rawKeyword) {
-                if (!rawKeyword || typeof wanakana === 'undefined') return null;
-                if (/([a-mop-z])\1{2,}/i.test(rawKeyword) || /n{4,}/i.test(rawKeyword)) return null;
-
-                let hiraConverted = wanakana.toHiragana(rawKeyword, { IMEMode: true });
-                hiraConverted = hiraConverted.replace(/([a-z])\1+/gi, 'っ$1');
-                const tailMatch = hiraConverted.match(/([a-z]+)$/i);
-                try {
-                    if (tailMatch) {
-                        const tailAlpha = tailMatch[1].toLowerCase();
-                        const prefix = escapeRegExp(hiraConverted.slice(0, -tailAlpha.length));
-                        const regexSuffix = ROMAJI_TO_KANA_REGEX[tailAlpha];
-                        return new RegExp(prefix + (regexSuffix !== undefined ? regexSuffix : escapeRegExp(tailAlpha)));
-                    } else {
-                        return new RegExp(escapeRegExp(hiraConverted));
-                    }
-                } catch (e) {
-                    return null;
-                }
-            },
-
-            filters: [
-                (item, ctx) => ctx.hasVisibleColumn,
-                (item, ctx) => ctx.activeMarks.every(m => item.user.marks.has(m)),
-                (item, ctx) => ctx.activeResists.every(r => item.cache.resistIndex.has(r)),
-                (item, ctx) => { 
-                    if (!ctx.rawKeyword) return true;
-                    
-                    const isRawMatch = item.cache.searchIndex.includes(ctx.rawKeyword);
-                    let isKanaMatch = false;
-            
-                    if (ctx.needsRegex && ctx.searchRegex) {
-                        isKanaMatch = item.cache.kanaIndex && ctx.searchRegex.test(item.cache.kanaIndex);
-                    } else if (!ctx.needsRegex) {
-                        isKanaMatch = item.cache.kanaIndex && item.cache.kanaIndex.includes(ctx.rawKeyword);
-                    }
-            
-                    return isRawMatch || isKanaMatch;
-                }
-            ],
-
             matchesFilter(item, ctx) {
-                for (const fn of this.filters) {
-                    if (!fn(item, ctx)) return false;
-                }
-                return true;
+                return (
+                    ctx.hasVisibleColumn &&
+                    ctx.activeMarks.every(m => item.user.marks.has(m)) &&
+                    ctx.activeResists.every(r => item.cache.resistIndex.has(r)) &&
+                    SearchService.match(item, ctx)
+                );
             }
         };
 
         // ==========================================
-        // 10. 各種 Renderer (DOMの構築と更新)
+        // 12. 各種 Renderer (DOMの構築と更新)
         // ==========================================
 
         const CELL_RENDERERS = {
@@ -1652,13 +1626,7 @@
                 Object.keys(MARK_DEFINITIONS).forEach(markKey => {
                     const markDef = MARK_DEFINITIONS[markKey];
                     const isActive = item.user.marks.has(markKey);
-                    const span = document.createElement('span');
-                    span.className = `mark-btn-table ${isActive ? 'active' : ''}`;
-                    span.dataset.mapKey = item.id;
-                    span.dataset.markType = markKey;
-                    span.textContent = markDef.icon;
-                    span.title = markDef.title;
-                    container.appendChild(span);
+                    container.appendChild(TableRenderer.createMarkButton(item.id, markKey, isActive, markDef));
                 });
                 td.appendChild(container);
             },
@@ -1671,6 +1639,7 @@
             buildTable() {
                 ViewStore.rows.clear();
                 ViewStore.columns.clear();
+                ViewStore.rowMarkButtons.clear(); 
 
                 if (AppState.data.items.length === 0) {
                     const tr = document.createElement('tr');
@@ -1744,22 +1713,44 @@
 
                     RESIST_TYPES.forEach(attr => {
                         const foundKey = keysInRow.find(k => k.startsWith(attr));
-                        const el = foundKey && getIconPath(foundKey) ? Object.assign(document.createElement('img'), { 
-                            src: getIconPath(foundKey), 
-                            title: foundKey, 
-                            className: 'icon-img',
-                            onerror: function() { 
-                                const fallbackSpan = document.createElement('span');
-                                fallbackSpan.className = 'icon-text';
-                                fallbackSpan.textContent = '✖'; 
-                                this.replaceWith(fallbackSpan); 
-                            }
-                        }) : Object.assign(document.createElement('span'), { className: 'icon-text', textContent: '-' });
-                        
-                        rowDiv.appendChild(el);
+                        rowDiv.appendChild(this.createResistIcon(foundKey));
                     });
                     td.appendChild(rowDiv);
                 });
+            },
+
+            createResistIcon(foundKey) {
+                if (foundKey && getIconPath(foundKey)) {
+                    const img = document.createElement('img');
+                    img.src = getIconPath(foundKey);
+                    img.title = foundKey;
+                    img.className = 'icon-img';
+                    img.onerror = function() { 
+                        const fallbackSpan = document.createElement('span');
+                        fallbackSpan.className = 'icon-text';
+                        fallbackSpan.textContent = '✖'; 
+                        this.replaceWith(fallbackSpan); 
+                    };
+                    return img;
+                } else {
+                    const span = document.createElement('span');
+                    span.className = 'icon-text';
+                    span.textContent = '-';
+                    return span;
+                }
+            },
+
+            createMarkButton(mapKey, markType, isActive, markDef) {
+                const span = document.createElement('span');
+                span.className = `mark-btn-table ${isActive ? 'active' : ''}`;
+                span.dataset.click = 'toggleRowMark';
+                span.dataset.mapKey = mapKey;
+                span.dataset.markType = markType;
+                span.textContent = markDef.icon;
+                span.title = markDef.title;
+                
+                ViewStore.rowMarkButtons.set(`${mapKey}_${markType}`, span);
+                return span;
             },
 
             updateTableState() {
@@ -1833,19 +1824,35 @@
             }
         };
 
+        const SortUIRenderer = {
+            updateSortUI() {
+                const currentMode = AppState.ui.currentSort;
+                DOM.sortMenuItems.forEach(item => {
+                    const isActive = item.dataset.sort === currentMode;
+                    item.classList.toggle('sort-active', isActive);
+                    const checkmark = item.querySelector('.checkmark');
+                    if (checkmark) {
+                        checkmark.style.visibility = isActive ? 'visible' : 'hidden';
+                    }
+                });
+                
+                DOM.btnSortText.innerText = `マップ名ソート: ${AppState.ui.currentSortName}`;
+            }
+        };
+
         const FilterUIRenderer = {
             updateResistUI() {
                 const resists = AppState.filters.resists;
-                document.querySelectorAll('#resist-grid .icon-wrapper').forEach(el => {
-                    el.classList.toggle('active', resists.has(el.dataset.resist));
+                ViewStore.resistFilters.forEach((el, key) => {
+                    el.classList.toggle('active', resists.has(key));
                 });
                 DOM.resistGrid.classList.toggle('has-active', resists.size > 0);
             },
 
             updateMarkUI() {
                 const marks = AppState.filters.marks;
-                document.querySelectorAll('#mark-grid .icon-wrapper').forEach(el => {
-                    el.classList.toggle('active', marks.has(el.dataset.mark));
+                ViewStore.markFilters.forEach((el, key) => {
+                    el.classList.toggle('active', marks.has(key));
                 });
             }
         };
@@ -1877,11 +1884,11 @@
 
                     if (!AppState.stats.hasVisibleColumn) {
                         span.textContent = '選択項目がありません';
-                        btn.dataset.action = 'resetView';
+                        btn.dataset.click = 'resetView';
                         btn.textContent = '↺ ソート・表示項目の初期化';
                     } else {
                         span.textContent = '該当するデータが見つかりませんでした。';
-                        btn.dataset.action = 'clearAllFilters';
+                        btn.dataset.click = 'clearAllFilters';
                         btn.textContent = '✖ 検索・フィルターの全解除';
                     }
 
