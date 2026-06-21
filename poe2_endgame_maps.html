@@ -568,11 +568,11 @@
         td { text-align: left; }
         
         tr { transition: background-color var(--transition-normal); }
-        tr td:first-child { transition: box-shadow var(--transition-normal); }
+        tr td.first-visible-cell { transition: box-shadow var(--transition-normal); }
         tr.row-even { background-color: var(--bg-tr-even); }
         
         tr:not(.no-hover-row):hover { background-color: var(--bg-tr-hover); }
-        tr:not(.no-hover-row):hover td:first-child { box-shadow: inset 4px 0 0 var(--accent-gold); }
+        tr:not(.no-hover-row):hover td.first-visible-cell { box-shadow: inset 4px 0 0 var(--accent-gold); }
 
         .is-hidden { display: none !important; }
         
@@ -685,6 +685,105 @@
         }
 
         /* ==========================================
+           モーダル (Modal)
+        ========================================== */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: rgba(0, 0, 0, 0.8);
+
+            z-index: 1000;
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transition:
+                opacity var(--transition-normal),
+                visibility 0s linear var(--transition-normal);
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+
+            transition: opacity var(--transition-normal);
+        }
+
+        .modal-content {
+            position: relative;
+
+            max-width: 90vw;
+            max-height: 90vh;
+
+            padding: 12px;
+
+            background: var(--bg-panel);
+
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .modal-image {
+            display: block;
+
+            max-width: 100%;
+            max-height: calc(90vh - 24px);
+
+            border-radius: var(--radius-sm);
+
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+
+            width: 36px;
+            height: 36px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+            border-radius: 50%;
+
+            background: rgba(0, 0, 0, 0.7);
+
+            color: #fff;
+            font-size: 18px;
+
+            cursor: pointer;
+        }
+
+        .boss-link {
+            color: var(--accent-gold);
+
+            text-decoration: underline;
+            text-underline-offset: 3px;
+
+            cursor: pointer;
+
+            white-space: pre-line;
+
+            transition: color var(--transition-normal);
+        }
+
+        .boss-link:hover {
+            color: #fef08a;
+        }
+
+        /* ==========================================
            レスポンシブ・スマホ最適化 (Mobile)
         ========================================== */
         @media (max-width: 900px) {
@@ -749,7 +848,7 @@
                     <span class="dropdown-icon">▼</span>
                 </button>
                 <div class="dropdown-content">
-                    <div class="dropdown-item" data-click="sort" data-sort="default" data-sort-name="初期順"><span class="checkmark">✔</span>初期順</div>
+                    <div class="dropdown-item sort-active" data-click="sort" data-sort="default" data-sort-name="初期順"><span class="checkmark" style="visibility:visible;">✔</span>初期順</div>
                     <div class="dropdown-item" data-click="sort" data-sort="kana-asc" data-sort-name="五十音順"><span class="checkmark">✔</span>五十音順</div>
                     <div class="dropdown-item" data-click="sort" data-sort="kana-desc" data-sort-name="五十音逆順"><span class="checkmark">✔</span>五十音逆順</div>
                     <div class="dropdown-item" data-click="sort" data-sort="eng-asc" data-sort-name="英語順"><span class="checkmark">✔</span>英語順</div>
@@ -809,6 +908,14 @@
             </tbody>
         </table>
     </div>
+
+    <div id="boss-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button type="button" class="modal-close" data-click="closeModal" aria-label="閉じる">✕</button>
+            <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image" loading="lazy">
+        </div>
+    </div>
+
     <script src="js/wanakana.min.js" defer></script>
 
     <script>
@@ -837,9 +944,9 @@
         const COLUMN_DEFINITIONS = [
             { id: 'よみがな', className: 'text-normal', label: 'よみがな', defaultVisible: false, isSearchable: true, type: 'text' },
             { id: 'マップ日本語', className: 'text-normal', label: 'マップ日本語', defaultVisible: true, isSearchable: true, type: 'text' },
-            { id: 'ボス日本語', className: 'text-normal', label: 'ボス日本語', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: 'ボス日本語', className: 'text-normal', label: 'ボス日本語', defaultVisible: true, isSearchable: true, type: 'bossText' },
             { id: 'マップ英語', className: 'text-normal', label: 'マップ英語', defaultVisible: true, isSearchable: true, type: 'text' },
-            { id: 'ボス英語', className: 'text-normal', label: 'ボス英語', defaultVisible: true, isSearchable: true, type: 'text' },
+            { id: 'ボス英語', className: 'text-normal', label: 'ボス英語', defaultVisible: true, isSearchable: true, type: 'bossText' },
             { id: '耐性アイコン', className: 'resist-icon', label: '耐性アイコン', defaultVisible: true, isSearchable: false, type: 'resistIcon' },
             { 
                 id: '元ボスアクト/エリア', 
@@ -967,7 +1074,7 @@
         window.addEventListener('pagehide', () => PersistenceService.flush());
 
         // ==========================================
-        // 3. 状態管理 (State & SSOT)
+        // 3. 状態管理 (State & DOM Cache)
         // ==========================================
 
         const AppState = {
@@ -976,8 +1083,7 @@
                 itemMap: new Map() 
             },
             ui: {
-                currentSort: 'default',
-                currentSortName: '初期順'
+                currentSort: 'default'
             },
             filters: {
                 text: '',
@@ -988,27 +1094,35 @@
                 visibleCount: 0,
                 hasVisibleColumn: true
             },
-            user: null // 初期化時に UserStateService から読み込む
+            user: null 
         };
 
-        // ==========================================
-        // 4. DOM キャッシュ (静的・動的)
-        // ==========================================
+        const ViewStore = {
+            rows: new Map(),           
+            columns: new Map(),        
+            headers: new Map(),        
+            columnMenuItems: new Map() 
+        };
 
         const DOM = {
             initCache() {
-                this.searchInput = document.getElementById('searchInput');
-                this.searchCounter = document.getElementById('search-counter');
-                this.resistGrid = document.getElementById('resist-grid');
-                this.markGrid = document.getElementById('mark-grid');
-                this.btnSortText = document.getElementById('btn-sort-text');
-                this.btnColumnText = document.getElementById('btn-column-text');
-                this.tbody = document.getElementById('boss-table-body');
-                this.theadRow = document.getElementById('boss-table-head-row');
-                this.columnDropdownContent = document.getElementById('column-dropdown-content');
-                this.fallbackMessage = document.getElementById('fallback-message');
-                this.fatalErrorMessage = document.getElementById('fatal-error-message');
-                this.sortMenuItems = Array.from(document.querySelectorAll('[data-sort]'));
+                const map = {
+                    searchInput: 'searchInput',
+                    searchCounter: 'search-counter',
+                    resistGrid: 'resist-grid',
+                    markGrid: 'mark-grid',
+                    btnSortText: 'btn-sort-text',
+                    btnColumnText: 'btn-column-text',
+                    tbody: 'boss-table-body',
+                    fallbackMessage: 'fallback-message',
+                    fatalErrorMessage: 'fatal-error-message',
+                    bossModal: 'boss-modal',
+                    bossModalImg: 'boss-modal-img'
+                };
+            
+                Object.entries(map).forEach(([prop, id]) => {
+                    this[prop] = document.getElementById(id);
+                });
             },
             showFatalError(msg) {
                 if (this.fatalErrorMessage) {
@@ -1018,18 +1132,8 @@
             }
         };
 
-        const ViewStore = {
-            rows: new Map(),           
-            columns: new Map(),        
-            headers: new Map(),        
-            columnMenuItems: new Map(),
-            resistFilters: new Map(),
-            markFilters: new Map(),
-            rowMarkButtons: new Map() 
-        };
-
         // ==========================================
-        // 5. RenderCoordinator (調停役)
+        // 4. RenderCoordinator (調停役)
         // ==========================================
         const RenderCoordinator = {
             refreshAll() {
@@ -1042,6 +1146,7 @@
                 COLUMN_DEFINITIONS.forEach(def => {
                     ColumnRenderer.updateColumnVisibility(def.id, AppState.user.columns[def.id]);
                 });
+                ColumnRenderer.updateFirstVisibleCol();
                 this.refreshAll();
             },
             refreshFilters() {
@@ -1050,18 +1155,17 @@
                 this.refreshAll();
             },
             refreshSort() {
-                SortUIRenderer.updateSortUI();
                 TableRenderer.reorderRows();
                 TableRenderer.updateTableState();
             }
         };
 
         // ==========================================
-        // 6. コントローラー層 (Controllers)
+        // 5. コントローラー層 (Controllers)
         // ==========================================
 
         const MarkController = {
-            toggleRowMark(itemId, markType) {
+            toggleRowMark(itemId, markType, btnElement) {
                 const item = AppState.data.itemMap.get(itemId);
                 if (!item) return;
 
@@ -1079,8 +1183,6 @@
 
                 PersistenceService.scheduleSave();
 
-                // UIの更新 (単一要素への即時反映)
-                const btnElement = ViewStore.rowMarkButtons.get(`${itemId}_${markType}`);
                 if (btnElement) {
                     TableRenderer.updateRowMarkUI(btnElement, marks.has(markType));
                 }
@@ -1111,7 +1213,15 @@
         const SortController = {
             apply(mode, textName) {
                 AppState.ui.currentSort = mode;
-                if (textName) AppState.ui.currentSortName = textName;
+                
+                document.querySelectorAll('[data-sort]').forEach(item => item.classList.remove('sort-active'));
+                document.querySelector(`[data-sort="${mode}"]`)?.classList.add('sort-active');
+                
+                document.querySelectorAll('[data-sort] .checkmark').forEach(cm => cm.style.visibility = 'hidden');
+                const activeCheckmark = document.querySelector(`[data-sort="${mode}"] .checkmark`);
+                if (activeCheckmark) activeCheckmark.style.visibility = 'visible';
+
+                if (textName) DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
 
                 if (SORTERS[mode]) AppState.data.items.sort(SORTERS[mode]);
                 
@@ -1174,9 +1284,8 @@
                 SearchController.clearAllFilters();
             }
         };
-
         // ==========================================
-        // 7. イベント委譲 (Event Delegation)
+        // 6. イベント委譲 (Event Delegation)
         // ==========================================
 
         const CLICK_ACTIONS = {
@@ -1188,7 +1297,19 @@
             setAllColumns: el => ColumnController.setAllVisibility(el.dataset.visible === 'true'),
             toggleResist: el => SearchController.toggleResist(el.dataset.resist),
             toggleMark: el => SearchController.toggleMark(el.dataset.mark),
-            toggleRowMark: el => MarkController.toggleRowMark(el.dataset.mapKey, el.dataset.markType)
+            toggleRowMark: el => MarkController.toggleRowMark(el.dataset.mapKey, el.dataset.markType, el),
+            showModal: el => {
+                DOM.bossModalImg.src = el.dataset.imgSrc;
+                DOM.bossModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            },
+            closeModal: () => {
+                DOM.bossModal.classList.remove('show');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    DOM.bossModalImg.src = '';
+                }, 200);
+            }
         };
 
         function setupEventListeners() {
@@ -1208,9 +1329,20 @@
                         DOM.searchInput.select(); 
                     }
                 }
+                
+                // ESCキーでモーダルを閉じる
+                if (e.key === 'Escape' && DOM.bossModal.classList.contains('show')) {
+                    CLICK_ACTIONS.closeModal();
+                }
             });
 
             document.addEventListener('click', e => {
+                // 背景クリック時のみモーダルを閉じる
+                if (e.target === DOM.bossModal) {
+                    CLICK_ACTIONS.closeModal();
+                    return;
+                }
+
                 handleDropdownClick(e);
 
                 const el = e.target.closest('[data-click]');
@@ -1240,7 +1372,7 @@
         }
 
         // ==========================================
-        // 8. ユーティリティとファクトリ
+        // 7. ユーティリティとファクトリ
         // ==========================================
 
         const ROMAJI_TO_KANA_REGEX = {
@@ -1287,8 +1419,8 @@
         }
 
         function getIconPath(key) {
-            const hasRes = ['Fire', 'Cold', 'Lightning', 'Chaos'].some(r => key.startsWith(r));
-            return `images/IconEnemy/IconEnemy${hasRes ? 'Resistance' : ''}${key}.png`;
+            const fileName = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+            return `images/icon-enemies/${fileName}.webp`;
         }
 
         const ItemFactory = {
@@ -1340,7 +1472,7 @@
         };
 
         // ==========================================
-        // 9. アプリ初期化
+        // 8. アプリ初期化
         // ==========================================
 
         const App = {
@@ -1368,9 +1500,9 @@
                     console.warn("JSONデータの読み込みに失敗しました。動作確認用のダミーデータを表示します。", e);
                     DOM.fallbackMessage.classList.remove('is-hidden');
                     const dummyData = [
-                        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ" },
-            { "id": "map_002", "よみがな": "だみーさばんな", "マップ日本語": "ダミーサバンナ", "ボス日本語": "ハイエナロード、カエドロン", "マップ英語": "Savannah", "ボス英語": "Caedron, the Hyena Lord", "耐性アイコン": "FireWeak,Cold", "元ボスアクト": "２", "元ボスエリア": "ヴァスティリ郊外", "元ボス名": "ラスブレイカー", "元ボス特徴": "獣一杯、槍一杯", "メモ": "" },
-                        { "id": "map_003", "よみがな": "だみーひすいのしま", "マップ日本語": "ダミーヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak\nArmour,Evasion,Fire,Cold,Lightning,Chaos\nArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "" }
+                        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス名": "元ダミーボス", "元ボス特徴": "ダミー", "メモ": "ダミーメモ", "bossimage": "images/bosses/dummyboss.webp" },
+            { "id": "map_002", "よみがな": "だみーさばんな", "マップ日本語": "ダミーサバンナ", "ボス日本語": "ハイエナロード、カエドロン", "マップ英語": "Savannah", "ボス英語": "Caedron, the Hyena Lord", "耐性アイコン": "FireWeak,Cold", "元ボスアクト": "２", "元ボスエリア": "ヴァスティリ郊外", "元ボス名": "ラスブレイカー", "元ボス特徴": "獣一杯、槍一杯", "bossimage": "" },
+                        { "id": "map_003", "よみがな": "だみーひすいのしま", "マップ日本語": "ダミーヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒督されし者、マノキ", "マップ英語": "The Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "FireWeak,ColdWeak,LightningWeak\nArmour,Evasion,Fire,Cold,Lightning,Chaos\nArmourStrong,EvasionStrong,FireStrong,ColdStrong,LightningStrong,ChaosStrong", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス特徴": "4章ボス", "メモ": "", "bossimage": "images/bosses/tavakai-the-chieftain.webp\nimages/bosses/tavakai-the-fallen.webp\nimages/bosses/tavakai-the-consumed.webp" },
                     ];
                     this.validateAndInitialize(dummyData);
                 }
@@ -1393,7 +1525,6 @@
 
                 TableRenderer.buildTable();
                 RenderCoordinator.refreshColumns();
-                RenderCoordinator.refreshSort(); 
                 RenderCoordinator.refreshAll();
             }
         };
@@ -1424,7 +1555,7 @@
         }
 
         // ==========================================
-        // 10. UI構築 (Views)
+        // 9. UI構築 (Views)
         // ==========================================
 
         const UIFactory = {
@@ -1470,18 +1601,20 @@
         }
 
         function buildTableHeader() {
+            const headerRow = document.getElementById('boss-table-head-row');
             COLUMN_DEFINITIONS.forEach(def => {
                 const th = document.createElement('th');
                 th.className = `col-${def.className}`; 
                 th.dataset.key = def.id;
                 th.textContent = def.label;
-                DOM.theadRow.appendChild(th);
+                headerRow.appendChild(th);
                 
                 ViewStore.headers.set(def.id, th);
             });
         }
 
         function buildColumnMenu() {
+            const colDropdown = document.getElementById('column-dropdown-content');
             COLUMN_DEFINITIONS.forEach(def => {
                 const item = UIFactory.createMenuItem({
                     dataset: { click: 'toggleColumn', column: def.id },
@@ -1489,7 +1622,7 @@
                     checked: AppState.user.columns[def.id]
                 });
                 
-                DOM.columnDropdownContent.insertBefore(item, DOM.columnDropdownContent.lastElementChild);
+                colDropdown.insertBefore(item, colDropdown.lastElementChild);
                 ViewStore.columnMenuItems.set(def.id, item);
             });
         }
@@ -1501,17 +1634,15 @@
             suffixes.forEach(suffix => {
                 RESIST_TYPES.forEach(type => {
                     const key = `${type}${suffix}`;
-                    const btn = UIFactory.createFilterButton({
-                        dataset: { click: 'toggleResist', resist: key },
-                        title: key,
-                        iconType: 'image',
-                        iconValue: getIconPath(key),
-                        isDummy: DUMMY_RESISTS.has(key)
-                    });
-                    fragment.appendChild(btn);
-                    if (!DUMMY_RESISTS.has(key)) {
-                        ViewStore.resistFilters.set(key, btn);
-                    }
+                    fragment.appendChild(
+                        UIFactory.createFilterButton({
+                            dataset: { click: 'toggleResist', resist: key },
+                            title: key,
+                            iconType: 'image',
+                            iconValue: getIconPath(key),
+                            isDummy: DUMMY_RESISTS.has(key)
+                        })
+                    );
                 });
             });
 
@@ -1521,19 +1652,19 @@
         function buildMarkFilter() {
             Object.keys(MARK_DEFINITIONS).forEach(key => {
                 const def = MARK_DEFINITIONS[key];
-                const btn = UIFactory.createFilterButton({
-                    dataset: { click: 'toggleMark', mark: key },
-                    title: def.title,
-                    iconType: 'text',
-                    iconValue: def.icon
-                });
-                DOM.markGrid.appendChild(btn);
-                ViewStore.markFilters.set(key, btn);
+                DOM.markGrid.appendChild(
+                    UIFactory.createFilterButton({
+                        dataset: { click: 'toggleMark', mark: key },
+                        title: def.title,
+                        iconType: 'text',
+                        iconValue: def.icon
+                    })
+                );
             });
         }
 
         // ==========================================
-        // 11. 検索・フィルターサービス (Search & Filter)
+        // 10. 検索・フィルターサービス (Search & Filter)
         // ==========================================
 
         const SearchService = {
@@ -1611,12 +1742,38 @@
         };
 
         // ==========================================
-        // 12. 各種 Renderer (DOMの構築と更新)
+        // 11. 各種 Renderer (DOMの構築と更新)
         // ==========================================
 
         const CELL_RENDERERS = {
             text: (td, item, def) => {
                 td.textContent = item.data[def.id] || '';
+            },
+            bossText: (td, item, def) => {
+                const text = item.data[def.id] || '';
+                if (!text) return;
+
+                const names = text.split('\n');
+                const images = (item.data.bossimage || '').split('\n');
+
+                names.forEach((name, index) => {
+                    const imgSrc = images[index]?.trim();
+
+                    if (imgSrc) {
+                        const link = document.createElement('span');
+                        link.className = 'boss-link';
+                        link.textContent = name.trim();
+                        link.dataset.click = 'showModal';
+                        link.dataset.imgSrc = imgSrc;
+                        td.appendChild(link);
+                    } else {
+                        td.appendChild(document.createTextNode(name.trim()));
+                    }
+
+                    if (index < names.length - 1) {
+                        td.appendChild(document.createElement('br'));
+                    }
+                });
             },
             resistIcon: (td, item, def) => {
                 TableRenderer.createResistCell(item, td);
@@ -1639,7 +1796,6 @@
             buildTable() {
                 ViewStore.rows.clear();
                 ViewStore.columns.clear();
-                ViewStore.rowMarkButtons.clear(); 
 
                 if (AppState.data.items.length === 0) {
                     const tr = document.createElement('tr');
@@ -1748,8 +1904,6 @@
                 span.dataset.markType = markType;
                 span.textContent = markDef.icon;
                 span.title = markDef.title;
-                
-                ViewStore.rowMarkButtons.set(`${mapKey}_${markType}`, span);
                 return span;
             },
 
@@ -1821,38 +1975,45 @@
 
                 const th = ViewStore.headers.get(columnKey);
                 if (th) th.classList.toggle('is-hidden', !visible);
-            }
-        };
+            },
+            updateFirstVisibleCol() {
+                // 前回の対象列だけを記録しておく
+                if (this.currentFirstColumn) {
+                    ViewStore.columns
+                        .get(this.currentFirstColumn)
+                        ?.forEach(el => el.classList.remove('first-visible-cell'));
+                }
 
-        const SortUIRenderer = {
-            updateSortUI() {
-                const currentMode = AppState.ui.currentSort;
-                DOM.sortMenuItems.forEach(item => {
-                    const isActive = item.dataset.sort === currentMode;
-                    item.classList.toggle('sort-active', isActive);
-                    const checkmark = item.querySelector('.checkmark');
-                    if (checkmark) {
-                        checkmark.style.visibility = isActive ? 'visible' : 'hidden';
-                    }
-                });
-                
-                DOM.btnSortText.innerText = `マップ名ソート: ${AppState.ui.currentSortName}`;
+                const firstVisibleDef = COLUMN_DEFINITIONS.find(
+                    def => AppState.user.columns[def.id] !== false // (※補足) false 以外なら表示扱い
+                );
+
+                if (!firstVisibleDef) {
+                    this.currentFirstColumn = null;
+                    return;
+                }
+
+                ViewStore.columns
+                    .get(firstVisibleDef.id)
+                    ?.forEach(el => el.classList.add('first-visible-cell'));
+
+                this.currentFirstColumn = firstVisibleDef.id;
             }
         };
 
         const FilterUIRenderer = {
             updateResistUI() {
                 const resists = AppState.filters.resists;
-                ViewStore.resistFilters.forEach((el, key) => {
-                    el.classList.toggle('active', resists.has(key));
+                document.querySelectorAll('#resist-grid .icon-wrapper').forEach(el => {
+                    el.classList.toggle('active', resists.has(el.dataset.resist));
                 });
                 DOM.resistGrid.classList.toggle('has-active', resists.size > 0);
             },
 
             updateMarkUI() {
                 const marks = AppState.filters.marks;
-                ViewStore.markFilters.forEach((el, key) => {
-                    el.classList.toggle('active', marks.has(key));
+                document.querySelectorAll('#mark-grid .icon-wrapper').forEach(el => {
+                    el.classList.toggle('active', marks.has(el.dataset.mark));
                 });
             }
         };
