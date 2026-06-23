@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE2 メモ</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/nav.js" defer></script>
+    <style>
+        /* --- メモページ固有のスタイル --- */
+        .note-panel {
+            background-color: var(--bg-panel);
+            border-left: 4px solid var(--accent-gold);
+            padding: 16px;
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin-top: 16px;
+            margin-bottom: 40px;
+            color: var(--text-main);
+            box-shadow: var(--shadow-md);
+            font-size: 15px;
+        }
+
+        .table-wrapper {
+            display: table;
+            margin: 0 auto 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: max-content;
+            max-width: 100%;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            padding: 10px 12px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+            vertical-align: middle;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: none;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--bg-th);
+            color: var(--accent-gold);
+            white-space: nowrap;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 1px 0 var(--border-color);
+        }
+
+        td {
+            text-align: center;
+            height: 24px;
+        }
+
+        /* 特定のテーブル用の上書きスタイル */
+        #transcendent-table td:nth-child(3) {
+            text-align: left;
+        }
+
+        /* スタッシュテーブル用 */
+        #store-table {
+            width: auto;
+            margin: 0 auto;
+        }
+
+        #store-table td:nth-child(1) {
+            text-align: center;
+        }
+
+        #store-table td:nth-child(2) {
+            text-align: left;
+        }
+
+        #store-table td:nth-child(3),
+        #store-table td:nth-child(4) {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        #store-table td {
+            white-space: nowrap;
+            word-break: normal;
+        }
+
+        tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tr td:first-child {
+            transition: box-shadow 0.2s ease;
+        }
+
+        tr:nth-child(even) {
+            background-color: var(--bg-tr-even);
+        }
+
+        tr:hover {
+            background-color: var(--bg-tr-hover);
+        }
+
+        tr:hover td:first-child {
+            box-shadow: inset 4px 0 0 var(--accent-gold);
+        }
+
+        .nowrap {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-container">
+
+        <div id="nav-placeholder"></div>
+
+        <header class="page-header">
+            <div class="title-flex-row">
+                <h1>PoE2 メモ</h1>
+                <nav class="section-nav">
+                    <a href="#gem">ジェム</a>
+                    <a href="#transcendent">改造手術</a>
+                    <a href="#stash">スタッシュ価格</a>
+                </nav>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <h2 id="gem">ジェム</h2>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="nowrap">ジェムレベル</th>
+                            <th class="nowrap">要求レベル</th>
+                            <th>要求能力値<br>（単一）</th>
+                            <th>要求能力値<br>（筋力、器用さ、知性のうち２つ）</th>
+                            <th>ドロップする<br>モンスターレベル ※1</th>
+                            <th>アセンダンシーや装備品スキルの<br>ソケット数 ※2</th>
+                        </tr>
+                    </thead>
+                    <tbody id="gem-tbody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="note-panel">
+                ※1 マジック・レア敵はモンスターレベル＋１、画面上部にライフゲージが出る敵はモンスターレベル＋２のアイテムを落とす？<br>
+                ※2 装備品のソケット数 = スキルレベルで変化<br>
+                スキルレベルが書いていない装備品スキルはキャラクターレベルでスキルレベルが変化（武器スキルの場合？盾スキルの規則性不明）<br>
+                スキルレベルが書いている装備品スキルはそのレベルのソケット数
+            </div>
+
+            <h2 id="transcendent">改造手術</h2>
+            <div class="table-wrapper">
+                <table id="transcendent-table">
+                    <thead>
+                        <tr>
+                            <th class="nowrap">手か足</th>
+                            <th class="nowrap">改造名</th>
+                            <th>効果</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transcendent-tbody">
+                    </tbody>
+                </table>
+            </div>
+            <div class="note-panel">
+                既にしている改造は改造候補に出てこない？ ※ただし一度に２つ以上の改造部屋がある場合ダブって出てくる可能性？
+            </div>
+
+            <h2 id="stash">スタッシュ価格</h2>
+            <div class="table-wrapper">
+                <table id="store-table">
+                    <thead>
+                        <tr>
+                            <th class="nowrap">系統</th>
+                            <th class="nowrap">名称</th>
+                            <th class="nowrap">通常</th>
+                            <th class="nowrap">セール</th>
+                            <th class="nowrap">エグザイルの<br>スタッシュ<br>バンドル</th>
+                        </tr>
+                    </thead>
+                    <tbody id="store-tbody">
+                    </tbody>
+                </table>
+            </div>
+        </main>
+
+    </div>
+
+    <script>
+        // --- ジェムデータ ---
+        const gemData = [
+            { "gem_level": 1, "req_level": 1, "req_stat_single": 4, "req_stat_dual": 4, "drop_ilvl": "1-3", "socket_info": "" },
+            { "gem_level": 2, "req_level": 3, "req_stat_single": 9, "req_stat_dual": 7, "drop_ilvl": "3-6", "socket_info": "" },
+            { "gem_level": 3, "req_level": 6, "req_stat_single": 14, "req_stat_dual": 9, "drop_ilvl": "7-10", "socket_info": "" },
+            { "gem_level": 4, "req_level": 10, "req_stat_single": 21, "req_stat_dual": 13, "drop_ilvl": "11-14", "socket_info": "" },
+            { "gem_level": 5, "req_level": 14, "req_stat_single": 28, "req_stat_dual": 17, "drop_ilvl": "15-18", "socket_info": "" },
+            { "gem_level": 6, "req_level": 18, "req_stat_single": 35, "req_stat_dual": 20, "drop_ilvl": "19-22", "socket_info": "" },
+            { "gem_level": 7, "req_level": 22, "req_stat_single": 41, "req_stat_dual": 24, "drop_ilvl": "23-26", "socket_info": "" },
+            { "gem_level": 8, "req_level": 26, "req_stat_single": 48, "req_stat_dual": 28, "drop_ilvl": "27-31", "socket_info": "" },
+            { "gem_level": 9, "req_level": 31, "req_stat_single": 57, "req_stat_dual": 32, "drop_ilvl": "32-36", "socket_info": "" },
+            { "gem_level": 10, "req_level": 36, "req_stat_single": 65, "req_stat_dual": 37, "drop_ilvl": "37-41", "socket_info": "キャラLv36 スキルLv10 ソケット数 3" },
+            { "gem_level": 11, "req_level": 41, "req_stat_single": 74, "req_stat_dual": 41, "drop_ilvl": "42-46", "socket_info": "" },
+            { "gem_level": 12, "req_level": 46, "req_stat_single": 82, "req_stat_dual": 46, "drop_ilvl": "47-52", "socket_info": "" },
+            { "gem_level": 13, "req_level": 52, "req_stat_single": 92, "req_stat_dual": 51, "drop_ilvl": "53-58", "socket_info": "" },
+            { "gem_level": 14, "req_level": 58, "req_stat_single": 103, "req_stat_dual": 57, "drop_ilvl": "59-64", "socket_info": "" },
+            { "gem_level": 15, "req_level": 64, "req_stat_single": 113, "req_stat_dual": 62, "drop_ilvl": "65-66", "socket_info": "キャラLv64 スキルLv15 ソケット数 4" },
+            { "gem_level": 16, "req_level": 66, "req_stat_single": 116, "req_stat_dual": 64, "drop_ilvl": "67-72", "socket_info": "" },
+            { "gem_level": 17, "req_level": 72, "req_stat_single": 126, "req_stat_dual": 70, "drop_ilvl": "73-78", "socket_info": "" },
+            { "gem_level": 18, "req_level": 78, "req_stat_single": 137, "req_stat_dual": 75, "drop_ilvl": "79-84", "socket_info": "" },
+            { "gem_level": 19, "req_level": 84, "req_stat_single": 147, "req_stat_dual": 80, "drop_ilvl": "85-90", "socket_info": "" },
+            { "gem_level": 20, "req_level": 90, "req_stat_single": 157, "req_stat_dual": 86, "drop_ilvl": "91-", "socket_info": "キャラLv90 スキルLv20 ソケット数 5" }
+        ];
+
+        // --- 改造手術データ ---
+        const transcendentData = [
+            { "type": "超越の義手", "name": "守護の腕", "effect": "ブロック率が(8—12)%増加する" },
+            { "type": "超越の義手", "name": "戦闘の腕", "effect": "アタックスピードが(6—10)%増加する" },
+            { "type": "超越の義手", "name": "キャスターの腕", "effect": "キャストスピードが(6—10)%増加する" },
+            { "type": "超越の義手", "name": "衰弱の腕", "effect": "呪いの強度が(12—16)%増加する" },
+            { "type": "超越の義手", "name": "偏向の腕", "effect": "受け流し力が(6—10)%増加する" },
+            { "type": "超越の義手", "name": "号令の腕", "effect": "存在下の効果範囲が(15—25)%増加する" },
+            { "type": "超越の義足", "name": "回避の脚", "effect": "回避力が(20—30)%増加する" },
+            { "type": "超越の義足", "name": "疾走の脚", "effect": "スプリント中に移動スピードが(6—10)%増加する" },
+            { "type": "超越の義足", "name": "頑丈な脚", "effect": "スタン閾値が(15—25)%増加する" },
+            { "type": "超越の義足", "name": "堅脚の脚", "effect": "移動中にスキルを使用することによる移動スピードペナルティが(5—10)%減少する" },
+            { "type": "超越の義足", "name": "冷静の脚", "effect": "移動中はマナ自動回復レートが(20—30)%増加する" },
+            { "type": "超越の義足", "name": "回復の脚", "effect": "受けたダメージの(6—10)%をライフとして回収する" }
+        ];
+
+        // --- ストアアイテムデータ ---
+        const storeData = [
+            { "category": "基本系？", "name": "スタッシュ", "normal": 30, "sale": "20", "exiles_stash_bundle": "" },
+            { "category": "基本系？", "name": "スタッシュタブ ×６", "normal": 150, "sale": "110", "exiles_stash_bundle": "" },
+            { "category": "基本系？", "name": "プレミアムスタッシュにアップグレード", "normal": 15, "sale": "10", "exiles_stash_bundle": "" },
+            { "category": "基本系？", "name": "プレミアムスタッシュ", "normal": 40, "sale": "30", "exiles_stash_bundle": "" },
+            { "category": "基本系？", "name": "プレミアムスタッシュ ×６", "normal": 200, "sale": "165", "exiles_stash_bundle": "" },
+            { "category": "基本系？", "name": "プレミアムクアッド", "normal": 150, "sale": "120", "exiles_stash_bundle": "〇" },
+            { "category": "基本系？", "name": "クアッドタブスタッシュ ×４", "normal": 500, "sale": "", "exiles_stash_bundle": "" },
+            { "category": "カレンシー系？", "name": "カレンシー", "normal": 75, "sale": "60", "exiles_stash_bundle": "〇" },
+            { "category": "カレンシー系？", "name": "オーグメント", "normal": 50, "sale": "40", "exiles_stash_bundle": "〇" },
+            { "category": "カレンシー系？", "name": "ジェム", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "カレンシー系？", "name": "フラグメント", "normal": 75, "sale": "55", "exiles_stash_bundle": "〇" },
+            { "category": "カレンシー系？", "name": "エッセンス", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "カレンシー系？", "name": "フラスコ", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "カレンシー系？", "name": "ユニークコレクション", "normal": 140, "sale": "110", "exiles_stash_bundle": "〇" },
+            { "category": "エンドゲーム？", "name": "マップ", "normal": 150, "sale": "120", "exiles_stash_bundle": "" },
+            { "category": "エンドゲーム？", "name": "ブリーチ", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "エンドゲーム？", "name": "エクスペディション", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "エンドゲーム？", "name": "デリリウム", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "エンドゲーム？", "name": "リチュアル", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "エンドゲーム？", "name": "アビス", "normal": 40, "sale": "30", "exiles_stash_bundle": "" },
+            { "category": "商売系？", "name": "マーチャントタブ", "normal": 40, "sale": "30", "exiles_stash_bundle": "〇" },
+            { "category": "商売系？", "name": "マーチャントタブ ×６", "normal": 200, "sale": "165", "exiles_stash_bundle": "" },
+            { "category": "その他", "name": "エグザイルのスタッシュバンドル（計810）", "normal": 605, "sale": "500", "exiles_stash_bundle": "" },
+            { "category": "その他", "name": "エグザイルの盗みの指輪（拾ったカレンシー数）", "normal": 120, "sale": "", "exiles_stash_bundle": "" },
+            { "category": "その他", "name": "銅の時の守り人（マップ時間）", "normal": 270, "sale": "", "exiles_stash_bundle": "" }
+        ];
+
+        // テーブル生成ロジックはそのまま
+        const gemTbody = document.getElementById('gem-tbody');
+        gemData.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${row.gem_level}</td><td>${row.req_level}</td><td>${row.req_stat_single}</td><td>${row.req_stat_dual}</td><td>${row.drop_ilvl}</td><td>${row.socket_info}</td>`;
+            gemTbody.appendChild(tr);
+        });
+
+        const transcendentTbody = document.getElementById('transcendent-tbody');
+        let lasttranscendentType = "";
+        transcendentData.forEach(row => {
+            const tr = document.createElement('tr');
+            const displayType = (row.type === lasttranscendentType) ? '' : row.type;
+            tr.innerHTML = `<td class="nowrap">${displayType}</td><td class="nowrap">${row.name}</td><td>${row.effect}</td>`;
+            lasttranscendentType = row.type;
+            transcendentTbody.appendChild(tr);
+        });
+
+        const storeTbody = document.getElementById('store-tbody');
+        let lastStoreCategory = "";
+        storeData.forEach(row => {
+            const tr = document.createElement('tr');
+            const displayCategory = (row.category === lastStoreCategory) ? '' : row.category;
+            tr.innerHTML = `<td class="nowrap">${displayCategory}</td><td class="nowrap">${row.name}</td><td>${row.normal}</td><td>${row.sale}</td><td>${row.exiles_stash_bundle}</td>`;
+            lastStoreCategory = row.category;
+            storeTbody.appendChild(tr);
+        });
+    </script>
+</body>
+
+</html>

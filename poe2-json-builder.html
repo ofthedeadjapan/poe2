@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PoE2 JSON Generator</title>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/nav.js" defer></script>
+    <style>
+        /* =========================================
+           ローカルCSS (ページ固有のスタイル)
+        ========================================= */
+
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 24px;
+            background-color: var(--bg-panel);
+            padding: 20px;
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        textarea {
+            display: block;
+            width: 100%;
+            height: 200px;
+            background-color: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 12px;
+            font-family: monospace;
+            font-size: 14px;
+            resize: vertical;
+            transition: all 0.2s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        textarea::placeholder {
+            color: var(--separator-color);
+        }
+
+        #errorMessage {
+            width: 100%;
+            margin-top: 10px;
+            color: #fca5a5;
+            font-weight: bold;
+            white-space: pre-wrap;
+        }
+
+        .separator-horizontal {
+            width: 100%;
+            height: 1px;
+            background-color: rgba(87, 83, 78, 0.4);
+            margin: 16px 0;
+        }
+
+        .separator-strong {
+            width: 2px;
+            height: 32px;
+            background-color: var(--separator-color);
+            flex-shrink: 0;
+            border-radius: 1px;
+        }
+
+        .controls-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .btn-common {
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            padding: 10px 16px;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-common:active {
+            transform: translateY(1px);
+        }
+
+        .btn-action {
+            background: var(--btn-action-bg);
+            border-color: var(--btn-action-border);
+            color: #e8c88a;
+        }
+
+        .btn-action:hover {
+            background: var(--btn-action-bg-hover);
+            color: #fff;
+        }
+
+        .btn-bronze {
+            background: rgba(87, 83, 78, 0.25);
+            border-color: rgba(120, 113, 108, 0.5);
+            color: #d6d3d1;
+        }
+
+        .btn-bronze:hover {
+            background: rgba(203, 166, 95, 0.2);
+            border-color: #cba65f;
+            color: #fef08a;
+        }
+
+        .btn-red {
+            background: rgba(239, 68, 68, 0.15);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            margin-left: auto;
+        }
+
+        .btn-red:hover {
+            background: rgba(239, 68, 68, 0.3);
+            color: #ffffff;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background-color: var(--bg-table);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            padding: 8px 10px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        th:last-child,
+        td:last-child {
+            border-right: none;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: var(--bg-th);
+            color: #ffffff;
+            white-space: nowrap;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 1px 0 var(--border-color);
+        }
+
+        td {
+            text-align: left;
+        }
+
+        tr {
+            transition: background-color 0.2s ease;
+        }
+
+        tr td:first-child {
+            transition: box-shadow 0.2s ease;
+        }
+
+        tr:nth-child(even):not([style*="background-color"]) {
+            background-color: var(--bg-tr-even);
+        }
+
+        tr:hover {
+            background-color: var(--bg-tr-hover);
+        }
+
+        tr:hover td:first-child {
+            box-shadow: inset 4px 0 0 var(--accent-gold);
+        }
+
+        @media (max-width: 900px) {
+            .controls-row {
+                gap: 12px;
+            }
+
+            .separator-strong {
+                display: none;
+            }
+
+            button {
+                flex: 1;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .btn-red {
+                margin-left: 0;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 幅管理コンテナ -->
+    <div class="page-container">
+
+        <!-- ナビゲーション -->
+        <div id="nav-placeholder"></div>
+
+        <!-- タイトル部分 -->
+        <header class="page-header">
+            <h1>PoE2 JSON Generator</h1>
+        </header>
+
+        <!-- 本文部分 -->
+        <main class="main-content">
+
+            <div class="controls-wrapper">
+                <textarea id="inputArea" placeholder="スプレッドシート等からコピーしたTSVデータをここに貼り付けてください（セル内改行対応）"></textarea>
+                <div id="errorMessage"></div>
+
+                <div class="separator-horizontal"></div>
+
+                <div class="controls-row">
+                    <button class="btn-common btn-action" onclick="processData()">▼ プレビューを表示</button>
+                    <div class="separator-strong"></div>
+                    <button class="btn-common btn-bronze" onclick="copyJSON()">📋 jsonをコピー</button>
+                    <button class="btn-common btn-bronze" onclick="downloadJSON('poe2actboss.json')">⬇
+                        poe2actboss.json</button>
+                    <button class="btn-common btn-bronze" onclick="downloadJSON('poe2-endgame-maps.json')">⬇
+                        poe2-endgame-maps.json</button>
+                    <button class="btn-common btn-red" onclick="resetForm()">✖ リセット</button>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="previewTable">
+                    <thead>
+                        <tr id="tableHead"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        const DOM = {
+            inputArea: document.getElementById('inputArea'),
+            tableBody: document.getElementById('tableBody'),
+            tableHead: document.getElementById('tableHead'),
+            errorMessage: document.getElementById('errorMessage')
+        };
+
+        let currentJson = [];
+        const FORBIDDEN_HEADERS = ['__proto__', 'constructor', 'prototype'];
+
+        function processData() {
+            try {
+                DOM.errorMessage.textContent = '';
+                DOM.tableHead.textContent = '';
+                DOM.tableBody.textContent = '';
+                currentJson = [];
+
+                const text = DOM.inputArea.value;
+
+                if (text.length > 5_000_000) {
+                    throw new Error("入力データが大きすぎます (5MB以下にしてください)");
+                }
+
+                if (!text.trim()) {
+                    throw new Error("データが入力されていません");
+                }
+
+                const rawData = parseTSV(text);
+                const validRows = rawData.filter(row => row.some(cell => cell.trim() !== ''));
+
+                if (validRows.length < 1) {
+                    throw new Error("有効なデータが存在しません");
+                }
+
+                const headers = validateHeaders(validRows[0]);
+                const dataRows = validRows.slice(1);
+                const { json, errors } = buildJsonData(dataRows, headers);
+
+                currentJson = json;
+                buildPreviewTable(json, headers);
+
+                if (errors.length > 0) {
+                    renderErrors(errors, headers.length);
+                }
+            } catch (e) {
+                DOM.errorMessage.textContent = "⚠ エラー: " + e.message;
+            }
+        }
+
+        function parseTSV(text) {
+            const rows = [];
+            let row = [];
+            let cell = '';
+            let inQuotes = false;
+
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                const nextChar = text[i + 1];
+
+                if (inQuotes) {
+                    if (char === '"') {
+                        if (nextChar === '"') {
+                            cell += '"';
+                            i++;
+                        } else {
+                            inQuotes = false;
+                        }
+                    } else {
+                        cell += char;
+                    }
+                } else {
+                    if (char === '"') {
+                        inQuotes = true;
+                    } else if (char === '\t') {
+                        row.push(cell);
+                        cell = '';
+                    } else if (char === '\r') {
+                        if (nextChar === '\n') i++;
+                        row.push(cell);
+                        rows.push(row);
+                        row = [];
+                        cell = '';
+                    } else if (char === '\n') {
+                        row.push(cell);
+                        rows.push(row);
+                        row = [];
+                        cell = '';
+                    } else {
+                        cell += char;
+                    }
+                }
+            }
+            if (cell !== '' || row.length > 0) {
+                row.push(cell);
+                rows.push(row);
+            }
+            return rows;
+        }
+
+        function validateHeaders(headerRow) {
+            const headers = headerRow.map(h => h.trim());
+            if (headers.some(h => h === '')) {
+                throw new Error('ヘッダに空のセルが存在します。列名を記入してください。');
+            }
+            const detectedForbidden = headers.filter(h => FORBIDDEN_HEADERS.includes(h));
+            if (detectedForbidden.length > 0) {
+                throw new Error(`セキュリティ上、使用できないヘッダ名が含まれています: ${[...new Set(detectedForbidden)].join(', ')}`);
+            }
+            const duplicates = headers.filter((h, i) => headers.indexOf(h) !== i);
+            if (duplicates.length > 0) {
+                throw new Error(`ヘッダ名が重複しています: ${[...new Set(duplicates)].join(', ')}`);
+            }
+            return headers;
+        }
+
+        function buildJsonData(dataRows, headers) {
+            const json = [];
+            const errors = [];
+            dataRows.forEach((row, idx) => {
+                const obj = {};
+                headers.forEach((h, i) => {
+                    let value = row[i];
+                    if (value === undefined) {
+                        value = '';
+                    } else {
+                        value = value.trim();
+                    }
+                    obj[h] = value;
+                });
+                if (row.length > headers.length) {
+                    errors.push(`行 ${idx + 2}: 規定の列数(${headers.length})を超えた超過データが右端に検出されたため自動カットされました`);
+                }
+                json.push(obj);
+            });
+            return { json, errors };
+        }
+
+        function buildPreviewTable(json, headers) {
+            headers.forEach(h => {
+                const th = document.createElement('th');
+                th.textContent = h;
+                DOM.tableHead.appendChild(th);
+            });
+            json.forEach(obj => {
+                const tr = document.createElement('tr');
+                headers.forEach(h => {
+                    const td = document.createElement('td');
+                    td.textContent = obj[h] || '';
+                    tr.appendChild(td);
+                });
+                DOM.tableBody.appendChild(tr);
+            });
+        }
+
+        function renderErrors(errors, colSpan) {
+            DOM.errorMessage.textContent = `⚠ ${errors.length} 件のデータ調整・警告事項があります。`;
+            errors.forEach(err => {
+                const tr = document.createElement('tr');
+                tr.style.backgroundColor = '#7f1d1d';
+                const td = document.createElement('td');
+                td.style.textAlign = 'center';
+                td.style.color = '#fca5a5';
+                td.colSpan = colSpan;
+                td.textContent = err;
+                tr.appendChild(td);
+                DOM.tableBody.insertBefore(tr, DOM.tableBody.firstChild);
+            });
+        }
+
+        function getJsonString() {
+            if (currentJson.length === 0) {
+                alert("JSONデータがありません。先にプレビューを表示してデータを生成してください。");
+                return null;
+            }
+            return JSON.stringify(currentJson, null, 2);
+        }
+
+        function copyJSON() {
+            const jsonStr = getJsonString();
+            if (!jsonStr) return;
+            navigator.clipboard.writeText(jsonStr)
+                .then(() => alert("JSONをクリップボードにコピーしました！"))
+                .catch(err => alert("コピーに失敗しました: " + err));
+        }
+
+        function downloadJSON(filename) {
+            const jsonStr = getJsonString();
+            if (!jsonStr) return;
+            const blob = new Blob([jsonStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function resetForm() {
+            DOM.inputArea.value = '';
+            DOM.tableHead.textContent = '';
+            DOM.tableBody.textContent = '';
+            DOM.errorMessage.textContent = '';
+            currentJson = [];
+        }
+    </script>
+</body>
+
+</html>
