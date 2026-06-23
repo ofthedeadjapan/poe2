@@ -5,37 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 JSON Generator</title>
-    <link rel="stylesheet" href="common.css">
-    <script src="nav.js" defer></script>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/nav.js" defer></script>
     <style>
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            width: 95%;
-            margin: 0 auto 12px auto;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 26px;
-            font-weight: 700;
-            color: #ffffff;
-        }
+        /* =========================================
+           ローカルCSS (ページ固有のスタイル)
+        ========================================= */
 
         .controls-wrapper {
             display: flex;
             flex-direction: column;
-            width: 95%;
-            margin: 0 auto 12px auto;
+            width: 100%;
+            margin-bottom: 24px;
             background-color: var(--bg-panel);
-            padding: 16px;
+            padding: 20px;
             border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            box-sizing: border-box;
+            box-shadow: var(--shadow-md);
         }
 
         textarea {
@@ -47,7 +33,6 @@
             border: 1px solid var(--border-color);
             border-radius: var(--radius-sm);
             padding: 12px;
-            box-sizing: border-box;
             font-family: monospace;
             font-size: 14px;
             resize: vertical;
@@ -65,8 +50,8 @@
         }
 
         #errorMessage {
-            width: 95%;
-            margin: 10px auto 0 auto;
+            width: 100%;
+            margin-top: 10px;
             color: #fca5a5;
             font-weight: bold;
             white-space: pre-wrap;
@@ -114,13 +99,13 @@
         }
 
         .btn-action {
-            background: rgba(180, 120, 40, 0.15);
-            border-color: rgba(210, 150, 70, 0.4);
+            background: var(--btn-action-bg);
+            border-color: var(--btn-action-border);
             color: #e8c88a;
         }
 
         .btn-action:hover {
-            background: rgba(180, 120, 40, 0.3);
+            background: var(--btn-action-bg-hover);
             color: #fff;
         }
 
@@ -149,12 +134,11 @@
         }
 
         .table-wrapper {
-            width: 95%;
-            margin: 20px auto;
+            width: 100%;
             border-radius: var(--radius-md);
             overflow: hidden;
             background-color: var(--bg-table);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-md);
             border: 1px solid var(--border-color);
         }
 
@@ -246,36 +230,46 @@
 </head>
 
 <body>
-    <div id="nav-placeholder"></div>
+    <!-- 幅管理コンテナ -->
+    <div class="page-container">
 
-    <div class="header-container">
-        <h1>PoE2 JSON Generator</h1>
-    </div>
+        <!-- ナビゲーション -->
+        <div id="nav-placeholder"></div>
 
-    <div class="controls-wrapper">
-        <textarea id="inputArea" placeholder="スプレッドシート等からコピーしたTSVデータをここに貼り付けてください（セル内改行対応）"></textarea>
-        <div id="errorMessage"></div>
+        <!-- タイトル部分 -->
+        <header class="page-header">
+            <h1>PoE2 JSON Generator</h1>
+        </header>
 
-        <div class="separator-horizontal"></div>
+        <!-- 本文部分 -->
+        <main class="main-content">
 
-        <div class="controls-row">
-            <button class="btn-common btn-action" onclick="processData()">▼ プレビューを表示</button>
-            <div class="separator-strong"></div>
-            <button class="btn-common btn-bronze" onclick="copyJSON()">📋 jsonをコピー</button>
-            <button class="btn-common btn-bronze" onclick="downloadJSON('poe2actboss.json')">⬇ poe2actboss.json</button>
-            <button class="btn-common btn-bronze" onclick="downloadJSON('poe2-endgame-maps.json')">⬇
-                poe2-endgame-maps.json</button>
-            <button class="btn-common btn-red" onclick="resetForm()">✖ リセット</button>
-        </div>
-    </div>
+            <div class="controls-wrapper">
+                <textarea id="inputArea" placeholder="スプレッドシート等からコピーしたTSVデータをここに貼り付けてください（セル内改行対応）"></textarea>
+                <div id="errorMessage"></div>
 
-    <div class="table-wrapper">
-        <table id="previewTable">
-            <thead>
-                <tr id="tableHead"></tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-        </table>
+                <div class="separator-horizontal"></div>
+
+                <div class="controls-row">
+                    <button class="btn-common btn-action" onclick="processData()">▼ プレビューを表示</button>
+                    <div class="separator-strong"></div>
+                    <button class="btn-common btn-bronze" onclick="copyJSON()">📋 jsonをコピー</button>
+                    <button class="btn-common btn-bronze" onclick="downloadJSON('poe2actboss.json')">⬇ poe2actboss.json</button>
+                    <button class="btn-common btn-bronze" onclick="downloadJSON('poe2-endgame-maps.json')">⬇ poe2-endgame-maps.json</button>
+                    <button class="btn-common btn-red" onclick="resetForm()">✖ リセット</button>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="previewTable">
+                    <thead>
+                        <tr id="tableHead"></tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+
+        </main>
     </div>
 
     <script>

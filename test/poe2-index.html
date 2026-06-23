@@ -5,34 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 Index</title>
-    <link rel="stylesheet" href="common.css">
-    <script src="nav.js" defer></script>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/nav.js" defer></script>
     <style>
         /* =========================================
-           CSS変数
+           ローカルCSS (ページ固有のスタイル)
         ========================================= */
-
-        /* --- Index用メインコンテナ --- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background-color: var(--bg-panel);
-            padding: 30px 40px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-        }
-
-        h1 {
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            text-align: center;
-        }
 
         ul {
             list-style-type: none;
@@ -47,8 +25,7 @@
             display: flex;
             gap: 12px;
             align-items: center;
-            flex-wrap: wrap;
-            /* 画面が狭い時に旧リンクを折り返す */
+            flex-wrap: wrap; /* 画面が狭い時に旧リンクを折り返す */
         }
 
         a.menu-link {
@@ -103,30 +80,36 @@
             color: var(--text-main);
             border-color: var(--text-muted);
             background-color: rgba(255, 255, 255, 0.05);
-            transform: translateY(-2px);
-            /* 横ではなく少し浮かすだけにする */
+            transform: translateY(-2px); /* 横ではなく少し浮かすだけにする */
         }
     </style>
-    <script src="nav.js" defer></script>
 </head>
 
 <body>
+    <div class="page-container">
 
-    <div id="nav-placeholder"></div>
-    <!-- 既存のコンテンツ -->
-    <div class="container">
-        <h1>データ</h1>
-        <ul>
-            <li><a href="poe2-campaign.html" class="menu-link">PoE2 アクトボス</a></li>
-            <li>
-                <div class="link-wrapper">
-                    <a href="poe2-endgame-maps.html" class="menu-link">PoE2 エンドゲームマップ</a>
-                    <a href="poe2mapboss.html" class="menu-link old-link">（旧）PoE2マップボスリスト</a>
-                </div>
-            </li>
-            <li><a href="poe2-memo.html" class="menu-link">PoE2 メモ</a></li>
-            <li><a href="poe2-json-builder.html" class="menu-link">PoE2 JSON Builder</a></li>
-        </ul>
+        <div id="nav-placeholder"></div>
+
+        <header class="page-header">
+            <h1>Index</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="main-panel">
+                <ul>
+                    <li><a href="poe2-campaign.html" class="menu-link">PoE2 アクトボス</a></li>
+                    <li>
+                        <div class="link-wrapper">
+                            <a href="poe2-endgame-maps.html" class="menu-link">PoE2 エンドゲームマップ</a>
+                            <a href="poe2mapboss.html" class="menu-link old-link">（旧）PoE2マップボスリスト</a>
+                        </div>
+                    </li>
+                    <li><a href="poe2-memo.html" class="menu-link">PoE2 メモ</a></li>
+                    <li><a href="poe2-json-builder.html" class="menu-link">PoE2 JSON Builder</a></li>
+                </ul>
+            </div>
+        </main>
+
     </div>
 </body>
 

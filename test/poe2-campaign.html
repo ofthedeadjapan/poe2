@@ -5,36 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 アクトボスリスト</title>
-    <link rel="stylesheet" href="common.css">
-    <script src="nav.js" defer></script>
+    <link rel="stylesheet" href="css/common.css">
+    <script src="js/nav.js" defer></script>
     <style>
-        /* =========================================
-           CSS変数（poe2mapboss準拠）
-        ========================================= */
-
-        /* --- メインコンテンツ --- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background-color: var(--bg-panel);
-            padding: 30px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-        }
-
-        h1 {
-            color: #ffffff;
-            font-size: 26px;
-            font-weight: 700;
-            margin-top: 0;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-            text-align: center;
-        }
-
-        .content {
+        /* 準備中メッセージ用のシンプルスタイル（旧 .content） */
+        .wip-message {
             color: var(--text-muted);
             text-align: center;
             padding: 40px 0;
@@ -42,17 +17,22 @@
             font-weight: 600;
         }
     </style>
-    <script src="nav.js" defer></script>
 </head>
-
 <body>
-    <div id="nav-placeholder"></div>
+    <div class="page-container">
 
-    <div class="container">
-        <h1>アクトボスリスト</h1>
-        <div class="content">えいいさくせいちゅう</div>
+        <div id="nav-placeholder"></div>
+
+        <header class="page-header">
+            <h1>あくと</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="main-panel">
+                <div class="wip-message">えいいさくせいちゅう</div>
+            </div>
+        </main>
+
     </div>
-
 </body>
-
 </html>
