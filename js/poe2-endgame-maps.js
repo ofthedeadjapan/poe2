@@ -518,23 +518,30 @@ function setupEventListeners() {
 
 function handleDropdownClick(e) {
     const dropdownBtn = e.target.closest('.btn-dropdown, .card-dropdown-btn');
+
+    // ドロップダウンの中身（選択肢など）がクリックされた場合は何もしない（閉じない）
     if (e.target.closest('.dropdown-content')) return;
 
-    const openDropdowns = document.querySelectorAll('.dropdown.show');
+    // ★ 修正ポイント: 全てを閉じる前に、クリックされたボタンの親が「開いているか」を判定・記憶しておく
+    let wasOpen = false;
+    if (dropdownBtn) {
+        wasOpen = dropdownBtn.parentElement.classList.contains('show');
+    }
 
-    // 全ての開いているドロップダウンを閉じ、aria-expandedをfalseにする
+    // 開いている全てのドロップダウンを閉じる
+    const openDropdowns = document.querySelectorAll('.dropdown.show');
     openDropdowns.forEach(d => {
         d.classList.remove('show');
         const btn = d.querySelector('.btn-dropdown, .card-dropdown-btn');
         if (btn) btn.setAttribute('aria-expanded', 'false');
     });
 
+    // ボタン以外の場所がクリックされた場合はここで終了
     if (!dropdownBtn) return;
 
     const parent = dropdownBtn.parentElement;
-    const wasOpen = parent.classList.contains('show'); // 既に上でremoveされているので常にfalseになりますが、元の状態を判定するために微調整します。
 
-    // 正しい開閉ロジック
+    // もともと「開いていなかった」場合のみ、新しく開く（開いていた場合は閉じたままになる）
     if (!wasOpen) {
         parent.classList.add('show');
         dropdownBtn.setAttribute('aria-expanded', 'true');

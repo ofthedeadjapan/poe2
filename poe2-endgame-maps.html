@@ -206,15 +206,11 @@
             text-overflow: ellipsis;
         }
 
-        /* ドロップダウン展開時の一体感 */
         .dropdown.show .btn-dropdown {
-            border-bottom-left-radius: 0;
-            border-bottom-right-radius: 0;
-            border-bottom-color: transparent;
             background-color: var(--bg-panel);
+            border-color: var(--accent-gold);
         }
 
-        /* メニューパネル */
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -223,13 +219,11 @@
             width: 100%;
             background-color: var(--bg-panel);
             border: 1px solid var(--border-color);
-            border-top: none;
-            border-bottom-left-radius: var(--radius-md);
-            border-bottom-right-radius: var(--radius-md);
+            border-radius: var(--radius-md);
             z-index: 100;
             box-shadow: 0 10px 25px var(--black80);
             padding: 8px;
-            margin-top: 0;
+            margin-top: 6px;
         }
 
         .dropdown.show .dropdown-menu {
