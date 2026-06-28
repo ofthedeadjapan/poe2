@@ -5,67 +5,67 @@
 *,
 *::before,
 *::after {
- box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 /* 1. 変数定義 (:root) */
 :root {
- color-scheme: dark;
+    color-scheme: dark;
 
- /* 背景色 */
- --bg-body: #1c1917;
- --bg-panel: #292524;
- --bg-table: #292524;
- --bg-th: #44403c;
- --bg-tr-even: #23201e;
- --bg-tr-hover: rgba(203, 166, 95, 0.15);
+    /* 背景色 */
+    --bg-body: #1c1917;
+    --bg-panel: #292524;
+    --bg-table: #292524;
+    --bg-th: #44403c;
+    --bg-tr-even: #23201e;
+    --bg-tr-hover: rgba(203, 166, 95, 0.15);
 
- /* テキスト */
- --text-main: #e7e5e4;
- --text-muted: #a8a29e;
+    /* テキスト */
+    --text-main: #e7e5e4;
+    --text-muted: #a8a29e;
 
- /* ボーダー・ライン */
- --border-color: #57534e;
- --separator-color: #78716c;
+    /* ボーダー・ライン */
+    --border-color: #57534e;
+    --separator-color: #78716c;
 
- /* アクセント・UIカラー */
- --accent-gold: #cba65f;
- --accent-gold-hover: #fef08a;
- --btn-on: #10b981;
- --btn-sort-active: #60a5fa;
+    /* アクセント・UIカラー */
+    --accent-gold: #cba65f;
+    --accent-gold-hover: #fef08a;
+    --btn-on: #10b981;
+    --btn-sort-active: #60a5fa;
 
- /* カスタムUIカラー */
- --btn-action-bg: rgba(180, 120, 40, 0.15);
- --btn-action-bg-hover: rgba(180, 120, 40, 0.3);
- --btn-action-border: rgba(210, 150, 70, 0.4);
+    /* カスタムUIカラー */
+    --btn-action-bg: rgba(180, 120, 40, 0.15);
+    --btn-action-bg-hover: rgba(180, 120, 40, 0.3);
+    --btn-action-border: rgba(210, 150, 70, 0.4);
 
- /* 耐性ステータスカラー */
- --color-empty: 255, 255, 255;
- --color-weak: 239, 68, 68;
- --color-strong: 234, 179, 8;
- --color-normal: 208, 206, 205;
+    /* 耐性ステータスカラー */
+    --color-empty: 255, 255, 255;
+    --color-weak: 239, 68, 68;
+    --color-strong: 234, 179, 8;
+    --color-normal: 208, 206, 205;
 
- /* 装飾・サイズ */
- --radius-md: 12px;
- --radius-sm: 8px;
- --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    /* 装飾・サイズ */
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
 
- /* アニメーション */
- --transition-normal: 0.2s ease;
+    /* アニメーション */
+    --transition-normal: 0.2s ease;
 }
 
 /* 2. ページ全体のベース設定 */
 html {
- overflow-y: scroll;
+    overflow-y: scroll;
 }
 
 body {
- background-color: var(--bg-body);
- color: var(--text-main);
- font-family: system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
- padding: 20px;
- margin: 0;
- line-height: 1.5;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+    padding: 20px;
+    margin: 0;
+    line-height: 1.5;
 }
 
 /* =========================================
@@ -74,112 +74,114 @@ body {
 
 /* ページ全体の幅管理コンテナ */
 .page-container {
- max-width: 1400px;
- margin: 0 auto;
- padding: 0 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 /* ページヘッダー部分 */
 .page-header {
- border-bottom: 1px solid var(--border-color);
- /* ヘッダー全体に下線を集約 */
- padding-bottom: 10px;
- margin-bottom: 30px;
- width: 100%;
+    border-bottom: 1px solid var(--border-color);
+    /* ヘッダー全体に下線を集約 */
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
 .page-header h1 {
- margin: 0;
- padding: 0;
- border-bottom: none;
+    margin: 0;
+    padding: 0;
+    border-bottom: none;
 }
 
 .title-flex-row {
- display: flex;
- justify-content: space-between;
- align-items: flex-end;
- gap: 16px;
- flex-wrap: wrap;
- width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 16px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 /* メインコンテンツ部分 */
 .main-content {
- width: 100%;
+    width: 100%;
 }
 
 /* メインパネル (もしコンテンツを箱で囲みたい場合に使用) */
 .main-panel {
- background-color: var(--bg-panel);
- padding: 30px;
- border-radius: var(--radius-md);
- border: 1px solid var(--border-color);
- box-shadow: var(--shadow-md);
+    background-color: var(--bg-panel);
+    padding: 30px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
 }
 
 /* =========================================
    4. ナビゲーション
 ========================================= */
 .nav-container {
- width: 100%;
- margin: 10px 0 30px 0;
- /* page-container内に配置するのでautoは不要に変更 */
- display: flex;
- gap: 24px;
- justify-content: flex-start;
- flex-wrap: wrap;
- box-sizing: border-box;
+    width: 100%;
+    margin: 10px 0 30px 0;
+    /* page-container内に配置するのでautoは不要に変更 */
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 .nav-link {
- color: var(--text-muted);
- text-decoration: none;
- font-size: 16px;
- font-weight: 600;
- padding-bottom: 4px;
- border-bottom: 2px solid transparent;
- transition: all 0.2s ease;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
- color: var(--accent-gold);
- border-color: var(--accent-gold);
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
 }
 
 .nav-link.active {
- pointer-events: none;
+    pointer-events: none;
 }
+
 .nav-link:last-child {
- margin-left: auto;
+    margin-left: auto;
 }
+
 /* =========================================
    5. 見出し (Headings)
 ========================================= */
 h1,
 h2,
 h3 {
- text-align: left;
- color: var(--text-main);
- font-weight: 700;
- margin-top: 0;
+    text-align: left;
+    color: var(--text-main);
+    font-weight: 700;
+    margin-top: 0;
 }
 
 h1 {
- font-size: 26px;
+    font-size: 26px;
 }
 
 h2 {
- font-size: 22px;
- margin-top: 40px;
- margin-bottom: 20px;
- padding-bottom: 8px;
- border-bottom: 1px dashed var(--border-color);
+    font-size: 22px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border-color);
 }
 
 h3 {
- font-size: 18px;
- margin-top: 30px;
- margin-bottom: 15px;
- color: var(--accent-gold);
+    font-size: 18px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: var(--accent-gold);
 }
