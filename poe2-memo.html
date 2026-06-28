@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PoE2 メモ</title>
     <link rel="stylesheet" href="css/common.css">
-    <script src="js/nav.js" defer></script>
     <style>
         /* --- メモページ固有のスタイル --- */
         .note-panel {
@@ -131,11 +130,17 @@
     </style>
 </head>
 
-<body>
+<body data-page="memo">
 
     <div class="page-container">
 
-        <div id="nav-placeholder"></div>
+        <nav class="nav-container">
+            <a href="poe2-index.html" class="nav-link" data-target="index">Index</a>
+            <a href="poe2-campaign.html" class="nav-link" data-target="campaign">アクト</a>
+            <a href="poe2-endgame-maps.html" class="nav-link" data-target="endgame-maps">エンドゲームマップ</a>
+            <a href="poe2-memo.html" class="nav-link" data-target="memo">メモ</a>
+            <a href="poe2-json-builder.html" class="nav-link" data-target="json-builder">JSON Builder</a>
+        </nav>
 
         <header class="page-header">
             <div class="title-flex-row">

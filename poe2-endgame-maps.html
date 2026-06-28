@@ -1,1018 +1,1121 @@
 <!DOCTYPE html>
 <html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 エンドゲームマップリスト</title>
-    <link rel="stylesheet" href="css/common.css">
-    <script src="js/nav.js" defer></script>
-    <style>
-        /* ==========================================================================
-           1. 基盤設定 (Base & Layout)
-           ========================================================================== */
-        button:focus-visible,
-        a:focus-visible,
-        input:focus-visible {
-            outline: 2px solid var(--accent-gold);
-            outline-offset: 2px;
-        }
-
-        .is-hidden {
-            display: none !important;
-        }
-
-        /* ==========================================
-           2. 共通コンポーネント (Shared Components)
-           ========================================== */
-        .controls-wrapper,
-        .table-wrapper {
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .5);
-        }
-
-        .error-box {
-            color: #ef4444;
-            background: rgba(239, 68, 68, .1);
-            padding: 12px;
-            border: 1px solid #ef4444;
-            border-radius: var(--radius-sm);
-            margin-top: 12px;
-            font-weight: bold;
-        }
-
-        .reference-link-top a {
-            color: #60a5fa;
-            text-decoration: none;
-        }
-
-        .reference-link-top a:hover {
-            text-decoration: underline;
-        }
-
-        /* ==========================================
-           3. コントロールパネル & 区切り線 (Controls & Separators)
-           ========================================== */
-        .controls-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            margin-bottom: 20px;
-            background-color: var(--bg-panel);
-            padding: 16px;
-        }
-
-        .controls-row {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
-            width: 100%;
-        }
-
-        .separator-horizontal {
-            width: 100%;
-            height: 1px;
-            background-color: rgba(87, 83, 78, .4);
-        }
-
-        .separator-strong,
-        .separator-weak {
-            flex-shrink: 0;
-        }
-
-        .separator-strong {
-            width: 2px;
-            height: 32px;
-            background-color: var(--separator-color);
-            border-radius: 1px;
-        }
-
-        .separator-weak {
-            width: 1px;
-            height: 26px;
-            background-color: rgba(87, 83, 78, .6);
-        }
-
-        /* ==========================================
-           4. ボタン & ドロップダウン (Buttons & Dropdowns)
-           ========================================== */
-        .btn-action,
-        .btn-dropdown {
-            height: 44px;
-            cursor: pointer;
-            border-radius: var(--radius-sm);
-            font-size: 15px;
-            font-weight: 600;
-            transition: all var(--transition-normal);
-            outline: none;
-        }
-
-        .btn-action:active,
-        .btn-dropdown:active {
-            transform: translateY(1px);
-        }
-
-        .btn-action {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            padding: 0 16px;
-            white-space: nowrap;
-            flex-shrink: 0;
-            background: var(--btn-action-bg);
-            border: 1px solid var(--btn-action-border);
-            color: #e8c88a;
-        }
-
-        .btn-action:hover {
-            background-color: var(--btn-action-bg-hover);
-            color: #fff;
-            box-shadow: 0 0 10px rgba(210, 150, 70, .3);
-        }
-
-        .btn-dropdown {
-            display: grid;
-            grid-template-columns: 24px 1fr 24px;
-            align-items: center;
-            width: 270px;
-            padding: 0 12px;
-            background-color: var(--bg-th);
-            border: 1px solid var(--border-color);
-            color: var(--text-main);
-            white-space: nowrap;
-        }
-
-        .btn-dropdown:hover {
-            background-color: var(--border-color);
-            color: #fff;
-        }
-
-        .btn-left-icon,
-        .dropdown-icon {
-            text-align: center;
-            font-size: 15px;
-        }
-
-        .dropdown-icon {
-            font-size: 12px;
-            pointer-events: none;
-        }
-
-        .btn-label {
-            text-align: center;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: calc(100% + 6px);
-            left: 0;
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, .8);
-            z-index: 100;
-            padding: 8px;
-            min-width: 260px;
-        }
-
-        .dropdown.show .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-item {
-            padding: 10px 16px;
-            font-size: 15px;
-            color: var(--text-main);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border-radius: var(--radius-sm);
-            user-select: none;
-            transition: background-color var(--transition-normal);
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--bg-th);
-            color: #ffffff;
-        }
-
-        .dropdown-item .checkmark {
-            width: 18px;
-            font-weight: bold;
-            color: var(--btn-on);
-            visibility: hidden;
-        }
-
-        .dropdown-item.sort-active {
-            color: var(--btn-sort-active);
-            font-weight: 700;
-        }
-
-        .dropdown-item.sort-active .checkmark {
-            visibility: visible;
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 6px 0;
-        }
-
-        .action-item {
-            color: var(--accent-gold);
-            font-weight: 600;
-        }
-
-        /* ==========================================
-           5. 検索ボックス (Search Box)
-           ========================================== */
-        .search-wrapper {
-            position: relative;
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
-            max-width: 450px;
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 14px;
-            font-size: 16px;
-            color: var(--text-muted);
-            pointer-events: none;
-        }
-
-        #searchInput {
-            width: 100%;
-            height: 44px;
-            padding: 10px 40px 10px 42px;
-            font-size: 16px;
-            border: 1px solid var(--border-color);
-            background-color: rgba(0, 0, 0, .2);
-            color: white;
-            border-radius: var(--radius-sm);
-            transition: all var(--transition-normal);
-        }
-
-        #searchInput:focus {
-            outline: none;
-            border-color: #ffffff;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, .2);
-        }
-
-        .clear-text-btn {
-            position: absolute;
-            right: 10px;
-            background: rgba(255, 255, 255, .1);
-            border: none;
-            color: var(--text-main);
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all var(--transition-normal);
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        .clear-text-btn:hover {
-            background: rgba(255, 255, 255, .3);
-            color: #fff;
-        }
-
-        #searchInput:not(:placeholder-shown)~.clear-text-btn {
-            visibility: visible;
-            opacity: 1;
-        }
-
-        .search-counter {
-            font-size: 15px;
-            font-weight: bold;
-            color: var(--accent-gold);
-            white-space: nowrap;
-        }
-
-        /* ==========================================
-           6. 耐性・マークフィルター (Resist & Mark Icons)
-           ========================================== */
-        .resist-filter-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 36px);
-            grid-template-rows: repeat(3, 36px);
-            gap: 8px;
-        }
-
-        .mark-filter-grid {
-            display: grid;
-            grid-auto-flow: column;
-            grid-template-rows: 36px;
-            gap: 8px;
-        }
-
-        .icon-wrapper {
-            position: relative;
-            width: 36px;
-            height: 36px;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: all var(--transition-normal);
-        }
-
-        .icon-filter {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid transparent;
-            background-color: var(--bg-th);
-            object-fit: contain;
-            transition: all var(--transition-normal);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-        }
-
-        .icon-wrapper:not(.active):hover {
-            transform: translateY(-2px);
-        }
-
-        .icon-wrapper[data-resist$="Weak"] {
-            --status-color: var(--color-weak);
-        }
-
-        .icon-wrapper[data-resist$="Strong"] {
-            --status-color: var(--color-strong);
-        }
-
-        .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) {
-            --status-color: var(--color-normal);
-        }
-
-        .icon-wrapper[data-resist] .icon-filter {
-            border: 2px solid rgba(var(--status-color), .4);
-            background-color: rgba(var(--status-color), .1);
-        }
-
-        .icon-wrapper[data-resist]:hover .icon-filter {
-            border-color: rgba(var(--status-color), .8);
-            background-color: rgba(var(--status-color), .2);
-        }
-
-        .icon-wrapper.active[data-resist] .icon-filter {
-            border-color: rgb(var(--status-color));
-            box-shadow: 0 0 10px rgba(var(--status-color), .6);
-            background-color: rgba(var(--status-color), .3);
-        }
-
-        .icon-wrapper[data-mark] .icon-filter {
-            border: 2px solid rgba(255, 255, 255, .2);
-            background-color: rgba(255, 255, 255, .05);
-            opacity: .25;
-            filter: grayscale(100%);
-        }
-
-        .icon-wrapper[data-mark]:hover .icon-filter {
-            border-color: rgba(255, 255, 255, .5);
-            background-color: rgba(255, 255, 255, .1);
-            opacity: .8;
-            filter: grayscale(50%);
-        }
-
-        .icon-wrapper.active[data-mark] .icon-filter {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 10px rgba(203, 166, 95, .6);
-            background-color: rgba(203, 166, 95, .2);
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        .badge-check {
-            position: absolute;
-            bottom: -4px;
-            right: -4px;
-            background-color: var(--btn-on);
-            color: #fff;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: bold;
-            border: 2px solid var(--bg-panel);
-            opacity: 0;
-            transform: scale(.5);
-            transition: all .2s cubic-bezier(.175, .885, .32, 1.275);
-        }
-
-        .icon-wrapper.active .badge-check {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .icon-dummy {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: rgba(0, 0, 0, .2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--border-color);
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, .05);
-            pointer-events: none;
-        }
-
-        .resist-filter-grid.has-active .icon-wrapper:not(.active) {
-            opacity: .35;
-            filter: grayscale(50%);
-        }
-
-        .resist-filter-grid.has-active .icon-wrapper:not(.active):hover {
-            opacity: .8;
-        }
-
-        /* ==========================================
-           7. テーブル設定 (Table Layout & Cells)
-           ========================================== */
-        .table-wrapper {
-            overflow: hidden;
-            background-color: var(--bg-table);
-        }
-
-        .table-wrapper::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .table-wrapper::-webkit-scrollbar-track {
-            background: var(--bg-body);
-        }
-
-        .table-wrapper::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
-
-        .table-wrapper::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-gold);
-        }
-
-        table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            font-size: 14px;
-            table-layout: fixed;
-        }
-
-        th,
-        td {
-            border-bottom: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            padding: 8px 10px;
-            line-height: 2;
-            min-width: 6em;
-            word-break: break-word;
-            overflow-wrap: break-word;
-            white-space: pre-wrap;
-        }
-
-        th:last-child,
-        td:last-child {
-            border-right: none;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        th {
-            background-color: var(--bg-th);
-            color: #ffffff;
-            white-space: nowrap;
-            text-align: center;
-            font-weight: 600;
-            box-shadow: 0 1px 0 var(--border-color);
-        }
-
-        td {
-            text-align: left;
-        }
-
-        tr {
-            transition: background-color var(--transition-normal);
-        }
-
-        tr td.first-visible-cell {
-            transition: box-shadow var(--transition-normal);
-        }
-
-        tr.row-even {
-            background-color: var(--bg-tr-even);
-        }
-
-        tr:not(.no-hover-row):hover {
-            background-color: var(--bg-tr-hover);
-        }
-
-        tr:not(.no-hover-row):hover td.first-visible-cell {
-            box-shadow: inset 4px 0 0 var(--accent-gold);
-        }
-
-        .msg-container {
-            text-align: center;
-            padding: 48px 20px;
-            font-weight: 700;
-            font-size: 18px;
-            color: var(--text-muted);
-            white-space: normal;
-        }
-
-        /* テーブル内固有の列・アイコン装飾 */
-        .col-resist-icon {
-            width: 180px;
-            min-width: 180px;
-            max-width: 180px;
-            text-align: center;
-            white-space: normal;
-        }
-
-        .col-mark {
-            width: 60px;
-            min-width: 60px;
-            max-width: 60px;
-            text-align: center;
-        }
-
-        .resist-row-inline {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: nowrap;
-            width: 100%;
-            gap: 2px;
-            margin-bottom: 2px;
-        }
-
-        .icon-img,
-        .icon-text {
-            display: inline-block;
-            width: 24px;
-            height: 24px;
-            margin: 2px;
-            vertical-align: middle;
-            border-radius: 50%;
-            flex-shrink: 0;
-        }
-
-        .icon-text {
-            line-height: 24px;
-            text-align: center;
-            color: var(--text-muted);
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .icon-img[title$="Weak"] {
-            --table-status-color: var(--color-weak);
-        }
-
-        .icon-img[title$="Strong"] {
-            --table-status-color: var(--color-strong);
-        }
-
-        .icon-img[title]:not([title$="Weak"]):not([title$="Strong"]) {
-            --table-status-color: var(--color-normal);
-        }
-
-        .icon-img {
-            object-fit: contain;
-            padding: 0;
-            background-color: rgba(var(--table-status-color), .15);
-            box-shadow: 0 0 0 2px rgba(var(--table-status-color), .5), 0 1px 2px rgba(0, 0, 0, .3);
-        }
-
-        .mark-btn-table {
-            cursor: pointer;
-            font-size: 16px;
-            user-select: none;
-            transition: all var(--transition-normal);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 2px;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, .2);
-            background-color: rgba(255, 255, 255, .05);
-            opacity: .25;
-            filter: grayscale(100%);
-        }
-
-        .mark-btn-table:hover {
-            border-color: rgba(255, 255, 255, .5);
-            background-color: rgba(255, 255, 255, .1);
-            opacity: .25;
-            filter: grayscale(25%);
-            transform: scale(1.1);
-        }
-
-        .mark-btn-table.active {
-            border-color: var(--accent-gold);
-            box-shadow: 0 0 10px rgba(203, 166, 95, .6);
-            background-color: rgba(203, 166, 95, .2);
-            opacity: 1;
-            filter: grayscale(0%);
-        }
-
-        /* ==========================================
-           8. プレビュー & モーダル & リンク (Preview, Modal, Links)
-           ========================================== */
-        .boss-link {
-            color: var(--accent-gold);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            cursor: pointer;
-            white-space: pre-line;
-            transition: color var(--transition-normal);
-        }
-
-        .boss-link:hover {
-            color: #fef08a;
-        }
-
-        .boss-preview {
-            position: fixed;
-            z-index: 999;
-            width: min(480px, 45vw);
-            height: min(480px, 45vh);
-            padding: 8px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            pointer-events: none;
-            opacity: 0;
-            transform: scale(0.96);
-            transition: opacity 0.15s ease, transform 0.15s ease;
-        }
-
-        .boss-preview.show {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        #boss-preview-img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: var(--radius-sm);
-        }
-
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, .8);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity var(--transition-normal), visibility 0s linear var(--transition-normal);
-        }
-
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transition: opacity var(--transition-normal);
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-            padding: 12px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .8);
-        }
-
-        .modal-image {
-            display: block;
-            max-width: 100%;
-            max-height: calc(90vh - 24px);
-            border-radius: var(--radius-sm);
-            object-fit: contain;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .7);
-            color: #fff;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        /* ==========================================
-           9. レスポンシブ・スマホ最適化 (Mobile Layout)
-           ========================================== */
-        @media (max-width: 900px) {
-            table {
-                table-layout: auto;
-            }
-
-            .controls-row {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 12px;
-            }
-
-            .separator-strong,
-            .separator-weak,
-            .separator-horizontal {
-                display: none;
-            }
-
-            .search-wrapper {
-                max-width: 100%;
-                width: 100%;
-                min-width: 0;
-            }
-
-            .search-counter {
-                width: 100%;
-                text-align: center;
-            }
-
-            .btn-dropdown,
-            .btn-action,
-            .dropdown {
-                width: 100%;
-                min-width: 0;
-            }
-
-            .dropdown-content {
-                min-width: 100%;
-            }
-
-            .resist-filter-grid,
-            .mark-filter-grid {
-                justify-content: center;
-            }
-
-            .table-wrapper {
-                overflow-x: auto;
-            }
-
-            th {
-                white-space: normal;
-            }
-
-            table {
-                font-size: 12px;
-            }
-
-            th,
-            td {
-                padding: 4px 6px;
-            }
-
-            .col-resist-icon {
-                min-width: 110px;
-                max-width: 150px;
-            }
-
-            .col-mark {
-                min-width: 50px;
-                max-width: 50px;
-            }
-
-            .resist-row-inline {
-                flex-wrap: wrap;
-            }
-
-            #btn-clear-filters {
-                order: 1;
-            }
-
-            #resist-grid {
-                order: 2;
-            }
-
-            #mark-grid {
-                order: 3;
-            }
-
-            #search-wrap {
-                order: 4;
-            }
-
-            #search-counter {
-                order: 5;
-            }
-        }
-
-        /* 参考データリンクの装飾のみ */
-        .reference-link-top {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-bottom: 2px;
-            /* 下線の上に綺麗に乗せるための微調整 */
-        }
-
-        .reference-link-top a {
-            color: var(--accent-gold);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .reference-link-top a:hover {
-            text-decoration: underline;
-            color: var(--text-main);
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="page-container">
-
-        <div id="nav-placeholder"></div>
-
-        <header class="page-header">
-            <div class="title-flex-row">
-                <h1>PoE2 エンドゲームマップリスト</h1>
-                <div class="reference-link-top">
-                    参考データ: <a href="https://poe2db.tw/jp/Waystones#EndGameMaps" target="_blank"
-                        rel="noopener noreferrer">PoE2DB (Waystones)</a>
-                </div>
-            </div>
-
-            <div id="fatal-error-message" class="is-hidden error-box" role="alert" aria-live="assertive"></div>
-            <div id="fallback-message" class="is-hidden" role="alert" aria-live="polite"
-                style="color: #f87171; font-size: 14px; margin-top: 8px;">
-                ※JSONファイルが読み込めなかったため、テスト用のダミーデータを表示しています。
-            </div>
-        </header>
-
-        <main class="main-content">
-            <div class="controls-wrapper">
-                <div class="controls-row">
-                    <button type="button" class="btn-action" data-click="resetView">↺ ソート・表示項目の初期化</button>
-
-                    <div class="separator-strong"></div>
-
-                    <div class="dropdown">
-                        <button type="button" class="btn-dropdown">
-                            <span class="btn-left-icon">↕</span>
-                            <span id="btn-sort-text" class="btn-label">マップ名ソート: 初期順</span>
-                            <span class="dropdown-icon">▼</span>
-                        </button>
-                        <div class="dropdown-content">
-                            <div class="dropdown-item sort-active" data-click="sort" data-sort="default"
-                                data-sort-name="初期順">
-                                <span class="checkmark" style="visibility:visible;">✔</span>初期順
-                            </div>
-                            <div class="dropdown-item" data-click="sort" data-sort="kana-asc" data-sort-name="五十音順">
-                                <span class="checkmark">✔</span>五十音順
-                            </div>
-                            <div class="dropdown-item" data-click="sort" data-sort="kana-desc" data-sort-name="五十音逆順">
-                                <span class="checkmark">✔</span>五十音逆順
-                            </div>
-                            <div class="dropdown-item" data-click="sort" data-sort="eng-asc" data-sort-name="英語順"><span
-                                    class="checkmark">✔</span>英語順</div>
-                            <div class="dropdown-item" data-click="sort" data-sort="eng-desc" data-sort-name="英語逆順">
-                                <span class="checkmark">✔</span>英語逆順
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="separator-weak"></div>
-
-                    <div class="dropdown">
-                        <button type="button" class="btn-dropdown">
-                            <span class="btn-left-icon">⊞</span>
-                            <span id="btn-column-text" class="btn-label">表示項目</span>
-                            <span class="dropdown-icon">▼</span>
-                        </button>
-                        <div class="dropdown-content" id="column-dropdown-content">
-                            <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="true">☑
-                                すべて表示</div>
-                            <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="false">☐
-                                すべて非表示</div>
-                            <div class="dropdown-divider"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="separator-horizontal"></div>
-
-                <div class="controls-row">
-                    <button type="button" class="btn-action" data-click="clearAllFilters" id="btn-clear-filters">✖
-                        検索・フィルターの全解除</button>
-
-                    <div class="separator-strong"></div>
-
-                    <div class="search-wrapper" id="search-wrap">
-                        <span class="search-icon">🔍</span>
-                        <input type="text" id="searchInput" placeholder="読み込み中..." disabled autocomplete="off">
-                        <button type="button" class="clear-text-btn" data-click="clearSearchText" aria-label="検索文字を消去"
-                            title="文字を消去">✖</button>
-                    </div>
-
-                    <div class="separator-weak"></div>
-
-                    <div class="resist-filter-grid" id="resist-grid"></div>
-
-                    <div class="separator-weak"></div>
-
-                    <div class="mark-filter-grid" id="mark-grid"></div>
-
-                    <div class="separator-weak"></div>
-
-                    <div id="search-counter" class="search-counter">検索結果: -件 / 全-件</div>
-                </div>
-            </div>
-
-            <div class="table-wrapper">
-                <table id="endgame-maps-table">
-                    <thead>
-                        <tr id="endgame-maps-table-head-row"></tr>
-                    </thead>
-                    <tbody id="endgame-maps-table-body">
-                    </tbody>
-                    <tbody id="endgame-maps-table-message">
-                        <tr id="no-result-row" class="is-hidden no-hover-row">
-                            <td id="no-result-cell" class="msg-container">
-                                <div id="msg-empty-data" class="is-hidden">
-                                    <span>データが空です。</span>
-                                </div>
-                                <div id="msg-no-column" class="is-hidden">
-                                    <span>選択項目がありません</span><br>
-                                    <button type="button" class="btn-action" data-click="resetView"
-                                        style="margin-top: 16px; display: inline-flex;">↺ ソート・表示項目の初期化</button>
-                                </div>
-                                <div id="msg-no-match" class="is-hidden">
-                                    <span>該当するデータが見つかりませんでした。</span><br>
-                                    <button type="button" class="btn-action" data-click="clearAllFilters"
-                                        style="margin-top: 16px; display: inline-flex;">✖ 検索・フィルターの全解除</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </main>
-
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoE2 エンドゲームマップリスト</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+   /* ==========================================================================
+      1. 基盤設定 & 変数 (Base & Layout)
+      ========================================================================== */
+   :root {
+    --resist-empty-bg: rgba(var(--color-empty), 0.01);
+    --resist-empty-border: rgba(var(--color-empty), 0.02);
+    --resist-normal-bg: rgba(var(--color-normal), 0.1);
+    --resist-normal-border: rgb(var(--color-normal), 0.55);
+    --resist-weak-bg: rgba(var(--color-weak), 0.15);
+    --resist-weak-border: rgb(var(--color-weak), 0.55);
+    --resist-strong-bg: rgba(var(--color-strong), 0.15);
+    --resist-strong-border: rgb(var(--color-strong), 0.55);
+
+    /* すべてのドロップダウンの統一幅 */
+    --btn-dropdown-width: 240px;
+
+    /* 透過カラー・アニメーションの統一化 */
+    --white04: rgba(255, 255, 255, 0.04);
+    --white05: rgba(255, 255, 255, 0.05);
+    --white10: rgba(255, 255, 255, 0.1);
+    --white20: rgba(255, 255, 255, 0.2);
+    --white30: rgba(255, 255, 255, 0.3);
+    --white50: rgba(255, 255, 255, 0.5);
+
+    --black20: rgba(0, 0, 0, 0.2);
+    --black50: rgba(0, 0, 0, 0.5);
+    --black60: rgba(0, 0, 0, 0.6);
+    --black80: rgba(0, 0, 0, 0.8);
+    --black85: rgba(0, 0, 0, 0.85);
+    --black90: rgba(0, 0, 0, 0.9);
+
+    --transition-fast: 0.15s ease;
+   }
+
+   button:focus-visible,
+   a:focus-visible,
+   input:focus-visible {
+    outline: 2px solid var(--accent-gold);
+    outline-offset: 2px;
+   }
+
+   .is-hidden {
+    display: none !important;
+   }
+
+   /* 右端寄せ用クラス */
+   .ml-auto {
+    margin-left: auto !important;
+   }
+
+   /* ==========================================
+      2. 共通コンポーネント (Shared Components)
+      ========================================== */
+   .controls-wrapper,
+   .table-wrapper {
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 6px -1px var(--black50);
+   }
+
+   .error-box {
+    color: #ef4444;
+    background: rgba(239, 68, 68, .1);
+    padding: 12px;
+    border: 1px solid #ef4444;
+    border-radius: var(--radius-sm);
+    margin-top: 12px;
+    font-weight: bold;
+   }
+
+   .reference-link-top {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+   }
+
+   .reference-link-top a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+   }
+
+   .reference-link-top a:hover {
+    text-decoration: underline;
+    color: var(--text-main);
+   }
+
+   /* ==========================================
+      3. コントロールパネル & 区切り線 (Controls)
+      ========================================== */
+   .controls-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+    background-color: var(--bg-panel);
+    padding: 16px;
+   }
+
+   .control-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    width: 100%;
+   }
+
+   .separator-horizontal {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(87, 83, 78, .4);
+   }
+
+   .separator-weak {
+    width: 1px;
+    height: 26px;
+    background-color: rgba(87, 83, 78, .6);
+    flex-shrink: 0;
+   }
+
+   /* ==========================================
+      4. ボタン & 新ドロップダウン (Buttons & Dropdowns)
+      ========================================== */
+   /* 追加: ボタンベースクラス */
+   .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+   }
+
+   .btn-action {
+    height: 44px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    transition: all var(--transition-normal);
+    outline: none;
+    gap: 6px;
+    padding: 0 16px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    background: var(--btn-action-bg);
+    border: 1px solid var(--btn-action-border);
+    color: #e8c88a;
+   }
+
+   .btn-action:active {
+    transform: translateY(1px);
+   }
+
+   .btn-action:hover {
+    background-color: var(--btn-action-bg-hover);
+    color: #fff;
+    filter: drop-shadow(0 0 10px rgba(210, 150, 70, .3));
+   }
+
+   /* ドロップダウンの親コンテナ */
+   .dropdown-container {
+    position: relative;
+    width: var(--btn-dropdown-width);
+   }
+
+   /* ドロップダウンボタン (設定系) */
+   .btn-dropdown {
+    width: 100%;
+    height: 44px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 0 14px;
+    background-color: var(--bg-th);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-main);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transition-normal), border-color var(--transition-normal);
+    outline: none;
+   }
+
+   /* ゴールドと衝突しない上品なハイライト */
+   .btn-dropdown:hover {
+    background-color: var(--white04);
+    border-color: var(--separator-color);
+   }
+
+   .btn-dropdown:active {
+    transform: translateY(1px);
+   }
+
+   .btn-dropdown-content {
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+   }
+
+   /* ドロップダウン展開時の一体感 */
+   .dropdown.show .btn-dropdown {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: transparent;
+    background-color: var(--bg-panel);
+   }
+
+   /* メニューパネル */
+   .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-top: none;
+    border-bottom-left-radius: var(--radius-md);
+    border-bottom-right-radius: var(--radius-md);
+    z-index: 100;
+    box-shadow: 0 10px 25px var(--black80);
+    padding: 8px;
+    margin-top: 0;
+   }
+
+   .dropdown.show .dropdown-menu {
+    display: block;
+   }
+
+   .dropdown-item {
+    padding: 10px 16px;
+    font-size: 15px;
+    color: var(--text-main);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-radius: var(--radius-sm);
+    user-select: none;
+    transition: background-color var(--transition-normal);
+    white-space: nowrap;
+   }
+
+   .dropdown-item:hover {
+    background-color: var(--bg-th);
+    color: #ffffff;
+   }
+
+   .dropdown-item .checkmark {
+    width: 18px;
+    font-weight: bold;
+    color: var(--btn-on);
+    visibility: hidden;
+   }
+
+   .dropdown-item.sort-active {
+    color: var(--btn-sort-active);
+    font-weight: 700;
+   }
+
+   .dropdown-item.sort-active .checkmark {
+    visibility: visible;
+   }
+
+   .dropdown-divider {
+    height: 1px;
+    background-color: var(--border-color);
+    margin: 6px 0;
+   }
+
+   .action-item {
+    color: var(--accent-gold);
+    font-weight: 600;
+   }
+
+   .filter-dropdown-content {
+    padding: 12px;
+    width: max-content;
+    min-width: 100%;
+   }
+
+   /* ==========================================
+      6. 検索ボックス (Search Box)
+      ========================================== */
+   .search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 450px;
+   }
+
+   .search-icon {
+    position: absolute;
+    left: 14px;
+    font-size: 16px;
+    color: var(--text-muted);
+    pointer-events: none;
+   }
+
+   #searchInput {
+    width: 100%;
+    height: 44px;
+    padding: 10px 40px 10px 42px;
+    font-size: 16px;
+    border: 1px solid var(--border-color);
+    background-color: #0c0a09;
+    box-shadow: inset 0 2px 6px var(--black60);
+    color: white;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-normal);
+   }
+
+   #searchInput:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 10px 2px var(--white20);
+   }
+
+   .clear-text-btn {
+    position: absolute;
+    right: 10px;
+    background: var(--white10);
+    border: none;
+    color: var(--text-main);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    font-size: 12px;
+    transition: all var(--transition-normal);
+    visibility: hidden;
+    opacity: 0;
+   }
+
+   .clear-text-btn:hover {
+    background: var(--white30);
+    color: #fff;
+   }
+
+   #searchInput:not(:placeholder-shown)~.clear-text-btn {
+    visibility: visible;
+    opacity: 1;
+   }
+
+   .search-counter {
+    font-size: 15px;
+    font-weight: bold;
+    color: var(--accent-gold);
+    white-space: nowrap;
+   }
+
+   /* ==========================================
+      7. 耐性・マークフィルター (Resist & Mark Icons)
+      ========================================== */
+   .resist-filter-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 36px);
+    grid-template-rows: repeat(3, 36px);
+    gap: 8px;
+   }
+
+   .mark-filter-grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: 36px;
+    gap: 8px;
+   }
+
+   .icon-wrapper {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: all var(--transition-normal);
+   }
+
+   .icon-filter {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: var(--bg-th);
+    object-fit: contain;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+   }
+
+   .icon-wrapper:not(.active):hover {
+    transform: translateY(-2px);
+   }
+
+   .icon-wrapper[data-resist$="Weak"] {
+    --status-color: var(--color-weak);
+   }
+
+   .icon-wrapper[data-resist$="Strong"] {
+    --status-color: var(--color-strong);
+   }
+
+   .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) {
+    --status-color: var(--color-normal);
+   }
+
+   .icon-wrapper[data-resist] .icon-filter {
+    border: 2px solid rgba(var(--status-color), .4);
+    background-color: rgba(var(--status-color), .1);
+   }
+
+   .icon-wrapper[data-resist]:hover .icon-filter {
+    border-color: rgba(var(--status-color), .8);
+    background-color: rgba(var(--status-color), .2);
+   }
+
+   .icon-wrapper.active[data-resist] .icon-filter {
+    border-color: rgb(var(--status-color));
+    filter: drop-shadow(0 0 10px rgba(var(--status-color), .6));
+    background-color: rgba(var(--status-color), .3);
+   }
+
+   .icon-wrapper[data-mark] .icon-filter {
+    border: 2px solid var(--white20);
+    background-color: var(--white05);
+    opacity: .25;
+    filter: grayscale(100%);
+   }
+
+   .icon-wrapper[data-mark]:hover .icon-filter {
+    border-color: var(--white50);
+    background-color: var(--white10);
+    opacity: .8;
+    filter: grayscale(50%);
+   }
+
+   .icon-wrapper.active[data-mark] .icon-filter {
+    border-color: var(--accent-gold);
+    filter: grayscale(0%) drop-shadow(0 0 10px rgba(203, 166, 95, .6));
+    background-color: rgba(203, 166, 95, .2);
+    opacity: 1;
+   }
+
+   .badge-check {
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+    background-color: var(--btn-on);
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    border: 2px solid var(--bg-panel);
+    opacity: 0;
+    transform: scale(.5);
+    transition: all var(--transition-normal) cubic-bezier(.175, .885, .32, 1.275);
+   }
+
+   .icon-wrapper.active .badge-check {
+    opacity: 1;
+    transform: scale(1);
+   }
+
+   .icon-dummy {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: var(--black20);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border-color);
+    font-weight: bold;
+    border: 1px solid var(--white05);
+    pointer-events: none;
+   }
+
+   .resist-filter-grid.has-active .icon-wrapper:not(.active) {
+    opacity: .35;
+    filter: grayscale(50%);
+   }
+
+   .resist-filter-grid.has-active .icon-wrapper:not(.active):hover {
+    opacity: .8;
+   }
+
+   /* ==========================================
+      8. テーブル設定 (Table Layout & Cells)
+      ========================================== */
+   .table-wrapper {
+    overflow: hidden;
+    background-color: var(--bg-table);
+   }
+
+   .table-wrapper::-webkit-scrollbar {
+    height: 8px;
+   }
+
+   .table-wrapper::-webkit-scrollbar-track {
+    background: var(--bg-body);
+   }
+
+   .table-wrapper::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+   }
+
+   .table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold);
+   }
+
+   table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    font-size: 16px;
+    table-layout: fixed;
+   }
+
+   th,
+   td {
+    border-bottom: 1px solid var(--border-color);
+    border-right: 1px solid var(--border-color);
+    padding: 8px 10px;
+    line-height: 1.8;
+    min-width: 6em;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    vertical-align: middle;
+   }
+
+   th:last-child,
+   td:last-child {
+    border-right: none;
+   }
+
+   tr:last-child td {
+    border-bottom: none;
+   }
+
+   th {
+    background-color: var(--bg-th);
+    color: #ffffff;
+    white-space: nowrap;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 1px 0 var(--border-color);
+   }
+
+   td {
+    text-align: left;
+   }
+
+   tr {
+    transition: background-color var(--transition-normal);
+   }
+
+   tr td.first-visible-cell {
+    transition: box-shadow var(--transition-normal);
+   }
+
+   tr.row-even {
+    background-color: var(--bg-tr-even);
+   }
+
+   tr:not(.no-hover-row):hover {
+    background-color: var(--bg-tr-hover);
+   }
+
+   tr:not(.no-hover-row):hover td.first-visible-cell {
+    box-shadow: inset 4px 0 0 var(--accent-gold);
+   }
+
+   .msg-container {
+    text-align: center;
+    padding: 48px 20px;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-muted);
+    white-space: normal;
+   }
+
+   /* ------------------------------------------
+      テーブル内: 日英テキスト制御 (Interleaved)
+      ------------------------------------------ */
+   .cell-lang-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+   }
+
+   .interleaved-pair {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+   }
+
+   .lang-ja {
+    font-size: 16px;
+    color: var(--text-main);
+    order: 1;
+    line-height: 1.4;
+   }
+
+   .lang-en {
+    font-size: 14px;
+    color: var(--text-muted);
+    order: 2;
+    line-height: 1.4;
+   }
+
+   body.lang-en-main .lang-ja,
+   body.lang-en-only .lang-ja {
+    font-size: 14px;
+    color: var(--text-muted);
+    order: 2;
+   }
+
+   body.lang-en-main .lang-en,
+   body.lang-en-only .lang-en {
+    font-size: 16px;
+    color: var(--text-main);
+    font-weight: 600;
+    order: 1;
+   }
+
+   body.lang-ja-only .lang-en {
+    display: none !important;
+   }
+
+   body.lang-en-only .lang-ja {
+    display: none !important;
+   }
+
+   /* ------------------------------------------
+      テーブル内: 耐性アイコン
+      ------------------------------------------ */
+   .col-resist-icon {
+    width: 195px;
+    min-width: 110px;
+    text-align: center;
+   }
+
+   .cell-resist-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+   }
+
+   .resist-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 26px);
+    gap: 4px;
+    justify-content: center;
+   }
+
+   .resist-slot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+   }
+
+   .resist-slot.is-empty {
+    background-color: var(--resist-empty-bg);
+    border: 1px solid var(--resist-empty-border);
+   }
+
+   .resist-slot.is-normal {
+    background-color: var(--resist-normal-bg);
+    border: 1px solid var(--resist-normal-border);
+   }
+
+   .resist-slot.is-weak {
+    background-color: var(--resist-weak-bg);
+    border: 1px solid var(--resist-weak-border);
+   }
+
+   .resist-slot.is-strong {
+    background-color: var(--resist-strong-bg);
+    border: 1px solid var(--resist-strong-border);
+   }
+
+   .resist-icon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 2px;
+   }
+
+   /* ------------------------------------------
+      テーブル内: その他装飾
+      ------------------------------------------ */
+   .col-mark {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    text-align: center;
+   }
+
+   .mark-btn-table {
+    font-size: 16px;
+    user-select: none;
+    transition: all var(--transition-normal);
+    margin: 0 2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--white20);
+    background-color: var(--white05);
+    opacity: .25;
+    filter: grayscale(100%);
+   }
+
+   .mark-btn-table:hover {
+    border-color: var(--white50);
+    background-color: var(--white10);
+    opacity: .25;
+    filter: grayscale(25%);
+    transform: scale(1.1);
+   }
+
+   .mark-btn-table.active {
+    border-color: var(--accent-gold);
+    filter: grayscale(0%) drop-shadow(0 0 10px rgba(203, 166, 95, .6));
+    background-color: rgba(203, 166, 95, .2);
+    opacity: 1;
+   }
+
+   /* ==========================================
+      9. プレビュー & モーダル & リンク (Preview, Modal, Links)
+      ========================================== */
+   .boss-link {
+    color: var(--accent-gold);
+    text-decoration: underline dotted rgba(203, 166, 95, 0.5);
+    text-underline-offset: 3px;
+    transition: color var(--transition-normal);
+    display: inline-block;
+   }
+
+   .boss-link:hover {
+    color: var(--accent-gold-hover);
+    text-decoration-style: solid;
+   }
+
+   .boss-preview {
+    position: fixed;
+    pointer-events: none;
+    z-index: 2000;
+    background: #1c1917;
+    border: 2px solid var(--accent-gold);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+    box-shadow: 0 10px 25px var(--black80);
+    max-width: 400px;
+    transition: opacity var(--transition-fast);
+    opacity: 0;
+   }
+
+   .boss-preview.show {
+    opacity: 1;
+   }
+
+   .boss-preview.is-hidden {
+    display: none;
+   }
+
+   .boss-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+   }
+
+   .modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--black85);
+    z-index: 3000;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition-normal), visibility 0s linear var(--transition-normal);
+   }
+
+   .modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--transition-normal);
+   }
+
+   .modal-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    padding: 12px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    box-shadow: 0 20px 50px var(--black90);
+   }
+
+   .modal-image {
+    display: block;
+    max-width: 100%;
+    max-height: calc(90vh - 24px);
+    border-radius: var(--radius-sm);
+    border: 3px solid var(--border-color);
+    object-fit: contain;
+   }
+
+   .modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #fff;
+    font-size: 32px;
+   }
+
+   /* ==========================================
+      10. レスポンシブ・スマホ最適化 (Mobile Layout)
+      ========================================== */
+   @media (max-width: 900px) {
+    table {
+     table-layout: auto;
+    }
+
+    .control-bar {
+     flex-direction: column;
+     align-items: stretch;
+    }
+
+    .dropdown-container {
+     width: 100%;
+    }
+
+    .ml-auto {
+     margin-left: 0 !important;
+    }
+
+    .resist-filter-grid {
+     grid-template-columns: repeat(3, 36px);
+     grid-template-rows: repeat(2, 36px);
+    }
+
+    .resist-grid {
+     grid-template-columns: repeat(3, 26px);
+     grid-template-rows: repeat(2, 26px);
+    }
+
+    .separator-strong,
+    .separator-weak,
+    .separator-horizontal {
+     display: none;
+    }
+
+    .search-wrapper {
+     max-width: 100%;
+     width: 100%;
+     min-width: 0;
+    }
+
+    .search-counter {
+     width: 100%;
+     text-align: center;
+    }
+
+    .resist-filter-grid,
+    .mark-filter-grid {
+     justify-content: center;
+    }
+
+    .table-wrapper {
+     overflow-x: auto;
+    }
+
+    th {
+     white-space: normal;
+    }
+
+    table {
+     font-size: 12px;
+    }
+
+    th,
+    td {
+     padding: 4px 6px;
+    }
+
+    #btn-clear-filters {
+     order: 1;
+    }
+
+    /* スマホ時は耐性アイコンボタンを先頭へ寄せるなどの微調整 */
+    .dropdown-container:nth-of-type(4) {
+     order: 2;
+    }
+
+    #mark-grid {
+     order: 3;
+    }
+
+    #search-wrap {
+     order: 4;
+    }
+
+    #search-counter {
+     order: 5;
+    }
+   }
+  </style>
+ </head>
+
+ <body data-page="endgame-maps">
+
+  <div class="page-container">
+
+   <nav class="nav-container">
+    <a href="poe2-index.html" class="nav-link" data-target="index">Index</a>
+    <a href="poe2-campaign.html" class="nav-link" data-target="campaign">アクト</a>
+    <a href="poe2-endgame-maps.html" class="nav-link active" data-target="endgame-maps">エンドゲームマップ</a>
+    <a href="poe2-memo.html" class="nav-link" data-target="memo">メモ</a>
+    <a href="poe2-json-builder.html" class="nav-link" data-target="json-builder">JSON Builder</a>
+   </nav>
+
+   <header class="page-header">
+    <div class="title-flex-row">
+     <h1>PoE2 エンドゲームマップリスト</h1>
+     <div class="reference-link-top">
+      参考データ: <a href="https://poe2db.tw/jp/Waystones#EndGameMaps" target="_blank"
+       rel="noopener noreferrer">PoE2DB (Waystones)</a>
+     </div>
     </div>
 
-    <div id="boss-preview" class="boss-preview is-hidden">
-        <img id="boss-preview-img" alt="">
+    <div id="fatal-error-message" class="is-hidden error-box" role="alert" aria-live="assertive"></div>
+    <div id="fallback-message" class="is-hidden" role="alert" aria-live="polite"
+     style="color: #f87171; font-size: 14px; margin-top: 8px;">
+     ※JSONファイルが読み込めなかったため、テスト用のダミーデータを表示しています。
     </div>
+   </header>
 
-    <div id="boss-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button type="button" class="modal-close" data-click="closeModal" aria-label="閉じる">✕</button>
-            <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image" loading="lazy">
+   <main class="main-content">
+    <div class="controls-wrapper">
+
+     <div class="control-bar">
+
+      <div class="dropdown-container dropdown">
+       <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+        <span class="btn-icon">◈</span>
+        <span class="btn-dropdown-content">マップ名ソート: <span id="btn-sort-text">初期</span></span>
+        <span>▼</span>
+       </button>
+       <div class="dropdown-menu dropdown-content">
+        <div class="dropdown-item sort-active" data-click="sort" data-sort="default" data-sort-name="初期">
+         <span class="checkmark" style="visibility:visible;">✔</span>初期
         </div>
+        <div class="dropdown-item" data-click="sort" data-sort="kana-asc" data-sort-name="あ→ん">
+         <span class="checkmark">✔</span>あ→ん
+        </div>
+        <div class="dropdown-item" data-click="sort" data-sort="kana-desc" data-sort-name="ん→あ">
+         <span class="checkmark">✔</span>ん→あ
+        </div>
+        <div class="dropdown-item" data-click="sort" data-sort="eng-asc" data-sort-name="Ａ→Ｚ">
+         <span class="checkmark">✔</span>Ａ→Ｚ
+        </div>
+        <div class="dropdown-item" data-click="sort" data-sort="eng-desc" data-sort-name="Ｚ→Ａ">
+         <span class="checkmark">✔</span>Ｚ→Ａ
+        </div>
+       </div>
+      </div>
+
+      <div class="dropdown-container dropdown">
+       <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+        <span class="btn-icon">◈</span>
+        <span class="btn-dropdown-content">マップ・ボス名: <span id="btn-format-text">日＋英</span></span>
+        <span>▼</span>
+       </button>
+       <div class="dropdown-menu dropdown-content">
+        <div class="dropdown-item sort-active" data-click="setFormat" data-format="both-ja">
+         <span class="checkmark" style="visibility:visible;">✔</span>日＋英
+        </div>
+        <div class="dropdown-item" data-click="setFormat" data-format="both-en">
+         <span class="checkmark" style="visibility:hidden;">✔</span>英＋日
+        </div>
+        <div class="dropdown-item" data-click="setFormat" data-format="ja">
+         <span class="checkmark" style="visibility:hidden;">✔</span>日のみ
+        </div>
+        <div class="dropdown-item" data-click="setFormat" data-format="en">
+         <span class="checkmark" style="visibility:hidden;">✔</span>英のみ
+        </div>
+       </div>
+      </div>
+
+      <div class="dropdown-container dropdown">
+       <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+        <span class="btn-icon">◈</span>
+        <span class="btn-dropdown-content">表示列: <span id="btn-column-text">９／９</span></span>
+        <span>▼</span>
+       </button>
+       <div class="dropdown-menu dropdown-content" id="column-dropdown-content">
+        <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="true">☑ すべて表示</div>
+        <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="false">☐ すべて非表示</div>
+        <div class="dropdown-divider"></div>
+       </div>
+      </div>
+
+      <button type="button" class="btn-action btn-base ml-auto" data-click="resetView">↺ 表示初期化</button>
+     </div>
+
+     <div class="separator-horizontal"></div>
+
+     <div class="control-bar">
+      <div class="search-wrapper" id="search-wrap">
+       <span class="search-icon">🔍</span>
+       <input type="text" id="searchInput" placeholder="読み込み中..." disabled autocomplete="off">
+       <button type="button" class="clear-text-btn btn-base" data-click="clearSearchText" aria-label="検索文字を消去" title="文字を消去">✖</button>
+      </div>
+
+      <div class="separator-weak"></div>
+
+      <div class="dropdown-container dropdown">
+       <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+        <span class="btn-icon">◈</span>
+        <span class="btn-dropdown-content">耐性アイコン</span>
+        <span>▼</span>
+       </button>
+       <div class="dropdown-menu dropdown-content filter-dropdown-content">
+        <div class="resist-filter-grid" id="resist-grid"></div>
+       </div>
+      </div>
+
+      <div class="separator-weak"></div>
+
+      <div class="mark-filter-grid" id="mark-grid"></div>
+
+      <div class="separator-weak"></div>
+
+      <div id="search-counter" class="search-counter" aria-live="polite">検索結果: -件 / 全-件</div>
+
+      <button type="button" class="btn-action btn-base ml-auto" id="btn-clear-filters" data-click="clearAllFilters">✖ 条件クリア</button>
+     </div>
     </div>
 
-    <script src="js/wanakana.min.js" defer></script>
-    <script src="js/poe2-endgame-maps.js" defer></script>
-</body>
+    <div class="table-wrapper">
+     <table id="endgame-maps-table">
+      <thead>
+       <tr id="endgame-maps-table-head-row"></tr>
+      </thead>
+      <tbody id="endgame-maps-table-body">
+      </tbody>
+      <tbody id="endgame-maps-table-message">
+       <tr id="no-result-row" class="is-hidden no-hover-row">
+        <td id="no-result-cell" class="msg-container">
+         <div id="msg-empty-data" class="is-hidden">
+          <span>データが空です。</span>
+         </div>
+         <div id="msg-no-column" class="is-hidden">
+          <span>選択項目がありません</span><br>
+          <button type="button" class="btn-action btn-base" data-click="resetView"
+           style="margin-top: 16px;">↺ 表示初期化</button>
+         </div>
+         <div id="msg-no-match" class="is-hidden">
+          <span>該当するデータが見つかりませんでした。</span><br>
+          <button type="button" class="btn-action btn-base" data-click="clearAllFilters"
+           style="margin-top: 16px;">✖ 条件クリア</button>
+         </div>
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+
+   </main>
+
+  </div>
+
+  <div id="boss-preview" class="boss-preview is-hidden">
+   <img id="boss-preview-img" alt="">
+  </div>
+
+  <div id="boss-modal" class="modal-overlay">
+   <div class="modal-content">
+    <button type="button" class="modal-close btn-base" data-click="closeModal" aria-label="閉じる">✕</button>
+    <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image">
+   </div>
+  </div>
+
+  <script src="js/wanakana.min.js" defer></script>
+  <script src="js/poe2-endgame-maps.js" defer></script>
+ </body>
 
 </html>

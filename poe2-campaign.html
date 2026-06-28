@@ -2,372 +2,530 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 アクト攻略・ボスリスト</title>
-    <link rel="stylesheet" href="css/common.css">
-    <script src="js/nav.js" defer></script>
-    <style>
-        /* ==========================================
-           テーブル設定 (Table Layout & Cells)
-           ========================================== */
-        .table-wrapper {
-            overflow: hidden;
-            background-color: var(--bg-table);
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, .5);
-            margin-bottom: 16px;
-        }
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>PoE2 アクトボス・バフ攻略リスト</title>
+ <link rel="stylesheet" href="css/common.css">
+ <style>
+  /* ==========================================================================
+     1. 全体レイアウト・基本調整 (Base & Layout)
+     ========================================================================== */
+  :root {
+   /* common.cssのRGB変数を使って透過度(rgba)と枠線色(rgb)を指定 */
+   --resist-empty-bg: rgba(var(--color-empty), 0.04);
+   --resist-empty-border: rgba(var(--color-empty), 0.08);
+   --resist-normal-bg: rgba(var(--color-normal), 0.1);
+   --resist-normal-border: rgb(var(--color-normal), 0.55);
+   --resist-weak-bg: rgba(var(--color-weak), 0.15);
+   --resist-weak-border: rgb(var(--color-weak), 0.55);
+   --resist-strong-bg: rgba(var(--color-strong), 0.15);
+   --resist-strong-border: rgb(var(--color-strong), 0.55);
+  }
 
-        .table-wrapper::-webkit-scrollbar {
-            height: 8px;
-        }
+  .controls-toolbar {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   gap: 16px;
+   background-color: var(--bg-panel);
+   padding: 16px 20px;
+   border-radius: var(--radius-md);
+   border: 1px solid var(--border-color);
+   margin-bottom: 24px;
+   box-shadow: var(--shadow-md);
+  }
 
-        .table-wrapper::-webkit-scrollbar-track {
-            background: var(--bg-body);
-        }
+  /* endgame共通のフォーマット設定ボタン用スタイル */
+  .format-settings {
+   display: flex;
+   align-items: center;
+   gap: 12px;
+   background: rgba(0, 0, 0, 0.25);
+   padding: 6px 16px;
+   border-radius: var(--radius-sm);
+   border: 1px solid var(--border-color);
+   flex-wrap: wrap;
+  }
 
-        .table-wrapper::-webkit-scrollbar-thumb {
-            background: var(--border-color);
-            border-radius: 4px;
-        }
+  .format-title {
+   font-size: 14px;
+   color: var(--text-muted);
+   font-weight: 600;
+   white-space: nowrap;
+  }
 
-        table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            font-size: 14px;
-            table-layout: auto;
-            /* コンテンツに合わせて自動調整 */
-        }
+  .segment-group {
+   display: inline-flex;
+   background: rgba(0, 0, 0, 0.4);
+   border-radius: 6px;
+   padding: 3px;
+   gap: 2px;
+   border: 1px solid rgba(87, 83, 78, 0.6);
+   transition: opacity 0.2s ease;
+  }
 
-        th,
-        td {
-            border-bottom: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            padding: 8px 10px;
-            line-height: 1.6;
-            word-break: break-word;
-        }
+  .segment-group.is-disabled {
+   opacity: 0.35;
+   pointer-events: none;
+   filter: grayscale(100%);
+  }
 
-        th:last-child,
-        td:last-child {
-            border-right: none;
-        }
+  .segment-btn {
+   background: transparent;
+   border: none;
+   color: #a8a29e;
+   padding: 6px 14px;
+   font-size: 13px;
+   font-weight: 600;
+   border-radius: 4px;
+   cursor: pointer;
+   transition: all 0.2s ease;
+   white-space: nowrap;
+  }
 
-        tr:last-child td {
-            border-bottom: none;
-        }
+  .segment-btn:hover:not(.active) {
+   color: #ffffff;
+   background: rgba(255, 255, 255, 0.1);
+  }
 
-        th {
-            background-color: var(--bg-th);
-            color: #ffffff;
-            white-space: nowrap;
-            text-align: center;
-            font-weight: 600;
-            box-shadow: 0 1px 0 var(--border-color);
-        }
+  .segment-btn.active {
+   background: var(--bg-th);
+   color: var(--accent-gold);
+   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  /* ここまで フォーマット設定用 */
 
-        td {
-            text-align: left;
-        }
+  .btn-toggle-all {
+   background: rgba(87, 83, 78, 0.25);
+   border: 1px solid rgba(120, 113, 108, 0.5);
+   color: #d6d3d1;
+   padding: 8px 16px;
+   font-size: 15px;
+   font-weight: 600;
+   border-radius: var(--radius-sm);
+   cursor: pointer;
+   transition: all 0.2s;
+  }
+  .btn-toggle-all:hover {
+   background: rgba(203, 166, 95, 0.2);
+   border-color: var(--accent-gold);
+   color: var(--accent-gold-hover);
+  }
 
-        tr:nth-child(even) td {
-            background-color: var(--bg-tr-even);
-        }
+  /* ==========================================================================
+     2. アクトナビゲーション (目次)
+     ========================================================================== */
+  .act-nav {
+   display: flex;
+   flex-wrap: wrap;
+   gap: 8px;
+   margin-bottom: 24px;
+  }
+  .act-nav-link {
+   background-color: rgba(0,0,0,0.2);
+   border: 1px solid var(--border-color);
+   color: var(--text-muted);
+   padding: 8px 16px;
+   font-size: 15px;
+   text-decoration: none;
+   border-radius: var(--radius-sm);
+   transition: all 0.2s;
+   font-weight: bold;
+  }
+  .act-nav-link:hover {
+   border-color: var(--accent-gold);
+   color: #ffffff;
+   background-color: rgba(203, 166, 95, 0.1);
+   transform: translateY(-1px);
+  }
 
-        tr:hover td {
-            background-color: var(--bg-tr-hover);
-        }
+  /* ==========================================================================
+     3. アコーディオンセクション (Accordion)
+     ========================================================================== */
+  .act-section {
+   background-color: var(--bg-panel);
+   border: 1px solid var(--border-color);
+   border-radius: var(--radius-md);
+   margin-bottom: 20px;
+   overflow: hidden;
+   box-shadow: var(--shadow-md);
+  }
+  .act-header {
+   background-color: var(--bg-th);
+   padding: 16px 20px;
+   cursor: pointer;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   user-select: none;
+   transition: background-color 0.2s ease;
+  }
+  .act-header:hover {
+   background-color: rgba(255, 255, 255, 0.05);
+  }
+  .act-section.is-open .act-header {
+   border-bottom: 1px solid var(--border-color);
+  }
 
-        /* ==========================================
-           アクト固有レイアウト
-           ========================================== */
-        .act-section {
-            margin-bottom: 60px;
-        }
+  /* 共通CSSのh2干渉を強制リセットし、中央に綺麗に配置 */
+  .act-header h2 {
+   margin: 0 !important;
+   padding: 0 !important;
+   border: none !important;
+   text-decoration: none !important;
+   font-size: 18px !important;
+   color: #ffffff;
+   font-weight: 600;
+   line-height: 1.2 !important;
+  }
+  .toggle-icon-text {
+   font-size: 14px;
+   color: var(--text-muted);
+  }
+  .act-content {
+   display: none;
+   padding: 20px;
+  }
+  .act-section.is-open .act-content {
+   display: block;
+  }
 
-        .act-nav {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-            background: var(--bg-panel);
-            padding: 12px 16px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-        }
+  /* ==========================================================================
+     4. 永続バフチェックリスト (Buff List)
+     ========================================================================== */
+  .buff-list-wrapper {
+   background: rgba(0, 0, 0, 0.15);
+   border: 1px solid rgba(87, 83, 78, 0.5);
+   border-radius: var(--radius-sm);
+   padding: 16px;
+   margin-bottom: 20px;
+  }
+  .buff-list-title {
+   margin: 0 0 12px 0;
+   font-size: 15px;
+   color: var(--accent-gold);
+   font-weight: 600;
+  }
+  .buff-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+   gap: 10px;
+  }
+  .buff-item {
+   display: flex;
+   align-items: flex-start;
+   gap: 8px;
+   cursor: pointer;
+   font-size: 15px;
+   color: var(--text-main);
+   padding: 8px 12px;
+   background: rgba(255, 255, 255, 0.02);
+   border-radius: 4px;
+   border: 1px solid transparent;
+   transition: background 0.2s;
+  }
+  .buff-item:hover {
+   background: rgba(255, 255, 255, 0.05);
+  }
+  .buff-item input {
+   margin-top: 4px;
+   cursor: pointer;
+  }
+  .buff-item.is-checked {
+   color: var(--text-muted);
+   text-decoration: line-through;
+   opacity: 0.6;
+  }
 
-        .act-nav a {
-            color: var(--text-main);
-            text-decoration: none;
-            font-weight: bold;
-            padding: 6px 12px;
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-color);
-            transition: all 0.2s ease;
-        }
+  /* ==========================================================================
+     5. データテーブル & 言語サイズ制御 (Table & Typography)
+     ========================================================================== */
+  .table-wrapper {
+   width: 100%;
+   overflow-x: auto;
+   border-radius: var(--radius-sm);
+   border: 1px solid var(--border-color);
+   background-color: var(--bg-table);
+  }
+  table {
+   border-collapse: collapse;
+   width: 100%;
+   font-size: 15px;
+  }
+  th, td {
+   border-bottom: 1px solid var(--border-color);
+   padding: 12px;
+   vertical-align: middle;
+  }
+  tr:last-child td { border-bottom: none; }
+  th {
+   background-color: rgba(0,0,0,0.2);
+   color: var(--text-muted);
+   font-weight: 600;
+   text-align: left;
+   white-space: nowrap;
+  }
+  tr:nth-child(even) { background-color: var(--bg-tr-even); }
+  tr:hover { background-color: var(--bg-tr-hover); }
 
-        .act-nav a:hover {
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-            background: rgba(203, 166, 95, 0.1);
-        }
+  /* エリア内のレベルバッジ */
+  .area-lv {
+   display: inline-block;
+   padding: 1px 6px;
+   font-size: 12px;
+   font-weight: bold;
+   background-color: rgba(255, 255, 255, 0.1);
+   color: #cbd5e1;
+   border-radius: 4px;
+   margin-left: 8px;
+   vertical-align: text-bottom;
+  }
 
-        .rewards-box {
-            background-color: var(--bg-panel);
-            border-left: 4px solid var(--accent-gold);
-            padding: 16px;
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            margin-top: 16px;
-        }
+  /* 主従切り替え用 フォント制御 (endgame共通仕様) */
+  .cell-lang-container {
+   display: flex;
+   flex-direction: column;
+   gap: 4px;
+  }
+  .lang-ja {
+   font-size: 15px;
+   color: var(--text-main);
+   order: 1; /* 通常時は日本語が上 */
+  }
+  .lang-en {
+   font-size: 13px;
+   color: var(--text-muted);
+   order: 2; /* 通常時は英語が下 */
+  }
 
-        .rewards-box h4 {
-            margin-top: 0;
-            margin-bottom: 12px;
-            color: var(--accent-gold);
-            font-size: 16px;
-        }
+  /* 英語メイン表示モード */
+  body.lang-en-main .lang-ja,
+  body.lang-en-only .lang-ja {
+   font-size: 13px;
+   color: var(--text-muted);
+   order: 2;
+  }
 
-        .rewards-box ul {
-            margin: 0;
-            padding-left: 20px;
-        }
+  body.lang-en-main .lang-en,
+  body.lang-en-only .lang-en {
+   font-size: 15px;
+   color: var(--text-main);
+   font-weight: 600;
+   order: 1;
+  }
 
-        .rewards-box li {
-            margin-bottom: 8px;
-        }
+  /* 言語の非表示制御 */
+  body.lang-ja-only .lang-en {
+   display: none !important;
+  }
 
-        /* ==========================================
-           プレビュー & モーダル & リンク (共通流用)
-           ========================================== */
-        .boss-link {
-            color: var(--accent-gold);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            cursor: pointer;
-            white-space: pre-line;
-            transition: color 0.2s ease;
-        }
+  body.lang-en-only .lang-ja {
+   display: none !important;
+  }
 
-        .boss-link:hover {
-            color: #fef08a;
-        }
+  /* ボスリンク */
+  .boss-item-wrapper {
+   padding: 4px 0;
+  }
+  .boss-item-wrapper:first-child { padding-top: 0; }
+  .boss-item-wrapper:last-child { padding-bottom: 0; }
 
-        .boss-preview {
-            position: fixed;
-            z-index: 999;
-            width: min(480px, 45vw);
-            height: min(480px, 45vh);
-            padding: 8px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-            pointer-events: none;
-            opacity: 0;
-            transform: scale(0.96);
-            transition: opacity 0.15s ease, transform 0.15s ease;
-        }
+  .boss-item-wrapper.has-image {
+   cursor: pointer;
+   display: inline-flex;
+   flex-direction: column;
+  }
+  .boss-item-wrapper.has-image .lang-ja,
+  .boss-item-wrapper.has-image .lang-en {
+   color: var(--accent-gold);
+   text-decoration: underline dotted rgba(203, 166, 95, 0.5);
+   text-underline-offset: 3px;
+  }
+  .boss-item-wrapper.has-image:hover .lang-ja,
+  .boss-item-wrapper.has-image:hover .lang-en {
+   color: var(--accent-gold-hover);
+   text-decoration-style: solid;
+  }
 
-        .boss-preview.show {
-            opacity: 1;
-            transform: scale(1);
-        }
+  /* メモ・攻撃属性セル (15px統一) */
+  .cell-memo, .cell-atk-type {
+   font-size: 15px;
+   color: var(--text-main);
+   line-height: 1.5;
+  }
 
-        #boss-preview-img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: var(--radius-sm);
-        }
+  /* ==========================================================================
+     6. 耐性アイコン 6枠固定グリッド (Resist Icons Grid)
+     ========================================================================== */
+  .resist-grid {
+   display: grid;
+   grid-template-columns: repeat(6, 1fr);
+   gap: 4px;
+   width: 176px; /* 26px*6 + 4px*5 */
+  }
+  .resist-slot {
+   width: 26px;
+   height: 26px;
+   border-radius: 50%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   box-sizing: border-box;
+  }
+  /* 耐性枠のステータス別カラー */
+  .resist-slot.is-empty {
+   background-color: var(--resist-empty-bg);
+   border: 1px solid var(--resist-empty-border);
+  }
+  .resist-slot.is-normal {
+   background-color: var(--resist-normal-bg);
+   border: 1px solid var(--resist-normal-border);
+  }
+  .resist-slot.is-weak {
+   background-color: var(--resist-weak-bg);
+   border: 1px solid var(--resist-weak-border);
+  }
+  .resist-slot.is-strong {
+   background-color: var(--resist-strong-bg);
+   border: 1px solid var(--resist-strong-border);
+  }
+  .resist-icon {
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
+   padding: 2px;
+  }
+  /* スマホ対応: 枠を維持しつつ2段に折り返し */
+  @media (max-width: 768px) {
+   .resist-grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: 86px;
+   }
 
-        .modal-overlay {
-            position: fixed;
-            inset: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, .8);
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transition: opacity 0.2s ease, visibility 0s linear 0.2s;
-        }
+   /* フォーマット設定のレスポンシブ対応 */
+   .controls-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+   }
+   .format-settings {
+    justify-content: center;
+   }
+  }
 
-        .modal-overlay.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transition: opacity 0.2s ease;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
-            padding: 12px;
-            background: var(--bg-panel);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .8);
-        }
-
-        .modal-image {
-            display: block;
-            max-width: 100%;
-            max-height: calc(90vh - 24px);
-            border-radius: var(--radius-sm);
-            object-fit: contain;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 36px;
-            height: 36px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: none;
-            border-radius: 50%;
-            background: rgba(0, 0, 0, .7);
-            color: #fff;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        /* ユーティリティ */
-        .is-hidden {
-            display: none !important;
-        }
-
-        @media (max-width: 900px) {
-            .table-wrapper {
-                overflow-x: auto;
-            }
-
-            th {
-                white-space: normal;
-            }
-
-            table {
-                font-size: 12px;
-            }
-
-            th,
-            td {
-                padding: 4px 6px;
-            }
-        }
-    </style>
+  /* ==========================================================================
+     7. ポップアッププレビュー & モーダル (Preview & Modal)
+     ========================================================================== */
+  .boss-preview {
+   position: fixed;
+   pointer-events: none;
+   z-index: 2000;
+   background: #1c1917;
+   border: 2px solid var(--accent-gold);
+   border-radius: var(--radius-sm);
+   padding: 4px;
+   box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+   max-width: 280px;
+   transition: opacity 0.15s ease;
+   opacity: 0;
+  }
+  .boss-preview.show { opacity: 1; }
+  .boss-preview.is-hidden { display: none; }
+  .boss-preview img {
+   display: block;
+   width: 100%;
+   height: auto;
+   border-radius: 2px;
+  }
+  .modal-overlay {
+   position: fixed;
+   top: 0; left: 0; width: 100%; height: 100%;
+   background: rgba(0,0,0,0.85);
+   z-index: 3000;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   opacity: 0; pointer-events: none;
+   transition: opacity 0.2s ease;
+  }
+  .modal-overlay.show { opacity: 1; pointer-events: auto; }
+  .modal-content {
+   position: relative;
+   max-width: 90%; max-height: 90%;
+  }
+  .modal-image {
+   display: block;
+   max-width: 100%; max-height: 85vh;
+   border: 3px solid var(--border-color);
+   border-radius: var(--radius-md);
+   box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+  }
+  .modal-close {
+   position: absolute; top: -40px; right: 0;
+   background: none; border: none; color: #fff;
+   font-size: 32px; cursor: pointer;
+  }
+ </style>
 </head>
 
 <body>
+ <div class="page-container">
 
-    <div class="page-container">
-        <div id="nav-placeholder"></div>
+  <nav class="nav-container">
+   <a href="poe2-index.html" class="nav-link">Index</a>
+   <a href="poe2-campaign.html" class="nav-link active">アクト</a>
+   <a href="poe2-endgame-maps.html" class="nav-link">エンドゲームマップ</a>
+   <a href="poe2-memo.html" class="nav-link">メモ</a>
+   <a href="poe2-json-builder.html" class="nav-link">JSON Builder</a>
+  </nav>
 
-        <header class="page-header">
-            <h1>キャンペーン攻略（Act 1 ~ 6）</h1>
-        </header>
+  <header class="page-header">
+   <h1>アクトボス・バフリスト（改善中）</h1>
+  </header>
 
-        <main class="main-content">
+  <main class="main-content">
+   <div class="controls-toolbar">
 
-            <nav class="act-nav">
-                <a href="#act1">Act 1</a>
-                <a href="#act2">Act 2</a>
-                <a href="#act3">Act 3</a>
-                <a href="#act4">Act 4</a>
-                <a href="#act5">Act 5</a>
-                <a href="#act6">Act 6</a>
-            </nav>
+    <div class="format-settings">
+     <span class="format-title">マップ・ボス名の表示形式</span>
 
-            <section id="act1" class="act-section">
-                <h2>Act 1</h2>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>エリア</th>
-                                <th>ボス名</th>
-                                <th>耐性 / 特徴</th>
-                                <th>メモ・ギミック</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>エリア名A</td>
-                                <td><span class="boss-link" data-click="showModal"
-                                        data-img-src="images/bosses/act1_boss1.webp">サンプルボス1</span></td>
-                                <td>FireWeak<br>近接主体</td>
-                                <td>特定のモーション後に避ける。</td>
-                            </tr>
-                            <tr>
-                                <td>エリア名B</td>
-                                <td><span class="boss-link" data-click="showModal"
-                                        data-img-src="images/bosses/act1_boss2.webp">サンプルボス2</span></td>
-                                <td>ColdStrong<br>遠距離</td>
-                                <td>雑魚を召喚するため範囲攻撃推奨。</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+     <div class="segment-group" id="format-lang-group">
+      <button type="button" class="segment-btn" data-click="setFormatLang" data-lang="ja">日本語のみ</button>
+      <button type="button" class="segment-btn" data-click="setFormatLang" data-lang="en">英語のみ</button>
+      <button type="button" class="segment-btn active" data-click="setFormatLang" data-lang="both">両方</button>
+     </div>
 
-                <div class="rewards-box">
-                    <h4>永久バフ・クエスト報酬</h4>
-                    <ul>
-                        <li>クエスト「〇〇の浄化」： パッシブスキルポイント +1</li>
-                        <li>クエスト「〇〇の救出」： リスペックポイント +2</li>
-                        <li>ステータスアップアイテム（全属性耐性 +5% 等）</li>
-                    </ul>
-                </div>
-            </section>
+     <div class="separator-weak" style="width: 1px; height: 20px; background: rgba(255,255,255,0.2);"></div>
 
-            <section id="act2" class="act-section">
-                <h2>Act 2</h2>
-                <div class="table-wrapper">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>エリア</th>
-                                <th>ボス名</th>
-                                <th>耐性 / 特徴</th>
-                                <th>メモ・ギミック</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="rewards-box">
-                    <h4>永久バフ・クエスト報酬</h4>
-                    <ul>
-                        <li>クエスト報酬をここに記載</li>
-                    </ul>
-                </div>
-            </section>
-
-        </main>
+     <div class="segment-group" id="format-order-group">
+      <button type="button" class="segment-btn active" data-click="setFormatOrder" data-order="ja">日本語メイン</button>
+      <button type="button" class="segment-btn" data-click="setFormatOrder" data-order="en">英語メイン</button>
+     </div>
     </div>
 
-    <div id="boss-preview" class="boss-preview is-hidden">
-        <img id="boss-preview-img" alt="">
-    </div>
+    <button type="button" id="btnToggleAll" class="btn-toggle-all">▼ すべて開く</button>
+   </div>
 
-    <div id="boss-modal" class="modal-overlay">
-        <div class="modal-content">
-            <button type="button" class="modal-close" data-click="closeModal" aria-label="閉じる">✕</button>
-            <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image" loading="lazy">
-        </div>
-    </div>
+   <div id="actNav" class="act-nav"></div>
 
-    <script src="js/poe2-campaign.js" defer></script>
+   <div id="campaignContainer">
+    <p style="text-align: center; color: var(--text-muted); padding: 40px 0;">データを読み込み中...</p>
+   </div>
+  </main>
+ </div>
+
+ <div id="bossPreview" class="boss-preview is-hidden">
+  <img id="bossPreviewImg" src="" alt="">
+ </div>
+
+ <div id="bossModal" class="modal-overlay">
+  <div class="modal-content">
+   <button type="button" class="modal-close" data-click="closeModal">✕</button>
+   <img id="bossModalImg" src="" alt="ボス画像" class="modal-image" loading="lazy">
+  </div>
+ </div>
+
+ <script src="js/poe2-campaign.js" defer></script>
 </body>
 
 </html>

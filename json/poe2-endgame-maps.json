@@ -9,10 +9,11 @@
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "旅の終わり",
-    "元ボス名": "ハートリン船長",
+    "元ボス日本語": "ハートリン船長",
+    "元ボス英語": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
     "メモ": "エリアで見つかるゴールドの量が(500—1000)%増加する\nマップには埋められた宝物が出現する\n全てのアイテムはゴールドに変換される",
-    "bossimage": "images/bosses/captain-hartlin.webp"
+    "bossimage": "captain-hartlin"
   },
   {
     "id": "map_002",
@@ -24,7 +25,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "獲得経験値が(200—400)%増加する\nモンスターはアイテムをドロップしない",
     "bossimage": ""
@@ -39,7 +41,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "このエリアで見つかるアイテムのレアリティが(100—200)%増加する\n全てのチェストはマジックまたはレアである",
     "bossimage": ""
@@ -54,7 +57,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "闇に包まれている\nお告げの祭壇が出現する",
     "bossimage": ""
@@ -69,7 +73,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エッセンスに囚われた多くのレアモンスターが出現する\nレアモンスターのエッセンスを吸収した囚われたボスが1体出現する\nティア１１以上",
     "bossimage": ""
@@ -84,7 +89,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "レアモンスターはミラー化される\nレアモンスターの数が(150—300)%増加する\n割れた鏡が出現する",
     "bossimage": ""
@@ -99,7 +105,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -114,7 +121,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -129,7 +137,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -144,7 +153,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -159,7 +169,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "ユニーク商人",
     "bossimage": ""
@@ -174,7 +185,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "ユニーク商人",
     "bossimage": ""
@@ -189,7 +201,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "ユニーク商人",
     "bossimage": ""
@@ -204,7 +217,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "隠れ家ゲット？",
     "bossimage": ""
@@ -219,7 +233,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "隠れ家ゲット？",
     "bossimage": ""
@@ -234,7 +249,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "隠れ家ゲット？",
     "bossimage": ""
@@ -249,7 +265,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "隠れ家ゲット？",
     "bossimage": ""
@@ -264,7 +281,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "アクトクリア後の場所",
     "bossimage": ""
@@ -279,10 +297,11 @@
     "耐性アイコン": "-",
     "元ボスアクト": "１",
     "元ボスエリア": "狩場",
-    "元ボス名": "クロウベル",
+    "元ボス日本語": "クロウベル",
+    "元ボス英語": "The Crowbell",
     "元ボス特徴": "鐘で攻撃",
     "メモ": "",
-    "bossimage": "images/bosses/the-crowbell.webp"
+    "bossimage": "the-crowbell"
   },
   {
     "id": "map_020",
@@ -294,10 +313,11 @@
     "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "２",
     "元ボスエリア": "ヴァスティリ郊外",
-    "元ボス名": "ラスブレイカー",
+    "元ボス日本語": "ラスブレイカー",
+    "元ボス英語": "Rathbreaker",
     "元ボス特徴": "獣一杯、槍一杯",
     "メモ": "",
-    "bossimage": "images/bosses/rathbreaker.webp"
+    "bossimage": "rathbreaker"
   },
   {
     "id": "map_021",
@@ -309,10 +329,11 @@
     "耐性アイコン": "EvasionStrong,Fire,ColdWeak",
     "元ボスアクト": "２",
     "元ボスエリア": "裏切り者の通路",
-    "元ボス名": "裏切り者、バルバラ",
+    "元ボス日本語": "裏切り者、バルバラ",
+    "元ボス英語": "Balbala, the Traitor",
     "元ボス特徴": "中心の穴から毒霧",
     "メモ": "",
-    "bossimage": "images/bosses/balbala-the-traitor.webp"
+    "bossimage": "balbala-the-traitor"
   },
   {
     "id": "map_022",
@@ -324,10 +345,11 @@
     "耐性アイコン": "Armour,Fire",
     "元ボスアクト": "１",
     "元ボスエリア": "オガム村",
-    "元ボス名": "処刑人",
+    "元ボス日本語": "処刑人",
+    "元ボス英語": "The Executioner",
     "元ボス特徴": "首ちょんぱする処刑人",
     "メモ": "",
-    "bossimage": "images/bosses/the-executioner.webp"
+    "bossimage": "the-executioner"
   },
   {
     "id": "map_023",
@@ -339,10 +361,11 @@
     "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "４",
     "元ボスエリア": "モズの島",
-    "元ボス名": "空のスカージ",
+    "元ボス日本語": "空のスカージ",
+    "元ボス英語": "Scourge of the Skies",
     "元ボス特徴": "飛ばない大きい鳥",
     "メモ": "",
-    "bossimage": "images/bosses/scourge-of-the-skies.webp"
+    "bossimage": "scourge-of-the-skies"
   },
   {
     "id": "map_024",
@@ -354,10 +377,11 @@
     "耐性アイコン": "Armour,ColdStrong,LightningWeak",
     "元ボスアクト": "４",
     "元ボスエリア": "ワーカパヌ島",
-    "元ボス名": "ホホジロザメ",
+    "元ボス日本語": "ホホジロザメ",
+    "元ボス英語": "Great White One",
     "元ボス特徴": "サメ",
     "メモ": "",
-    "bossimage": "images/bosses/great-white-one.webp"
+    "bossimage": "great-white-one"
   },
   {
     "id": "map_025",
@@ -369,10 +393,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "２",
     "元ボスエリア": "タイタンの洞窟",
-    "元ボス名": "巨像、ザルマラス",
+    "元ボス日本語": "巨像、ザルマラス",
+    "元ボス英語": "Zalmarath, the Colossus",
     "元ボス特徴": "巨人の像",
     "メモ": "",
-    "bossimage": "images/bosses/zalmarath-the-colossus.webp"
+    "bossimage": "zalmarath-the-colossus"
   },
   {
     "id": "map_026",
@@ -384,10 +409,11 @@
     "耐性アイコン": "-\nLightning",
     "元ボスアクト": "２",
     "元ボスエリア": "骨の穴",
-    "元ボス名": "古代の戦象、エクバブ\n死の王、イクタブ",
+    "元ボス日本語": "古代の戦象、エクバブ\n死の王、イクタブ",
+    "元ボス英語": "Ekbab, Ancient Steed\nIktab, the Deathlord",
     "元ボス特徴": "象と魔術師",
     "メモ": "",
-    "bossimage": "images/bosses/ekbab-ancient-steed.webp\nimages/bosses/iktab-the-deathlord.webp"
+    "bossimage": "ekbab-ancient-steed\niktab-the-deathlord"
   },
   {
     "id": "map_027",
@@ -399,10 +425,11 @@
     "耐性アイコン": "FireWeak,ColdStrong",
     "元ボスアクト": "１",
     "元ボスエリア": "クリアフェル",
-    "元ボス名": "腐りし群れのベイラ",
+    "元ボス日本語": "腐りし群れのベイラ",
+    "元ボス英語": "Beira of the Rotten Pack",
     "元ボス特徴": "街出てすぐの氷ボス",
     "メモ": "",
-    "bossimage": "images/bosses/beira-of-the-rotten-pack.webp"
+    "bossimage": "beira-of-the-rotten-pack"
   },
   {
     "id": "map_028",
@@ -414,10 +441,11 @@
     "耐性アイコン": "Armour\nArmour",
     "元ボスアクト": "１",
     "元ボスエリア": "川岸",
-    "元ボス名": "腐乱した粉屋",
+    "元ボス日本語": "腐乱した粉屋",
+    "元ボス英語": "The Bloated Miller",
     "元ボス特徴": "粉屋×２",
     "メモ": "",
-    "bossimage": "images/bosses/the-bloated-miller.webp\nimages/bosses/the-bloated-miller.webp"
+    "bossimage": "the-bloated-miller\nthe-bloated-miller"
   },
   {
     "id": "map_029",
@@ -429,10 +457,11 @@
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "アザク湿原",
-    "元ボス名": "沼地の魔女、イグナグドゥク",
+    "元ボス日本語": "沼地の魔女、イグナグドゥク",
+    "元ボス英語": "Ignagduk, the Bog Witch",
     "元ボス特徴": "暴走スピリット",
     "メモ": "",
-    "bossimage": "images/bosses/ignagduk-the-bog-witch.webp"
+    "bossimage": "ignagduk-the-bog-witch"
   },
   {
     "id": "map_030",
@@ -444,10 +473,11 @@
     "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "１",
     "元ボスエリア": "永遠なる帝国の墓地",
-    "元ボス名": "終わりなき悲嘆のラクラン",
+    "元ボス日本語": "終わりなき悲嘆のラクラン",
+    "元ボス英語": "Lachlann of Endless Lament",
     "元ボス特徴": "墓場で変身ボス",
     "メモ": "",
-    "bossimage": "images/bosses/lachlann-of-endless-lament.webp"
+    "bossimage": "lachlann-of-endless-lament"
   },
   {
     "id": "map_031",
@@ -459,10 +489,11 @@
     "耐性アイコン": "Armour,FireStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "埋葬された神殿",
-    "元ボス名": "見捨てられた息子、アザリアン",
+    "元ボス日本語": "見捨てられた息子、アザリアン",
+    "元ボス英語": "Azarian, the Forsaken Son",
     "元ボス特徴": "四隅に火鉢",
     "メモ": "",
-    "bossimage": "images/bosses/azarian-the-forsaken-son.webp"
+    "bossimage": "azarian-the-forsaken-son"
   },
   {
     "id": "map_032",
@@ -474,10 +505,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,FireWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "ジクアニのマシナリウム",
-    "元ボス名": "亡霊、黒き顎",
+    "元ボス日本語": "亡霊、黒き顎",
+    "元ボス英語": "Blackjaw, the Remnant",
     "元ボス特徴": "大斧",
     "メモ": "",
-    "bossimage": "images/bosses/blackjaw-the-remnant.webp"
+    "bossimage": "blackjaw-the-remnant"
   },
   {
     "id": "map_033",
@@ -489,10 +521,11 @@
     "耐性アイコン": "ArmourStrong,Fire",
     "元ボスアクト": "１",
     "元ボスエリア": "法務官の霊廟",
-    "元ボス名": "永遠なる法務官、ドレイヴン",
+    "元ボス日本語": "永遠なる法務官、ドレイヴン",
+    "元ボス英語": "Draven, the Eternal Praetor",
     "元ボス特徴": "墓場での夫ボス",
     "メモ": "",
-    "bossimage": "images/bosses/draven-the-eternal-praetor.webp"
+    "bossimage": "draven-the-eternal-praetor"
   },
   {
     "id": "map_034",
@@ -504,10 +537,11 @@
     "耐性アイコン": "ArmourStrong,Fire,Cold",
     "元ボスアクト": "１",
     "元ボスエリア": "オガムの邸宅",
-    "元ボス名": "生ける儀式、キャンドルマス",
+    "元ボス日本語": "生ける儀式、キャンドルマス",
+    "元ボス英語": "Candlemass, the Living Rite",
     "元ボス特徴": "屋敷の石像",
     "メモ": "",
-    "bossimage": "images/bosses/candlemass-the-living-rite.webp"
+    "bossimage": "candlemass-the-living-rite"
   },
   {
     "id": "map_035",
@@ -519,10 +553,11 @@
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "ケス",
-    "元ボス名": "大蛇の女王、カバラ",
+    "元ボス日本語": "大蛇の女王、カバラ",
+    "元ボス英語": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
     "メモ": "",
-    "bossimage": "images/bosses/kabala-constrictor-queen.webp"
+    "bossimage": "kabala-constrictor-queen"
   },
   {
     "id": "map_036",
@@ -534,10 +569,11 @@
     "耐性アイコン": "-",
     "元ボスアクト": "１",
     "元ボスエリア": "根の穴",
-    "元ボス名": "腐ったドルイド",
+    "元ボス日本語": "腐ったドルイド",
+    "元ボス英語": "The Rotten Druid",
     "元ボス特徴": "キノコ",
     "メモ": "",
-    "bossimage": "images/bosses/the-rotten-druid.webp"
+    "bossimage": "the-rotten-druid"
   },
   {
     "id": "map_037",
@@ -549,10 +585,11 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "３",
     "元ボスエリア": "ジャングルの遺跡",
-    "元ボス名": "マイティ・シルバーフィスト",
+    "元ボス日本語": "マイティ・シルバーフィスト",
+    "元ボス英語": "Mighty Silverfist",
     "元ボス特徴": "ワンパンゴリラ",
     "メモ": "",
-    "bossimage": "images/bosses/mighty-silverfist.webp"
+    "bossimage": "mighty-silverfist"
   },
   {
     "id": "map_038",
@@ -564,10 +601,11 @@
     "耐性アイコン": "ArmourStrong,Fire,LightningWeak",
     "元ボスアクト": "１",
     "元ボスエリア": "赤き谷",
-    "元ボス名": "錆の王",
+    "元ボス日本語": "錆の王",
+    "元ボス英語": "The Rust King",
     "元ボス特徴": "",
     "メモ": "",
-    "bossimage": "images/bosses/the-rust-king.webp"
+    "bossimage": "the-rust-king"
   },
   {
     "id": "map_039",
@@ -579,10 +617,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "２",
     "元ボスエリア": "マウドゥン鉱山",
-    "元ボス名": "恐怖の技師、ルジャ",
+    "元ボス日本語": "恐怖の技師、ルジャ",
+    "元ボス英語": "Rudja, the Dread Engineer",
     "元ボス特徴": "火炎ガスグレネード",
     "メモ": "",
-    "bossimage": "images/bosses/rudja-the-dread-engineer.webp"
+    "bossimage": "rudja-the-dread-engineer"
   },
   {
     "id": "map_040",
@@ -594,10 +633,11 @@
     "耐性アイコン": "ArmourStrong,FireWeak,Cold",
     "元ボスアクト": "１",
     "元ボスエリア": "グレルウッド",
-    "元ボス名": "ブランブルガスト",
+    "元ボス日本語": "ブランブルガスト",
+    "元ボス英語": "The Brambleghast",
     "元ボス特徴": "カオス植物",
     "メモ": "",
-    "bossimage": "images/bosses/the-brambleghast.webp"
+    "bossimage": "the-brambleghast"
   },
   {
     "id": "map_041",
@@ -609,10 +649,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "デシャールの尖塔",
-    "元ボス名": "冒涜者、トール・ガル",
+    "元ボス日本語": "冒涜者、トール・ガル",
+    "元ボス英語": "Tor Gul, the Defiler",
     "元ボス特徴": "巨大ドクロ",
     "メモ": "",
-    "bossimage": "images/bosses/tor-gul-the-defiler.webp"
+    "bossimage": "tor-gul-the-defiler"
   },
   {
     "id": "map_042",
@@ -624,10 +665,11 @@
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア": "ウトザール",
-    "元ボス名": "ヴァイパー・ナプアツィ",
+    "元ボス日本語": "ヴァイパー・ナプアツィ",
+    "元ボス英語": "Viper Napuatzi",
     "元ボス特徴": "周り兵士ツンツン",
     "メモ": "",
-    "bossimage": "images/bosses/viper-napuatzi.webp"
+    "bossimage": "viper-napuatzi"
   },
   {
     "id": "map_043",
@@ -639,10 +681,11 @@
     "耐性アイコン": "Armour,Lightning",
     "元ボスアクト": "１",
     "元ボスエリア": "泥の巣穴",
-    "元ボス名": "デヴァウラー",
+    "元ボス日本語": "デヴァウラー",
+    "元ボス英語": "The Devourer",
     "元ボス特徴": "地面に潜るワーム",
     "メモ": "",
-    "bossimage": "images/bosses/the-devourer.webp"
+    "bossimage": "the-devourer"
   },
   {
     "id": "map_044",
@@ -654,7 +697,8 @@
     "耐性アイコン": "Evasion,FireWeak,LightningStrong",
     "元ボスアクト": "３",
     "元ボスエリア": "カオス寺院",
-    "元ボス名": "空を見る者、バーラク",
+    "元ボス日本語": "空を見る者、バーラク",
+    "元ボス英語": "Bahlak, the Sky Seer",
     "元ボス特徴": "竜巻鳥",
     "メモ": "",
     "bossimage": ""
@@ -669,10 +713,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "デシャールの尖塔",
-    "元ボス名": "冒涜者、トール・ガル",
+    "元ボス日本語": "冒涜者、トール・ガル",
+    "元ボス英語": "Tor Gul, the Defiler",
     "元ボス特徴": "巨大ドクロ",
     "メモ": "",
-    "bossimage": "images/bosses/tor-gul-the-defiler.webp"
+    "bossimage": "tor-gul-the-defiler"
   },
   {
     "id": "map_046",
@@ -684,10 +729,11 @@
     "耐性アイコン": "ArmourStrong,Fire,Cold,LightningWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "ジクアニの聖所",
-    "元ボス名": "コアの番人、ジコアトル",
+    "元ボス日本語": "コアの番人、ジコアトル",
+    "元ボス英語": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
     "メモ": "",
-    "bossimage": "images/bosses/zicoatl-warden-of-the-core.webp"
+    "bossimage": "zicoatl-warden-of-the-core"
   },
   {
     "id": "map_047",
@@ -699,10 +745,11 @@
     "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "焼け焦げた農場",
-    "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
+    "元ボス日本語": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
+    "元ボス英語": "Heldra of the Black Pyre\nIsolde of the White Shroud",
     "元ボス特徴": "炎と氷",
     "メモ": "",
-    "bossimage": "images/bosses/heldra-of-the-black-pyre.webp\nimages/bosses/isolde-of-the-white-shroud.webp"
+    "bossimage": "heldra-of-the-black-pyre\nisolde-of-the-white-shroud"
   },
   {
     "id": "map_048",
@@ -714,10 +761,11 @@
     "耐性アイコン": "Fire,Cold,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア": "キメラの湿地",
-    "元ボス名": "キメラ、ザイクルシアン",
+    "元ボス日本語": "キメラ、ザイクルシアン",
+    "元ボス英語": "Xyclucian, the Chimera",
     "元ボス特徴": "キメラ",
     "メモ": "頭が緑と赤、別キメラ？",
-    "bossimage": "images/bosses/xyclucian-the-chimera.webp"
+    "bossimage": "xyclucian-the-chimera"
   },
   {
     "id": "map_049",
@@ -729,10 +777,11 @@
     "耐性アイコン": "ArmourStrong,Fire,ColdStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "狼の砦",
-    "元ボス名": "恐怖の看守、オスウィン",
+    "元ボス日本語": "恐怖の看守、オスウィン",
+    "元ボス英語": "Oswin, the Dread Warden",
     "元ボス特徴": "地面から針",
     "メモ": "",
-    "bossimage": "images/bosses/oswin-the-dread-warden.webp"
+    "bossimage": "oswin-the-dread-warden"
   },
   {
     "id": "map_050",
@@ -744,10 +793,11 @@
     "耐性アイコン": "Armour",
     "元ボスアクト": "１",
     "元ボスエリア": "川岸",
-    "元ボス名": "腐乱した粉屋",
+    "元ボス日本語": "腐乱した粉屋",
+    "元ボス英語": "The Bloated Miller",
     "元ボス特徴": "粉屋",
     "メモ": "",
-    "bossimage": "images/bosses/the-bloated-miller.webp"
+    "bossimage": "the-bloated-miller"
   },
   {
     "id": "map_051",
@@ -759,10 +809,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak,Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "セケマの試練",
-    "元ボス名": "大地を砕く者、ラトルケージ",
+    "元ボス日本語": "大地を砕く者、ラトルケージ",
+    "元ボス英語": "Rattlecage, the Earthbreaker",
     "元ボス特徴": "セケマのボス１",
     "メモ": "",
-    "bossimage": "images/bosses/rattlecage-the-earthbreaker.webp"
+    "bossimage": "rattlecage-the-earthbreaker"
   },
   {
     "id": "map_052",
@@ -774,10 +825,11 @@
     "耐性アイコン": "-",
     "元ボスアクト": "１",
     "元ボスエリア": "根の穴",
-    "元ボス名": "腐ったドルイド",
+    "元ボス日本語": "腐ったドルイド",
+    "元ボス英語": "The Rotten Druid",
     "元ボス特徴": "キノコ",
     "メモ": "",
-    "bossimage": "images/bosses/the-rotten-druid.webp"
+    "bossimage": "the-rotten-druid"
   },
   {
     "id": "map_053",
@@ -789,10 +841,11 @@
     "耐性アイコン": "Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "骨の穴",
-    "元ボス名": "死の王、イクタブ",
+    "元ボス日本語": "死の王、イクタブ",
+    "元ボス英語": "Iktab, the Deathlord",
     "元ボス特徴": "象が居ない魔術師",
     "メモ": "",
-    "bossimage": ""
+    "bossimage": "iktab-the-deathlord"
   },
   {
     "id": "map_054",
@@ -804,10 +857,11 @@
     "耐性アイコン": "ArmourStrong,Cold",
     "元ボスアクト": "１",
     "元ボスエリア": "妃の墓所",
-    "元ボス名": "法務官の妻、アシニア",
+    "元ボス日本語": "法務官の妻、アシニア",
+    "元ボス英語": "Asinia, the Praetor's Consort",
     "元ボス特徴": "墓所の婦人ボス",
     "メモ": "",
-    "bossimage": "images/bosses/asinia-the-praetors-consort.webp"
+    "bossimage": "asinia-the-praetors-consort"
   },
   {
     "id": "map_055",
@@ -819,10 +873,11 @@
     "耐性アイコン": "-",
     "元ボスアクト": "１",
     "元ボスエリア": "根の穴",
-    "元ボス名": "腐ったドルイド",
+    "元ボス日本語": "腐ったドルイド",
+    "元ボス英語": "The Rotten Druid",
     "元ボス特徴": "キノコ",
     "メモ": "",
-    "bossimage": "images/bosses/the-rotten-druid.webp"
+    "bossimage": "the-rotten-druid"
   },
   {
     "id": "map_056",
@@ -834,7 +889,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -849,10 +905,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "２",
     "元ボスエリア": "マウドゥン鉱山",
-    "元ボス名": "恐怖の技師、ルジャ",
+    "元ボス日本語": "恐怖の技師、ルジャ",
+    "元ボス英語": "Rudja, the Dread Engineer",
     "元ボス特徴": "火炎ガスグレネード",
     "メモ": "",
-    "bossimage": "images/bosses/rudja-the-dread-engineer.webp"
+    "bossimage": "rudja-the-dread-engineer"
   },
   {
     "id": "map_058",
@@ -864,10 +921,11 @@
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "ハラニの門",
-    "元ボス名": "復活した王、ジャマンラ",
+    "元ボス日本語": "復活した王、ジャマンラ",
+    "元ボス英語": "Jamanra, the Risen King",
     "元ボス特徴": "ハラニの門でのジャマンラ",
     "メモ": "",
-    "bossimage": "images/bosses/jamanra-the-risen-king.webp"
+    "bossimage": "jamanra-the-risen-king"
   },
   {
     "id": "map_059",
@@ -879,7 +937,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -894,10 +953,11 @@
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "４",
     "元ボスエリア": "火山地帯",
-    "元ボス名": "キンの領主、クルトォグ",
+    "元ボス日本語": "キンの領主、クルトォグ",
+    "元ボス英語": "Krutog, Lord of Kin",
     "元ボス特徴": "火山での巨人",
     "メモ": "",
-    "bossimage": "images/bosses/krutog-lord-of-kin.webp"
+    "bossimage": "krutog-lord-of-kin"
   },
   {
     "id": "map_061",
@@ -909,10 +969,11 @@
     "耐性アイコン": "ArmourStrong,ColdWeak,LightningStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "侵蝕の峡谷",
-    "元ボス名": "守護者、ストームゴア",
+    "元ボス日本語": "守護者、ストームゴア",
+    "元ボス英語": "Stormgore, the Guardian",
     "元ボス特徴": "雷の黒き顎",
     "メモ": "",
-    "bossimage": "images/bosses/stormgore-the-guardian.webp"
+    "bossimage": "stormgore-the-guardian"
   },
   {
     "id": "map_062",
@@ -924,10 +985,11 @@
     "耐性アイコン": "ArmourStrong,ColdStrong\nColdStrong",
     "元ボスアクト": "１",
     "元ボスエリア": "オガムの邸宅",
-    "元ボス名": "ジオノール伯爵\n堕落した狼、ジオノール",
+    "元ボス日本語": "ジオノール伯爵\n堕落した狼、ジオノール",
+    "元ボス英語": "Count Geonor\nGeonor, the Putrid Wolf",
     "元ボス特徴": "１章ボス",
     "メモ": "",
-    "bossimage": "images/bosses/count-geonor.webp\nimages/bosses/geonor-the-putrid-wolf.webp"
+    "bossimage": "count-geonor\ngeonor-the-putrid-wolf"
   },
   {
     "id": "map_063",
@@ -939,10 +1001,11 @@
     "耐性アイコン": "FireStrong,LightningStrong\nArmourStrong,Fire,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア": "黒の間",
-    "元ボス名": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
+    "元ボス日本語": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
+    "元ボス英語": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "元ボス特徴": "３章ボス",
     "メモ": "",
-    "bossimage": "images/bosses/doryani-royal-thaumaturge.webp\nimages/bosses/doryanis-triumph.webp"
+    "bossimage": "doryani-royal-thaumaturge\ndoryanis-triumph"
   },
   {
     "id": "map_064",
@@ -954,10 +1017,11 @@
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "ドレッドノートの前衛",
-    "元ボス名": "アボミネーション、ジャマンラ",
+    "元ボス日本語": "アボミネーション、ジャマンラ",
+    "元ボス英語": "Jamanra, the Abomination",
     "元ボス特徴": "２章ボス",
     "メモ": "",
-    "bossimage": "images/bosses/jamanra-the-abomination.webp"
+    "bossimage": "jamanra-the-abomination"
   },
   {
     "id": "map_065",
@@ -969,7 +1033,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -984,7 +1049,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -999,7 +1065,8 @@
     "耐性アイコン": "-",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1014,10 +1081,11 @@
     "耐性アイコン": "ArmourStrong,Fire,LightningWeak",
     "元ボスアクト": "１",
     "元ボスエリア": "赤き谷",
-    "元ボス名": "錆の王",
+    "元ボス日本語": "錆の王",
+    "元ボス英語": "The Rust King",
     "元ボス特徴": "赤き森のボス",
     "メモ": "",
-    "bossimage": "images/bosses/the-rust-king.webp"
+    "bossimage": "the-rust-king"
   },
   {
     "id": "map_069",
@@ -1029,10 +1097,11 @@
     "耐性アイコン": "Armour",
     "元ボスアクト": "３",
     "元ボスエリア": "汚物の頂",
-    "元ボス名": "汚物の女王",
+    "元ボス日本語": "汚物の女王",
+    "元ボス英語": "The Queen of Filth",
     "元ボス特徴": "",
     "メモ": "",
-    "bossimage": "images/bosses/the-queen-of-filth.webp"
+    "bossimage": "the-queen-of-filth"
   },
   {
     "id": "map_070",
@@ -1044,10 +1113,11 @@
     "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "３",
     "元ボスエリア": "砂原の沼地",
-    "元ボス名": "ルートドレッジ",
+    "元ボス日本語": "ルートドレッジ",
+    "元ボス英語": "Rootdredge",
     "元ボス特徴": "ゾンビ召喚の木",
     "メモ": "",
-    "bossimage": "images/bosses/rootdredge.webp"
+    "bossimage": "rootdredge"
   },
   {
     "id": "map_071",
@@ -1059,10 +1129,11 @@
     "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "２",
     "元ボスエリア": "ヴァスティリ郊外",
-    "元ボス名": "ラスブレイカー",
+    "元ボス日本語": "ラスブレイカー",
+    "元ボス英語": "Rathbreaker",
     "元ボス特徴": "獣一杯、槍一杯",
     "メモ": "",
-    "bossimage": "images/bosses/rathbreaker.webp"
+    "bossimage": "rathbreaker"
   },
   {
     "id": "map_072",
@@ -1074,10 +1145,11 @@
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "コペク神殿",
-    "元ボス名": "太陽の大祭司、ケツーリ",
+    "元ボス日本語": "太陽の大祭司、ケツーリ",
+    "元ボス英語": "Ketzuli, High Priest of the Sun",
     "元ボス特徴": "",
     "メモ": "",
-    "bossimage": "images/bosses/ketzuli-high-priest-of-the-sun.webp"
+    "bossimage": "ketzuli-high-priest-of-the-sun"
   },
   {
     "id": "map_073",
@@ -1089,10 +1161,11 @@
     "耐性アイコン": "Armour,FireStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "埋葬された神殿",
-    "元ボス名": "見捨てられた息子、アザリアン",
+    "元ボス日本語": "見捨てられた息子、アザリアン",
+    "元ボス英語": "Azarian, the Forsaken Son",
     "元ボス特徴": "四隅に火鉢",
     "メモ": "",
-    "bossimage": "images/bosses/azarian-the-forsaken-son.webp"
+    "bossimage": "azarian-the-forsaken-son"
   },
   {
     "id": "map_074",
@@ -1104,10 +1177,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "溶融した宝物庫",
-    "元ボス名": "鍛造場主、メクトゥル",
+    "元ボス日本語": "鍛造場主、メクトゥル",
+    "元ボス英語": "Mektul, the Forgemaster",
     "元ボス特徴": "溶岩巨人",
     "メモ": "",
-    "bossimage": "images/bosses/mektul-the-forgemaster.webp"
+    "bossimage": "mektul-the-forgemaster"
   },
   {
     "id": "map_075",
@@ -1119,10 +1193,11 @@
     "耐性アイコン": "ArmourStrong,Fire,Cold,LightningWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "ジクアニの聖所",
-    "元ボス名": "コアの番人、ジコアトル",
+    "元ボス日本語": "コアの番人、ジコアトル",
+    "元ボス英語": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
     "メモ": "",
-    "bossimage": "images/bosses/zicoatl-warden-of-the-core.webp"
+    "bossimage": "zicoatl-warden-of-the-core"
   },
   {
     "id": "map_076",
@@ -1134,7 +1209,8 @@
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "セケマの試練",
-    "元ボス名": "砂漠の母、アシャー",
+    "元ボス日本語": "砂漠の母、アシャー",
+    "元ボス英語": "Ashar, the Sand Mother",
     "元ボス特徴": "サソリ",
     "メモ": "",
     "bossimage": ""
@@ -1149,10 +1225,11 @@
     "耐性アイコン": "Fire,Cold,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア": "キメラの湿地",
-    "元ボス名": "キメラ、ザイクルシアン",
+    "元ボス日本語": "キメラ、ザイクルシアン",
+    "元ボス英語": "Xyclucian, the Chimera",
     "元ボス特徴": "キメラ",
     "メモ": "",
-    "bossimage": "images/bosses/xyclucian-the-chimera.webp"
+    "bossimage": "xyclucian-the-chimera"
   },
   {
     "id": "map_078",
@@ -1164,7 +1241,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "強力なボスとのエンカウンターが出現する",
     "bossimage": ""
@@ -1179,10 +1257,11 @@
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "幕間",
     "元ボスエリア": "クリアール村",
-    "元ボス名": "流浪の槍、リサラ",
+    "元ボス日本語": "流浪の槍、リサラ",
+    "元ボス英語": "Lythara, the Wayward Spear",
     "元ボス特徴": "ヴァイパー幕間バージョン",
     "メモ": "",
-    "bossimage": "images/bosses/lythara-the-wayward-spear.webp"
+    "bossimage": "lythara-the-wayward-spear"
   },
   {
     "id": "map_080",
@@ -1194,10 +1273,11 @@
     "耐性アイコン": "Evasion,FireWeak,LightningStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "氷河の湖",
-    "元ボス名": "凍てつく鉤爪、ラッカー",
+    "元ボス日本語": "凍てつく鉤爪、ラッカー",
+    "元ボス英語": "Rakkar, the Frozen Talon",
     "元ボス特徴": "氷の鳥",
     "メモ": "",
-    "bossimage": "images/bosses/rakkar-the-frozen-talon.webp"
+    "bossimage": "rakkar-the-frozen-talon"
   },
   {
     "id": "map_081",
@@ -1209,10 +1289,11 @@
     "耐性アイコン": "Armour,Lightning",
     "元ボスアクト": "１",
     "元ボスエリア": "泥の巣穴",
-    "元ボス名": "デヴァウラー",
+    "元ボス日本語": "デヴァウラー",
+    "元ボス英語": "The Devourer",
     "元ボス特徴": "地面に潜るワーム",
     "メモ": "",
-    "bossimage": "images/bosses/the-devourer.webp"
+    "bossimage": "the-devourer"
   },
   {
     "id": "map_082",
@@ -1224,7 +1305,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "隠れ家ゲット？",
     "bossimage": ""
@@ -1239,7 +1321,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "隠れ家ゲット？",
     "bossimage": ""
@@ -1254,10 +1337,11 @@
     "耐性アイコン": "ArmourStrong,Fire\nArmourStrong\nArmourStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "部族の中心",
-    "元ボス名": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
+    "元ボス日本語": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
+    "元ボス英語": "Tavakai, the Chieftain\nTavakai, the Fallen\nTavakai, the Consumed",
     "元ボス特徴": "4章ボス",
     "メモ": "タウホアの加護\nカオムの狂気\nラキアタの流れ",
-    "bossimage": "images/bosses/tavakai-the-chieftain.webp\nimages/bosses/tavakai-the-fallen.webp\nimages/bosses/tavakai-the-consumed.webp"
+    "bossimage": "tavakai-the-chieftain\ntavakai-the-fallen\ntavakai-the-consumed"
   },
   {
     "id": "map_085",
@@ -1269,10 +1353,11 @@
     "耐性アイコン": "Fire",
     "元ボスアクト": "幕間",
     "元ボスエリア": "キーマの貯水池",
-    "元ボス名": "ファリドゥンの王子、アズマディ",
+    "元ボス日本語": "ファリドゥンの王子、アズマディ",
+    "元ボス英語": "Azmadi, the Faridun Prince",
     "元ボス特徴": "王子",
     "メモ": "ガルカーンの決意\nヴァラシュタの祝福\nザロクの反復",
-    "bossimage": "images/bosses/azmadi-the-faridun-prince.webp"
+    "bossimage": "azmadi-the-faridun-prince"
   },
   {
     "id": "map_086",
@@ -1284,10 +1369,11 @@
     "耐性アイコン": "ArmourStrong\nArmour,Fire",
     "元ボスアクト": "幕間",
     "元ボスエリア": "ホルテンの豪邸",
-    "元ボス名": "ウルフリック族長\nエルズウィス婦人",
+    "元ボス日本語": "ウルフリック族長\nエルズウィス婦人",
+    "元ボス英語": "Thane Wulfric\nLady Elswyth",
     "元ボス特徴": "",
     "メモ": "エイリスの鐘\nリグワルドの獰猛",
-    "bossimage": "images/bosses/thane-wulfric.webp\nimages/bosses/lady-elswyth.webp"
+    "bossimage": "thane-wulfric\nlady-elswyth"
   },
   {
     "id": "map_087",
@@ -1299,10 +1385,11 @@
     "耐性アイコン": "EvasionStrong,Cold\nEvasion,Cold",
     "元ボスアクト": "幕間",
     "元ボスエリア": "クアチクの地下避難所",
-    "元ボス名": "血の巫女、ゼリナ\n血の司祭、ゾリン",
+    "元ボス日本語": "血の巫女、ゼリナ\n血の司祭、ゾリン",
+    "元ボス英語": "Zelina, Blood Priestess\nZolin, Blood Priest",
     "元ボス特徴": "",
     "メモ": "アタルイの血抜き\nパクアテの契約\nタカティの怒り",
-    "bossimage": ""
+    "bossimage": "zelina-blood-priestess\nzolin-blood-priest"
   },
   {
     "id": "map_088",
@@ -1314,10 +1401,11 @@
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "ケス",
-    "元ボス名": "大蛇の女王、カバラ",
+    "元ボス日本語": "大蛇の女王、カバラ",
+    "元ボス英語": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
     "メモ": "",
-    "bossimage": "images/bosses/kabala-constrictor-queen.webp"
+    "bossimage": "kabala-constrictor-queen"
   },
   {
     "id": "map_089",
@@ -1329,10 +1417,11 @@
     "耐性アイコン": "ArmourStrong,Fire,Cold,LightningWeak",
     "元ボスアクト": "３",
     "元ボスエリア": "ジクアニの聖所",
-    "元ボス名": "コアの番人、ジコアトル",
+    "元ボス日本語": "コアの番人、ジコアトル",
+    "元ボス英語": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
     "メモ": "",
-    "bossimage": "images/bosses/zicoatl-warden-of-the-core.webp"
+    "bossimage": "zicoatl-warden-of-the-core"
   },
   {
     "id": "map_090",
@@ -1344,10 +1433,11 @@
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "監禁独房",
-    "元ボス名": "プリズナー",
+    "元ボス日本語": "プリズナー",
+    "元ボス英語": "The Prisoner",
     "元ボス特徴": "バリスタ３回",
     "メモ": "",
-    "bossimage": "images/bosses/the-prisoner.webp"
+    "bossimage": "the-prisoner"
   },
   {
     "id": "map_091",
@@ -1359,10 +1449,11 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "３",
     "元ボスエリア": "ジャングルの遺跡",
-    "元ボス名": "マイティ・シルバーフィスト",
+    "元ボス日本語": "マイティ・シルバーフィスト",
+    "元ボス英語": "Mighty Silverfist",
     "元ボス特徴": "ワンパンゴリラ",
     "メモ": "",
-    "bossimage": "images/bosses/mighty-silverfist.webp"
+    "bossimage": "mighty-silverfist"
   },
   {
     "id": "map_092",
@@ -1374,10 +1465,11 @@
     "耐性アイコン": "ColdStrong",
     "元ボスアクト": "２",
     "元ボスエリア": "ケス",
-    "元ボス名": "大蛇の女王、カバラ",
+    "元ボス日本語": "大蛇の女王、カバラ",
+    "元ボス英語": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
     "メモ": "",
-    "bossimage": "images/bosses/kabala-constrictor-queen.webp"
+    "bossimage": "kabala-constrictor-queen"
   },
   {
     "id": "map_093",
@@ -1389,10 +1481,11 @@
     "耐性アイコン": "Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "骨の穴",
-    "元ボス名": "死の王、イクタブ",
+    "元ボス日本語": "死の王、イクタブ",
+    "元ボス英語": "Iktab, the Deathlord",
     "元ボス特徴": "象が居ない魔術師",
     "メモ": "",
-    "bossimage": "images/bosses/ekbab-ancient-steed.webp"
+    "bossimage": "iktab-the-deathlord"
   },
   {
     "id": "map_094",
@@ -1404,10 +1497,11 @@
     "耐性アイコン": "ArmourStrong,Cold",
     "元ボスアクト": "１",
     "元ボスエリア": "妃の墓所",
-    "元ボス名": "法務官の妻、アシニア",
+    "元ボス日本語": "法務官の妻、アシニア",
+    "元ボス英語": "Asinia, the Praetor's Consort",
     "元ボス特徴": "墓場での妻ボス",
     "メモ": "",
-    "bossimage": "images/bosses/asinia-the-praetors-consort.webp"
+    "bossimage": "asinia-the-praetors-consort"
   },
   {
     "id": "map_095",
@@ -1419,10 +1513,11 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "アラスタス",
-    "元ボス名": "救世主の片腕、トーヴィアン",
+    "元ボス日本語": "救世主の片腕、トーヴィアン",
+    "元ボス英語": "Torvian, Hand of the Saviour",
     "元ボス特徴": "高台からボスへバフ、ボスの岩投げを誘導",
     "メモ": "",
-    "bossimage": "images/bosses/torvian-hand-of-the-saviour.webp"
+    "bossimage": "torvian-hand-of-the-saviour"
   },
   {
     "id": "map_096",
@@ -1434,10 +1529,11 @@
     "耐性アイコン": "EvasionStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "死者の殿堂",
-    "元ボス名": "白猿のヤマ",
+    "元ボス日本語": "白猿のヤマ",
+    "元ボス英語": "Yama The White",
     "元ボス特徴": "カオスペット猿",
     "メモ": "",
-    "bossimage": "images/bosses/yama-the-white.webp"
+    "bossimage": "yama-the-white"
   },
   {
     "id": "map_097",
@@ -1449,10 +1545,11 @@
     "耐性アイコン": "Armour,LightningStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "キンの島",
-    "元ボス名": "盲目の獣",
+    "元ボス日本語": "盲目の獣",
+    "元ボス英語": "The Blind Beast",
     "元ボス特徴": "檻でタイマンボス",
     "メモ": "",
-    "bossimage": "images/bosses/the-blind-beast.webp"
+    "bossimage": "the-blind-beast"
   },
   {
     "id": "map_098",
@@ -1464,10 +1561,11 @@
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "旅の終わり",
-    "元ボス名": "ハートリン船長",
+    "元ボス日本語": "ハートリン船長",
+    "元ボス英語": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
     "メモ": "",
-    "bossimage": "images/bosses/captain-hartlin.webp"
+    "bossimage": "captain-hartlin"
   },
   {
     "id": "map_099",
@@ -1479,7 +1577,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない\nブリーチ→脱出",
     "bossimage": ""
@@ -1494,7 +1593,8 @@
     "耐性アイコン": "ArmourStrong,Cold\nLightning",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない",
     "bossimage": ""
@@ -1509,7 +1609,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1524,7 +1625,8 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1539,7 +1641,8 @@
     "耐性アイコン": "ArmourStrong,FireWeak,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1554,7 +1657,8 @@
     "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -1569,7 +1673,8 @@
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1584,7 +1689,8 @@
     "耐性アイコン": "FireWeak,ColdStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1599,7 +1705,8 @@
     "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -1614,10 +1721,11 @@
     "耐性アイコン": "ArmourStrong,ColdStrong\nColdStrong",
     "元ボスアクト": "１",
     "元ボスエリア": "オガムの邸宅",
-    "元ボス名": "ジオノール伯爵\n堕落した狼、ジオノール",
+    "元ボス日本語": "ジオノール伯爵\n堕落した狼、ジオノール",
+    "元ボス英語": "Count Geonor\nGeonor, the Putrid Wolf",
     "元ボス特徴": "アクト１ボス",
     "メモ": "",
-    "bossimage": "images/bosses/count-geonor.webp\nimages/bosses/geonor-the-putrid-wolf.webp"
+    "bossimage": "count-geonor\ngeonor-the-putrid-wolf"
   },
   {
     "id": "map_109",
@@ -1629,10 +1737,11 @@
     "耐性アイコン": "FireStrong,LightningStrong\nArmourStrong,Fire,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア": "黒の間",
-    "元ボス名": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
+    "元ボス日本語": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
+    "元ボス英語": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "元ボス特徴": "アクト３ボス",
     "メモ": "",
-    "bossimage": "images/bosses/doryani-royal-thaumaturge.webp\nimages/bosses/doryanis-triumph.webp"
+    "bossimage": "doryani-royal-thaumaturge\ndoryanis-triumph"
   },
   {
     "id": "map_110",
@@ -1644,10 +1753,11 @@
     "耐性アイコン": "Armour,EvasionStrong,FireWeak,LightningStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "セールの巨石群",
-    "元ボス名": "霧の刃、シオラ",
+    "元ボス日本語": "霧の刃、シオラ",
+    "元ボス英語": "Siora, Blade of the Mists",
     "元ボス特徴": "石碑エリア雷のボス",
     "メモ": "",
-    "bossimage": "images/bosses/siora-blade-of-the-mists.webp"
+    "bossimage": "siora-blade-of-the-mists"
   },
   {
     "id": "map_111",
@@ -1659,10 +1769,11 @@
     "耐性アイコン": "ArmourStrong,FireWeak,Cold",
     "元ボスアクト": "１",
     "元ボスエリア": "グレルウッド",
-    "元ボス名": "ブランブルガスト",
+    "元ボス日本語": "ブランブルガスト",
+    "元ボス英語": "The Brambleghast",
     "元ボス特徴": "カオス植物",
     "メモ": "",
-    "bossimage": "images/bosses/the-brambleghast.webp"
+    "bossimage": "the-brambleghast"
   },
   {
     "id": "map_112",
@@ -1674,10 +1785,11 @@
     "耐性アイコン": "ColdStrong,LightningWeak",
     "元ボスアクト": "４",
     "元ボスエリア": "歌う大洞窟",
-    "元ボス名": "死の歌、ディアモラ",
+    "元ボス日本語": "死の歌、ディアモラ",
+    "元ボス英語": "Diamora, Song of Death",
     "元ボス特徴": "石化ビーム回転セイレーン",
     "メモ": "",
-    "bossimage": "images/bosses/diamora-song-of-death.webp"
+    "bossimage": "diamora-song-of-death"
   },
   {
     "id": "map_113",
@@ -1689,10 +1801,11 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "アラスタス",
-    "元ボス名": "救世主の片腕、トーヴィアン",
+    "元ボス日本語": "救世主の片腕、トーヴィアン",
+    "元ボス英語": "Torvian, Hand of the Saviour",
     "元ボス特徴": "周りからバフ、ボスの岩投げで解除",
     "メモ": "",
-    "bossimage": "images/bosses/torvian-hand-of-the-saviour.webp"
+    "bossimage": "torvian-hand-of-the-saviour"
   },
   {
     "id": "map_114",
@@ -1704,10 +1817,11 @@
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "旅の終わり",
-    "元ボス名": "ハートリン船長",
+    "元ボス日本語": "ハートリン船長",
+    "元ボス英語": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
     "メモ": "",
-    "bossimage": "images/bosses/captain-hartlin.webp"
+    "bossimage": "captain-hartlin"
   },
   {
     "id": "map_115",
@@ -1719,10 +1833,11 @@
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning\nArmour,Lightning",
     "元ボスアクト": "幕間",
     "元ボスエリア": "カーリの渡り路",
-    "元ボス名": "最後の一刺し、アクティ\nサンドワーム、アナンドル",
+    "元ボス日本語": "最後の一刺し、アクティ\nサンドワーム、アナンドル",
+    "元ボス英語": "Akthi, the Final Sting\nAnundr, the Sandworm",
     "元ボス特徴": "サソリとワーム",
     "メモ": "",
-    "bossimage": "images/bosses/akthi-the-final-sting.webp\nimages/bosses/anundr-the-sandworm.webp"
+    "bossimage": "akthi-the-final-sting\nanundr-the-sandworm"
   },
   {
     "id": "map_116",
@@ -1734,10 +1849,11 @@
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア": "ウトザール",
-    "元ボス名": "ヴァイパー・ナプアツィ",
+    "元ボス日本語": "ヴァイパー・ナプアツィ",
+    "元ボス英語": "Viper Napuatzi",
     "元ボス特徴": "",
     "メモ": "",
-    "bossimage": "images/bosses/viper-napuatzi.webp"
+    "bossimage": "viper-napuatzi"
   },
   {
     "id": "map_117",
@@ -1749,10 +1865,11 @@
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "４",
     "元ボスエリア": "火山地帯",
-    "元ボス名": "キンの領主、クルトォグ",
+    "元ボス日本語": "キンの領主、クルトォグ",
+    "元ボス英語": "Krutog, Lord of Kin",
     "元ボス特徴": "火山での巨人",
     "メモ": "",
-    "bossimage": "images/bosses/krutog-lord-of-kin.webp"
+    "bossimage": "krutog-lord-of-kin"
   },
   {
     "id": "map_118",
@@ -1764,10 +1881,11 @@
     "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "３",
     "元ボスエリア": "砂原の沼地",
-    "元ボス名": "ルートドレッジ",
+    "元ボス日本語": "ルートドレッジ",
+    "元ボス英語": "Rootdredge",
     "元ボス特徴": "ゾンビ召喚の木",
     "メモ": "",
-    "bossimage": "images/bosses/rootdredge.webp"
+    "bossimage": "rootdredge"
   },
   {
     "id": "map_119",
@@ -1776,13 +1894,14 @@
     "ボス日本語": "ブラッククロウ",
     "マップ英語": "Slash",
     "ボス英語": "The Black Crow",
-    "耐性アイコン": "-",
+    "耐性アイコン": "",
     "元ボスアクト": "１",
     "元ボスエリア": "狩場",
-    "元ボス名": "クロウベル",
+    "元ボス日本語": "クロウベル",
+    "元ボス英語": "The Crowbell",
     "元ボス特徴": "鐘で攻撃",
     "メモ": "",
-    "bossimage": "images/bosses/the-crowbell.webp"
+    "bossimage": "the-crowbell"
   },
   {
     "id": "map_120",
@@ -1794,7 +1913,8 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "ホルテンの豪邸",
-    "元ボス名": "ウルフリック族長",
+    "元ボス日本語": "ウルフリック族長",
+    "元ボス英語": "Thane Wulfric",
     "元ボス特徴": "幕間左、屋敷ボス単体夫",
     "メモ": "",
     "bossimage": ""
@@ -1809,10 +1929,11 @@
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "幕間",
     "元ボスエリア": "セル・カーリの聖域",
-    "元ボス名": "コブラの王、エルザラ",
+    "元ボス日本語": "コブラの王、エルザラ",
+    "元ボス英語": "Elzarah, the Cobra Lord",
     "元ボス特徴": "地面から手、竜巻",
     "メモ": "",
-    "bossimage": "images/bosses/elzarah-the-cobra-lord.webp"
+    "bossimage": "elzarah-the-cobra-lord"
   },
   {
     "id": "map_122",
@@ -1824,7 +1945,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1839,10 +1961,11 @@
     "耐性アイコン": "EvasionStrong,Fire,ColdWeak",
     "元ボスアクト": "２",
     "元ボスエリア": "裏切り者の通路",
-    "元ボス名": "裏切り者、バルバラ",
+    "元ボス日本語": "裏切り者、バルバラ",
+    "元ボス英語": "Balbala, the Traitor",
     "元ボス特徴": "中心の穴から毒切り",
     "メモ": "",
-    "bossimage": "images/bosses/balbala-the-traitor.webp"
+    "bossimage": "balbala-the-traitor"
   },
   {
     "id": "map_124",
@@ -1854,10 +1977,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak,Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "セケマの試練",
-    "元ボス名": "大地を砕く者、ラトルケージ",
+    "元ボス日本語": "大地を砕く者、ラトルケージ",
+    "元ボス英語": "Rattlecage, the Earthbreaker",
     "元ボス特徴": "セケマの試練の最初のボス",
     "メモ": "",
-    "bossimage": "images/bosses/rattlecage-the-earthbreaker.webp"
+    "bossimage": "rattlecage-the-earthbreaker"
   },
   {
     "id": "map_125",
@@ -1869,10 +1993,11 @@
     "耐性アイコン": "Armour,Evasion,Fire,Cold,Lightning",
     "元ボスアクト": "幕間",
     "元ボスエリア": "クリアール村",
-    "元ボス名": "流浪の槍、リサラ",
+    "元ボス日本語": "流浪の槍、リサラ",
+    "元ボス英語": "Lythara, the Wayward Spear",
     "元ボス特徴": "ヴァイパー幕間バージョン",
     "メモ": "",
-    "bossimage": "images/bosses/lythara-the-wayward-spear.webp"
+    "bossimage": "lythara-the-wayward-spear"
   },
   {
     "id": "map_126",
@@ -1884,10 +2009,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "幕間",
     "元ボスエリア": "ガライの門",
-    "元ボス名": "邪悪な炎、ヴォルナス",
+    "元ボス日本語": "邪悪な炎、ヴォルナス",
+    "元ボス英語": "Vornas, the Fell Flame",
     "元ボス特徴": "門からの獣ボス",
     "メモ": "",
-    "bossimage": "images/bosses/vornas-the-fell-flame.webp"
+    "bossimage": "vornas-the-fell-flame"
   },
   {
     "id": "map_127",
@@ -1899,9 +2025,10 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "メモ": "",
     "bossimage": ""
   },
   {
@@ -1914,7 +2041,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1929,9 +2057,10 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "メモ": "",
     "bossimage": ""
   },
   {
@@ -1944,7 +2073,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1959,7 +2089,8 @@
     "耐性アイコン": "ArmourStrong,Fire",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -1974,7 +2105,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -1989,7 +2121,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2004,7 +2137,8 @@
     "耐性アイコン": "ArmourStrong,ChaosStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -2019,7 +2153,8 @@
     "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -2034,7 +2169,8 @@
     "耐性アイコン": "Armour",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -2049,7 +2185,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2064,7 +2201,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2079,7 +2217,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -2094,7 +2233,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -2109,7 +2249,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
     "bossimage": ""
@@ -2124,7 +2265,8 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエクスペディション系\n時間停止無効",
     "bossimage": ""
@@ -2139,7 +2281,8 @@
     "耐性アイコン": "ArmourStrong,Evasion,ColdStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエクスペディション系\n時間停止無効",
     "bossimage": ""
@@ -2154,7 +2297,8 @@
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエクスペディション系\n時間停止無効",
     "bossimage": ""
@@ -2169,7 +2313,8 @@
     "耐性アイコン": "ArmourStrong,ColdStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエクスペディション系\n時間停止無効",
     "bossimage": ""
@@ -2184,7 +2329,8 @@
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "壁の一部の塔のどれか",
     "bossimage": ""
@@ -2199,7 +2345,8 @@
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "壁の一部の塔のどれか",
     "bossimage": ""
@@ -2214,7 +2361,8 @@
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "壁の一部の塔のどれか",
     "bossimage": ""
@@ -2229,7 +2377,8 @@
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "壁の一部の塔のどれか",
     "bossimage": ""
@@ -2244,7 +2393,8 @@
     "耐性アイコン": "ArmourStrong,Lightning\nArmourStrong,Lightning",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "壁の一部の塔のどれか",
     "bossimage": ""
@@ -2259,10 +2409,11 @@
     "耐性アイコン": "Armour,Evasion\nArmourStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "bossimage": "the-king-in-the-mists-humanoid\nthe-king-in-the-mists-demon"
   },
   {
     "id": "map_152",
@@ -2274,7 +2425,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2289,7 +2441,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2304,7 +2457,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エクスペディション",
     "bossimage": ""
@@ -2319,7 +2473,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2334,7 +2489,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2349,7 +2505,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2364,7 +2521,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エクスペディション",
     "bossimage": ""
@@ -2379,7 +2537,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エクスペディション",
     "bossimage": ""
@@ -2394,7 +2553,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エクスペディション",
     "bossimage": ""
@@ -2409,7 +2569,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "エクスペディション",
     "bossimage": ""
@@ -2424,10 +2585,11 @@
     "耐性アイコン": "LightningStrong",
     "元ボスアクト": "４",
     "元ボスエリア": "発掘現場",
-    "元ボス名": "ユートピアの第一の使者、ベネディクタス",
+    "元ボス日本語": "ユートピアの第一の使者、ベネディクタス",
+    "元ボス英語": "Benedictus, First Herald of Utopia",
     "元ボス特徴": "柱落とし",
     "メモ": "",
-    "bossimage": "images/bosses/benedictus-first-herald-of-utopia.webp"
+    "bossimage": "benedictus-first-herald-of-utopia"
   },
   {
     "id": "map_163",
@@ -2439,10 +2601,11 @@
     "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "吠える洞窟",
-    "元ボス名": "アボミネーションのイエティ",
+    "元ボス日本語": "アボミネーションのイエティ",
+    "元ボス英語": "The Abominable Yeti",
     "元ボス特徴": "氷の柱ゴリラ",
     "メモ": "",
-    "bossimage": "images/bosses/the-abominable-yeti.webp"
+    "bossimage": "the-abominable-yeti"
   },
   {
     "id": "map_164",
@@ -2454,10 +2617,11 @@
     "耐性アイコン": "FireStrong,ColdWeak\nFireWeak,ColdStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "焼け焦げた農場",
-    "元ボス名": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
+    "元ボス日本語": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
+    "元ボス英語": "Heldra of the Black Pyre\nIsolde of the White Shroud",
     "元ボス特徴": "炎と氷",
     "メモ": "",
-    "bossimage": "images/bosses/heldra-of-the-black-pyre.webp\nimages/bosses/isolde-of-the-white-shroud.webp"
+    "bossimage": "heldra-of-the-black-pyre\nisolde-of-the-white-shroud"
   },
   {
     "id": "map_165",
@@ -2469,10 +2633,11 @@
     "耐性アイコン": "Armour,EvasionStrong,FireWeak,LightningStrong",
     "元ボスアクト": "幕間",
     "元ボスエリア": "セールの巨石群",
-    "元ボス名": "霧の刃、シオラ",
+    "元ボス日本語": "霧の刃、シオラ",
+    "元ボス英語": "Siora, Blade of the Mists",
     "元ボス特徴": "石碑エリア雷のボス",
     "メモ": "",
-    "bossimage": "images/bosses/siora-blade-of-the-mists.webp"
+    "bossimage": "siora-blade-of-the-mists"
   },
   {
     "id": "map_166",
@@ -2484,10 +2649,11 @@
     "耐性アイコン": "ColdStrong,LightningWeak",
     "元ボスアクト": "４",
     "元ボスエリア": "歌う大洞窟",
-    "元ボス名": "死の歌、ディアモラ",
+    "元ボス日本語": "死の歌、ディアモラ",
+    "元ボス英語": "Diamora, Song of Death",
     "元ボス特徴": "石化ビーム回転セイレーン",
     "メモ": "",
-    "bossimage": "images/bosses/diamora-song-of-death.webp"
+    "bossimage": "diamora-song-of-death"
   },
   {
     "id": "map_167",
@@ -2499,7 +2665,8 @@
     "耐性アイコン": "ArmourStrong,LightningStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "ヴァール神殿の改造人間？",
     "メモ": "",
     "bossimage": ""
@@ -2514,7 +2681,8 @@
     "耐性アイコン": "FireStrong,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2529,7 +2697,8 @@
     "耐性アイコン": "FireWeak,ColdStrong",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2544,7 +2713,8 @@
     "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
     "元ボスアクト": "２",
     "元ボスエリア": "セケマの試練",
-    "元ボス名": "砂漠の母、アシャー",
+    "元ボス日本語": "砂漠の母、アシャー",
+    "元ボス英語": "Ashar, the Sand Mother",
     "元ボス特徴": "サソリ",
     "メモ": "マップにぽつんとある塔",
     "bossimage": ""
@@ -2559,7 +2729,8 @@
     "耐性アイコン": "",
     "元ボスアクト": "",
     "元ボスエリア": "",
-    "元ボス名": "",
+    "元ボス日本語": "",
+    "元ボス英語": "",
     "元ボス特徴": "",
     "メモ": "",
     "bossimage": ""
@@ -2574,10 +2745,11 @@
     "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "幕間",
     "元ボスエリア": "ガライの門",
-    "元ボス名": "邪悪な炎、ヴォルナス",
+    "元ボス日本語": "邪悪な炎、ヴォルナス",
+    "元ボス英語": "Vornas, the Fell Flame",
     "元ボス特徴": "門からの獣ボス",
     "メモ": "",
-    "bossimage": "images/bosses/vornas-the-fell-flame.webp"
+    "bossimage": "vornas-the-fell-flame"
   },
   {
     "id": "map_173",
@@ -2589,9 +2761,10 @@
     "耐性アイコン": "ArmourStrong,Lightning",
     "元ボスアクト": "幕間",
     "元ボスエリア": "セル・カーリの聖域",
-    "元ボス名": "コブラの王、エルザラ",
+    "元ボス日本語": "コブラの王、エルザラ",
+    "元ボス英語": "Elzarah, the Cobra Lord",
     "元ボス特徴": "地面から手、竜巻",
     "メモ": "",
-    "bossimage": "images/bosses/elzarah-the-cobra-lord.webp"
+    "bossimage": "elzarah-the-cobra-lord"
   }
 ]

@@ -119,6 +119,7 @@ const UserStateService = {
    }
   }
 
+  // フォーマット設定（表示形式）の初期化も追加
   return {
    version: STORAGE_VERSION,
    marks: validatedMarks,
@@ -199,7 +200,6 @@ const DOM = {
    markGrid: 'mark-grid',
    btnSortText: 'btn-sort-text',
    btnColumnText: 'btn-column-text',
-   btnFormatText: 'btn-format-text',
    tbody: 'endgame-maps-table-body',
    noResultRow: 'no-result-row',
    noResultCell: 'no-result-cell',
@@ -211,7 +211,9 @@ const DOM = {
    bossModal: 'boss-modal',
    bossModalImg: 'boss-modal-img',
    bossPreview: 'boss-preview',
-   bossPreviewImg: 'boss-preview-img'
+   bossPreviewImg: 'boss-preview-img',
+   formatOrderGroup: 'format-order-group',
+   formatLangGroup: 'format-lang-group'
   };
   Object.entries(map).forEach(([prop, id]) => { this[prop] = document.getElementById(id); });
  },
@@ -334,45 +336,32 @@ const PreviewService = {
 // ==========================================
 
 const FormatController = {
- setFormat(mode) {
-  let lang = 'both';
-  let order = 'ja';
-
-  if (mode === 'both-ja') { lang = 'both'; order = 'ja'; }
-  else if (mode === 'both-en') { lang = 'both'; order = 'en'; }
-  else if (mode === 'ja') { lang = 'ja'; order = 'ja'; }
-  else if (mode === 'en') { lang = 'en'; order = 'en'; }
-
-  if (AppState.user.format.lang === lang && AppState.user.format.order === order) return;
-
-  AppState.user.format.lang = lang;
+ setOrder(order) {
+  if (AppState.user.format.order === order) return;
   AppState.user.format.order = order;
+  PersistenceService.scheduleSave();
+  this.updateUI();
+ },
+ setLang(lang) {
+  if (AppState.user.format.lang === lang) return;
+  AppState.user.format.lang = lang;
+  if (lang === 'ja') AppState.user.format.order = 'ja';
+  if (lang === 'en') AppState.user.format.order = 'en';
   PersistenceService.scheduleSave();
   this.updateUI();
  },
  updateUI() {
   const { order, lang } = AppState.user.format;
 
-  let currentMode = '';
-  let labelText = '';
-  if (lang === 'ja') { currentMode = 'ja'; labelText = '日のみ'; }
-  else if (lang === 'en') { currentMode = 'en'; labelText = '英のみ'; }
-  else if (lang === 'both' && order === 'ja') { currentMode = 'both-ja'; labelText = '日＋英'; }
-  else if (lang === 'both' && order === 'en') { currentMode = 'both-en'; labelText = '英＋日'; }
-
-  if (DOM.btnFormatText) {
-   DOM.btnFormatText.innerText = labelText;
-  }
-
-  // ドロップダウンアイテムのハイライト更新
-  document.querySelectorAll('[data-click="setFormat"]').forEach(btn => {
-   const isActive = btn.dataset.format === currentMode;
-   btn.classList.toggle('sort-active', isActive);
-   const checkmark = btn.querySelector('.checkmark');
-   if (checkmark) checkmark.style.visibility = isActive ? 'visible' : 'hidden';
+  // UIボタンのハイライト更新
+  document.querySelectorAll('[data-click="setFormatOrder"]').forEach(btn => {
+   btn.classList.toggle('active', btn.dataset.order === order);
+  });
+  document.querySelectorAll('[data-click="setFormatLang"]').forEach(btn => {
+   btn.classList.toggle('active', btn.dataset.lang === lang);
   });
 
-  // bodyクラスの付与 (テーブル内の表示を切り替え)
+  // bodyクラスの付与によるCSS制御 (テーブル内の表示を切り替え)
   document.body.classList.remove('lang-ja-only', 'lang-en-only', 'lang-both', 'lang-ja-main', 'lang-en-main');
 
   if (lang === 'ja') {
@@ -383,6 +372,11 @@ const FormatController = {
    document.body.classList.add('lang-both');
    if (order === 'ja') document.body.classList.add('lang-ja-main');
    else if (order === 'en') document.body.classList.add('lang-en-main');
+  }
+
+  // 片方言語のみ選択時は順序ボタンをグレーアウト
+  if (DOM.formatOrderGroup) {
+   DOM.formatOrderGroup.classList.toggle('is-disabled', lang !== 'both');
   }
  }
 };
@@ -426,7 +420,7 @@ const SortController = {
    if (checkmark) checkmark.style.visibility = isMatch ? 'visible' : 'hidden';
   });
 
-  if (textName) DOM.btnSortText.innerText = textName;
+  if (textName) DOM.btnSortText.innerText = `マップ名ソート: ${textName}`;
   if (SORTERS[mode]) AppState.data.items.sort(SORTERS[mode]);
   RenderCoordinator.refreshSort();
  }
@@ -452,8 +446,7 @@ const SearchController = {
 
 const AppController = {
  resetView() {
-  SortController.apply('default', '初期');
-  FormatController.setFormat('both-ja');
+  SortController.apply('default', '初期順');
   const defaults = UserStateService.createDefaultColumns();
   Object.keys(AppState.user.columns).forEach(k => AppState.user.columns[k] = defaults[k]);
   PersistenceService.scheduleSave();
@@ -478,8 +471,9 @@ const CLICK_ACTIONS = {
  toggleRowMark: el => MarkController.toggleRowMark(el.dataset.mapKey, el.dataset.markType, el),
  showModal: el => ModalService.show(el.dataset.imgSrc),
  closeModal: () => ModalService.close(),
- setFormat: el => FormatController.setFormat(el.dataset.format)
-}
+ setFormatOrder: el => FormatController.setOrder(el.dataset.order),
+ setFormatLang: el => FormatController.setLang(el.dataset.lang)
+};
 
 function setupEventListeners() {
  let searchTimer;
@@ -517,28 +511,18 @@ function setupEventListeners() {
 }
 
 function handleDropdownClick(e) {
- const dropdownBtn = e.target.closest('.btn-dropdown, .card-dropdown-btn');
+ const dropdownBtn = e.target.closest('.btn-dropdown');
  if (e.target.closest('.dropdown-content')) return;
 
  const openDropdowns = document.querySelectorAll('.dropdown.show');
-
- // 全ての開いているドロップダウンを閉じ、aria-expandedをfalseにする
- openDropdowns.forEach(d => {
-  d.classList.remove('show');
-  const btn = d.querySelector('.btn-dropdown, .card-dropdown-btn');
-  if (btn) btn.setAttribute('aria-expanded', 'false');
- });
-
- if (!dropdownBtn) return;
+ if (!dropdownBtn) {
+  openDropdowns.forEach(d => d.classList.remove('show')); return;
+ }
 
  const parent = dropdownBtn.parentElement;
- const wasOpen = parent.classList.contains('show'); // 既に上でremoveされているので常にfalseになりますが、元の状態を判定するために微調整します。
-
- // 正しい開閉ロジック
- if (!wasOpen) {
-  parent.classList.add('show');
-  dropdownBtn.setAttribute('aria-expanded', 'true');
- }
+ const wasOpen = parent.classList.contains('show');
+ openDropdowns.forEach(d => d.classList.remove('show'));
+ if (!wasOpen) parent.classList.add('show');
 }
 
 // ==========================================
@@ -639,27 +623,10 @@ const App = {
    setupDynamicUI();
    initializeWanakana();
    setupEventListeners();
-   this.syncButtonTexts(); // ★ パネルの文字を読み取り、テーブル側と自動同期
    await this.loadData();
   } catch (e) {
    console.error("Initialization Failed:", e);
    DOM.showFatalError(e.message);
-  }
- },
-
- syncButtonTexts() {
-  // 1. パネルの「表示初期化」ボタンと、テーブル内のボタンを完全に同一にする
-  const panelResetBtn = document.querySelector('.control-bar button[data-click="resetView"]');
-  const tableResetBtn = document.querySelector('#msg-no-column button[data-click="resetView"]');
-  if (panelResetBtn && tableResetBtn) {
-   tableResetBtn.innerHTML = panelResetBtn.innerHTML;
-  }
-
-  // 2. パネルの「条件クリア」ボタンと、テーブル内のボタンを完全に同一にする
-  const panelClearBtn = document.getElementById('btn-clear-filters');
-  const tableClearBtn = document.querySelector('#msg-no-match button[data-click="clearAllFilters"]');
-  if (panelClearBtn && tableClearBtn) {
-   tableClearBtn.innerHTML = panelClearBtn.innerHTML;
   }
  },
 
@@ -1038,9 +1005,8 @@ const TableRenderer = {
  },
 
  createMarkButton(mapKey, markType, isActive, markDef) {
- const span = document.createElement('button'); // spanからbuttonに変更
-  span.type = 'button'; // form送信を防ぐため
-  span.className = `mark-btn-table btn-base ${isActive ? 'active' : ''}`;
+  const span = document.createElement('span');
+  span.className = `mark-btn-table ${isActive ? 'active' : ''}`;
   Object.assign(span.dataset, { click: 'toggleRowMark', mapKey, markType });
   span.textContent = markDef.icon;
   span.title = markDef.title;
@@ -1089,9 +1055,7 @@ const ColumnRenderer = {
    }
    if (isVisible) visibleCount++;
   });
-  // 全角数字に変換して出力
-  const toFullWidth = str => String(str).replace(/[0-9]/g, s => String.fromCharCode(s.charCodeAt(0) + 0xFEE0));
-  DOM.btnColumnText.innerText = `${toFullWidth(visibleCount)} ／ ${toFullWidth(COLUMN_DEFINITIONS.length)}`;
+  DOM.btnColumnText.innerText = `表示項目: ${visibleCount}/${COLUMN_DEFINITIONS.length}`;
  },
  updateColumnVisibility(columnKey, visible) {
   ViewStore.columns.get(columnKey)?.forEach(el => el.classList.toggle('is-hidden', !visible));
