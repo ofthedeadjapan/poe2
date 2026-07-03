@@ -2,529 +2,302 @@
 <html lang="ja">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoE2 JSON Generator</title>
-    <link rel="stylesheet" href="css/common.css">
-    <style>
-        .controls-wrapper {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            margin-bottom: 24px;
-            background-color: var(--bg-panel);
-            padding: 20px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-color);
-            box-shadow: var(--shadow-md);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoE2 JSON Generator</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* --- 共通化によって、ここにあった大量のCSSは削除されました --- */
 
-        textarea {
-            display: block;
-            width: 100%;
-            height: 200px;
-            background-color: rgba(0, 0, 0, 0.2);
-            color: white;
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-sm);
-            padding: 12px;
-            font-family: monospace;
-            font-size: 14px;
-            resize: vertical;
-            transition: all 0.2s;
-            white-space: pre;
-            overflow-wrap: normal;
-            overflow-x: auto;
-        }
+    textarea {
+      display: block;
+      width: 100%;
+      height: 200px;
+      background-color: rgba(0, 0, 0, 0.2);
+      color: white;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-family: monospace;
+      font-size: 14px;
+      resize: vertical;
+      transition: all 0.2s;
+      white-space: pre;
+      overflow-x: auto;
+    }
 
-        textarea:focus {
-            outline: none;
-            border-color: #ffffff;
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
-        }
+    textarea:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.2);
+    }
 
-        textarea::placeholder {
-            color: var(--separator-color);
-        }
+    textarea::placeholder {
+      color: var(--separator-color);
+    }
 
-        #errorMessage {
-            width: 100%;
-            margin-top: 10px;
-            color: #fca5a5;
-            font-weight: bold;
-            white-space: pre-wrap;
-        }
+    #errorMessage {
+      width: 100%;
+      color: #fca5a5;
+      font-weight: bold;
+      white-space: pre-wrap;
+    }
 
-        .separator-horizontal {
-            width: 100%;
-            height: 1px;
-            background-color: rgba(87, 83, 78, 0.4);
-            margin: 16px 0;
-        }
+    #errorMessage:empty {
+      display: none;
+    }
 
-        .controls-row {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            width: 100%;
-        }
+    .table-wrapper {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: auto;
+      background-color: var(--bg-table);
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      max-height: 500px;
+    }
 
-        .btn-common {
-            cursor: pointer;
-            border-radius: var(--radius-sm);
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-            padding: 10px 14px;
-            white-space: nowrap;
-            border: 1px solid transparent;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-common:active {
-            transform: translateY(1px);
-        }
-
-        .btn-action {
-            background: var(--btn-action-bg);
-            border-color: var(--btn-action-border);
-            color: #e8c88a;
-        }
-
-        .btn-action:hover {
-            background: var(--btn-action-bg-hover);
-            color: #fff;
-        }
-
-        .btn-bronze {
-            background: rgba(87, 83, 78, 0.25);
-            border-color: rgba(120, 113, 108, 0.5);
-            color: #d6d3d1;
-        }
-
-        .btn-bronze:hover {
-            background: rgba(203, 166, 95, 0.2);
-            border-color: #cba65f;
-            color: #fef08a;
-        }
-
-        .btn-red {
-            background: rgba(239, 68, 68, 0.15);
-            border-color: rgba(239, 68, 68, 0.4);
-            color: #fca5a5;
-            margin-left: auto;
-        }
-
-        .btn-red:hover {
-            background: rgba(239, 68, 68, 0.3);
-            color: #ffffff;
-        }
-
-        .table-wrapper {
-            width: 100%;
-            border-radius: var(--radius-md);
-            overflow: auto;
-            background-color: var(--bg-table);
-            box-shadow: var(--shadow-md);
-            border: 1px solid var(--border-color);
-            margin-bottom: 24px;
-            max-height: 500px;
-        }
-
-        table {
-            border-collapse: separate;
-            border-spacing: 0;
-            width: 100%;
-            font-size: 13px;
-        }
-
-        th,
-        td {
-            border-bottom: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-            padding: 6px 10px;
-            line-height: 1.5;
-            white-space: pre-wrap;
-        }
-
-        th:last-child,
-        td:last-child {
-            border-right: none;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        th {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            background-color: var(--bg-th);
-            color: #ffffff;
-            white-space: nowrap;
-            text-align: left;
-            font-weight: 600;
-            box-shadow: 0 1px 0 var(--border-color);
-        }
-
-        tr:nth-child(even) {
-            background-color: var(--bg-tr-even);
-        }
-
-        tr:hover {
-            background-color: var(--bg-tr-hover);
-        }
-
-        .preview-title {
-            color: var(--accent-gold);
-            margin: 0 0 10px 0;
-            font-size: 16px;
-        }
-
-        @media (max-width: 900px) {
-            button {
-                flex: 1;
-                justify-content: center;
-            }
-
-            .btn-red {
-                margin-left: 0;
-            }
-        }
-    </style>
+    #outputJsonArea {
+      height: 300px;
+      background-color: #171514;
+    }
+  </style>
 </head>
 
 <body data-page="json-builder">
-    <div class="page-container">
+  <div class="page-container">
+    <nav class="nav-container">
+      <a href="poe2-index.html" class="nav-link">Index</a>
+      <a href="poe2-campaign.html" class="nav-link">キャンペーン</a>
+      <a href="poe2-endgame-maps.html" class="nav-link">エンドゲームマップ</a>
+      <a href="poe2-memo.html" class="nav-link">メモ</a>
+      <a href="poe2-json-builder.html" class="nav-link active">JSON Builder</a>
+    </nav>
+    <header class="page-header">
+      <h1>PoE2 JSON Generator</h1>
+    </header>
+    <main class="main-content">
+      <div class="controls-wrapper">
+        <textarea id="inputArea"
+          placeholder="スプレッドシートからコピーしたTSVデータをここに貼り付けてください...&#10;※ボスやバフなど、出力したい単一のシートのデータを貼り付けます"></textarea>
+        <div id="errorMessage"></div>
+        <div class="separator-horizontal"></div>
 
-        <nav class="nav-container">
-            <a href="poe2-index.html" class="nav-link">Index</a>
-            <a href="poe2-campaign.html" class="nav-link">アクト</a>
-            <a href="poe2-endgame-maps.html" class="nav-link">エンドゲームマップ</a>
-            <a href="poe2-memo.html" class="nav-link">メモ</a>
-            <a href="poe2-json-builder.html" class="nav-link active">JSON Builder</a>
-        </nav>
+        <div class="control-bar">
+          <button class="btn-action" onclick="processData()">TSVデータをJSONに変換</button>
+          <button id="copyBtn" class="btn-action" onclick="copyJSON()">JSONをコピー</button>
+          <button class="btn-danger ml-auto" onclick="resetForm()">✖ リセット</button>
+        </div>
+      </div>
+      <div id="previewContainer"></div>
+      <div class="controls-wrapper">
+        <h3 style="margin-top:0; color:var(--text-muted);">JSON出力コード (プレビュー)</h3>
+        <textarea id="outputJsonArea" readonly placeholder="変換されたJSONコードがここに表示されます..."></textarea>
+      </div>
+    </main>
+  </div>
+  <script>
+    const DOM = {
+      inputArea: document.getElementById('inputArea'),
+      outputJsonArea: document.getElementById('outputJsonArea'),
+      errorMessage: document.getElementById('errorMessage'),
+      previewContainer: document.getElementById('previewContainer'),
+      copyBtn: document.getElementById('copyBtn')
+    };
+    let currentJson = null;
+    let copyTimer = null;
 
-        <header class="page-header">
-            <h1>PoE2 JSON Generator</h1>
-        </header>
+    DOM.inputArea.addEventListener('input', () => {
+      DOM.errorMessage.textContent = '';
+    });
 
-        <main class="main-content">
-            <div class="controls-wrapper">
-                <textarea id="inputArea"
-                    placeholder="スプレッドシートからコピーしたTSVデータをここに貼り付けてください...&#10;※セル内改行対応、空行は自動スキップされます"></textarea>
-                <div id="errorMessage"></div>
+    function parseTSV(text) {
+      const rows = [];
+      let row = [], cell = '', inQuotes = false;
+      for (let i = 0; i < text.length; i++) {
+        const char = text[i], nextChar = text[i + 1];
+        if (char === '"') {
+          if (inQuotes && nextChar === '"') { cell += '"'; i++; }
+          else { inQuotes = !inQuotes; }
+        } else if (char === '\t' && !inQuotes) {
+          row.push(cell); cell = '';
+        } else if ((char === '\n' || char === '\r') && !inQuotes) {
+          if (char === '\r' && nextChar === '\n') i++;
+          row.push(cell); rows.push(row); row = []; cell = '';
+        } else { cell += char; }
+      }
+      if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); }
+      if (inQuotes) throw new Error("引用符（\"）が閉じられていません。");
+      return rows;
+    }
 
-                <div class="separator-horizontal"></div>
+    function formatValue(val) {
+      if (val == null) return '';
+      const str = val.trim();
+      if (str === '') return '';
 
-                <div class="controls-row">
-                    <button class="btn-common btn-action" onclick="processCampaignData()">▼ キャンペーン(ボス・バフ分割) 変換</button>
-                    <button class="btn-common btn-action" onclick="processNormalData()">▼ エンドゲーム(マップ) 変換</button>
-                    <button class="btn-common btn-bronze" onclick="copyJSON()">📋 JSONをコピー</button>
-                    <button class="btn-common btn-red" onclick="resetForm()">✖ リセット</button>
-                </div>
-            </div>
+      if (str.includes('||')) {
+        return str.split('||')
+          .map(item => formatValue(item))
+          .filter(item => item !== '');
+      }
 
-            <div id="previewContainer"></div>
+      const lower = str.toLowerCase();
+      if (lower === 'true') return true;
+      if (lower === 'false') return false;
 
-            <div class="controls-wrapper" style="margin-top: 24px;">
-                <h3 style="margin-top:0; color:var(--text-muted);">JSON出力コード (プレビュー)</h3>
-                <textarea id="outputJsonArea" readonly style="height: 300px; background-color: #171514;"
-                    placeholder="変換されたJSONコードがここに表示されます..."></textarea>
-            </div>
-        </main>
-    </div>
+      const num = Number(str);
+      if (!Number.isNaN(num)) {
+        return num;
+      }
 
-    <script>
-        const DOM = {
-            inputArea: document.getElementById('inputArea'),
-            outputJsonArea: document.getElementById('outputJsonArea'),
-            errorMessage: document.getElementById('errorMessage'),
-            previewContainer: document.getElementById('previewContainer')
-        };
+      return str;
+    }
 
-        let currentJson = null;
+    function processData() {
+      resetUI();
+      try {
+        const text = DOM.inputArea.value;
+        if (!text.trim()) throw new Error("データが入力されていません");
 
-        // TSV解析パーサー (セル内改行対応 + 引用符閉じ忘れチェック)
-        function parseTSV(text) {
-            if (!text || !text.trim()) return [];
-            const rows = [];
-            let row = [];
-            let cell = '';
-            let inQuotes = false;
+        const rawData = parseTSV(text);
+        const validRows = rawData.filter(row => row.some(cell => cell && cell.trim() !== ''));
+        if (validRows.length < 2) throw new Error("有効なデータが存在しない、またはヘッダーしかありません");
 
-            for (let i = 0; i < text.length; i++) {
-                const char = text[i];
-                const nextChar = text[i + 1];
-
-                if (char === '"') {
-                    if (inQuotes && nextChar === '"') {
-                        cell += '"';
-                        i++;
-                    } else {
-                        inQuotes = !inQuotes;
-                    }
-                } else if (char === '\t' && !inQuotes) {
-                    row.push(cell);
-                    cell = '';
-                } else if ((char === '\n' || (char === '\r' && nextChar === '\n')) && !inQuotes) {
-                    if (char === '\r') i++;
-                    row.push(cell);
-                    rows.push(row);
-                    row = [];
-                    cell = '';
-                } else {
-                    cell += char;
-                }
-            }
-            if (cell !== '' || row.length > 0) {
-                row.push(cell);
-                rows.push(row);
-            }
-            if (inQuotes) {
-                throw new Error("引用符（\"）が閉じられていません。");
-            }
-            return rows;
+        const headers = validRows[0].map(h => h ? h.trim() : '');
+        const duplicateHeaders = headers.filter((h, i) => h && headers.indexOf(h) !== i);
+        if (duplicateHeaders.length > 0) {
+          const uniqueDups = [...new Set(duplicateHeaders)];
+          throw new Error("⚠ 列名が重複しています: " + uniqueDups.join(', '));
         }
 
-        // 安全な数値化と不要な空白削除 (Number.isFiniteによる厳格な判定)
-        // ※「||」が含まれている場合は、文字列を分割して配列（Array）として返す
-        function formatValue(val, key) {
-            if (val === undefined || val === null) return '';
-            const str = val.trim();
-
-            // --- ここから追加：選択式（配列）の処理 ---
-            if (str.includes('||')) {
-                // '||' で分割し、前後の不要な空白を削除、空文字の要素は除外する
-                return str.split('||').map(item => item.trim()).filter(item => item !== '');
-            }
-            // --- 追加ここまで ---
-
-            if (str !== '' && !isNaN(str) && key.toLowerCase() !== 'id') {
-                const num = Number(str);
-                if (Number.isFinite(num)) return num;
-            }
-            return str;
+        const idIndex = headers.findIndex(h => h.toLowerCase() === 'id');
+        if (idIndex === -1) {
+          throw new Error("ID列が見つかりません。");
         }
 
-        // 純粋関数: 共通のデータ検証処理 (UI操作を排除)
-        function prepareData(text) {
-            if (!text || !text.trim()) throw new Error("データが入力されていません");
+        const dataList = [];
+        const seenIds = new Set();
+        const headerLen = headers.length;
 
-            const rawData = parseTSV(text);
-            const validRows = rawData.filter(row => row.some(cell => cell.trim() !== ''));
-            if (validRows.length < 2) throw new Error("有効なデータが存在しない、またはヘッダーしかありません");
+        for (let i = 1; i < validRows.length; i++) {
+          const row = validRows[i];
+          const rawId = row[idIndex];
+          if (rawId == null || rawId.trim() === '') continue;
 
-            return validRows;
+          const idValue = rawId.trim().toLowerCase();
+          if (seenIds.has(idValue)) {
+            throw new Error(`⚠ IDが重複しています: ${idValue}`);
+          }
+          seenIds.add(idValue);
+
+          const obj = {};
+          for (let j = 0; j < headerLen; j++) {
+            const h = headers[j];
+            if (!h) continue;
+            obj[h] = (j === idIndex) ? idValue : formatValue(row[j]);
+          }
+          dataList.push(obj);
         }
 
-        // 純粋関数: キャンペーンデータのデータ変換ロジック
-        function convertCampaign(validRows) {
-            const headerRow = validRows[0];
-            const idIndexes = [];
-            headerRow.forEach((h, i) => {
-                if (h && h.trim().toLowerCase() === 'id') idIndexes.push(i);
-            });
+        currentJson = dataList;
+        DOM.outputJsonArea.value = JSON.stringify(currentJson, null, 2);
 
-            if (idIndexes.length < 2) {
-                throw new Error("キャンペーン用として分割するには、ヘッダーに2つの 'id' 列（ボス用・バフ用）が必要です。");
-            }
+        const fragment = document.createDocumentFragment();
+        renderPreviewTable(dataList, headers.filter(Boolean), "データ プレビュー", fragment);
+        DOM.previewContainer.appendChild(fragment);
+      } catch (e) {
+        DOM.errorMessage.textContent = e.message;
+      }
+    }
 
-            const bossStart = idIndexes[0];
-            const buffStart = idIndexes[1];
+    function renderPreviewTable(dataArray, headers, titleText, parentFragment) {
+      if (dataArray.length === 0) return;
 
-            const bossHeaders = [];
-            for (let i = bossStart; i < buffStart; i++) {
-                if (headerRow[i] && headerRow[i].trim()) bossHeaders.push({ name: headerRow[i].trim(), index: i });
-            }
+      const MAX_PREVIEW = 100;
+      const displayCount = Math.min(dataArray.length, MAX_PREVIEW);
 
-            const buffHeaders = [];
-            for (let i = buffStart; i < headerRow.length; i++) {
-                if (headerRow[i] && headerRow[i].trim()) buffHeaders.push({ name: headerRow[i].trim(), index: i });
-            }
+      const title = document.createElement('h3');
+      title.textContent = dataArray.length > MAX_PREVIEW
+        ? `${titleText} (全 ${dataArray.length} 件中 / 先頭 ${MAX_PREVIEW} 件)`
+        : `${titleText} (${dataArray.length} 件)`;
 
-            const bosses = [];
-            const buffs = [];
+      const wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
 
-            for (let r = 1; r < validRows.length; r++) {
-                const row = validRows[r];
+      const table = document.createElement('table');
+      const thead = document.createElement('thead');
+      const tbody = document.createElement('tbody');
 
-                const bossId = row[bossStart] ? row[bossStart].trim() : '';
-                if (bossId) {
-                    const obj = {};
-                    bossHeaders.forEach(h => { obj[h.name] = formatValue(row[h.index], h.name); });
-                    bosses.push(obj);
-                }
+      const trHead = document.createElement('tr');
+      for (const h of headers) {
+        const th = document.createElement('th');
+        th.textContent = h;
+        trHead.appendChild(th);
+      }
+      thead.appendChild(trHead);
 
-                const buffId = row[buffStart] ? row[buffStart].trim() : '';
-                if (buffId) {
-                    const obj = {};
-                    buffHeaders.forEach(h => { obj[h.name] = formatValue(row[h.index], h.name); });
-                    buffs.push(obj);
-                }
-            }
-
-            return {
-                json: { bosses, buffs },
-                previews: [
-                    { data: bosses, headers: bossHeaders.map(h => h.name), title: "ボスデータ プレビュー" },
-                    { data: buffs, headers: buffHeaders.map(h => h.name), title: "永続バフデータ プレビュー" }
-                ]
-            };
+      for (let i = 0; i < displayCount; i++) {
+        const obj = dataArray[i];
+        const tr = document.createElement('tr');
+        for (const h of headers) {
+          const td = document.createElement('td');
+          const val = obj[h];
+          td.textContent = Array.isArray(val) ? val.join(', ') : val;
+          tr.appendChild(td);
         }
+        tbody.appendChild(tr);
+      }
 
-        // 純粋関数: 通常データのデータ変換ロジック
-        function convertNormal(validRows) {
-            const headers = validRows[0].map(h => h ? h.trim() : '');
-            const hasMultipleIds = headers.filter(h => h.toLowerCase() === 'id').length > 1;
-            const warning = hasMultipleIds ? "⚠ 警告: 'id' 列が複数存在します。意図したデータか確認してください。" : null;
+      table.appendChild(thead);
+      table.appendChild(tbody);
+      wrapper.appendChild(table);
 
-            const dataList = [];
-            for (let r = 1; r < validRows.length; r++) {
-                const row = validRows[r];
-                const obj = {};
-                let hasId = false;
+      parentFragment.appendChild(title);
+      parentFragment.appendChild(wrapper);
+    }
 
-                headers.forEach((h, i) => {
-                    if (h) {
-                        const val = formatValue(row[i], h);
-                        obj[h] = val;
-                        if (h.toLowerCase() === 'id' && val !== '') hasId = true;
-                    }
-                });
+    async function copyJSON() {
+      if (!currentJson) return;
 
-                if (hasId) dataList.push(obj);
-            }
+      const btn = DOM.copyBtn;
+      const originalText = "📋 JSONをコピー";
 
-            return {
-                json: dataList,
-                warning: warning,
-                previews: [
-                    { data: dataList, headers: headers.filter(h => h), title: "データ プレビュー" }
-                ]
-            };
+      if (copyTimer) clearTimeout(copyTimer);
+
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(DOM.outputJsonArea.value);
+          btn.innerHTML = "✅ コピーしました";
+          btn.style.color = "#86efac";
+        } else {
+          throw new Error("Clipboard API not available");
         }
+      } catch (e) {
+        DOM.outputJsonArea.select();
+        btn.innerHTML = "⚠ Ctrl+Cでコピーしてください";
+        btn.style.color = "#fca5a5";
+      }
 
-        // 共通実行コアコントローラー (UI管理・エラー制御の集約)
-        function runProcessor(processorFunc) {
-            // 処理開始前にUI状態を初期クリア
-            DOM.errorMessage.textContent = '';
-            DOM.previewContainer.innerHTML = '';
-            DOM.outputJsonArea.value = '';
-            currentJson = null;
+      copyTimer = setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.color = "";
+      }, 2000);
+    }
 
-            try {
-                const text = DOM.inputArea.value;
-                const validRows = prepareData(text);
-                const result = processorFunc(validRows);
+    function resetUI() {
+      DOM.errorMessage.textContent = '';
+      DOM.previewContainer.innerHTML = '';
+      DOM.outputJsonArea.value = '';
+      currentJson = null;
+    }
 
-                if (result.warning) {
-                    DOM.errorMessage.textContent = result.warning;
-                }
-
-                currentJson = result.json;
-                DOM.outputJsonArea.value = JSON.stringify(currentJson, null, 2);
-
-                // DocumentFragmentを使用した高速描画
-                const fragment = document.createDocumentFragment();
-                result.previews.forEach(p => {
-                    renderPreviewTable(p.data, p.headers, p.title, fragment);
-                });
-                DOM.previewContainer.appendChild(fragment);
-
-            } catch (e) {
-                DOM.errorMessage.textContent = "⚠ エラー: " + e.message;
-                // エラー時はプレビューと出力を確実にクリアする
-                DOM.previewContainer.innerHTML = '';
-                DOM.outputJsonArea.value = '';
-                currentJson = null;
-            }
-        }
-
-        // 外部呼び出し用エントリーポイント
-        function processCampaignData() {
-            runProcessor(convertCampaign);
-        }
-
-        function processNormalData() {
-            runProcessor(convertNormal);
-        }
-
-        // 高速プレビューテーブル生成 (DocumentFragmentへの追加型 & 最大100件制限機能)
-        function renderPreviewTable(dataArray, headers, titleText, parentFragment) {
-            if (dataArray.length === 0) return;
-
-            const MAX_PREVIEW = 100;
-            const totalCount = dataArray.length;
-            const displayCount = Math.min(totalCount, MAX_PREVIEW);
-
-            const title = document.createElement('h3');
-            title.className = 'preview-title';
-            if (totalCount > MAX_PREVIEW) {
-                title.textContent = `${titleText} (全 ${totalCount} 件中 / 先頭 ${MAX_PREVIEW} 件を表示)`;
-            } else {
-                title.textContent = `${titleText} (${totalCount} 件)`;
-            }
-
-            const wrapper = document.createElement('div');
-            wrapper.className = 'table-wrapper';
-
-            const table = document.createElement('table');
-            const thead = document.createElement('thead');
-            const trHead = document.createElement('tr');
-
-            headers.forEach(h => {
-                const th = document.createElement('th');
-                th.textContent = h;
-                trHead.appendChild(th);
-            });
-            thead.appendChild(trHead);
-            table.appendChild(thead);
-
-            const tbody = document.createElement('tbody');
-            for (let i = 0; i < displayCount; i++) {
-                const obj = dataArray[i];
-                const tr = document.createElement('tr');
-                headers.forEach(h => {
-                    const td = document.createElement('td');
-                    td.textContent = obj[h] !== undefined ? obj[h] : '';
-                    tr.appendChild(td);
-                });
-                tbody.appendChild(tr);
-            }
-            table.appendChild(tbody);
-            wrapper.appendChild(table);
-
-            parentFragment.appendChild(title);
-            parentFragment.appendChild(wrapper);
-        }
-
-        // 非推奨APIを排除した非同期クリップボードコピー
-        async function copyJSON() {
-            if (!currentJson) {
-                alert("JSONデータがありません。先に変換ボタンを押してください。");
-                return;
-            }
-            try {
-                await navigator.clipboard.writeText(DOM.outputJsonArea.value);
-                alert("JSONコードをクリップボードにコピーしました！");
-            } catch (e) {
-                alert("コピーに失敗しました。お使いのブラウザの権限設定を確認してください。");
-            }
-        }
-
-        function resetForm() {
-            DOM.inputArea.value = '';
-            DOM.outputJsonArea.value = '';
-            DOM.previewContainer.innerHTML = '';
-            DOM.errorMessage.textContent = '';
-            currentJson = null;
-        }
-    </script>
+    function resetForm() {
+      DOM.inputArea.value = '';
+      resetUI();
+    }
+  </script>
 </body>
 
 </html>
