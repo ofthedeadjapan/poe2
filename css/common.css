@@ -510,7 +510,7 @@ body.lang-en-only .lang-en {
   padding: 4px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
   max-width: 400px;
-  transition: opacity 0.15s ease;
+  transition: opacity 0.05s ease;
   opacity: 0;
 }
 

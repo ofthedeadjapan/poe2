@@ -152,32 +152,36 @@ const PreviewService = {
   cachedWidth: 0,
   cachedHeight: 0,
   currentSrc: '',
+  hideTimeout: null,
 
   show(imgSrc, x, y) {
     if (this.isTouchDevice || !imgSrc) return;
-    this.currentSrc = imgSrc;
 
-    const fullPath = `images/bosses/${imgSrc}.webp`;
-    const displayImage = () => {
-      if (this.currentSrc !== imgSrc) return;
-      DOM.bossPreview.classList.remove('is-hidden');
-
-      requestAnimationFrame(() => {
-        const rect = DOM.bossPreview.getBoundingClientRect();
-        this.cachedWidth = rect.width || 200;
-        this.cachedHeight = rect.height || 200;
-        this.move(x, y);
-        DOM.bossPreview.classList.add('show');
-      });
-    };
-
-    if (DOM.bossPreviewImg.src.endsWith(fullPath) && DOM.bossPreviewImg.complete) {
-      displayImage();
-    } else {
-      DOM.bossPreviewImg.onload = displayImage;
-      DOM.bossPreviewImg.src = fullPath;
+    if (this.hideTimeout) {
+      clearTimeout(this.hideTimeout);
+      this.hideTimeout = null;
     }
+
+    if (this.currentSrc === imgSrc && DOM.bossPreview.classList.contains('show')) {
+      this.move(x, y);
+      return;
+    }
+
+    this.currentSrc = imgSrc;
+    const fullPath = `images/bosses/${imgSrc}.webp`;
+
+    DOM.bossPreviewImg.src = fullPath;
+    DOM.bossPreview.classList.remove('is-hidden');
+
+    requestAnimationFrame(() => {
+      const rect = DOM.bossPreview.getBoundingClientRect();
+      this.cachedWidth = rect.width || 200;
+      this.cachedHeight = rect.height || 200;
+      this.move(x, y);
+      DOM.bossPreview.classList.add('show');
+    });
   },
+
   move(x, y) {
     if (!this.cachedWidth || !this.cachedHeight) return;
     const offset = 15;
@@ -195,17 +199,21 @@ const PreviewService = {
     DOM.bossPreview.style.left = `${left}px`;
     DOM.bossPreview.style.top = `${top}px`;
   },
+
   hide() {
     this.currentSrc = '';
     DOM.bossPreview.classList.remove('show');
-    setTimeout(() => {
-      if (!DOM.bossPreview.classList.contains('show')) {
-        DOM.bossPreview.classList.add('is-hidden');
-        DOM.bossPreviewImg.src = '';
-        this.cachedWidth = 0;
-        this.cachedHeight = 0;
-      }
-    }, 150);
+
+    if (this.hideTimeout) {
+      clearTimeout(this.hideTimeout);
+    }
+
+    this.hideTimeout = setTimeout(() => {
+      DOM.bossPreview.classList.add('is-hidden');
+      DOM.bossPreviewImg.src = '';
+      this.cachedWidth = 0;
+      this.cachedHeight = 0;
+    }, 50);
   }
 };
 
