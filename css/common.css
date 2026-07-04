@@ -580,6 +580,16 @@ body.lang-en-only .lang-en {
 /* =========================================
  12. テーブル基本設定 (完全統合版)
  ========================================= */
+.table-wrapper {
+
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background-color: var(--bg-table);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
 table {
   border-collapse: collapse;
   width: 100%;

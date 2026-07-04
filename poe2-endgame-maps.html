@@ -272,31 +272,6 @@
       opacity: .8;
     }
 
-    /* 6. テーブルラッパーのカスタムスクロールバー (独自) */
-    .table-wrapper {
-      overflow: hidden;
-      background-color: var(--bg-table);
-      border: 1px solid var(--border-color);
-      border-radius: var(--radius-md);
-    }
-
-    .table-wrapper::-webkit-scrollbar {
-      height: 8px;
-    }
-
-    .table-wrapper::-webkit-scrollbar-track {
-      background: var(--bg-body);
-    }
-
-    .table-wrapper::-webkit-scrollbar-thumb {
-      background: var(--border-color);
-      border-radius: 4px;
-    }
-
-    .table-wrapper::-webkit-scrollbar-thumb:hover {
-      background: var(--accent-gold);
-    }
-
     /* 7. テーブル内の独自レイアウト・装飾 */
     .msg-container {
       text-align: center;
@@ -313,23 +288,11 @@
       gap: 2px;
     }
 
-    .col-resist-icon {
-      width: 195px;
-      min-width: 110px;
-    }
-
-    .cell-resist-wrapper {
+     .cell-resist-wrapper {
       width: 100%;
       display: flex;
       flex-direction: column;
       gap: 12px;
-    }
-
-    .col-mark {
-      width: 60px;
-      min-width: 60px;
-      max-width: 60px;
-      text-align: center;
     }
 
     .mark-btn-table {
@@ -344,6 +307,7 @@
       background-color: var(--white05);
       opacity: .25;
       filter: grayscale(100%);
+      padding: 0;
     }
 
     .mark-btn-table:hover {
@@ -351,7 +315,7 @@
       background-color: var(--white10);
       opacity: .25;
       filter: grayscale(25%);
-      transform: scale(1.1);
+      transform: scale(1.5);
     }
 
     .mark-btn-table.active {
@@ -359,10 +323,6 @@
       filter: grayscale(0%) drop-shadow(0 0 10px rgba(203, 166, 95, .6));
       background-color: rgba(203, 166, 95, .2);
       opacity: 1;
-    }
-
-    #endgame-maps-table {
-      table-layout: fixed;
     }
 
     #endgame-maps-table th,
@@ -373,6 +333,19 @@
 
     /* 8. レスポンシブ (独自部分の補完) */
     @media (max-width: 767px) {
+      .control-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .dropdown-container {
+        width: 100%;
+      }
+
+      .ml-auto {
+        margin-left: 0 !important;
+      }
+
       .resist-filter-grid {
         grid-template-columns: repeat(3, 36px);
         grid-template-rows: repeat(2, 36px);
@@ -402,14 +375,6 @@
       .resist-filter-grid,
       .mark-filter-grid {
         justify-content: center;
-      }
-
-      .table-wrapper {
-        overflow-x: auto;
-      }
-
-      th {
-        white-space: normal;
       }
 
       table {
@@ -527,14 +492,14 @@
               <div class="dropdown-divider"></div>
             </div>
           </div>
-          <button type="button" class="btn-action btn-base ml-auto" data-click="resetView">↺ 表示初期化</button>
+          <button type="button" class="btn-action ml-auto" data-click="resetView">↺ 表示初期化</button>
         </div>
         <div class="separator-horizontal"></div>
         <div class="control-bar">
           <div class="search-wrapper" id="search-wrap">
             <span class="search-icon">🔍</span>
             <input type="text" id="searchInput" placeholder="読み込み中..." disabled autocomplete="off">
-            <button type="button" class="clear-text-btn btn-base" data-click="clearSearchText" aria-label="検索文字を消去"
+            <button type="button" class="clear-text-btn" data-click="clearSearchText" aria-label="検索文字を消去"
               title="文字を消去">✖</button>
           </div>
           <div class="separator-weak"></div>
@@ -552,7 +517,7 @@
           <div class="mark-filter-grid" id="mark-grid"></div>
           <div class="separator-weak"></div>
           <div id="search-counter" class="search-counter" aria-live="polite">検索結果: -件 / 全-件</div>
-          <button type="button" class="btn-action btn-base ml-auto" id="btn-clear-filters"
+          <button type="button" class="btn-action ml-auto" id="btn-clear-filters"
             data-click="clearAllFilters">✖
             条件クリア</button>
         </div>
@@ -572,12 +537,12 @@
                 </div>
                 <div id="msg-no-column" class="is-hidden">
                   <span>選択項目がありません</span><br>
-                  <button type="button" class="btn-action btn-base" data-click="resetView" style="margin-top: 16px;">↺
+                  <button type="button" class="btn-action" data-click="resetView" style="margin-top: 16px;">↺
                     表示初期化</button>
                 </div>
                 <div id="msg-no-match" class="is-hidden">
                   <span>該当するデータが見つかりませんでした。</span><br>
-                  <button type="button" class="btn-action btn-base" data-click="clearAllFilters"
+                  <button type="button" class="btn-action" data-click="clearAllFilters"
                     style="margin-top: 16px;">✖
                     条件クリア</button>
                 </div>
@@ -593,7 +558,7 @@
   </div>
   <div id="boss-modal" class="modal-overlay">
     <div class="modal-content">
-      <button type="button" class="modal-close btn-base" data-click="closeModal" aria-label="閉じる">✕</button>
+      <button type="button" class="modal-close" data-click="closeModal" aria-label="閉じる">✕</button>
       <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image">
     </div>
   </div>
