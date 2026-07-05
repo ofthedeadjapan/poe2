@@ -8,7 +8,9 @@
   box-sizing: border-box;
 }
 
-/* 1. 変数定義 (:root) */
+/* =========================================
+ 1. 変数定義 (:root)
+ ========================================= */
 :root {
   color-scheme: dark;
 
@@ -45,6 +47,7 @@
   --btn-danger-bg-hover: rgba(239, 68, 68, 0.3);
   --btn-danger-border: rgba(248, 113, 113, 0.4);
   --btn-danger-text: #fca5a5;
+
   /* 耐性ステータスカラー */
   --color-empty: 255, 255, 255;
   --color-weak: 239, 68, 68;
@@ -88,7 +91,9 @@
   --resist-strong-border: rgb(var(--color-strong), 0.55);
 }
 
-/* 2. ページ全体のベース設定 */
+/* =========================================
+ 2. ページ全体のベース設定
+ ========================================= */
 html {
   overflow-y: scroll;
 }
@@ -105,7 +110,6 @@ body {
 /* =========================================
  3. レイアウト構造 (全ページ共通の骨組み)
  ========================================= */
-
 /* ページ全体の幅管理コンテナ */
 .page-container {
   max-width: 1400px;
@@ -239,7 +243,6 @@ input:focus-visible {
 /* =========================================
  7. ボタン & ドロップダウン
  ========================================= */
-
 /* -----------------------------------------
  ① 全ボタン共通設定（形状・余白・挙動）
  ----------------------------------------- */
@@ -266,7 +269,6 @@ input:focus-visible {
 /* -----------------------------------------
  ② 各ボタン固有設定（レイアウト・色）
  ----------------------------------------- */
-
 /* メイン操作 (ゴールド系) */
 .btn-action {
   display: inline-flex;
@@ -324,7 +326,6 @@ input:focus-visible {
 /* -----------------------------------------
  ③ ドロップダウンのコンテナ・メニュー関連
  ----------------------------------------- */
-
 .dropdown-container {
   position: relative;
   width: var(--btn-dropdown-width);
@@ -427,63 +428,9 @@ input:focus-visible {
 }
 
 /* =========================================
- 9. 日英テキスト・テーブル内表記
+ 9. プレビュー & モーダル UI
  ========================================= */
-.cell-lang-container {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-/* --- ベーススタイル（ja-en） --- */
-.lang-ja {
-  font-size: 16px;
-  color: var(--text-main);
-  order: 1;
-  line-height: 1.4;
-}
-
-.lang-en {
-  font-size: 14px;
-  color: var(--text-muted);
-  order: 2;
-  line-height: 1.4;
-}
-
-/* --- 英＋日 (en-ja) --- */
-body.lang-en-ja .lang-ja {
-  font-size: 14px;
-  color: var(--text-muted);
-  order: 2;
-}
-
-body.lang-en-ja .lang-en {
-  font-size: 16px;
-  color: var(--text-main);
-  font-weight: 600;
-  order: 1;
-}
-
-/* --- 日のみ (ja-only) --- */
-body.lang-ja-only .lang-en {
-  display: none !important;
-}
-
-/* --- 英のみ (en-only) --- */
-body.lang-en-only .lang-ja {
-  display: none !important;
-}
-
-body.lang-en-only .lang-en {
-  font-size: 16px;
-  color: var(--text-main);
-  font-weight: 600;
-  order: 1;
-}
-
-/* =========================================
- 10. プレビュー用ゴールドリンク
- ========================================= */
+/* --- プレビュー用ゴールドリンク --- */
 .boss-link {
   color: var(--accent-gold);
   text-decoration: underline dotted rgba(203, 166, 95, 0.5);
@@ -497,9 +444,7 @@ body.lang-en-only .lang-en {
   text-decoration-style: solid;
 }
 
-/* =========================================
- 11. プレビュー & モーダル UI
- ========================================= */
+/* --- プレビュー表示枠 --- */
 .boss-preview {
   position: fixed;
   pointer-events: none;
@@ -529,6 +474,7 @@ body.lang-en-only .lang-en {
   border-radius: 2px;
 }
 
+/* --- 画像拡大モーダル --- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -578,10 +524,9 @@ body.lang-en-only .lang-en {
 }
 
 /* =========================================
- 12. テーブル基本設定 (完全統合版)
+ 10. テーブル基本設定 (完全統合版)
  ========================================= */
 .table-wrapper {
-
   width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
@@ -644,8 +589,79 @@ tr:not(.no-hover-row):hover {
 }
 
 /* =========================================
- 13. 敵耐性
+ 11. テーブル内セルコンポーネント
  ========================================= */
+
+/* --- 複数項目を持つセル --- */
+.cell-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cell-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 6px 0;
+}
+
+.cell-item + .cell-item {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid var(--white05);
+}
+
+/* --- 日英テキスト・テーブル内表記 --- */
+.cell-lang-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lang-ja {
+  font-size: 16px;
+  color: var(--text-main);
+  order: 1;
+  line-height: 1.4;
+}
+
+.lang-en {
+  font-size: 14px;
+  color: var(--text-muted);
+  order: 2;
+  line-height: 1.4;
+}
+
+body.lang-en-ja .lang-ja {
+  font-size: 14px;
+  color: var(--text-muted);
+  order: 2;
+}
+
+body.lang-en-ja .lang-en {
+  font-size: 16px;
+  color: var(--text-main);
+  font-weight: 600;
+  order: 1;
+}
+
+body.lang-ja-only .lang-en {
+  display: none !important;
+}
+
+body.lang-en-only .lang-ja {
+  display: none !important;
+}
+
+body.lang-en-only .lang-en {
+  font-size: 16px;
+  color: var(--text-main);
+  font-weight: 600;
+  order: 1;
+}
+
+/* --- 敵耐性アイコンセル --- */
 .resist-grid {
   display: grid;
   grid-template-columns: repeat(6, 26px);
@@ -691,7 +707,26 @@ tr:not(.no-hover-row):hover {
 }
 
 /* =========================================
- 14. 767px以下 レスポンシブ共通
+ 12. 固有列・ページごとの微調整（必要に応じて上書き）
+ ========================================= */
+/*
+例：キャンペーンページの固有調整が必要になった場合は以下のように記述します
+
+.boss-cell .cell-item {
+  padding: 8px 0;
+}
+
+.resist-cell .cell-item {
+  align-items: center;
+}
+
+.attack-cell .cell-item {
+  align-items: center;
+}
+*/
+
+/* =========================================
+ 13. 767px以下 レスポンシブ共通
  ========================================= */
 @media (max-width: 767px) {
   .control-bar {
@@ -711,6 +746,4 @@ tr:not(.no-hover-row):hover {
     grid-template-columns: repeat(3, 26px);
     grid-template-rows: repeat(2, 26px);
   }
-
-
 }

@@ -211,12 +211,10 @@
       cells.forEach(cell => {
         const td = document.createElement("td");
 
-        // オブジェクト指定の場合は text プロパティと各種属性を処理
         if (typeof cell === "object" && cell !== null) {
           td.textContent = cell.text ?? "";
           if (cell.className) td.className = cell.className;
         } else {
-          // プリミティブ値（文字列・数値）はそのままテキストとして挿入
           td.textContent = cell ?? "";
         }
 
