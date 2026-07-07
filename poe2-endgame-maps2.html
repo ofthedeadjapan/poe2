@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PoE2 エンドゲームマップ</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* ==========================================================================
+     PoE2 エンドゲームマップ専用スタイル (common.css 適用後の差分・独自部分)
+     ========================================================================== */
+
+    #endgame-maps-table {
+      table-layout: fixed;
+    }
+
+    /* 1. エラーメッセージ & 参照リンク */
+    .error-box {
+      color: #ef4444;
+      background: rgba(239, 68, 68, .1);
+      padding: 12px;
+      border: 1px solid #ef4444;
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    .reference-link-top {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .reference-link-top a {
+      color: var(--accent-gold);
+      text-decoration: none;
+      transition: color var(--transition-normal);
+    }
+
+    .reference-link-top a:hover {
+      text-decoration: underline;
+      color: var(--text-main);
+    }
+
+    /* 2. 区切り線 (独自) */
+    .separator-weak {
+      width: 1px;
+      height: 26px;
+      background-color: rgba(87, 83, 78, .6);
+      flex-shrink: 0;
+    }
+
+    /* 3. ドロップダウン内の独自アイテム */
+    .dropdown-divider {
+      height: 1px;
+      background-color: var(--border-color);
+      margin: 6px 0;
+    }
+
+    .action-item {
+      color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .filter-dropdown-content {
+      padding: 12px;
+      width: max-content;
+      min-width: 100%;
+    }
+
+    /* 4. 検索ボックス */
+    .search-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+      max-width: 450px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      font-size: 16px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    #searchInput {
+      width: 100%;
+      height: 44px;
+      padding: 10px 40px 10px 42px;
+      font-size: 16px;
+      border: 1px solid var(--border-color);
+      background-color: #0c0a09;
+      box-shadow: inset 0 2px 6px var(--black60);
+      color: white;
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-normal);
+    }
+
+    #searchInput:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 10px 2px var(--white20);
+    }
+
+    .clear-text-btn {
+      position: absolute;
+      right: 10px;
+      background: var(--white10);
+      border: none;
+      color: var(--text-main);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 12px;
+      transition: all var(--transition-normal);
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .clear-text-btn:hover {
+      background: var(--white30);
+      color: #fff;
+    }
+
+    #searchInput:not(:placeholder-shown)~.clear-text-btn {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .search-counter {
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--accent-gold);
+      white-space: nowrap;
+    }
+
+    /* 5. フィルター用アイコンUI */
+    .resist-filter-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 36px);
+      grid-template-rows: repeat(3, 36px);
+      gap: 8px;
+    }
+
+    .mark-filter-grid {
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: 36px;
+      gap: 8px;
+    }
+
+    .icon-wrapper {
+      position: relative;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: all var(--transition-normal);
+    }
+
+    .icon-filter {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background-color: var(--bg-th);
+      object-fit: contain;
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .icon-wrapper:not(.active):hover {
+      transform: translateY(-2px);
+    }
+
+    .icon-wrapper[data-resist$="Weak"] {
+      --status-color: var(--color-weak);
+    }
+
+    .icon-wrapper[data-resist$="Strong"] {
+      --status-color: var(--color-strong);
+    }
+
+    .icon-wrapper[data-resist]:not([data-resist$="Weak"]):not([data-resist$="Strong"]) {
+      --status-color: var(--color-normal);
+    }
+
+    .icon-wrapper[data-resist] .icon-filter {
+      border: 2px solid rgba(var(--status-color), .4);
+      background-color: rgba(var(--status-color), .1);
+    }
+
+    .icon-wrapper[data-resist]:hover .icon-filter {
+      border-color: rgba(var(--status-color), .8);
+      background-color: rgba(var(--status-color), .2);
+    }
+
+    .icon-wrapper.active[data-resist] .icon-filter {
+      border-color: rgb(var(--status-color));
+      filter: drop-shadow(0 0 10px rgba(var(--status-color), .6));
+      background-color: rgba(var(--status-color), .3);
+    }
+
+    .icon-wrapper[data-mark] .icon-filter {
+      border: 2px solid var(--white20);
+      background-color: var(--white05);
+      opacity: .25;
+      filter: grayscale(100%);
+    }
+
+    .icon-wrapper[data-mark]:hover .icon-filter {
+      border-color: var(--white50);
+      background-color: var(--white10);
+      opacity: .8;
+      filter: grayscale(50%);
+    }
+
+    .icon-wrapper.active[data-mark] .icon-filter {
+      border-color: var(--accent-gold);
+      filter: grayscale(0%) drop-shadow(0 0 10px rgba(203, 166, 95, .6));
+      background-color: rgba(203, 166, 95, .2);
+      opacity: 1;
+    }
+
+    .badge-check {
+      position: absolute;
+      bottom: -4px;
+      right: -4px;
+      background-color: var(--btn-on);
+      color: #fff;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: bold;
+      border: 2px solid var(--bg-panel);
+      opacity: 0;
+      transform: scale(.5);
+      transition: all var(--transition-normal) cubic-bezier(.175, .885, .32, 1.275);
+    }
+
+    .icon-wrapper.active .badge-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .icon-dummy {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background-color: var(--black20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--border-color);
+      font-weight: bold;
+      border: 1px solid var(--white05);
+      pointer-events: none;
+    }
+
+    .resist-filter-grid.has-active .icon-wrapper:not(.active) {
+      opacity: .35;
+      filter: grayscale(50%);
+    }
+
+    .resist-filter-grid.has-active .icon-wrapper:not(.active):hover {
+      opacity: .8;
+    }
+
+    /* 7. テーブル内の独自レイアウト・装飾 */
+    .msg-container {
+      text-align: center;
+      padding: 48px 20px;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text-muted);
+      white-space: normal;
+    }
+
+    .interleaved-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cell-resist-wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .mark-btn-table {
+      font-size: 16px;
+      user-select: none;
+      transition: all var(--transition-normal);
+      margin: 0 2px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 2px solid var(--white20);
+      background-color: var(--white05);
+      opacity: .25;
+      filter: grayscale(100%);
+      padding: 0;
+    }
+
+    .mark-btn-table:hover {
+      border-color: var(--white50);
+      background-color: var(--white10);
+      opacity: .25;
+      filter: grayscale(25%);
+      transform: scale(1.5);
+    }
+
+    .mark-btn-table.active {
+      border-color: var(--accent-gold);
+      filter: grayscale(0%) drop-shadow(0 0 10px rgba(203, 166, 95, .6));
+      background-color: rgba(203, 166, 95, .2);
+      opacity: 1;
+    }
+
+    #endgame-maps-table th,
+    #endgame-maps-table td {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    /* 8. レスポンシブ (独自部分の補完) */
+    @media (max-width: 767px) {
+      .control-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .dropdown-container {
+        width: 100%;
+      }
+
+      .ml-auto {
+        margin-left: 0 !important;
+      }
+
+      .resist-filter-grid {
+        grid-template-columns: repeat(3, 36px);
+        grid-template-rows: repeat(2, 36px);
+      }
+
+      .col-resist-icon {
+        width: 95px;
+        min-width: 95px;
+      }
+
+      .separator-weak,
+      .separator-horizontal {
+        display: none;
+      }
+
+      .search-wrapper {
+        max-width: 100%;
+        width: 100%;
+        min-width: 0;
+      }
+
+      .search-counter {
+        width: 100%;
+        text-align: center;
+      }
+
+      .resist-filter-grid,
+      .mark-filter-grid {
+        justify-content: center;
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        padding: 4px 6px;
+      }
+
+      #btn-clear-filters {
+        order: 1;
+      }
+
+      .dropdown-container:nth-of-type(4) {
+        order: 2;
+      }
+
+      #mark-grid {
+        order: 3;
+      }
+
+      #search-wrap {
+        order: 4;
+      }
+
+      #search-counter {
+        order: 5;
+      }
+    }
+  </style>
+</head>
+
+<body data-page="endgame-maps">
+  <div class="page-container">
+    <nav class="nav-container">
+      <a href="poe2-index.html" class="nav-link" data-target="index">Index</a>
+      <a href="poe2-campaign.html" class="nav-link" data-target="campaign">キャンペーン</a>
+      <a href="poe2-endgame-maps.html" class="nav-link active" data-target="endgame-maps">エンドゲームマップ</a>
+      <a href="poe2-memo.html" class="nav-link" data-target="memo">メモ</a>
+      <a href="poe2-json-builder.html" class="nav-link" data-target="json-builder">JSON Builder</a>
+    </nav>
+    <header class="page-header">
+      <div class="title-flex-row">
+        <h1>PoE2 エンドゲームマップ</h1>
+        <div class="reference-link-top">
+          参考データ: <a href="https://poe2db.tw/jp/Waystones#EndGameMaps" target="_blank" rel="noopener noreferrer">PoE2DB
+            (Waystones)</a>
+        </div>
+      </div>
+      <div id="fatal-error-message" class="is-hidden error-box" role="alert" aria-live="assertive"></div>
+      <div id="fallback-message" class="is-hidden" role="alert" aria-live="polite"
+        style="color: #f87171; font-size: 14px; margin-top: 8px;">
+        ※JSONファイルが読み込めなかったため、テスト用のダミーデータを表示しています。
+      </div>
+    </header>
+    <main class="main-content">
+      <div class="controls-wrapper">
+        <div class="control-bar">
+          <div class="dropdown-container dropdown">
+            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+              <span class="btn-icon">◈</span>
+              <span class="btn-dropdown-content">マップ名ソート: <span id="btn-sort-text">初期</span></span>
+              <span>▼</span>
+            </button>
+            <div class="dropdown-menu dropdown-content">
+              <div class="dropdown-item is-active" data-click="sort" data-sort="default" data-sort-name="初期">
+                <span class="checkmark">✔</span>初期
+              </div>
+              <div class="dropdown-item" data-click="sort" data-sort="kana-asc" data-sort-name="あ→ん">
+                <span class="checkmark">✔</span>あ→ん
+              </div>
+              <div class="dropdown-item" data-click="sort" data-sort="kana-desc" data-sort-name="ん→あ">
+                <span class="checkmark">✔</span>ん→あ
+              </div>
+              <div class="dropdown-item" data-click="sort" data-sort="eng-asc" data-sort-name="Ａ→Ｚ">
+                <span class="checkmark">✔</span>Ａ→Ｚ
+              </div>
+              <div class="dropdown-item" data-click="sort" data-sort="eng-desc" data-sort-name="Ｚ→Ａ">
+                <span class="checkmark">✔</span>Ｚ→Ａ
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-container dropdown">
+            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+              <span class="btn-icon">◈</span>
+              <span class="btn-dropdown-content">マップ・ボス名: <span id="btn-format-text">日＋英</span></span>
+              <span>▼</span>
+            </button>
+            <div class="dropdown-menu dropdown-content">
+              <div class="dropdown-item is-active" data-click="setFormat" data-format="ja-en">
+                <span class="checkmark">✔</span>日＋英
+              </div>
+              <div class="dropdown-item" data-click="setFormat" data-format="en-ja">
+                <span class="checkmark">✔</span>英＋日
+              </div>
+              <div class="dropdown-item" data-click="setFormat" data-format="ja-only">
+                <span class="checkmark">✔</span>日のみ
+              </div>
+              <div class="dropdown-item" data-click="setFormat" data-format="en-only">
+                <span class="checkmark">✔</span>英のみ
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-container dropdown">
+            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+              <span class="btn-icon">◈</span>
+              <span class="btn-dropdown-content">表示列: <span id="btn-column-text">９／９</span></span>
+              <span>▼</span>
+            </button>
+            <div class="dropdown-menu dropdown-content" id="column-dropdown-content">
+              <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="true">☑ すべて表示</div>
+              <div class="dropdown-item action-item" data-click="setAllColumns" data-visible="false">☐ すべて非表示</div>
+              <div class="dropdown-divider"></div>
+            </div>
+          </div>
+          <button type="button" class="btn-action ml-auto" data-click="resetView">↺ 表示初期化</button>
+        </div>
+        <div class="separator-horizontal"></div>
+        <div class="control-bar">
+          <div class="search-wrapper" id="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="読み込み中..." disabled autocomplete="off">
+            <button type="button" class="clear-text-btn" data-click="clearSearchText" aria-label="検索文字を消去"
+              title="文字を消去">✖</button>
+          </div>
+          <div class="separator-weak"></div>
+          <div class="dropdown-container dropdown">
+            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
+              <span class="btn-icon">◈</span>
+              <span class="btn-dropdown-content">耐性アイコン</span>
+              <span>▼</span>
+            </button>
+            <div class="dropdown-menu dropdown-content filter-dropdown-content">
+              <div class="resist-filter-grid" id="resist-grid"></div>
+            </div>
+          </div>
+          <div class="separator-weak"></div>
+          <div class="mark-filter-grid" id="mark-grid"></div>
+          <div class="separator-weak"></div>
+          <div id="search-counter" class="search-counter" aria-live="polite">検索結果: -件 / 全-件</div>
+          <button type="button" class="btn-action ml-auto" id="btn-clear-filters" data-click="clearAllFilters">✖
+            条件クリア</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="endgame-maps-table">
+          <thead>
+            <tr id="endgame-maps-table-head-row"></tr>
+          </thead>
+          <tbody id="endgame-maps-table-body">
+          </tbody>
+          <tbody id="endgame-maps-table-message">
+            <tr id="no-result-row" class="is-hidden no-hover-row">
+              <td id="no-result-cell" class="msg-container">
+                <div id="msg-empty-data" class="is-hidden">
+                  <span>データが空です。</span>
+                </div>
+                <div id="msg-no-column" class="is-hidden">
+                  <span>選択項目がありません</span><br>
+                  <button type="button" class="btn-action" data-click="resetView" style="margin-top: 16px;">↺
+                    表示初期化</button>
+                </div>
+                <div id="msg-no-match" class="is-hidden">
+                  <span>該当するデータが見つかりませんでした。</span><br>
+                  <button type="button" class="btn-action" data-click="clearAllFilters" style="margin-top: 16px;">✖
+                    条件クリア</button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <div id="boss-preview" class="boss-preview is-hidden">
+    <img id="boss-preview-img" alt="">
+  </div>
+  <div id="boss-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button type="button" class="modal-close" data-click="closeModal" aria-label="閉じる">✕</button>
+      <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image">
+    </div>
+  </div>
+  <script src="js/wanakana.min.js" defer></script>
+  <script type="module" src="js/poe2-endgame-maps.js" defer></script>
+</body>
+
+</html>
