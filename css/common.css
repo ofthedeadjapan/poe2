@@ -580,7 +580,11 @@ td:last-child {
   border-right: none;
 }
 
-tbody tr:nth-child(even) {
+tbody:not(.js-striped) tr:nth-child(even) {
+  background-color: var(--bg-tr-even);
+}
+
+tbody.js-striped tr.row-even {
   background-color: var(--bg-tr-even);
 }
 
@@ -609,7 +613,7 @@ tr:not(.no-hover-row):hover {
 .cell-item + .cell-item {
   margin-top: 6px;
   padding-top: 6px;
-  border-top: 1px solid var(--white05);
+  border-top: 2px solid var(--white10);
 }
 
 /* --- 日英テキスト・テーブル内表記 --- */
@@ -709,7 +713,9 @@ body.lang-en-only .lang-en {
 /* =========================================
  12. 固有列・ページごとの微調整（必要に応じて上書き）
  ========================================= */
-/*
+.col-text-multiline {
+  white-space: pre-line;
+}/*
 例：キャンペーンページの固有調整が必要になった場合は以下のように記述します
 
 .boss-cell .cell-item {
