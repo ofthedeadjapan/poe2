@@ -60,35 +60,33 @@ const EN_COLLATOR = new Intl.Collator('en', { numeric: true });
 
 // --- 列定義用ファクトリ関数 ---
 const textCol = (id, defaultVisible = true, isSearchable = true) => ({
-  id, className: 'text-normal', label: id, defaultVisible, isSearchable, type: 'text'
+  id, className: 'text-multiline', label: id, defaultVisible, isSearchable, type: 'text'
 });
 const interleavedCol = (id, keys, isSearchable = true) => ({
   id, className: 'text-normal', label: id, defaultVisible: true, isSearchable, type: 'interleaved', keys
 });
-const interleavedBossCol = (id, keys) => ({
-  id, className: 'text-normal', label: id, defaultVisible: true, isSearchable: true, type: 'interleavedBoss', keys
+const interleavedMultilineCol = (id, keys, isSearchable = true) => ({
+  id, className: 'text-normal', label: id, defaultVisible: true, isSearchable, type: 'interleavedMultiline', keys
 });
 const resistCol = () => ({
   id: '耐性アイコン', className: 'resist-icon', label: '耐性アイコン', defaultVisible: true, isSearchable: false, type: 'resistIcon'
 });
+const actAreaCol = () => ({
+  id: '元ボスアクト/エリア', className: 'text-normal', label: '元ボスアクト/エリア', defaultVisible: true, isSearchable: true, type: 'actArea',
+  searchKeys: ['元ボスアクト', '元ボスエリア日', '元ボスエリア英']
+});
 const markCol = () => ({
   id: 'マーク', className: 'mark', label: 'マーク', defaultVisible: true, isSearchable: false, type: 'mark'
 });
-const customCol = (config) => ({
-  className: 'text-normal', defaultVisible: true, isSearchable: true, type: 'custom', ...config
-});
+
+const bilingualKeys = base => [`${base}日`, `${base}英`];
 
 const COLUMN_DEFINITIONS = [
-  interleavedCol('マップ', ['マップ日本語', 'マップ英語']),
-  interleavedBossCol('ボス', ['ボス日本語', 'ボス英語', 'bossimage']),
+  interleavedCol('マップ', bilingualKeys('マップ')),
+  interleavedMultilineCol('ボス', [...bilingualKeys('ボス'), 'bossimage']),
   resistCol(),
-  customCol({
-    id: '元ボスアクト/エリア',
-    label: '元ボスアクト/エリア',
-    searchKeys: ['元ボスアクト', '元ボスエリア'],
-    render: (item) => [item.data['元ボスアクト'] ? `${item.data['元ボスアクト']}章` : '', item.data['元ボスエリア'] || ''].filter(Boolean).join('\n')
-  }),
-  interleavedBossCol('元ボス', ['元ボス日本語', '元ボス英語']),
+  actAreaCol(),
+  interleavedMultilineCol('元ボス', bilingualKeys('元ボス名')),
   textCol('元ボス特徴'),
   textCol('メモ'),
   markCol()
@@ -105,8 +103,8 @@ const SORTERS = {
   'default': (a, b) => a.cache.defaultOrder - b.cache.defaultOrder,
   'kana-asc': createSorter('よみがな', JA_COLLATOR, false),
   'kana-desc': createSorter('よみがな', JA_COLLATOR, true),
-  'eng-asc': createSorter('マップ英語', EN_COLLATOR, false),
-  'eng-desc': createSorter('マップ英語', EN_COLLATOR, true)
+  'eng-asc': createSorter('マップ英', EN_COLLATOR, false),
+  'eng-desc': createSorter('マップ英', EN_COLLATOR, true)
 };
 
 // ==========================================
@@ -474,96 +472,190 @@ function buildMarkFilter() {
 
 // --- CELL_RENDERERS (独立したセル描画ロジック群) ---
 const CELL_RENDERERS = {
-  text: (td, item, def) => {
-    td.textContent = item.data[def.id] || '';
-  },
-  interleaved: (td, item, def) => {
-    const jaText = String(item.data[def.keys[0]] || '').trim();
-    const enText = String(item.data[def.keys[1]] || '').trim();
-    if (!jaText && !enText) {
-      td.textContent = '-';
-      return;
+  text: {
+    getLineCount(item, def) { return 1; },
+    render(td, item, def) {
+      td.textContent = item.data[def.id] || '';
     }
-    td.append(createLanguageContainer(jaText, enText));
   },
-  interleavedBoss: (td, item, def, maxLines) => {
-    const jaLines = splitLines(item.data[def.keys[0]]);
-    const enLines = splitLines(item.data[def.keys[1]]);
-    const imgLines = splitLines(item.data[def.keys[2]]);
-
-    const isAllEmpty = jaLines.every(l => !l.trim()) && enLines.every(l => !l.trim());
-    if (isAllEmpty && maxLines === 1) {
-      td.textContent = '-';
-      return;
-    }
-
-    renderMultiLineCell(td, maxLines, (itemWrapper, i) => {
-      const jaText = jaLines[i]?.trim() || '';
-      const enText = enLines[i]?.trim() || '';
-      const imgSrc = imgLines[i]?.trim() || '';
-
+  interleaved: {
+    getLineCount(item, def) { return 1; },
+    render(td, item, def) {
+      const jaText = String(item.data[def.keys[0]] || '').trim();
+      const enText = String(item.data[def.keys[1]] || '').trim();
       if (!jaText && !enText) {
-        itemWrapper.innerHTML = '<span class="text-muted">-</span>';
+        td.textContent = '-';
         return;
       }
-      itemWrapper.append(createLanguageContainer(jaText, enText, imgSrc));
-    });
-  },
-  resistIcon: (td, item, def, maxLines) => {
-    const resistLines = splitLines(item.data.耐性アイコン);
-    if (resistLines.length === 0 && maxLines === 1) {
-      td.textContent = '-';
-      return;
+      td.append(createLanguageContainer(jaText, enText));
     }
+  },
+  interleavedMultiline: {
+    getLineCount(item, def) {
+      let max = 1;
+      def.keys.forEach(k => {
+        max = Math.max(max, splitLines(item.data[k]).length);
+      });
+      return max;
+    },
+    render(td, item, def, maxLines) {
+      const jaLines = splitLines(item.data[def.keys[0]]);
+      const enLines = splitLines(item.data[def.keys[1]]);
+      const imgLines = def.keys[2] ? splitLines(item.data[def.keys[2]]) : [];
 
-    renderMultiLineCell(td, maxLines, (itemWrapper, i) => {
-      const resistText = resistLines[i] || '';
-      if (!resistText) {
-        itemWrapper.innerHTML = '<span class="text-muted">-</span>';
+      const isAllEmpty = jaLines.every(l => !l) && enLines.every(l => !l);
+      if (isAllEmpty && maxLines === 1) {
+        td.textContent = '-';
         return;
       }
-      const grid = createDiv('resist-grid');
-      RESIST_TYPES.forEach(type => {
-        const slot = createDiv('resist-slot');
-        const match = resistText.match(new RegExp(`${type}(Strong|Weak)?`, 'i'));
-        if (match) {
-          const strength = match[1] ? match[1].toLowerCase() : 'normal';
-          slot.classList.add(`is-${strength}`);
-          const fileName = `${type.toLowerCase()}${strength !== 'normal' ? '-' + strength : ''}`;
-          const img = document.createElement('img');
-          img.src = `images/icon-enemies/${fileName}.webp`;
-          img.className = 'resist-icon';
-          img.title = match[0];
-          img.onerror = () => { img.style.display = 'none'; };
-          slot.append(img);
-        } else {
-          slot.classList.add('is-empty');
+
+      renderMultiLineCell(td, maxLines, (itemWrapper, i) => {
+        const jaText = jaLines[i] || '';
+        const enText = enLines[i] || '';
+        const imgSrc = imgLines[i] || '';
+
+        if (!jaText && !enText) {
+          itemWrapper.innerHTML = '<span class="text-muted">-</span>';
+          return;
         }
-        grid.append(slot);
+        itemWrapper.append(createLanguageContainer(jaText, enText, imgSrc));
       });
-      itemWrapper.append(grid);
-    });
+    }
   },
-  mark: (td, item, def) => {
-    const container = document.createDocumentFragment();
-    Object.entries(MARK_DEFINITIONS).forEach(([markKey, markDef]) => {
-      const span = document.createElement('button');
-      span.type = 'button';
-      span.className = `mark-btn-table btn-base ${item.user.marks.has(markKey) ? 'active' : ''}`;
-      Object.assign(span.dataset, { click: 'toggleRowMark', mapKey: item.id, markType: markKey });
-      span.textContent = markDef.icon;
-      span.title = markDef.title;
-      container.append(span);
-    });
-    td.append(container);
+  resistIcon: {
+    getLineCount(item, def) {
+      return splitLines(item.data.耐性アイコン).length || 1;
+    },
+    render(td, item, def, maxLines) {
+      const resistLines = splitLines(item.data.耐性アイコン);
+      if (resistLines.length === 0 && maxLines === 1) {
+        td.textContent = '-';
+        return;
+      }
+
+      renderMultiLineCell(td, maxLines, (itemWrapper, i) => {
+        const resistText = resistLines[i] || '';
+        if (!resistText) {
+          itemWrapper.innerHTML = '<span class="text-muted">-</span>';
+          return;
+        }
+        const grid = createDiv('resist-grid');
+        RESIST_TYPES.forEach(type => {
+          const slot = createDiv('resist-slot');
+          const match = resistText.match(new RegExp(`${type}(Strong|Weak)?`, 'i'));
+          if (match) {
+            const strength = match[1] ? match[1].toLowerCase() : 'normal';
+            slot.classList.add(`is-${strength}`);
+            const fileName = `${type.toLowerCase()}${strength !== 'normal' ? '-' + strength : ''}`;
+            const img = document.createElement('img');
+            img.src = `images/icon-enemies/${fileName}.webp`;
+            img.className = 'resist-icon';
+            img.title = match[0];
+            img.onerror = () => { img.style.display = 'none'; };
+            slot.append(img);
+          } else {
+            slot.classList.add('is-empty');
+          }
+          grid.append(slot);
+        });
+        itemWrapper.append(grid);
+      });
+    }
   },
-  custom: (td, item, def) => {
-    td.textContent = def.render(item);
+  actArea: {
+    getLineCount(item, def) {
+      return 1;
+    },
+    render(td, item, def) {
+      const actRaw = String(item.data['元ボスアクト'] || '');
+      const actNum = actRaw.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
+
+      const areaJa = item.data['元ボスエリア日'] || '';
+      const areaEn = item.data['元ボスエリア英'] || '';
+
+      const combinedJa = [actRaw ? `${actRaw}章` : '', areaJa].filter(Boolean).join(' ');
+      const combinedEn = [actNum ? `Act ${actNum}` : '', areaEn].filter(Boolean).join(' ');
+
+      if (!combinedJa && !combinedEn) {
+        td.textContent = '-';
+        return;
+      }
+
+      td.append(createLanguageContainer(combinedJa, combinedEn));
+    }
+  },
+  mark: {
+    getLineCount(item, def) { return 1; },
+    render(td, item, def) {
+      const container = document.createDocumentFragment();
+      Object.entries(MARK_DEFINITIONS).forEach(([markKey, markDef]) => {
+        const span = document.createElement('button');
+        span.type = 'button';
+        span.className = `mark-btn-table btn-base ${item.user.marks.has(markKey) ? 'active' : ''}`;
+        Object.assign(span.dataset, { click: 'toggleRowMark', mapKey: item.id, markType: markKey });
+        span.textContent = markDef.icon;
+        span.title = markDef.title;
+        container.append(span);
+      });
+      td.append(container);
+    }
   }
 };
 
 // --- TableRenderer (テーブル全体のレンダリング制御) ---
+
+function updateTableStripes(tbody) {
+  let visibleIndex = 0;
+
+  for (const tr of tbody.rows) {
+    if (tr.classList.contains("is-hidden")) {
+      tr.classList.remove("row-even");
+      continue;
+    }
+
+    tr.classList.toggle("row-even", visibleIndex % 2 === 1);
+    visibleIndex++;
+  }
+}
+
 const TableRenderer = {
+  colgroup: null,
+  cols: new Map(),
+
+  buildColGroup() {
+    if (!this.colgroup) {
+      this.colgroup = document.createElement('colgroup');
+      const table = DOM.tbody.closest('table');
+      if (table) table.prepend(this.colgroup);
+    } else {
+      this.colgroup.innerHTML = '';
+    }
+    this.cols.clear();
+
+    COLUMN_DEFINITIONS.forEach(def => {
+      const col = document.createElement('col');
+      col.className = `col-${def.className}`;
+      // 初回状態の表示・非表示のみ同期
+      col.classList.toggle('is-hidden', AppState.user.columns[def.id] === false);
+
+      this.colgroup.append(col);
+      this.cols.set(def.id, col);
+    });
+  },
+
+  fixInitialWidths() {
+    COLUMN_DEFINITIONS.forEach(def => {
+      const th = ViewStore.headers.get(def.id);
+      if (th && !th.classList.contains('is-hidden')) {
+        const w = th.offsetWidth;
+        if (w > 0) {
+          const col = this.cols.get(def.id);
+          if (col) col.style.width = `${w}px`; // 現在の幅を直接 col に設定
+        }
+      }
+    });
+  },
+
   buildTable() {
     ViewStore.rows.clear();
     ViewStore.columns.clear();
@@ -577,15 +669,8 @@ const TableRenderer = {
 
       let maxRowLines = 1;
       COLUMN_DEFINITIONS.forEach(def => {
-        if (def.type === 'interleavedBoss') {
-          def.keys.forEach(k => {
-            const lines = String(item.data[k] || '').split('\n');
-            if (lines.length > maxRowLines) maxRowLines = lines.length;
-          });
-        } else if (def.type === 'resistIcon') {
-          const lines = String(item.data.耐性アイコン || '').replace(/\r\n/g, '\n').split('\n');
-          if (lines.length > maxRowLines) maxRowLines = lines.length;
-        }
+        const renderer = CELL_RENDERERS[def.type];
+        maxRowLines = Math.max(maxRowLines, renderer.getLineCount(item, def));
       });
 
       COLUMN_DEFINITIONS.forEach(def => {
@@ -594,7 +679,7 @@ const TableRenderer = {
         if (isHidden) td.classList.add('is-hidden');
 
         const renderer = CELL_RENDERERS[def.type];
-        renderer ? renderer(td, item, def, maxRowLines) : (td.textContent = item.data[def.id] || '');
+        renderer.render(td, item, def, maxRowLines);
 
         ViewStore.columns.get(def.id).push(td);
         tr.append(td);
@@ -607,23 +692,19 @@ const TableRenderer = {
   },
 
   updateTableState() {
-    let currentVisibleIndex = 0;
     AppState.data.items.forEach(item => {
-      const { lastVisible: wasVisible, lastIsEven: wasEven } = item.view;
       const isVisible = item.view.visible;
-      const isEven = isVisible ? (++currentVisibleIndex % 2 === 1) : undefined;
 
-      if (wasVisible !== isVisible || wasEven !== isEven) {
+      if (item.view.lastVisible !== isVisible) {
         const tr = ViewStore.rows.get(item.id);
         if (tr) {
-          if (wasVisible !== isVisible) tr.classList.toggle('is-hidden', !isVisible);
-          if (isVisible && wasEven !== isEven) tr.classList.toggle('row-even', isEven);
-          else if (!isVisible && wasEven !== undefined) tr.classList.remove('row-even');
+          tr.classList.toggle('is-hidden', !isVisible);
         }
         item.view.lastVisible = isVisible;
-        item.view.lastIsEven = isEven;
       }
     });
+
+    updateTableStripes(DOM.tbody);
   },
 
   reorderRows() {
@@ -654,6 +735,8 @@ const ColumnRenderer = {
   updateColumnVisibility(columnKey, visible) {
     ViewStore.columns.get(columnKey)?.forEach(el => el.classList.toggle('is-hidden', !visible));
     ViewStore.headers.get(columnKey)?.classList.toggle('is-hidden', !visible);
+    // col要素の表示・非表示も同期
+    TableRenderer.cols.get(columnKey)?.classList.toggle('is-hidden', !visible);
   },
   updateFirstVisibleCol() {
     if (this.currentFirstColumn) {
@@ -858,25 +941,21 @@ function setupImagePreviewEvents() {
   const isTouchDevice = window.matchMedia('(hover: none)').matches;
   if (isTouchDevice) return;
 
-  document.addEventListener('pointerenter', e => {
+  document.addEventListener('pointerover', e => {
     const el = e.target.closest('[data-img-src]');
-    if (el?.dataset.imgSrc) {
-      ImagePreviewService.show(`images/bosses/${el.dataset.imgSrc}.webp`, e.clientX, e.clientY);
-    }
-  }, true);
+    if (!el) return;
 
-  document.addEventListener('pointermove', e => {
-    const el = e.target.closest('[data-img-src]');
-    if (el?.dataset.imgSrc) {
-      ImagePreviewService.move(e.clientX, e.clientY);
-    }
-  }, true);
+    const imgSrc = el.dataset.imgSrc;
+    if (!imgSrc) return;
 
-  document.addEventListener('pointerleave', e => {
-    if (e.target.closest('[data-img-src]')) {
-      ImagePreviewService.hide();
-    }
-  }, true);
+    const imagePath = `images/bosses/${imgSrc}.webp`;
+    ImagePreviewService.show(imagePath, e.clientX, e.clientY);
+  });
+
+  document.addEventListener('pointerout', e => {
+    if (!e.target.closest('[data-img-src]')) return;
+    ImagePreviewService.hide();
+  });
 }
 
 function setupPersistenceEvents() {
@@ -943,9 +1022,9 @@ const App = {
       console.warn('JSONデータの読み込みに失敗しました。ダミーデータを表示します。', e);
       DOM.fallbackMessage.classList.remove('is-hidden');
       const dummyData = [
-        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日本語": "ダミーマップ", "ボス日本語": "ダミーボス", "マップ英語": "DummyMap", "ボス英語": "DummyBoss", "耐性アイコン": "", "元ボスアクト": "元ダミーアクト", "元ボスエリア": "元ダミーエリア", "元ボス日本語": "元ダミーボス", "元ボス英語": "Original Dummy Boss", "元ボス特徴": "ダミー", "メモ": "ダミーメモ", "bossimage": "dummyboss" },
-        { "id": "map_002", "よみがな": "だみーさばんな", "マップ日本語": "ダミーサバンナ", "ボス日本語": "ハイエナロード、カエドロン", "マップ英語": "Savannah", "ボス英語": "Caedron, the Hyena Lord", "耐性アイコン": "FireWeak,Cold", "元ボスアクト": "２", "元ボスエリア": "ヴァスティリ郊外", "元ボス日本語": "ラスブレイカー", "元ボス英語": "Rustbreaker", "元ボス特徴": "獣一杯、槍一杯", "bossimage": "" },
-        { "id": "map_084", "よみがな": "あらしのめ\nひすいのしま", "マップ日本語": "嵐の目\nヒスイの島", "ボス日本語": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ", "マップ英語": "Eye of the Storm\nThe Jade Isles", "ボス英語": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,Fire\nArmourStrong\nArmourStrong", "元ボスアクト": "４", "元ボスエリア": "部族の中心", "元ボス日本語": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス英語": "Tavakai, the Chieftain\nTavakai, the Fallen\nTavakai, the Consumed", "元ボス特徴": "4章ボス", "メモ": "タウホアの加護\nカオムの狂気\nラキアタの流れ", "bossimage": "tavakai-the-chieftain\ntavakai-the-fallen\ntavakai-the-consumed" },
+        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日": "ダミーマップ", "ボス日": "ダミーボス", "マップ英": "DummyMap", "ボス英": "DummyBoss", "耐性アイコン": "", "元ボスアクト": "元ダミーアクト", "元ボスエリア日": "元ダミーエリア", "元ボスエリア英": "Dummy Area", "元ボス名日": "元ダミーボス", "元ボス名英": "Original Dummy Boss", "元ボス特徴": "ダミー", "メモ": "ダミーメモ", "bossimage": "dummyboss" },
+        { "id": "map_002", "よみがな": "だみーさばんな", "マップ日": "ダミーサバンナ", "ボス日": "ハイエナロード、カエドロン", "マップ英": "Savannah", "ボス英": "Caedron, the Hyena Lord", "耐性アイコン": "FireWeak,Cold", "元ボスアクト": "２", "元ボスエリア日": "ヴァスティリ郊外", "元ボスエリア英": "Vastiri Outskirts", "元ボス名日": "ラスブレイカー", "元ボス名英": "Rustbreaker", "元ボス特徴": "獣一杯、槍一杯", "bossimage": "" },
+        { "id": "map_084", "よみがな": "あらしのめ\nひすいのしま", "マップ日": "嵐の目\nヒスイの島", "ボス日": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ", "マップ英": "Eye of the Storm\nThe Jade Isles", "ボス英": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,Fire\nArmourStrong\nArmourStrong", "元ボスアクト": "４", "元ボスエリア日": "部族の中心", "元ボスエリア英": "Heart of the Tribe", "元ボス名日": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス名英": "Tavakai, the Chieftain\nTavakai, the Fallen\nTavakai, the Consumed", "元ボス特徴": "4章ボス", "メモ": "タウホアの加護\nカオムの狂気\nラキアタの流れ", "bossimage": "tavakai-the-chieftain\ntavakai-the-fallen\ntavakai-the-consumed" },
       ];
       this.validateAndInitialize(dummyData);
     }
@@ -960,9 +1039,21 @@ const App = {
     });
 
     DataStore.setItems(ItemFactory.buildItems(data));
+
+    // 1. colgroup の箱だけ作る（この時点では幅指定なし）
+    TableRenderer.buildColGroup();
+
+    // 2. テーブル本体を描画し、ブラウザに自然な幅を計算させる
     TableRenderer.buildTable();
     RenderCoordinator.refreshColumns();
     RenderCoordinator.refreshAll();
+
+    // 3. 描画完了を待って、現在の幅を取得し colgroup に固定する
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        TableRenderer.fixInitialWidths();
+      });
+    });
   }
 };
 

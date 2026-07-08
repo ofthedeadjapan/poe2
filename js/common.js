@@ -69,24 +69,6 @@ export function createDiv(className = '') {
 }
 
 /**
- * テーブルに行(tr)とセル(td)を生成して追加する共通関数
- */
-export function appendRow(parent, cells) {
-  const tr = document.createElement('tr');
-  cells.forEach(cell => {
-    const td = document.createElement('td');
-    if (cell && typeof cell === 'object') {
-      td.textContent = cell.text == null ? '' : cell.text;
-      if (cell.className) td.className = cell.className;
-    } else {
-      td.textContent = cell == null ? '' : cell;
-    }
-    tr.append(td);
-  });
-  parent.append(tr);
-}
-
-/**
  * @param {HTMLTableCellElement} td
  * @param {number} maxLines
  * @param {(itemWrapper: HTMLDivElement, index: number) => void} renderer
@@ -102,7 +84,7 @@ export function renderMultiLineCell(td, maxLines, renderer) {
     renderer(itemWrapper, i);
     listWrapper.append(itemWrapper);
   }
-  td.append(listWrapper);
+  td.replaceChildren(listWrapper);
 }
 
 // ==========================================================================
@@ -187,12 +169,10 @@ export function initImageServices() {
 
 export const ImagePreviewService = {
   isTouchDevice: window.matchMedia('(hover: none)').matches,
-  cachedWidth: 0,
-  cachedHeight: 0,
   currentSrc: '',
   hideTimeout: null,
 
-  show(imagePath, x, y) {
+  show(imagePath, startX, startY) {
     const { preview, previewImg: img } = ImageDOM;
     if (this.isTouchDevice || !preview || !img || !imagePath) return;
 
@@ -201,50 +181,49 @@ export const ImagePreviewService = {
       this.hideTimeout = null;
     }
 
-    if (this.currentSrc === imagePath && preview.classList.contains('show')) {
-      this.move(x, y);
+    if (this.currentSrc === imagePath) {
+      preview.classList.remove('is-hidden');
+      const rect = preview.getBoundingClientRect();
+      this.setPosition(startX, startY, rect.width, rect.height);
+      requestAnimationFrame(() => preview.classList.add('show'));
       return;
     }
 
+    this.currentSrc = imagePath;
+
     img.onerror = () => {
       img.onerror = null;
+      img.onload = null;
       this.hide();
       img.removeAttribute('src');
     };
 
-    this.currentSrc = imagePath;
+    img.onload = () => {
+      if (this.currentSrc === imagePath) {
+        preview.classList.remove('is-hidden');
+        const rect = preview.getBoundingClientRect();
+        this.setPosition(startX, startY, rect.width, rect.height);
+        requestAnimationFrame(() => preview.classList.add('show'));
+      }
+    };
 
-    if (img.getAttribute('src') !== imagePath) {
-      img.src = imagePath;
-    }
-
-    // display:none を解除
-    preview.classList.remove('is-hidden');
-
-    requestAnimationFrame(() => {
-      const rect = preview.getBoundingClientRect();
-      this.cachedWidth = rect.width || 200;
-      this.cachedHeight = rect.height || 200;
-      this.move(x, y);
-
-      preview.classList.add('show');
-    });
+    img.src = imagePath;
   },
 
-  move(x, y) {
+  setPosition(x, y, width, height) {
     const { preview } = ImageDOM;
-    if (!preview || !this.cachedWidth || !this.cachedHeight) return;
+    if (!preview || !width || !height) return;
 
     const offset = 15;
     const padding = 10;
     let left = x + offset;
     let top = y + offset;
 
-    if (left + this.cachedWidth > window.innerWidth - padding) {
-      left = Math.max(padding, x - this.cachedWidth - offset);
+    if (left + width > window.innerWidth - padding) {
+      left = Math.max(padding, x - width - offset);
     }
-    if (top + this.cachedHeight > window.innerHeight - padding) {
-      top = Math.max(padding, y - this.cachedHeight - offset);
+    if (top + height > window.innerHeight - padding) {
+      top = Math.max(padding, y - height - offset);
     }
 
     preview.style.left = `${left}px`;
@@ -255,8 +234,6 @@ export const ImagePreviewService = {
     const { preview, previewImg: img } = ImageDOM;
     if (!preview) return;
 
-    this.currentSrc = '';
-
     preview.classList.remove('show');
 
     if (this.hideTimeout) {
@@ -265,13 +242,13 @@ export const ImagePreviewService = {
 
     this.hideTimeout = setTimeout(() => {
       preview.classList.add('is-hidden');
+      this.currentSrc = ''; // リセット
       if (img) {
         img.removeAttribute('src');
         img.onerror = null;
+        img.onload = null;
       }
-      this.cachedWidth = 0;
-      this.cachedHeight = 0;
-    }, 50);
+    }, 100);
   }
 };
 

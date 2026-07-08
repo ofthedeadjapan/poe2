@@ -4,7 +4,6 @@ import {
   getText,
   formatMultilineHTML,
   splitLines,
-  appendRow,
   ImagePreviewService,
   initImageServices,
   StorageService,
@@ -29,6 +28,7 @@ const STORAGE_KEYS = {
 // ==========================================
 // 2. ユーティリティ (Utilities & Helpers)
 // ==========================================
+// （現在は共通化により common.js に集約済み）
 
 // ==========================================
 // 3. ストレージ・状態管理 (Storage & State)
@@ -36,37 +36,41 @@ const STORAGE_KEYS = {
 
 function checkStorageVersion() {
   try {
-    const savedVersion = localStorage.getItem(STORAGE_KEYS.STORAGE_VERSION);
+    const savedVersion = StorageService.load(STORAGE_KEYS.STORAGE_VERSION);
+
     if (!savedVersion || parseInt(savedVersion, 10) !== STORAGE_VERSION) {
       console.log(`ストレージのバージョンが変更されました (${savedVersion} -> ${STORAGE_VERSION})。データを初期化します。`);
       StorageService.remove(STORAGE_KEYS.CAMPAIGN_STATE);
-      localStorage.setItem(STORAGE_KEYS.STORAGE_VERSION, String(STORAGE_VERSION));
+      StorageService.save(STORAGE_KEYS.STORAGE_VERSION, STORAGE_VERSION);
     }
   } catch (e) {
-    console.error('ストレージのバージョンチェックに失敗しました:', e);
+    console.error('バージョンの確認中にエラーが発生しました:', e);
   }
 }
 
+// 状態（データ）を保持するオブジェクト
 const AppState = {
-  user: {
-    checkedBuffs: new Set(),
-    format: 'ja-en'
-  },
+  user: null,
   init() {
-    const saved = StorageService.load(STORAGE_KEYS.CAMPAIGN_STATE);
-    if (saved) {
-      const savedBuffs = Array.isArray(saved.checkedBuffs) ? saved.checkedBuffs : [];
-      this.user.checkedBuffs = new Set(savedBuffs);
+    this.user = UserStateService.load();
+  }
+};
 
-      if (typeof saved.format === 'string') {
-        this.user.format = saved.format;
-      }
-    }
+// ストレージへの読み書きを担当するサービス（エンドゲーム側と同構造）
+const UserStateService = {
+  load() {
+    const saved = StorageService.load(STORAGE_KEYS.CAMPAIGN_STATE);
+    const checkedBuffs = (saved && Array.isArray(saved.checkedBuffs)) ? saved.checkedBuffs : [];
+
+    return {
+      checkedBuffs: new Set(checkedBuffs),
+      format: (saved && typeof saved.format === 'string') ? saved.format : 'ja-en'
+    };
   },
   save() {
     StorageService.save(STORAGE_KEYS.CAMPAIGN_STATE, {
-      checkedBuffs: Array.from(this.user.checkedBuffs),
-      format: this.user.format
+      checkedBuffs: Array.from(AppState.user.checkedBuffs),
+      format: AppState.user.format
     });
   }
 };
@@ -83,7 +87,7 @@ const PersistenceService = {
       clearTimeout(this.timer);
       this.timer = null;
     }
-    AppState.save();
+    UserStateService.save();
   }
 };
 
@@ -142,8 +146,6 @@ const DOM = {
     this.btnCloseAll = document.getElementById('btnCloseAll');
     this.btnResetBuffs = document.getElementById('btnResetBuffs');
     this.btnBackToTop = document.getElementById('btnBackToTop');
-    this.bossPreview = document.getElementById('boss-preview');
-    this.bossPreviewImg = document.getElementById('boss-preview-img');
     this.btnFormatText = document.getElementById('btn-format-text');
   }
 };
@@ -154,13 +156,28 @@ function createCell(align = null) {
   return td;
 }
 
-function createLanguageContainer(ja, en, defaultJa = '-', defaultEn = '') {
+// エンドゲーム側の高機能な言語コンテナ（画像リンク自動生成付き）の設計に統一
+function createLangDiv(className, text, imgSrc = '', defaultText = '') {
+  const div = createDiv(className);
+
+  if (imgSrc && text) {
+    const link = document.createElement('span');
+    link.className = 'boss-link';
+    link.innerHTML = formatMultilineHTML(text); // 改行などを維持
+    Object.assign(link.dataset, { click: 'showModal', imgSrc });
+    div.append(link);
+  } else {
+    div.innerHTML = formatMultilineHTML(text, defaultText);
+  }
+  return div;
+}
+
+function createLanguageContainer(jaText, enText, imgSrc = '', defaultJa = '-', defaultEn = '') {
   const container = createDiv('cell-lang-container');
-  const jaDiv = createDiv('lang-ja');
-  jaDiv.innerHTML = formatMultilineHTML(ja, defaultJa);
-  const enDiv = createDiv('lang-en');
-  enDiv.innerHTML = formatMultilineHTML(en, defaultEn);
-  container.append(jaDiv, enDiv);
+  container.append(
+    createLangDiv('lang-ja', jaText, imgSrc, defaultJa),
+    createLangDiv('lang-en', enText, imgSrc, defaultEn)
+  );
   return container;
 }
 
@@ -175,7 +192,7 @@ function renderAreaCell(td, item) {
   wrapper.style.gap = '8px';
   wrapper.style.width = '100%';
 
-  wrapper.append(createLanguageContainer(jaText, enText));
+  wrapper.append(createLanguageContainer(jaText, enText, '', '-', ''));
 
   const rawLv = parseInt(item['モンスターレベル'], 10);
   if (!isNaN(rawLv)) {
@@ -199,18 +216,9 @@ function renderBossCell(td, jaNames, enNames, images, maxLines) {
       return;
     }
 
-    const itemWrapper = createDiv('boss-item-wrapper cell-lang-container');
-    if (imgName) {
-      itemWrapper.classList.add('has-image');
-      Object.assign(itemWrapper.dataset, { click: 'showModal', imgSrc: imgName });
-    }
-
-    const dJa = createDiv('lang-ja');
-    dJa.textContent = jName || '-';
-    const dEn = createDiv('lang-en');
-    dEn.textContent = eName || '';
-
-    itemWrapper.append(dJa, dEn);
+    const itemWrapper = createDiv('boss-item-wrapper');
+    // createLanguageContainer 側で自動的に画像リンク処理（has-imageなど）が行われる
+    itemWrapper.append(createLanguageContainer(jName, eName, imgName, '-', ''));
     wrapper.append(itemWrapper);
   });
 }
@@ -571,11 +579,11 @@ const ResetController = {
 const CLICK_ACTIONS = {
   toggleSection: el => ToggleService.toggleSection(el.closest('.act-section')),
   showModal: el => ImageModalService.show(`images/bosses/${el.dataset.imgSrc}.webp`),
-  closeModal: () => ModalService.close(),
+  closeModal: () => ImageModalService.close(),
   setFormat: el => FormatController.setFormat(el.dataset.format)
 };
 
-function setupEventListeners() {
+function setupClickEvents() {
   if (DOM.btnOpenAll) {
     DOM.btnOpenAll.addEventListener('click', () => ToggleService.toggleAll(true));
   }
@@ -586,6 +594,49 @@ function setupEventListeners() {
     DOM.btnResetBuffs.addEventListener('click', () => ResetController.resetBuffs());
   }
 
+  document.addEventListener('click', e => {
+    if (e.target.classList.contains('modal-overlay')) {
+      ImageModalService.close();
+      return;
+    }
+
+    handleDropdownClick(e);
+
+    const el = e.target.closest('[data-click]');
+    if (el) CLICK_ACTIONS[el.dataset.click]?.(el);
+  });
+}
+
+function setupKeyboardEvents() {
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && DOM.bossModal && DOM.bossModal.classList.contains('show')) {
+      ImageModalService.close();
+    }
+  });
+}
+
+function setupImagePreviewEvents() {
+  const isTouchDevice = window.matchMedia('(hover: none)').matches;
+  if (isTouchDevice) return;
+
+  document.addEventListener('pointerover', e => {
+    const el = e.target.closest('[data-img-src]');
+    if (!el) return;
+
+    const imgSrc = el.dataset.imgSrc;
+    if (!imgSrc) return;
+
+    const imagePath = `images/bosses/${imgSrc}.webp`;
+    ImagePreviewService.show(imagePath, e.clientX, e.clientY);
+  });
+
+  document.addEventListener('pointerout', e => {
+    if (!e.target.closest('[data-img-src]')) return;
+    ImagePreviewService.hide();
+  });
+}
+
+function setupScrollEvents() {
   if (DOM.btnBackToTop) {
     let isTicking = false;
     window.addEventListener('scroll', () => {
@@ -602,45 +653,21 @@ function setupEventListeners() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+}
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && DOM.bossModal.classList.contains('show')) {
-      ModalService.close();
-    }
-  });
-
-  document.addEventListener('click', e => {
-    if (e.target === DOM.bossModal) {
-      ModalService.close();
-      return;
-    }
-    handleDropdownClick(e);
-    const el = e.target.closest('[data-click]');
-    if (el) CLICK_ACTIONS[el.dataset.click]?.(el);
-  });
-
-  document.addEventListener('pointerenter', e => {
-  const el = e.target.closest('[data-img-src]');
-  if (!el) return;
-    const imagePath = `images/bosses/${el.dataset.imgSrc}.webp`;
-  ImagePreviewService.show(imagePath, e.clientX, e.clientY);
-}, true);
-
-document.addEventListener('pointermove', e => {
-  const el = e.target.closest('[data-img-src]');
-  if (!el) return;
-  ImagePreviewService.move(e.clientX, e.clientY);
-}, true);
-
-document.addEventListener('pointerleave', e => {
-  if (!e.target.closest('[data-img-src]')) return;
-  ImagePreviewService.hide();
-}, true);
-
+function setupPersistenceEvents() {
   document.addEventListener('visibilitychange', () => {
     if (document.visibilityState === 'hidden') PersistenceService.flush();
   });
   window.addEventListener('pagehide', () => PersistenceService.flush());
+}
+
+function setupEventListeners() {
+  setupClickEvents();
+  setupKeyboardEvents();
+  setupImagePreviewEvents();
+  setupScrollEvents();
+  setupPersistenceEvents();
 }
 
 // ==========================================
