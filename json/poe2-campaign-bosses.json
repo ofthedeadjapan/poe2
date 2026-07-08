@@ -139,7 +139,7 @@
     "ボス英語": "The King in the Mists\nThe King in the Mists",
     "耐性アイコン": "Armour,Evasion,ChaosStrong\nArmourStrong,Chaos",
     "攻撃属性（物理以外）": "混沌",
-    "メモ": "",
+    "メモ": "祭壇からのエフェクトが別の祭壇の方向",
     "bossimage": "the-king-in-the-mists-humanoid\nthe-king-in-the-mists-demon"
   },
   {
@@ -366,6 +366,19 @@
   {
     "id": "boss_a3_004",
     "アクト": 3,
+    "モンスターレベル": 38,
+    "エリア日本語": "カオスの試練",
+    "ボス日本語": "ビーストロード、ウクスマル\n羽を持つ疫病、チェツァ\n空を見る者、バーラク",
+    "エリア英語": "The Trial of Chaos",
+    "ボス英語": "Uxmal, the Beastlord\nChetza, the Feathered Plague\nBahlak, the Sky Seer",
+    "耐性アイコン": "Fire,Cold,Lightning\nFireWeak,Cold\nEvasion,FireWek,LightningStrong",
+    "攻撃属性（物理以外）": "火,冷気,雷,混沌,毒\n出血\n雷",
+    "メモ": "",
+    "bossimage": "uxmal-the-beastlord\nchetza-the-feathered-plague\nbahlak-the-sky-seer"
+  },
+  {
+    "id": "boss_a3_005",
+    "アクト": 3,
     "モンスターレベル": 37,
     "エリア日本語": "ジクアニのマシナリウム",
     "ボス日本語": "亡霊、黒き顎",
@@ -377,7 +390,7 @@
     "bossimage": "blackjaw-the-remnant"
   },
   {
-    "id": "boss_a3_005",
+    "id": "boss_a3_006",
     "アクト": 3,
     "モンスターレベル": 38,
     "エリア日本語": "ジクアニの聖所",
@@ -390,7 +403,7 @@
     "bossimage": "zicoatl-warden-of-the-core"
   },
   {
-    "id": "boss_a3_006",
+    "id": "boss_a3_007",
     "アクト": 3,
     "モンスターレベル": 40,
     "エリア日本語": "アザク湿原",
@@ -403,7 +416,7 @@
     "bossimage": "ignagduk-the-bog-witch"
   },
   {
-    "id": "boss_a3_007",
+    "id": "boss_a3_008",
     "アクト": 3,
     "モンスターレベル": 41,
     "エリア日本語": "溶融した宝物庫",
@@ -414,19 +427,6 @@
     "攻撃属性（物理以外）": "火",
     "メモ": "",
     "bossimage": "mektul-the-forgemaster"
-  },
-  {
-    "id": "boss_a3_008",
-    "アクト": 3,
-    "モンスターレベル": 38,
-    "エリア日本語": "カオスの試練",
-    "ボス日本語": "ビーストロード、ウクスマル\n羽を持つ疫病、チェツァ\n空を見る者、バーラク",
-    "エリア英語": "The Trial of Chaos",
-    "ボス英語": "Uxmal, the Beastlord\nChetza, the Feathered Plague\nBahlak, the Sky Seer",
-    "耐性アイコン": "Fire,Cold,Lightning\nFireWeak,Cold\nEvasion,FireWek,LightningStrong",
-    "攻撃属性（物理以外）": "火,冷気,雷,混沌,毒\n出血\n雷",
-    "メモ": "",
-    "bossimage": "uxmal-the-beastlord\nchetza-the-feathered-plague\nbahlak-the-sky-seer"
   },
   {
     "id": "boss_a3_009",
@@ -791,5 +791,18 @@
     "攻撃属性（物理以外）": "出血\n火,雷",
     "メモ": "",
     "bossimage": "zelina-blood-priestess\nzolin-blood-priest"
+  },
+  {
+    "id": "boss_sekhemas_003",
+    "アクト": "Trial of the Sekhemas",
+    "モンスターレベル": 60,
+    "エリア日本語": "セケマの試練",
+    "ボス日本語": "砂漠の母、アシャー",
+    "エリア英語": "Trial of the Sekhemas",
+    "ボス英語": "Ashar, the Sand Mother",
+    "耐性アイコン": "ArmourStrong,Fire,ColdWeak,Lightning",
+    "攻撃属性（物理以外）": "混沌,毒",
+    "メモ": "",
+    "bossimage": "ashar-the-sand-mother"
   }
 ]
