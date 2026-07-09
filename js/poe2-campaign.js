@@ -504,7 +504,11 @@ const CampaignRenderer = {
     const sortedActs = Object.keys(groups).sort((a, b) => {
       const numA = parseInt(a, 10);
       const numB = parseInt(b, 10);
+
       if (!isNaN(numA) && !isNaN(numB)) return numA - numB;
+      if (isNaN(numA) && !isNaN(numB)) return 1;
+      if (!isNaN(numA) && isNaN(numB)) return -1;
+
       return String(a).localeCompare(String(b));
     });
 

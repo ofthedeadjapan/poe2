@@ -635,9 +635,6 @@ const TableRenderer = {
     COLUMN_DEFINITIONS.forEach(def => {
       const col = document.createElement('col');
       col.className = `col-${def.className}`;
-      // 初回状態の表示・非表示のみ同期
-      col.classList.toggle('is-hidden', AppState.user.columns[def.id] === false);
-
       this.colgroup.append(col);
       this.cols.set(def.id, col);
     });
@@ -645,14 +642,29 @@ const TableRenderer = {
 
   fixInitialWidths() {
     COLUMN_DEFINITIONS.forEach(def => {
+
       const th = ViewStore.headers.get(def.id);
-      if (th && !th.classList.contains('is-hidden')) {
+      if (th) {
         const w = th.offsetWidth;
         if (w > 0) {
           const col = this.cols.get(def.id);
-          if (col) col.style.width = `${w}px`; // 現在の幅を直接 col に設定
+          if (col) col.style.width = `${w}px`;
         }
       }
+    });
+  },
+
+  resetAndFixWidths() {
+    this.cols.forEach(col => { col.style.width = ''; });
+    COLUMN_DEFINITIONS.forEach(def => {
+      ColumnRenderer.updateColumnVisibility(def.id, true);
+    });
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        this.fixInitialWidths();
+        RenderCoordinator.refreshColumns();
+      });
     });
   },
 
@@ -674,13 +686,9 @@ const TableRenderer = {
       });
 
       COLUMN_DEFINITIONS.forEach(def => {
-        const isHidden = AppState.user.columns[def.id] === false;
         const td = createCell(`col-${def.className}`);
-        if (isHidden) td.classList.add('is-hidden');
-
         const renderer = CELL_RENDERERS[def.type];
         renderer.render(td, item, def, maxRowLines);
-
         ViewStore.columns.get(def.id).push(td);
         tr.append(td);
       });
@@ -688,7 +696,6 @@ const TableRenderer = {
     });
 
     DOM.tbody.replaceChildren(fragment);
-    ViewStore.headers.forEach((th, key) => { th.classList.toggle('is-hidden', AppState.user.columns[key] === false); });
   },
 
   updateTableState() {
@@ -965,12 +972,23 @@ function setupPersistenceEvents() {
   window.addEventListener('pagehide', () => PersistenceService.flush());
 }
 
+function setupResizeEvents() {
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      TableRenderer.resetAndFixWidths();
+    }, 200);
+  });
+}
+
 function setupEventListeners() {
   setupSearchEvents();
   setupKeyboardEvents();
   setupClickEvents();
   setupImagePreviewEvents();
   setupPersistenceEvents();
+  setupResizeEvents();
 }
 
 // ==========================================
@@ -1040,18 +1058,16 @@ const App = {
 
     DataStore.setItems(ItemFactory.buildItems(data));
 
-    // 1. colgroup の箱だけ作る（この時点では幅指定なし）
     TableRenderer.buildColGroup();
 
-    // 2. テーブル本体を描画し、ブラウザに自然な幅を計算させる
     TableRenderer.buildTable();
-    RenderCoordinator.refreshColumns();
-    RenderCoordinator.refreshAll();
 
-    // 3. 描画完了を待って、現在の幅を取得し colgroup に固定する
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         TableRenderer.fixInitialWidths();
+
+        RenderCoordinator.refreshColumns();
+
       });
     });
   }
