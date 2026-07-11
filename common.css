@@ -1,0 +1,745 @@
+/* =========================================
+ common.css (全ページ共通設定)
+========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* =========================================
+ 1. 変数定義 (:root)
+ ========================================= */
+:root {
+  color-scheme: dark;
+
+  /* 背景色 */
+  --bg-body: #1c1917;
+  --bg-panel: #292524;
+  --bg-table: #292524;
+  --bg-th: #44403c;
+  --bg-tr-even: #23201e;
+  --bg-tr-hover: rgba(203, 166, 95, 0.15);
+
+  /* テキスト */
+  --text-main: #e7e5e4;
+  --text-muted: #a8a29e;
+
+  /* ボーダー・ライン */
+  --border-color: #57534e;
+  --separator-color: #78716c;
+
+  /* アクセント・UIカラー */
+  --accent-gold: #cba65f;
+  --accent-gold-hover: #fef08a;
+  --btn-on: #10b981;
+  --btn-is-active: #60a5fa;
+
+  /* カスタムUIカラー */
+  --btn-action-bg: rgba(180, 120, 40, 0.15);
+  --btn-action-bg-hover: rgba(180, 120, 40, 0.3);
+  --btn-action-border: rgba(210, 150, 70, 0.4);
+  --btn-dropdown-bg: var(--bg-th);
+  --btn-dropdown-border: var(--border-color);
+  --btn-dropdown-text: var(--text-main);
+  --btn-danger-bg: rgba(239, 68, 68, 0.15);
+  --btn-danger-bg-hover: rgba(239, 68, 68, 0.3);
+  --btn-danger-border: rgba(248, 113, 113, 0.4);
+  --btn-danger-text: #fca5a5;
+
+  /* 耐性ステータスカラー */
+  --color-empty: 255, 255, 255;
+  --color-weak: 239, 68, 68;
+  --color-strong: 234, 179, 8;
+  --color-normal: 208, 206, 205;
+
+  /* 装飾・サイズ */
+  --radius-md: 12px;
+  --radius-sm: 8px;
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+
+  /* アニメーション */
+  --transition-normal: 0.2s ease;
+
+  /* --- 透過カラー・アニメーション・共通幅 --- */
+  --white10: rgba(255, 255, 255, 0.1);
+  --white20: rgba(255, 255, 255, 0.2);
+  --white50: rgba(255, 255, 255, 0.5);
+
+  --black10: rgba(0, 0, 0, 0.1);
+  --black50: rgba(0, 0, 0, 0.5);
+  --black80: rgba(0, 0, 0, 0.8);
+
+  --gold10: rgba(203, 166, 95, 0.1);
+  --gold30: rgba(203, 166, 95, 0.3);
+  --gold50: rgba(203, 166, 95, 0.5);
+
+  --btn-dropdown-width: 240px;
+  --transition-fast: 0.15s ease;
+
+  /* --- 耐性ステータスカラー設定 --- */
+  --resist-empty-bg: rgba(var(--color-empty), 0.02);
+  --resist-empty-border: rgba(var(--color-empty), 0.02);
+  --resist-normal-bg: rgba(var(--color-normal), 0.1);
+  --resist-normal-border: rgb(var(--color-normal), 0.55);
+  --resist-weak-bg: rgba(var(--color-weak), 0.15);
+  --resist-weak-border: rgb(var(--color-weak), 0.55);
+  --resist-strong-bg: rgba(var(--color-strong), 0.15);
+  --resist-strong-border: rgb(var(--color-strong), 0.55);
+}
+
+/* =========================================
+ 2. ページ全体のベース設定
+ ========================================= */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  padding: 20px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =========================================
+ 3. レイアウト構造 (全ページ共通の骨組み)
+ ========================================= */
+/* ページ全体の幅管理コンテナ */
+.page-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ページヘッダー部分 */
+.page-header {
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.page-header h1 {
+  margin: 0;
+  padding: 0;
+  border-bottom: none;
+}
+
+.title-flex-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* メインコンテンツ部分 */
+.main-content {
+  width: 100%;
+}
+
+/* メインパネル */
+.main-panel {
+  background-color: var(--bg-panel);
+  padding: 30px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+}
+
+/* =========================================
+ 4. ナビゲーション
+ ========================================= */
+.nav-container {
+  width: 100%;
+  margin: 10px 0 30px 0;
+  display: flex;
+  gap: 24px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
+}
+
+.nav-link.active {
+  pointer-events: none;
+}
+
+.nav-link:last-child {
+  margin-left: auto;
+}
+
+/* =========================================
+ 5. 見出し (Headings)
+ ========================================= */
+h1,
+h2,
+h3 {
+  text-align: left;
+  color: var(--text-main);
+  font-weight: 700;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 22px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--border-color);
+}
+
+h3 {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: var(--accent-gold);
+}
+
+/* =========================================
+ 6. 共通ユーティリティ
+ ========================================= */
+.is-hidden {
+  display: none !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* =========================================
+ 7. ボタン & ドロップダウン
+ ========================================= */
+/* -----------------------------------------
+ ① 全ボタン共通設定（形状・余白・挙動）
+ ----------------------------------------- */
+.btn-action,
+.btn-dropdown,
+.btn-danger {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: var(--radius-sm);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-normal);
+}
+
+.btn-action:active,
+.btn-dropdown:active,
+.btn-danger:active {
+  transform: translateY(1px);
+}
+
+/* -----------------------------------------
+ ② 各ボタン固有設定（レイアウト・色）
+ ----------------------------------------- */
+/* メイン操作 (ゴールド系) */
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: var(--btn-action-bg);
+  border: 1px solid var(--btn-action-border);
+  color: #e8c88a;
+}
+
+.btn-action:hover {
+  background-color: var(--btn-action-bg-hover);
+  color: #fff;
+  filter: drop-shadow(0 0 10px rgba(210, 150, 70, .3));
+}
+
+/* 危険な操作 (赤系) */
+.btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: var(--btn-danger-bg);
+  border: 1px solid var(--btn-danger-border);
+  color: var(--btn-danger-text);
+}
+
+.btn-danger:hover {
+  background-color: var(--btn-danger-bg-hover);
+  color: #fff;
+  filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.3));
+}
+
+/* ドロップダウン (グレー系) */
+.btn-dropdown {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  background-color: var(--bg-th);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-dropdown:hover {
+  background-color: var(--white10);
+  border-color: var(--separator-color);
+}
+
+/* -----------------------------------------
+ ③ ドロップダウンのコンテナ・メニュー関連
+ ----------------------------------------- */
+.dropdown-container {
+  position: relative;
+  width: var(--btn-dropdown-width);
+}
+
+.btn-dropdown-content {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dropdown.show .btn-dropdown {
+  background-color: var(--bg-panel);
+  border-color: var(--accent-gold);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  z-index: 100;
+  box-shadow: 0 10px 25px var(--black50);
+  padding: 8px;
+  margin-top: 6px;
+}
+
+.dropdown.show .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  padding: 10px 16px;
+  font-size: 15px;
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: var(--radius-sm);
+  user-select: none;
+  transition: background-color var(--transition-normal);
+  white-space: nowrap;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bg-th);
+  color: #ffffff;
+}
+
+.dropdown-item .checkmark {
+  width: 18px;
+  font-weight: bold;
+  color: var(--btn-on);
+  visibility: hidden;
+}
+
+.dropdown-item.is-active {
+  color: var(--btn-is-active);
+  font-weight: 700;
+}
+
+.dropdown-item.is-active .checkmark,
+.dropdown-item.is-checked .checkmark {
+  visibility: visible;
+}
+
+/* =========================================
+ 8. コントロールパネル関連
+ ========================================= */
+.controls-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 30px;
+  background-color: var(--bg-panel);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px -1px var(--black50);
+}
+
+.control-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+}
+
+.separator-horizontal {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(87, 83, 78, .4);
+}
+
+/* =========================================
+ 9. プレビュー & モーダル UI
+ ========================================= */
+/* --- プレビュー用ゴールドリンク --- */
+.boss-link {
+  color: var(--accent-gold);
+  text-decoration: underline dotted rgba(203, 166, 95, 0.5);
+  text-underline-offset: 3px;
+  transition: color var(--transition-normal);
+  cursor: pointer;
+}
+
+.boss-link:hover {
+  color: var(--accent-gold-hover);
+  text-decoration-style: solid;
+}
+
+/* --- プレビュー表示枠 --- */
+.boss-preview {
+  position: fixed;
+  pointer-events: none;
+  z-index: 2000;
+  background: #1c1917;
+  border: 2px solid var(--accent-gold);
+  border-radius: var(--radius-sm);
+  padding: 4px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+  max-width: 400px;
+  transition: opacity 0.05s ease;
+  opacity: 0;
+}
+
+.boss-preview.show {
+  opacity: 1;
+}
+
+.boss-preview.is-hidden {
+  display: none;
+}
+
+.boss-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+/* --- 画像拡大モーダル --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.modal-image {
+  display: block;
+  max-width: 100%;
+  max-height: 85vh;
+  border: 3px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+  object-fit: contain;
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 32px;
+  cursor: pointer;
+}
+
+/* =========================================
+ 10. テーブル基本設定 (完全統合版)
+ ========================================= */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background-color: var(--bg-table);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 14px;
+  border-left: hidden;
+  border-right: hidden;
+}
+
+table.table-fit {
+  width: max-content;
+}
+
+th,
+td {
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+th {
+  background-color: var(--bg-th);
+  color: #ffffff;
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--accent-gold);
+}
+
+tr:first-child th {
+  border-top: none;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody:not(.js-striped) tr:nth-child(even) {
+  background-color: var(--bg-tr-even);
+}
+
+tbody.js-striped tr.row-even {
+  background-color: var(--bg-tr-even);
+}
+
+tbody tr:not(.no-hover-row):hover {
+  background-color: var(--bg-tr-hover);
+}
+
+/* =========================================
+ 11. テーブル内セルコンポーネント
+ ========================================= */
+
+/* --- 複数項目を持つセル --- */
+.cell-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.cell-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 6px 0;
+}
+
+.cell-item + .cell-item {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 2px solid var(--white10);
+}
+
+/* --- 日英テキスト・テーブル内表記 --- */
+.cell-lang-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lang-ja {
+  font-size: 16px;
+  color: var(--text-main);
+  order: 1;
+  line-height: 1.4;
+}
+
+.lang-en {
+  font-size: 14px;
+  color: var(--text-muted);
+  order: 2;
+  line-height: 1.4;
+}
+
+body.lang-en-ja .lang-ja {
+  font-size: 14px;
+  color: var(--text-muted);
+  order: 2;
+}
+
+body.lang-en-ja .lang-en {
+  font-size: 16px;
+  color: var(--text-main);
+  font-weight: 600;
+  order: 1;
+}
+
+body.lang-ja-only .lang-en {
+  display: none !important;
+}
+
+body.lang-en-only .lang-ja {
+  display: none !important;
+}
+
+body.lang-en-only .lang-en {
+  font-size: 16px;
+  color: var(--text-main);
+  font-weight: 600;
+  order: 1;
+}
+
+/* --- 敵耐性アイコンセル --- */
+.resist-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 26px);
+  gap: 4px;
+  justify-content: flex-start;
+}
+
+.resist-slot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.resist-slot.is-empty {
+  background-color: var(--resist-empty-bg);
+  border: 1px solid var(--resist-empty-border);
+}
+
+.resist-slot.is-normal {
+  background-color: var(--resist-normal-bg);
+  border: 1px solid var(--resist-normal-border);
+}
+
+.resist-slot.is-weak {
+  background-color: var(--resist-weak-bg);
+  border: 1px solid var(--resist-weak-border);
+}
+
+.resist-slot.is-strong {
+  background-color: var(--resist-strong-bg);
+  border: 1px solid var(--resist-strong-border);
+}
+
+.resist-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 2px;
+}
+
+/* =========================================
+ 12. 固有列・ページごとの微調整（必要に応じて上書き）
+ ========================================= */
+.col-text-multiline {
+  white-space: pre-line;
+}/*
+例：キャンペーンページの固有調整が必要になった場合は以下のように記述します
+
+.boss-cell .cell-item {
+  padding: 8px 0;
+}
+
+.resist-cell .cell-item {
+  align-items: center;
+}
+
+.attack-cell .cell-item {
+  align-items: center;
+}
+*/
+
+/* =========================================
+ 13. 767px以下 レスポンシブ共通
+ ========================================= */
+@media (max-width: 767px) {
+  .control-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dropdown-container {
+    width: 100%;
+  }
+
+  .ml-auto {
+    margin-left: 0 !important;
+  }
+
+  .resist-grid {
+    grid-template-columns: repeat(3, 26px);
+    grid-template-rows: repeat(2, 26px);
+  }
+}
