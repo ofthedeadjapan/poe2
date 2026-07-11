@@ -642,7 +642,6 @@ const TableRenderer = {
 
   fixInitialWidths() {
     COLUMN_DEFINITIONS.forEach(def => {
-
       const th = ViewStore.headers.get(def.id);
       if (th) {
         const w = th.offsetWidth;
@@ -660,11 +659,9 @@ const TableRenderer = {
       ColumnRenderer.updateColumnVisibility(def.id, true);
     });
 
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        this.fixInitialWidths();
-        RenderCoordinator.refreshColumns();
-      });
+    this.fixInitialWidths();
+    COLUMN_DEFINITIONS.forEach(def => {
+      ColumnRenderer.updateColumnVisibility(def.id, AppState.user.columns[def.id]);
     });
   },
 
@@ -1055,21 +1052,11 @@ const App = {
       if (idSet.has(item.id)) throw new Error(`Duplicate id found: ${item.id}`);
       idSet.add(item.id);
     });
-
     DataStore.setItems(ItemFactory.buildItems(data));
-
     TableRenderer.buildColGroup();
-
     TableRenderer.buildTable();
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        TableRenderer.fixInitialWidths();
-
-        RenderCoordinator.refreshColumns();
-
-      });
-    });
+    TableRenderer.fixInitialWidths();
+    RenderCoordinator.refreshColumns();
   }
 };
 

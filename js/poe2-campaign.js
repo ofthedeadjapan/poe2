@@ -25,6 +25,11 @@ const STORAGE_KEYS = {
   STORAGE_VERSION: 'poe2:campaignStorageVersion'
 };
 
+const RESIST_REGEXES = RESIST_TYPES.reduce((acc, type) => {
+  acc[type] = new RegExp(`${type}(Strong|Weak)?`, 'i');
+  return acc;
+}, {});
+
 // ==========================================
 // 2. ユーティリティ (Utilities & Helpers)
 // ==========================================
@@ -142,9 +147,6 @@ const DOM = {
   initCache() {
     this.campaignContainer = document.getElementById('campaignContainer');
     this.actNav = document.getElementById('actNav');
-    this.btnOpenAll = document.getElementById('btnOpenAll');
-    this.btnCloseAll = document.getElementById('btnCloseAll');
-    this.btnResetBuffs = document.getElementById('btnResetBuffs');
     this.btnBackToTop = document.getElementById('btnBackToTop');
     this.btnFormatText = document.getElementById('btn-format-text');
   }
@@ -230,8 +232,7 @@ function renderResistCell(td, resistLines, maxLines) {
 
     RESIST_TYPES.forEach(type => {
       const slot = createDiv('resist-slot');
-      const regex = new RegExp(`${type}(Strong|Weak)?`, 'i');
-      const match = resistText.match(regex);
+      const match = resistText.match(RESIST_REGEXES[type]);
 
       if (match) {
         const strength = match[1] ? match[1].toLowerCase() : 'normal';
@@ -309,10 +310,10 @@ const BuffTableRenderer = {
     buffTable.innerHTML = `
       <thead>
        <tr>
-        <th style="width: 50px; text-align: center;">☑</th>
-        <th style="width: 35%;">永続バフ</th>
-        <th style="width: 25%;">エリア</th>
-        <th style="width: 40%;">獲得方法</th>
+        <th class="col-buff-check">☑</th>
+        <th class="col-buff-name">永続バフ</th>
+        <th class="col-buff-area">エリア</th>
+        <th class="col-buff-method">獲得方法</th>
        </tr>
       </thead>
       <tbody></tbody>
@@ -402,10 +403,10 @@ const BossTableRenderer = {
     table.innerHTML = `
       <thead>
        <tr>
-        <th style="width: 220px;">エリア</th>
-        <th style="width: 220px;">ボス</th>
-        <th style="width: 176px;">耐性アイコン</th>
-        <th style="width: 130px; line-height: 1.3;">攻撃属性<br><span class="th-sub">（物理以外）</span></th>
+        <th class="col-boss-area">エリア</th>
+        <th class="col-boss-name">ボス</th>
+        <th class="col-boss-resist">耐性アイコン</th>
+        <th class="col-boss-attack">攻撃属性<br><span class="th-sub">（物理以外）</span></th>
         <th>メモ</th>
        </tr>
       </thead>
@@ -584,28 +585,19 @@ const CLICK_ACTIONS = {
   toggleSection: el => ToggleService.toggleSection(el.closest('.act-section')),
   showModal: el => ImageModalService.show(`images/bosses/${el.dataset.imgSrc}.webp`),
   closeModal: () => ImageModalService.close(),
-  setFormat: el => FormatController.setFormat(el.dataset.format)
+  setFormat: el => FormatController.setFormat(el.dataset.format),
+  openAll: () => ToggleService.toggleAll(true),
+  closeAll: () => ToggleService.toggleAll(false),
+  resetBuffs: () => ResetController.resetBuffs()
 };
 
 function setupClickEvents() {
-  if (DOM.btnOpenAll) {
-    DOM.btnOpenAll.addEventListener('click', () => ToggleService.toggleAll(true));
-  }
-  if (DOM.btnCloseAll) {
-    DOM.btnCloseAll.addEventListener('click', () => ToggleService.toggleAll(false));
-  }
-  if (DOM.btnResetBuffs) {
-    DOM.btnResetBuffs.addEventListener('click', () => ResetController.resetBuffs());
-  }
-
   document.addEventListener('click', e => {
     if (e.target.classList.contains('modal-overlay')) {
       ImageModalService.close();
       return;
     }
-
     handleDropdownClick(e);
-
     const el = e.target.closest('[data-click]');
     if (el) CLICK_ACTIONS[el.dataset.click]?.(el);
   });

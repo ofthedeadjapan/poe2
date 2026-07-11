@@ -259,8 +259,7 @@ export const ImageModalService = {
 
     img.onerror = () => {
       img.onerror = null;
-      this.close();
-      img.removeAttribute('src');
+      img.src = 'img/no-image.png';
     };
 
     if (img.getAttribute('src') !== imagePath) {

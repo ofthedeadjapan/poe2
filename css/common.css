@@ -63,19 +63,17 @@
   --transition-normal: 0.2s ease;
 
   /* --- 透過カラー・アニメーション・共通幅 --- */
-  --white04: rgba(255, 255, 255, 0.04);
-  --white05: rgba(255, 255, 255, 0.05);
   --white10: rgba(255, 255, 255, 0.1);
   --white20: rgba(255, 255, 255, 0.2);
-  --white30: rgba(255, 255, 255, 0.3);
   --white50: rgba(255, 255, 255, 0.5);
 
-  --black20: rgba(0, 0, 0, 0.2);
+  --black10: rgba(0, 0, 0, 0.1);
   --black50: rgba(0, 0, 0, 0.5);
-  --black60: rgba(0, 0, 0, 0.6);
   --black80: rgba(0, 0, 0, 0.8);
-  --black85: rgba(0, 0, 0, 0.85);
-  --black90: rgba(0, 0, 0, 0.9);
+
+  --gold10: rgba(203, 166, 95, 0.1);
+  --gold30: rgba(203, 166, 95, 0.3);
+  --gold50: rgba(203, 166, 95, 0.5);
 
   --btn-dropdown-width: 240px;
   --transition-fast: 0.15s ease;
@@ -319,7 +317,7 @@ input:focus-visible {
 }
 
 .btn-dropdown:hover {
-  background-color: var(--white04);
+  background-color: var(--white10);
   border-color: var(--separator-color);
 }
 
@@ -353,7 +351,7 @@ input:focus-visible {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   z-index: 100;
-  box-shadow: 0 10px 25px var(--black80);
+  box-shadow: 0 10px 25px var(--black50);
   padding: 8px;
   margin-top: 6px;
 }
@@ -588,7 +586,7 @@ tbody.js-striped tr.row-even {
   background-color: var(--bg-tr-even);
 }
 
-tr:not(.no-hover-row):hover {
+tbody tr:not(.no-hover-row):hover {
   background-color: var(--bg-tr-hover);
 }
 
