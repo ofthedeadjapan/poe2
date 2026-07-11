@@ -537,6 +537,8 @@ table {
   border-collapse: collapse;
   width: 100%;
   font-size: 14px;
+  border-left: hidden;
+  border-right: hidden;
 }
 
 table.table-fit {
@@ -566,16 +568,6 @@ tr:first-child th {
 
 tr:last-child td {
   border-bottom: none;
-}
-
-th:first-child,
-td:first-child {
-  border-left: none;
-}
-
-th:last-child,
-td:last-child {
-  border-right: none;
 }
 
 tbody:not(.js-striped) tr:nth-child(even) {
