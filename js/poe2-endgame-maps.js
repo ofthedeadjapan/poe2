@@ -10,7 +10,7 @@ import {
   handleDropdownClick,
   applyFormatBodyClass,
   createFormatController,
-  formatMultilineHTML,
+  escapeHTML,
   splitLines,
   loadVersionedState,
   renderErrorBox,
@@ -87,6 +87,9 @@ const FIELDS = {
 const textCol = (id, defaultVisible = true, isSearchable = true) => ({
   id, className: 'text-multiline', label: id, defaultVisible, isSearchable, type: 'text'
 });
+const textMultilineCol = (id, defaultVisible = true, isSearchable = true) => ({
+  id, className: 'text-multiline', label: id, defaultVisible, isSearchable, type: 'textMultiline'
+});
 const interleavedCol = (id, keys, isSearchable = true) => ({
   id, className: 'text-normal', label: id, defaultVisible: true, isSearchable, type: 'interleaved', keys
 });
@@ -113,7 +116,7 @@ const COLUMN_DEFINITIONS = [
   actAreaCol(),
   interleavedMultilineCol('元ボス', bilingualKeys('元ボス名')),
   textCol('元ボス特徴'),
-  textCol('メモ'),
+  textMultilineCol('メモ'),
   markCol()
 ];
 
@@ -466,12 +469,36 @@ function buildMarkFilter() {
   });
 }
 
+// メモ欄専用: "[表示文字](URL)" というMarkdown風の記法をリンクに変換するための正規表現。
+// 例: "[動画](https://www.twitch.tv/videos/2852378489)" → 「動画」というテキストのリンクになる。
+// この記法を使わず生のURLやテキストだけを書いた場合はリンク化されず、そのまま表示される。
+const MEMO_LINK_REGEX = /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g;
+
+// メモ欄のテキストをHTML化する。common.js の formatMultilineHTML() (改行→<br>変換のみ) に
+// [表示文字](URL) 記法のリンク変換を加えたもの。メモ欄専用で、他の列では使用しない。
+function formatMemoHTML(value) {
+  if (value == null) return '';
+  const text = String(value).trim();
+  if (!text) return '';
+  const escaped = escapeHTML(text);
+  const withLinks = escaped.replace(MEMO_LINK_REGEX, (_, label, url) =>
+    `<a href="${url}" class="memo-link" target="_blank" rel="noopener noreferrer">${label}</a>`
+  );
+  return withLinks.replace(/\n/g, '<br>');
+}
+
 // --- CELL_RENDERERS (独立したセル描画ロジック群) ---
 const CELL_RENDERERS = {
   text: {
     getLineCount(item, def) { return 1; },
     render(td, item, def) {
       td.textContent = item.data[def.id] || '';
+    }
+  },
+  textMultiline: {
+    getLineCount(item, def) { return 1; },
+    render(td, item, def) {
+      td.innerHTML = formatMemoHTML(item.data[def.id]);
     }
   },
   interleaved: {
