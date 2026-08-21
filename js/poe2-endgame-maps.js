@@ -469,21 +469,25 @@ function buildMarkFilter() {
   });
 }
 
-// メモ欄専用: "[表示文字](URL)" というMarkdown風の記法をリンクに変換するための正規表現。
-// 例: "[動画](https://www.twitch.tv/videos/2852378489)" → 「動画」というテキストのリンクになる。
-// この記法を使わず生のURLやテキストだけを書いた場合はリンク化されず、そのまま表示される。
-const MEMO_LINK_REGEX = /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g;
+// メモ欄専用: 次の2パターンをリンクに変換するための正規表現（1回のマッチで両対応）。
+// 1) "[表示文字](URL)"         → 「表示文字」というテキストのリンクになる（表示文字を自由に指定可）
+//    例: "[動画](https://www.twitch.tv/videos/2852378489)" → 「動画」というリンク
+// 2) "[]"で囲まない生のURL単体 → URLそのものをテキストにしたリンクになる（自動リンク化）
+//    例: "https://www.twitch.tv/videos/2852378489" → そのURL文字列自体がリンクになる
+const MEMO_LINK_REGEX = /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<>()]+)/g;
 
 // メモ欄のテキストをHTML化する。common.js の formatMultilineHTML() (改行→<br>変換のみ) に
-// [表示文字](URL) 記法のリンク変換を加えたもの。メモ欄専用で、他の列では使用しない。
+// 上記2パターンのリンク変換を加えたもの。メモ欄専用で、他の列では使用しない。
 function formatMemoHTML(value) {
   if (value == null) return '';
   const text = String(value).trim();
   if (!text) return '';
   const escaped = escapeHTML(text);
-  const withLinks = escaped.replace(MEMO_LINK_REGEX, (_, label, url) =>
-    `<a href="${url}" class="memo-link" target="_blank" rel="noopener noreferrer">${label}</a>`
-  );
+  const withLinks = escaped.replace(MEMO_LINK_REGEX, (match, label, bracketUrl, rawUrl) => {
+    const url = bracketUrl || rawUrl;
+    const linkText = label || rawUrl;
+    return `<a href="${url}" class="memo-link" target="_blank" rel="noopener noreferrer">${linkText}</a>`;
+  });
   return withLinks.replace(/\n/g, '<br>');
 }
 
