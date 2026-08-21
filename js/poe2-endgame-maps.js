@@ -2,16 +2,25 @@ import {
   RESIST_TYPES,
   StorageService,
   initImageServices,
-  ImagePreviewService,
   ImageModalService,
   createDiv,
   renderMultiLineCell,
+  buildResistGrid,
+  getResistIconPath,
   handleDropdownClick,
   applyFormatBodyClass,
-  escapeHTML,
-  getText,
+  createFormatController,
   formatMultilineHTML,
   splitLines,
+  loadVersionedState,
+  renderErrorBox,
+  createLangDiv,
+  createLanguageContainer,
+  createDebouncedSaver,
+  setupPersistenceEvents,
+  setupImagePreviewEvents,
+  fetchWithTimeout,
+  describeLoadError,
 } from './common.js';
 
 // ==========================================
@@ -34,6 +43,12 @@ const DUMMY_RESISTS = new Set([
   'ChaosWeak'
 ]);
 
+// ローマ字入力の「まだ確定していない末尾」を曖昧マッチさせるための変換テーブル。
+// 例えば「らくえん」を"rakue"まで入力した時点では、末尾の"e"はまだひらがなに
+// 変換されずローマ字のまま残る。この末尾の子音（＋拗音用の半母音）を、
+// 変換され得るひらがな候補の文字クラスに置き換えることで、
+// 入力確定を待たずに検索結果へ反映できるようにする（下のcreateRegex()で使用）。
+// キー: ローマ字の子音や拗音表記（k, ky, sh 等） / 値: マッチしうるひらがなの文字クラス
 const ROMAJI_TO_KANA_REGEX = {
   'a': '[あぁ]', 'i': '[いぃ]', 'u': '[うぅ]', 'e': '[えぇ]', 'o': '[おぉ]',
   'k': '[かきくけこきゃきゅきょっ]', 'ky': '[きゃきゅきょっ]',
@@ -58,6 +73,16 @@ const ROMAJI_TO_KANA_REGEX = {
 const JA_COLLATOR = new Intl.Collator('ja', { numeric: true });
 const EN_COLLATOR = new Intl.Collator('en', { numeric: true });
 
+// 複数箇所で参照されるデータのフィールド名（タイポ検出・変更時の一括修正のために集約）
+const FIELDS = {
+  ACT: '元ボスアクト',
+  AREA_JA: '元ボスエリア日',
+  AREA_EN: '元ボスエリア英',
+  RESIST: '耐性アイコン',
+  KANA: 'よみがな',
+  MAP_EN: 'マップ英'
+};
+
 // --- 列定義用ファクトリ関数 ---
 const textCol = (id, defaultVisible = true, isSearchable = true) => ({
   id, className: 'text-multiline', label: id, defaultVisible, isSearchable, type: 'text'
@@ -69,11 +94,11 @@ const interleavedMultilineCol = (id, keys, isSearchable = true) => ({
   id, className: 'text-normal', label: id, defaultVisible: true, isSearchable, type: 'interleavedMultiline', keys
 });
 const resistCol = () => ({
-  id: '耐性アイコン', className: 'resist-icon', label: '耐性アイコン', defaultVisible: true, isSearchable: false, type: 'resistIcon'
+  id: FIELDS.RESIST, className: 'resist-icon', label: FIELDS.RESIST, defaultVisible: true, isSearchable: false, type: 'resistIcon'
 });
 const actAreaCol = () => ({
   id: '元ボスアクト/エリア', className: 'text-normal', label: '元ボスアクト/エリア', defaultVisible: true, isSearchable: true, type: 'actArea',
-  searchKeys: ['元ボスアクト', '元ボスエリア日', '元ボスエリア英']
+  searchKeys: [FIELDS.ACT, FIELDS.AREA_JA, FIELDS.AREA_EN]
 });
 const markCol = () => ({
   id: 'マーク', className: 'mark', label: 'マーク', defaultVisible: true, isSearchable: false, type: 'mark'
@@ -101,10 +126,10 @@ const createSorter = (key, collator, isDesc = false) => (a, b) => {
 
 const SORTERS = {
   'default': (a, b) => a.cache.defaultOrder - b.cache.defaultOrder,
-  'kana-asc': createSorter('よみがな', JA_COLLATOR, false),
-  'kana-desc': createSorter('よみがな', JA_COLLATOR, true),
-  'eng-asc': createSorter('マップ英', EN_COLLATOR, false),
-  'eng-desc': createSorter('マップ英', EN_COLLATOR, true)
+  'kana-asc': createSorter(FIELDS.KANA, JA_COLLATOR, false),
+  'kana-desc': createSorter(FIELDS.KANA, JA_COLLATOR, true),
+  'eng-asc': createSorter(FIELDS.MAP_EN, EN_COLLATOR, false),
+  'eng-desc': createSorter(FIELDS.MAP_EN, EN_COLLATOR, true)
 };
 
 // ==========================================
@@ -118,10 +143,6 @@ function normalizeText(str) {
 
 function escapeRegExp(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-}
-
-function getIconPath(key) {
-  return `images/icon-enemies/${key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()}.webp`;
 }
 
 function createCell(className = '') {
@@ -167,51 +188,43 @@ const UserStateService = {
     return Object.fromEntries(COLUMN_DEFINITIONS.map(col => [col.id, col.defaultVisible]));
   },
   normalizeColumns(savedColumns = {}) {
+    savedColumns ??= {}; // 保存データのcolumnsがnullの場合に備えたガード（デフォルト引数はundefinedにしか効かないため）
     const defaults = this.createDefaultColumns();
     return Object.fromEntries(
       Object.keys(defaults).map(key => [key, savedColumns[key] ?? defaults[key]])
     );
   },
   load() {
-    const saved = StorageService.load(STORAGE_KEYS.USER_STATE, null);
-    const validMarkKeys = new Set(Object.keys(MARK_DEFINITIONS));
-    const validatedMarks = {};
-
-    if (saved && saved.version === STORAGE_VERSION) {
-      for (const [id, marks] of Object.entries(saved.marks || {})) {
-        if (!Array.isArray(marks)) continue;
-        const filtered = marks.filter(mark => validMarkKeys.has(mark));
-        if (filtered.length > 0) validatedMarks[id] = filtered;
-      }
-    }
+    const saved = loadVersionedState(STORAGE_KEYS.USER_STATE, STORAGE_VERSION, () => ({
+      marks: {},
+      columns: this.createDefaultColumns(),
+      format: 'ja-en'
+    }));
 
     return {
       version: STORAGE_VERSION,
-      marks: validatedMarks,
-      columns: this.normalizeColumns(saved?.columns || {}),
-      format: (typeof saved?.format === 'string') ? saved.format : 'ja-en'
+      marks: this.validateMarks(saved.marks),
+      columns: this.normalizeColumns(saved.columns),
+      format: typeof saved.format === 'string' ? saved.format : 'ja-en'
     };
+  },
+  validateMarks(rawMarks = {}) {
+    rawMarks ??= {}; // 保存データのmarksがnullの場合に備えたガード（デフォルト引数はundefinedにしか効かないため）
+    const validMarkKeys = new Set(Object.keys(MARK_DEFINITIONS));
+    const validated = {};
+    for (const [id, marks] of Object.entries(rawMarks)) {
+      if (!Array.isArray(marks)) continue;
+      const filtered = marks.filter(mark => validMarkKeys.has(mark));
+      if (filtered.length > 0) validated[id] = filtered;
+    }
+    return validated;
   },
   save() {
     StorageService.save(STORAGE_KEYS.USER_STATE, AppState.user);
   }
-};
+}
 
-const PersistenceService = {
-  timer: null,
-  delay: 300,
-  scheduleSave() {
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.flush(), this.delay);
-  },
-  flush() {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
-    UserStateService.save();
-  }
-};
+const PersistenceService = createDebouncedSaver(() => UserStateService.save());
 
 // ==========================================
 // 4. サービス・ロジック (Services & Processors)
@@ -222,7 +235,7 @@ const ItemFactory = {
     return searchIndexKeys.map(k => normalizeText(item[k])).filter(Boolean).join('\t');
   },
   createResistIndex(item) {
-    return new Set(String(item.耐性アイコン || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-'));
+    return new Set(String(item[FIELDS.RESIST] || '-').replace(/\r\n/g, '\n').split(/[\n,]+/).map(r => r.trim()).filter(r => r && r !== '-'));
   },
   createEnhancedItem(item, idx, searchIndexKeys) {
     return {
@@ -233,7 +246,7 @@ const ItemFactory = {
         defaultOrder: idx,
         searchIndex: this.createSearchIndex(item, searchIndexKeys),
         resistIndex: this.createResistIndex(item),
-        kanaIndex: normalizeText(item.よみがな)
+        kanaIndex: normalizeText(item[FIELDS.KANA])
       },
       view: { visible: true, lastVisible: undefined, lastIsEven: undefined }
     };
@@ -247,6 +260,13 @@ const ItemFactory = {
 };
 
 const SearchService = {
+  /**
+   * 検索キーワードを、IME入力途中の状態でもマッチできる正規表現に変換する。
+   * wanakanaでひらがな変換した結果、末尾に変換しきれないローマ字が残っていたら、
+   * その部分だけROMAJI_TO_KANA_REGEXの文字クラスに置き換えて「まだ確定していない
+   * 1文字」を曖昧マッチさせる。変換や正規表現の構築に失敗した場合はnullを返し、
+   * 呼び出し側（match()）で通常の部分一致検索にフォールバックする。
+   */
   createRegex(rawKeyword) {
     if (!rawKeyword || typeof wanakana === 'undefined') return null;
     if (/([a-mop-z])\1{2,}/i.test(rawKeyword) || /n{4,}/i.test(rawKeyword)) return null;
@@ -345,43 +365,18 @@ const DOM = {
       resistGrid: 'resist-grid', markGrid: 'mark-grid',
       btnSortText: 'btn-sort-text', btnColumnText: 'btn-column-text',
       btnFormatText: 'btn-format-text', tbody: 'endgame-maps-table-body',
+      loadingRow: 'loading-row', loadingCell: 'loading-cell',
       noResultRow: 'no-result-row', noResultCell: 'no-result-cell',
       msgEmptyData: 'msg-empty-data', msgNoColumn: 'msg-no-column', msgNoMatch: 'msg-no-match',
-      fallbackMessage: 'fallback-message', fatalErrorMessage: 'fatal-error-message'
+      fatalErrorMessage: 'fatal-error-message'
     };
     Object.entries(map).forEach(([prop, id]) => { this[prop] = document.getElementById(id); });
   },
-  showFatalError(msg) {
-    if (this.fatalErrorMessage) {
-      this.fatalErrorMessage.textContent = `致命的なエラーが発生しました: ${msg}`;
-      this.fatalErrorMessage.classList.remove('is-hidden');
-    }
+  showFatalError(message) {
+    const lines = Array.isArray(message) ? message : [message];
+    renderErrorBox(this.fatalErrorMessage, lines);
   }
 };
-
-function createLangDiv(className, text, imgSrc = '', defaultText = '') {
-  const div = createDiv(className);
-
-  if (imgSrc && text) {
-    const link = document.createElement('span');
-    link.className = 'boss-link';
-    link.textContent = text;
-    Object.assign(link.dataset, { click: 'showModal', imgSrc });
-    div.append(link);
-  } else {
-    div.textContent = text || defaultText;
-  }
-  return div;
-}
-
-function createLanguageContainer(jaText, enText, imgSrc = '') {
-  const container = createDiv('cell-lang-container');
-  container.append(
-    createLangDiv('lang-ja', jaText, imgSrc, '-'),
-    createLangDiv('lang-en', enText, imgSrc, '')
-  );
-  return container;
-}
 
 const UIFactory = {
   createMenuItem({ dataset = {}, text, checked = false }) {
@@ -397,6 +392,7 @@ const UIFactory = {
     Object.assign(wrapper.dataset, dataset);
     wrapper.title = title;
     if (isDummy) { wrapper.textContent = '-'; return wrapper; }
+    wrapper.setAttribute('aria-pressed', 'false');
     wrapper.innerHTML = `
       ${iconType === 'image' ? `<img src="${iconValue}" class="icon-filter" alt="${title}">` : `<span class="icon-filter">${iconValue}</span>`}
       <div class="badge-check">✔</div>
@@ -447,7 +443,7 @@ function buildResistFilter() {
         dataset: { click: 'toggleResist', resist: key },
         title: key,
         iconType: 'image',
-        iconValue: getIconPath(key),
+        iconValue: getResistIconPath(type, suffix || 'normal'),
         isDummy: DUMMY_RESISTS.has(key)
       });
       fragment.append(btn);
@@ -524,10 +520,10 @@ const CELL_RENDERERS = {
   },
   resistIcon: {
     getLineCount(item, def) {
-      return splitLines(item.data.耐性アイコン).length || 1;
+      return splitLines(item.data[FIELDS.RESIST]).length || 1;
     },
     render(td, item, def, maxLines) {
-      const resistLines = splitLines(item.data.耐性アイコン);
+      const resistLines = splitLines(item.data[FIELDS.RESIST]);
       if (resistLines.length === 0 && maxLines === 1) {
         td.textContent = '-';
         return;
@@ -539,26 +535,7 @@ const CELL_RENDERERS = {
           itemWrapper.innerHTML = '<span class="text-muted">-</span>';
           return;
         }
-        const grid = createDiv('resist-grid');
-        RESIST_TYPES.forEach(type => {
-          const slot = createDiv('resist-slot');
-          const match = resistText.match(new RegExp(`${type}(Strong|Weak)?`, 'i'));
-          if (match) {
-            const strength = match[1] ? match[1].toLowerCase() : 'normal';
-            slot.classList.add(`is-${strength}`);
-            const fileName = `${type.toLowerCase()}${strength !== 'normal' ? '-' + strength : ''}`;
-            const img = document.createElement('img');
-            img.src = `images/icon-enemies/${fileName}.webp`;
-            img.className = 'resist-icon';
-            img.title = match[0];
-            img.onerror = () => { img.style.display = 'none'; };
-            slot.append(img);
-          } else {
-            slot.classList.add('is-empty');
-          }
-          grid.append(slot);
-        });
-        itemWrapper.append(grid);
+        itemWrapper.append(buildResistGrid(resistText));
       });
     }
   },
@@ -567,11 +544,11 @@ const CELL_RENDERERS = {
       return 1;
     },
     render(td, item, def) {
-      const actRaw = String(item.data['元ボスアクト'] || '');
+      const actRaw = String(item.data[FIELDS.ACT] || '');
       const actNum = actRaw.replace(/[０-９]/g, s => String.fromCharCode(s.charCodeAt(0) - 0xFEE0));
 
-      const areaJa = item.data['元ボスエリア日'] || '';
-      const areaEn = item.data['元ボスエリア英'] || '';
+      const areaJa = item.data[FIELDS.AREA_JA] || '';
+      const areaEn = item.data[FIELDS.AREA_EN] || '';
 
       const combinedJa = [actRaw ? `${actRaw}章` : '', areaJa].filter(Boolean).join(' ');
       const combinedEn = [actNum ? `Act ${actNum}` : '', areaEn].filter(Boolean).join(' ');
@@ -591,7 +568,7 @@ const CELL_RENDERERS = {
       Object.entries(MARK_DEFINITIONS).forEach(([markKey, markDef]) => {
         const span = document.createElement('button');
         span.type = 'button';
-        span.className = `mark-btn-table btn-base ${item.user.marks.has(markKey) ? 'active' : ''}`;
+        span.className = `mark-btn-table ${item.user.marks.has(markKey) ? 'active' : ''}`;
         Object.assign(span.dataset, { click: 'toggleRowMark', mapKey: item.id, markType: markKey });
         span.textContent = markDef.icon;
         span.title = markDef.title;
@@ -642,6 +619,7 @@ const TableRenderer = {
 
   fixInitialWidths() {
     COLUMN_DEFINITIONS.forEach(def => {
+      if (def.className === 'mark') return; // マーク列はCSSの固定幅（.col-mark）に任せるため、実測して上書きしない
       const th = ViewStore.headers.get(def.id);
       if (th) {
         const w = th.offsetWidth;
@@ -726,6 +704,7 @@ const TableRenderer = {
 };
 
 const ColumnRenderer = {
+  currentFirstColumn: null,
   updateButtonUI() {
     let visibleCount = 0;
     Object.entries(AppState.user.columns).forEach(([key, isVisible]) => {
@@ -756,12 +735,20 @@ const ColumnRenderer = {
 const FilterUIRenderer = {
   updateResistUI() {
     const resists = AppState.filters.resists;
-    ViewStore.resistFilters.forEach((el, key) => { el.classList.toggle('active', resists.has(key)); });
+    ViewStore.resistFilters.forEach((el, key) => {
+      const isActive = resists.has(key);
+      el.classList.toggle('active', isActive);
+      el.setAttribute('aria-pressed', String(isActive));
+    });
     DOM.resistGrid.classList.toggle('has-active', resists.size > 0);
   },
   updateMarkUI() {
     const marks = AppState.filters.marks;
-    ViewStore.markFilters.forEach((el, key) => { el.classList.toggle('active', marks.has(key)); });
+    ViewStore.markFilters.forEach((el, key) => {
+      const isActive = marks.has(key);
+      el.classList.toggle('active', isActive);
+      el.setAttribute('aria-pressed', String(isActive));
+    });
   }
 };
 
@@ -796,24 +783,8 @@ const FooterRenderer = {
 // 6. コントローラー (Controllers)
 // ==========================================
 
-const FormatController = {
-  setFormat(mode) {
-    if (AppState.user.format === mode) return;
-    AppState.user.format = mode;
-    PersistenceService.scheduleSave();
-    this.updateUI();
-  },
-  updateUI() {
-    const mode = AppState.user.format || 'ja-en';
-    const labels = { 'ja-en': '日＋英', 'en-ja': '英＋日', 'ja-only': '日のみ', 'en-only': '英のみ' };
-    if (DOM.btnFormatText) DOM.btnFormatText.innerText = labels[mode] || '日＋英';
-    document.querySelectorAll('[data-format]').forEach(btn => {
-      const isActive = btn.dataset.format === mode;
-      btn.classList.toggle('is-active', isActive);
-    });
-    applyFormatBodyClass(mode);
-  }
-};
+// FormatController: common.js のファクトリで生成（campaign.js/endgame-maps.js共通ロジック）
+const FormatController = createFormatController(AppState, PersistenceService, DOM);
 
 const MarkController = {
   toggleRowMark(itemId, markType, btnElement) {
@@ -901,7 +872,7 @@ const CLICK_ACTIONS = {
   toggleResist: el => SearchController.toggleResist(el.dataset.resist),
   toggleMark: el => SearchController.toggleMark(el.dataset.mark),
   toggleRowMark: el => MarkController.toggleRowMark(el.dataset.mapKey, el.dataset.markType, el),
-  showModal: el => ImageModalService.show(`images/bosses/${el.dataset.imgSrc}.webp`),
+  showModal: el => ImageModalService.show(`images/bosses/${el.dataset.imgSrc}.webp`, el.textContent.trim() || 'ボス画像'),
   closeModal: () => ImageModalService.close(),
   setFormat: el => FormatController.setFormat(el.dataset.format)
 };
@@ -923,9 +894,6 @@ function setupKeyboardEvents() {
       DOM.searchInput.focus();
       DOM.searchInput.select();
     }
-    if (e.key === 'Escape') {
-      ImageModalService.close();
-    }
   });
 }
 
@@ -939,34 +907,6 @@ function setupClickEvents() {
     const el = e.target.closest('[data-click]');
     if (el) CLICK_ACTIONS[el.dataset.click]?.(el);
   });
-}
-
-function setupImagePreviewEvents() {
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
-  if (isTouchDevice) return;
-
-  document.addEventListener('pointerover', e => {
-    const el = e.target.closest('[data-img-src]');
-    if (!el) return;
-
-    const imgSrc = el.dataset.imgSrc;
-    if (!imgSrc) return;
-
-    const imagePath = `images/bosses/${imgSrc}.webp`;
-    ImagePreviewService.show(imagePath, e.clientX, e.clientY);
-  });
-
-  document.addEventListener('pointerout', e => {
-    if (!e.target.closest('[data-img-src]')) return;
-    ImagePreviewService.hide();
-  });
-}
-
-function setupPersistenceEvents() {
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') PersistenceService.flush();
-  });
-  window.addEventListener('pagehide', () => PersistenceService.flush());
 }
 
 function setupResizeEvents() {
@@ -984,7 +924,7 @@ function setupEventListeners() {
   setupKeyboardEvents();
   setupClickEvents();
   setupImagePreviewEvents();
-  setupPersistenceEvents();
+  setupPersistenceEvents(PersistenceService);
   setupResizeEvents();
 }
 
@@ -1015,6 +955,7 @@ const App = {
   async init() {
     try {
       DOM.initCache();
+      if (DOM.loadingCell) DOM.loadingCell.colSpan = COLUMN_DEFINITIONS.length;
       initImageServices();
       AppState.user = UserStateService.load();
       FormatController.updateUI();
@@ -1024,34 +965,39 @@ const App = {
       await this.loadData();
     } catch (e) {
       console.error('Initialization Failed:', e);
-      DOM.showFatalError(e.message);
+      DOM.loadingRow?.classList.add('is-hidden');
+      DOM.showFatalError([
+        'ページの初期化に失敗しました。再読み込みしても改善しない場合はご連絡ください。',
+        `詳細: ${e.message}`
+      ]);
     }
   },
 
   async loadData() {
     try {
-      const response = await fetch('json/poe2-endgame-maps.json');
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-      this.validateAndInitialize(await response.json());
+      const response = await fetchWithTimeout('json/poe2-endgame-maps.json');
+      if (!response.ok) throw new Error(`"json/poe2-endgame-maps.json" の読み込みに失敗しました (HTTP ${response.status})`);
+
+      const data = await response.json();
+      this.validateAndInitialize(data);
     } catch (e) {
-      console.warn('JSONデータの読み込みに失敗しました。ダミーデータを表示します。', e);
-      DOM.fallbackMessage.classList.remove('is-hidden');
-      const dummyData = [
-        { "id": "map_001", "よみがな": "だみーまっぷ", "マップ日": "ダミーマップ", "ボス日": "ダミーボス", "マップ英": "DummyMap", "ボス英": "DummyBoss", "耐性アイコン": "", "元ボスアクト": "元ダミーアクト", "元ボスエリア日": "元ダミーエリア", "元ボスエリア英": "Dummy Area", "元ボス名日": "元ダミーボス", "元ボス名英": "Original Dummy Boss", "元ボス特徴": "ダミー", "メモ": "ダミーメモ", "bossimage": "dummyboss" },
-        { "id": "map_002", "よみがな": "だみーさばんな", "マップ日": "ダミーサバンナ", "ボス日": "ハイエナロード、カエドロン", "マップ英": "Savannah", "ボス英": "Caedron, the Hyena Lord", "耐性アイコン": "FireWeak,Cold", "元ボスアクト": "２", "元ボスエリア日": "ヴァスティリ郊外", "元ボスエリア英": "Vastiri Outskirts", "元ボス名日": "ラスブレイカー", "元ボス名英": "Rustbreaker", "元ボス特徴": "獣一杯、槍一杯", "bossimage": "" },
-        { "id": "map_084", "よみがな": "あらしのめ\nひすいのしま", "マップ日": "嵐の目\nヒスイの島", "ボス日": "選ばれし者、マノキ\n熱病に侵されし者、マノキ\n冒涜されし者、マノキ", "マップ英": "Eye of the Storm\nThe Jade Isles", "ボス英": "Manoki, the Chosen\nManoki, the Fevered\nManoki, the Defiled", "耐性アイコン": "ArmourStrong,Fire\nArmourStrong\nArmourStrong", "元ボスアクト": "４", "元ボスエリア日": "部族の中心", "元ボスエリア英": "Heart of the Tribe", "元ボス名日": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ", "元ボス名英": "Tavakai, the Chieftain\nTavakai, the Fallen\nTavakai, the Consumed", "元ボス特徴": "4章ボス", "メモ": "タウホアの加護\nカオムの狂気\nラキアタの流れ", "bossimage": "tavakai-the-chieftain\ntavakai-the-fallen\ntavakai-the-consumed" },
-      ];
-      this.validateAndInitialize(dummyData);
+      console.error('JSONデータの読み込みに失敗しました。', e);
+      DOM.loadingRow?.classList.add('is-hidden');
+      DOM.showFatalError([
+        'データの読み込みに失敗しました。',
+        describeLoadError(e)
+      ]);
     }
   },
 
   validateAndInitialize(data) {
     const idSet = new Set();
     data.forEach((item, idx) => {
-      if (!item.id) throw new Error(`Data is missing 'id' at index ${idx}`);
-      if (idSet.has(item.id)) throw new Error(`Duplicate id found: ${item.id}`);
+      if (!item.id) throw new Error(`マップデータの ${idx + 1} 件目に id がありません。`);
+      if (idSet.has(item.id)) throw new Error(`マップデータの id が重複しています: ${item.id}`);
       idSet.add(item.id);
     });
+    DOM.loadingRow?.classList.add('is-hidden');
     DataStore.setItems(ItemFactory.buildItems(data));
     TableRenderer.buildColGroup();
     TableRenderer.buildTable();

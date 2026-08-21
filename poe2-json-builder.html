@@ -55,10 +55,31 @@
       height: 300px;
       background-color: #171514;
     }
+
+    #copyBtn.is-success {
+      color: #86efac;
+    }
+
+    #copyBtn.is-error {
+      color: #fca5a5;
+    }
+
+    /* 視覚的には隠すがスクリーンリーダーには読ませる（テキストエリアのlabel用） */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
   </style>
 </head>
 
-<body data-page="json-builder">
+<body>
   <div class="page-container">
     <nav class="nav-container">
       <a href="poe2-index.html" class="nav-link">Index</a>
@@ -72,225 +93,27 @@
     </header>
     <main class="main-content">
       <div class="controls-wrapper">
+        <label class="sr-only" for="inputArea">スプレッドシートからコピーしたTSVデータ</label>
         <textarea id="inputArea"
           placeholder="スプレッドシートからコピーしたTSVデータをここに貼り付けてください...&#10;※ボスやバフなど、出力したい単一のシートのデータを貼り付けます"></textarea>
-        <div id="errorMessage"></div>
+        <div id="errorMessage" role="alert" aria-live="assertive"></div>
         <div class="separator-horizontal"></div>
 
         <div class="control-bar">
-          <button class="btn-action" onclick="processData()">TSVデータをJSONに変換</button>
-          <button id="copyBtn" class="btn-action" onclick="copyJSON()">📋 JSONをコピー</button>
-          <button class="btn-danger ml-auto" onclick="resetForm()">✖ リセット</button>
+          <button id="processBtn" type="button" class="btn-action">TSVデータをJSONに変換</button>
+          <button id="copyBtn" type="button" class="btn-action">📋 JSONをコピー</button>
+          <button id="resetBtn" type="button" class="btn-danger ml-auto">✖ リセット</button>
         </div>
       </div>
       <div id="previewContainer"></div>
       <div class="controls-wrapper">
         <h3 style="margin-top:0; color:var(--text-muted);">JSON出力コード (プレビュー)</h3>
+        <label class="sr-only" for="outputJsonArea">変換後のJSON出力</label>
         <textarea id="outputJsonArea" readonly placeholder="変換されたJSONコードがここに表示されます..."></textarea>
       </div>
     </main>
   </div>
-  <script>
-    const DOM = {
-      inputArea: document.getElementById('inputArea'),
-      outputJsonArea: document.getElementById('outputJsonArea'),
-      errorMessage: document.getElementById('errorMessage'),
-      previewContainer: document.getElementById('previewContainer'),
-      copyBtn: document.getElementById('copyBtn')
-    };
-    let currentJson = null;
-    let copyTimer = null;
-
-    DOM.inputArea.addEventListener('input', () => {
-      DOM.errorMessage.textContent = '';
-    });
-
-    function parseTSV(text) {
-      const rows = [];
-      let row = [], cell = '', inQuotes = false;
-      for (let i = 0; i < text.length; i++) {
-        const char = text[i], nextChar = text[i + 1];
-        if (char === '"') {
-          if (inQuotes && nextChar === '"') { cell += '"'; i++; }
-          else { inQuotes = !inQuotes; }
-        } else if (char === '\t' && !inQuotes) {
-          row.push(cell); cell = '';
-        } else if ((char === '\n' || char === '\r') && !inQuotes) {
-          if (char === '\r' && nextChar === '\n') i++;
-          row.push(cell); rows.push(row); row = []; cell = '';
-        } else { cell += char; }
-      }
-      if (cell !== '' || row.length > 0) { row.push(cell); rows.push(row); }
-      if (inQuotes) throw new Error("引用符（\"）が閉じられていません。");
-      return rows;
-    }
-
-    function formatValue(val) {
-      if (val == null) return '';
-      const str = val.trim();
-      if (str === '') return '';
-
-      if (str.includes('||')) {
-        return str.split('||')
-          .map(item => formatValue(item))
-          .filter(item => item !== '');
-      }
-
-      const lower = str.toLowerCase();
-      if (lower === 'true') return true;
-      if (lower === 'false') return false;
-
-      const num = Number(str);
-      if (!Number.isNaN(num)) {
-        return num;
-      }
-
-      return str;
-    }
-
-    function processData() {
-      resetUI();
-      try {
-        const text = DOM.inputArea.value;
-        if (!text.trim()) throw new Error("データが入力されていません");
-
-        const rawData = parseTSV(text);
-        const validRows = rawData.filter(row => row.some(cell => cell && cell.trim() !== ''));
-        if (validRows.length < 2) throw new Error("有効なデータが存在しない、またはヘッダーしかありません");
-
-        const headers = validRows[0].map(h => h ? h.trim() : '');
-        const duplicateHeaders = headers.filter((h, i) => h && headers.indexOf(h) !== i);
-        if (duplicateHeaders.length > 0) {
-          const uniqueDups = [...new Set(duplicateHeaders)];
-          throw new Error("⚠ 列名が重複しています: " + uniqueDups.join(', '));
-        }
-
-        const idIndex = headers.findIndex(h => h.toLowerCase() === 'id');
-        if (idIndex === -1) {
-          throw new Error("ID列が見つかりません。");
-        }
-
-        const dataList = [];
-        const seenIds = new Set();
-        const headerLen = headers.length;
-
-        for (let i = 1; i < validRows.length; i++) {
-          const row = validRows[i];
-          const rawId = row[idIndex];
-          if (rawId == null || rawId.trim() === '') continue;
-
-          const idValue = rawId.trim().toLowerCase();
-          if (seenIds.has(idValue)) {
-            throw new Error(`⚠ IDが重複しています: ${idValue}`);
-          }
-          seenIds.add(idValue);
-
-          const obj = {};
-          for (let j = 0; j < headerLen; j++) {
-            const h = headers[j];
-            if (!h) continue;
-            obj[h] = (j === idIndex) ? idValue : formatValue(row[j]);
-          }
-          dataList.push(obj);
-        }
-
-        currentJson = dataList;
-        DOM.outputJsonArea.value = JSON.stringify(currentJson, null, 2);
-
-        const fragment = document.createDocumentFragment();
-        renderPreviewTable(dataList, headers.filter(Boolean), "データ プレビュー", fragment);
-        DOM.previewContainer.appendChild(fragment);
-      } catch (e) {
-        DOM.errorMessage.textContent = e.message;
-      }
-    }
-
-    function renderPreviewTable(dataArray, headers, titleText, parentFragment) {
-      if (dataArray.length === 0) return;
-
-      const MAX_PREVIEW = 100;
-      const displayCount = Math.min(dataArray.length, MAX_PREVIEW);
-
-      const title = document.createElement('h3');
-      title.textContent = dataArray.length > MAX_PREVIEW
-        ? `${titleText} (全 ${dataArray.length} 件中 / 先頭 ${MAX_PREVIEW} 件)`
-        : `${titleText} (${dataArray.length} 件)`;
-
-      const wrapper = document.createElement('div');
-      wrapper.className = 'table-wrapper';
-
-      const table = document.createElement('table');
-      const thead = document.createElement('thead');
-      const tbody = document.createElement('tbody');
-
-      const trHead = document.createElement('tr');
-      for (const h of headers) {
-        const th = document.createElement('th');
-        th.textContent = h;
-        trHead.appendChild(th);
-      }
-      thead.appendChild(trHead);
-
-      for (let i = 0; i < displayCount; i++) {
-        const obj = dataArray[i];
-        const tr = document.createElement('tr');
-        for (const h of headers) {
-          const td = document.createElement('td');
-          const val = obj[h];
-          td.textContent = Array.isArray(val) ? val.join(', ') : val;
-          tr.appendChild(td);
-        }
-        tbody.appendChild(tr);
-      }
-
-      table.appendChild(thead);
-      table.appendChild(tbody);
-      wrapper.appendChild(table);
-
-      parentFragment.appendChild(title);
-      parentFragment.appendChild(wrapper);
-    }
-
-    async function copyJSON() {
-      if (!currentJson) return;
-
-      const btn = DOM.copyBtn;
-      const originalText = "📋 JSONをコピー";
-
-      if (copyTimer) clearTimeout(copyTimer);
-
-      try {
-        if (navigator.clipboard && window.isSecureContext) {
-          await navigator.clipboard.writeText(DOM.outputJsonArea.value);
-          btn.innerHTML = "✅ コピーしました";
-          btn.style.color = "#86efac";
-        } else {
-          throw new Error("Clipboard API not available");
-        }
-      } catch (e) {
-        DOM.outputJsonArea.select();
-        btn.innerHTML = "⚠ Ctrl+Cでコピーしてください";
-        btn.style.color = "#fca5a5";
-      }
-
-      copyTimer = setTimeout(() => {
-        btn.innerHTML = originalText;
-        btn.style.color = "";
-      }, 2000);
-    }
-
-    function resetUI() {
-      DOM.errorMessage.textContent = '';
-      DOM.previewContainer.innerHTML = '';
-      DOM.outputJsonArea.value = '';
-      currentJson = null;
-    }
-
-    function resetForm() {
-      DOM.inputArea.value = '';
-      resetUI();
-    }
-  </script>
+  <script type="module" src="js/poe2-json-builder.js"></script>
 </body>
 
 </html>

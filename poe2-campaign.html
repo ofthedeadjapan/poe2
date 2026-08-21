@@ -11,6 +11,16 @@
  キャンペーンページ固有スタイル
  ========================================================================== */
 
+    .error-box {
+      color: #ef4444;
+      background: rgba(239, 68, 68, .1);
+      padding: 12px;
+      border: 1px solid #ef4444;
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
     .act-nav-row {
       display: flex;
       flex-wrap: wrap;
@@ -196,23 +206,9 @@
       font-weight: normal;
     }
 
-    .boss-item-wrapper.has-image {
-      cursor: pointer;
+    .boss-item-wrapper {
       display: inline-flex;
       flex-direction: column;
-    }
-
-    .boss-item-wrapper.has-image .lang-ja,
-    .boss-item-wrapper.has-image .lang-en {
-      color: var(--accent-gold);
-      text-decoration: underline dotted var(--gold50);
-      text-underline-offset: 3px;
-    }
-
-    .boss-item-wrapper.has-image:hover .lang-ja,
-    .boss-item-wrapper.has-image:hover .lang-en {
-      color: var(--accent-gold-hover);
-      text-decoration-style: solid;
     }
 
     .area-level {
@@ -297,6 +293,7 @@
 
     <header class="page-header">
       <h1>PoE2 キャンペーン</h1>
+      <div id="fatal-error-message" class="is-hidden"></div>
     </header>
 
     <main class="main-content">
@@ -304,8 +301,8 @@
       <div class="controls-wrapper">
         <div class="control-bar">
           <div class="dropdown-container dropdown">
-            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
-              <span class="btn-icon">◈</span>
+            <button type="button" class="btn-dropdown" aria-expanded="false">
+              <span>◈</span>
               <span class="btn-dropdown-content">マップ・ボス名：<span id="btn-format-text">日＋英</span></span>
               <span>▼</span>
             </button>
@@ -325,7 +322,7 @@
             </div>
           </div>
 
-          <button type="button" data-click="resetBuffs" class="btn-action btn-base ml-auto">↺ 永続バフリセット</button>
+          <button type="button" data-click="resetBuffs" class="btn-action ml-auto">↺ 永続バフリセット</button>
         </div>
 
         <div class="separator-horizontal"></div>
@@ -334,8 +331,8 @@
           <div id="actNav" class="act-nav"></div>
 
           <div class="act-nav-buttons">
-            <button type="button" data-click="openAll" class="btn-action btn-base">▼ 各アクト開く</button>
-            <button type="button" data-click="closeAll" class="btn-action btn-base">▲ 各アクト閉じる</button>
+            <button type="button" data-click="openAll" class="btn-action">▼ 各アクト開く</button>
+            <button type="button" data-click="closeAll" class="btn-action">▲ 各アクト閉じる</button>
           </div>
         </div>
       </div>
@@ -353,8 +350,8 @@
 
   <div id="boss-modal" class="modal-overlay">
     <div class="modal-content">
-      <button type="button" class="modal-close btn-base" data-click="closeModal" aria-label="閉じる">✕</button>
-      <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image" loading="lazy">
+      <button type="button" class="modal-close" data-click="closeModal" aria-label="閉じる">✕</button>
+      <img id="boss-modal-img" src="" alt="ボス画像" class="modal-image">
     </div>
   </div>
 

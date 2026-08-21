@@ -325,9 +325,13 @@
       opacity: 1;
     }
 
+    .col-mark {
+      width: 50px;
+      min-width: 50px;
+    }
+
     #endgame-maps-table th,
     #endgame-maps-table td {
-      word-wrap: break-word;
       overflow-wrap: break-word;
     }
 
@@ -390,7 +394,7 @@
         order: 1;
       }
 
-      .dropdown-container:nth-of-type(4) {
+      #resist-icon-dropdown {
         order: 2;
       }
 
@@ -409,14 +413,14 @@
   </style>
 </head>
 
-<body data-page="endgame-maps">
+<body>
   <div class="page-container">
     <nav class="nav-container">
-      <a href="poe2-index.html" class="nav-link" data-target="index">Index</a>
-      <a href="poe2-campaign.html" class="nav-link" data-target="campaign">キャンペーン</a>
-      <a href="poe2-endgame-maps.html" class="nav-link active" data-target="endgame-maps">エンドゲームマップ</a>
-      <a href="poe2-memo.html" class="nav-link" data-target="memo">メモ</a>
-      <a href="poe2-json-builder.html" class="nav-link" data-target="json-builder">JSON Builder</a>
+      <a href="poe2-index.html" class="nav-link">Index</a>
+      <a href="poe2-campaign.html" class="nav-link">キャンペーン</a>
+      <a href="poe2-endgame-maps.html" class="nav-link active">エンドゲームマップ</a>
+      <a href="poe2-memo.html" class="nav-link">メモ</a>
+      <a href="poe2-json-builder.html" class="nav-link">JSON Builder</a>
     </nav>
     <header class="page-header">
       <div class="title-flex-row">
@@ -426,18 +430,14 @@
             (Waystones)</a>
         </div>
       </div>
-      <div id="fatal-error-message" class="is-hidden error-box" role="alert" aria-live="assertive"></div>
-      <div id="fallback-message" class="is-hidden" role="alert" aria-live="polite"
-        style="color: #f87171; font-size: 14px; margin-top: 8px;">
-        ※JSONファイルが読み込めなかったため、テスト用のダミーデータを表示しています。
-      </div>
+      <div id="fatal-error-message" class="is-hidden"></div>
     </header>
     <main class="main-content">
       <div class="controls-wrapper">
         <div class="control-bar">
           <div class="dropdown-container dropdown">
-            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
-              <span class="btn-icon">◈</span>
+            <button type="button" class="btn-dropdown" aria-expanded="false">
+              <span>◈</span>
               <span class="btn-dropdown-content">マップ名ソート：<span id="btn-sort-text">初期</span></span>
               <span>▼</span>
             </button>
@@ -460,8 +460,8 @@
             </div>
           </div>
           <div class="dropdown-container dropdown">
-            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
-              <span class="btn-icon">◈</span>
+            <button type="button" class="btn-dropdown" aria-expanded="false">
+              <span>◈</span>
               <span class="btn-dropdown-content">マップ・ボス名：<span id="btn-format-text">日＋英</span></span>
               <span>▼</span>
             </button>
@@ -481,8 +481,8 @@
             </div>
           </div>
           <div class="dropdown-container dropdown">
-            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
-              <span class="btn-icon">◈</span>
+            <button type="button" class="btn-dropdown" aria-expanded="false">
+              <span>◈</span>
               <span class="btn-dropdown-content">表示列：<span id="btn-column-text">－ ／ －</span></span>
               <span>▼</span>
             </button>
@@ -503,9 +503,9 @@
               title="文字を消去">✖</button>
           </div>
           <div class="separator-weak"></div>
-          <div class="dropdown-container dropdown">
-            <button type="button" class="btn-dropdown" aria-haspopup="menu" aria-expanded="false">
-              <span class="btn-icon">◈</span>
+          <div class="dropdown-container dropdown" id="resist-icon-dropdown">
+            <button type="button" class="btn-dropdown" aria-expanded="false">
+              <span>◈</span>
               <span class="btn-dropdown-content">耐性アイコン</span>
               <span>▼</span>
             </button>
@@ -530,6 +530,9 @@
           <tbody id="endgame-maps-table-body" class="js-striped">
           </tbody>
           <tbody id="endgame-maps-table-message">
+            <tr id="loading-row" class="no-hover-row">
+              <td id="loading-cell" class="msg-container">読み込み中...</td>
+            </tr>
             <tr id="no-result-row" class="is-hidden no-hover-row">
               <td id="no-result-cell" class="msg-container">
                 <div id="msg-empty-data" class="is-hidden">

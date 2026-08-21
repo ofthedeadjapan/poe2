@@ -40,9 +40,6 @@
   --btn-action-bg: rgba(180, 120, 40, 0.15);
   --btn-action-bg-hover: rgba(180, 120, 40, 0.3);
   --btn-action-border: rgba(210, 150, 70, 0.4);
-  --btn-dropdown-bg: var(--bg-th);
-  --btn-dropdown-border: var(--border-color);
-  --btn-dropdown-text: var(--text-main);
   --btn-danger-bg: rgba(239, 68, 68, 0.15);
   --btn-danger-bg-hover: rgba(239, 68, 68, 0.3);
   --btn-danger-border: rgba(248, 113, 113, 0.4);
@@ -69,15 +66,12 @@
 
   --black10: rgba(0, 0, 0, 0.1);
   --black50: rgba(0, 0, 0, 0.5);
-  --black80: rgba(0, 0, 0, 0.8);
 
   --gold10: rgba(203, 166, 95, 0.1);
   --gold30: rgba(203, 166, 95, 0.3);
   --gold50: rgba(203, 166, 95, 0.5);
 
   --btn-dropdown-width: 240px;
-  --transition-fast: 0.15s ease;
-
   /* --- 耐性ステータスカラー設定 --- */
   --resist-empty-bg: rgba(var(--color-empty), 0.02);
   --resist-empty-border: rgba(var(--color-empty), 0.02);
@@ -136,6 +130,28 @@ body {
   gap: 16px;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.section-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.section-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-normal);
+  white-space: nowrap;
+}
+
+.section-nav a:hover {
+  color: var(--accent-gold);
+  border-color: var(--accent-gold);
 }
 
 /* メインコンテンツ部分 */
@@ -231,11 +247,15 @@ h3 {
   margin-left: auto !important;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--accent-gold);
-  outline-offset: 2px;
+/* アニメーションを抑えたい設定のユーザーへの配慮 */
+@media (prefers-reduced-motion: reduce) {
+
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* =========================================
@@ -537,8 +557,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   font-size: 14px;
-  border-left: hidden;
-  border-right: hidden;
+  border: hidden;
 }
 
 table.table-fit {
@@ -560,14 +579,6 @@ th {
   text-align: left;
   white-space: nowrap;
   border-bottom: 2px solid var(--accent-gold);
-}
-
-tr:first-child th {
-  border-top: none;
-}
-
-tr:last-child td {
-  border-bottom: none;
 }
 
 tbody:not(.js-striped) tr:nth-child(even) {
@@ -699,27 +710,6 @@ body.lang-en-only .lang-en {
   object-fit: contain;
   padding: 2px;
 }
-
-/* =========================================
- 12. 固有列・ページごとの微調整（必要に応じて上書き）
- ========================================= */
-.col-text-multiline {
-  white-space: pre-line;
-}/*
-例：キャンペーンページの固有調整が必要になった場合は以下のように記述します
-
-.boss-cell .cell-item {
-  padding: 8px 0;
-}
-
-.resist-cell .cell-item {
-  align-items: center;
-}
-
-.attack-cell .cell-item {
-  align-items: center;
-}
-*/
 
 /* =========================================
  13. 767px以下 レスポンシブ共通

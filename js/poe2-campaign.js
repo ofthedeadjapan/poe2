@@ -1,17 +1,25 @@
 import {
-  RESIST_TYPES,
-  escapeHTML,
   getText,
   formatMultilineHTML,
   splitLines,
-  ImagePreviewService,
   initImageServices,
   StorageService,
   ImageModalService,
   handleDropdownClick,
   applyFormatBodyClass,
+  createFormatController,
   createDiv,
-  renderMultiLineCell
+  renderMultiLineCell,
+  buildResistGrid,
+  loadVersionedState,
+  renderErrorBox,
+  createLangDiv,
+  createLanguageContainer,
+  createDebouncedSaver,
+  setupPersistenceEvents,
+  setupImagePreviewEvents,
+  fetchWithTimeout,
+  describeLoadError,
 } from './common.js';
 
 // ==========================================
@@ -21,37 +29,28 @@ import {
 const STORAGE_VERSION = 1;
 
 const STORAGE_KEYS = {
-  CAMPAIGN_STATE: 'poe2:campaignState',
-  STORAGE_VERSION: 'poe2:campaignStorageVersion'
+  CAMPAIGN_STATE: 'poe2:campaignState'
 };
 
-const RESIST_REGEXES = RESIST_TYPES.reduce((acc, type) => {
-  acc[type] = new RegExp(`${type}(Strong|Weak)?`, 'i');
-  return acc;
-}, {});
+// 複数箇所で参照されるデータのフィールド名（タイポ検出・変更時の一括修正のために集約）
+const FIELDS = {
+  ACT: 'アクト',
+  AREA_JA: 'エリア日本語',
+  AREA_EN: 'エリア英語',
+  MONSTER_LV: 'モンスターレベル',
+  BUFF_CHOICES: '永続バフ',
+  BUFF_METHOD: '獲得方法',
+  BOSS_JA: 'ボス日本語',
+  BOSS_EN: 'ボス英語',
+  BOSS_IMAGE: 'bossimage',
+  RESIST: '耐性アイコン',
+  ATTACK_TYPE: '攻撃属性（物理以外）',
+  MEMO: 'メモ'
+};
 
 // ==========================================
-// 2. ユーティリティ (Utilities & Helpers)
+// 2. ストレージ・状態管理 (Storage & State)
 // ==========================================
-// （現在は共通化により common.js に集約済み）
-
-// ==========================================
-// 3. ストレージ・状態管理 (Storage & State)
-// ==========================================
-
-function checkStorageVersion() {
-  try {
-    const savedVersion = StorageService.load(STORAGE_KEYS.STORAGE_VERSION);
-
-    if (!savedVersion || parseInt(savedVersion, 10) !== STORAGE_VERSION) {
-      console.log(`ストレージのバージョンが変更されました (${savedVersion} -> ${STORAGE_VERSION})。データを初期化します。`);
-      StorageService.remove(STORAGE_KEYS.CAMPAIGN_STATE);
-      StorageService.save(STORAGE_KEYS.STORAGE_VERSION, STORAGE_VERSION);
-    }
-  } catch (e) {
-    console.error('バージョンの確認中にエラーが発生しました:', e);
-  }
-}
 
 // 状態（データ）を保持するオブジェクト
 const AppState = {
@@ -61,40 +60,28 @@ const AppState = {
   }
 };
 
-// ストレージへの読み書きを担当するサービス（エンドゲーム側と同構造）
 const UserStateService = {
   load() {
-    const saved = StorageService.load(STORAGE_KEYS.CAMPAIGN_STATE);
-    const checkedBuffs = (saved && Array.isArray(saved.checkedBuffs)) ? saved.checkedBuffs : [];
+    const saved = loadVersionedState(STORAGE_KEYS.CAMPAIGN_STATE, STORAGE_VERSION, () => ({
+      checkedBuffs: [],
+      format: 'ja-en'
+    }));
 
     return {
-      checkedBuffs: new Set(checkedBuffs),
-      format: (saved && typeof saved.format === 'string') ? saved.format : 'ja-en'
+      checkedBuffs: new Set(Array.isArray(saved.checkedBuffs) ? saved.checkedBuffs : []),
+      format: typeof saved.format === 'string' ? saved.format : 'ja-en'
     };
   },
   save() {
     StorageService.save(STORAGE_KEYS.CAMPAIGN_STATE, {
+      version: STORAGE_VERSION,
       checkedBuffs: Array.from(AppState.user.checkedBuffs),
       format: AppState.user.format
     });
   }
 };
 
-const PersistenceService = {
-  timer: null,
-  delay: 300,
-  scheduleSave() {
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => this.flush(), this.delay);
-  },
-  flush() {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
-    UserStateService.save();
-  }
-};
+const PersistenceService = createDebouncedSaver(() => UserStateService.save());
 
 const ViewStore = {
   buffRows: new Map(),
@@ -102,8 +89,31 @@ const ViewStore = {
 };
 
 // ==========================================
-// 4. サービス・ロジック (Services & Processors)
+// 3. サービス・ロジック (Services & Processors)
 // ==========================================
+
+function validateBuffIds(buffs) {
+  const seenIds = new Set();
+  buffs.forEach((buff, idx) => {
+    if (!buff || !buff.id) {
+      throw new Error(`永続バフデータの ${idx + 1} 件目に id がありません。`);
+    }
+    if (seenIds.has(buff.id)) {
+      throw new Error(`永続バフデータの id が重複しています: ${buff.id}`);
+    }
+    seenIds.add(buff.id);
+  });
+}
+
+// 現在のデータに存在しないbuff.idを、保存済みのchecked状態から除去する
+// （JSON側でidが変更・削除された場合に、古いidがlocalStorageへ残留し続けるのを防ぐ）
+function pruneCheckedBuffs(buffs) {
+  const validIds = new Set(buffs.map(b => b.id));
+  const staleIds = [...AppState.user.checkedBuffs].filter(id => !validIds.has(id));
+  if (staleIds.length === 0) return;
+  staleIds.forEach(id => AppState.user.checkedBuffs.delete(id));
+  PersistenceService.scheduleSave();
+}
 
 function groupDataByAct(data) {
   const groups = {};
@@ -114,10 +124,10 @@ function groupDataByAct(data) {
   };
 
   data.bosses.forEach(item => {
-    if (item) getGroup(getText(item, 'アクト')).bosses.push(item);
+    if (item) getGroup(getText(item, FIELDS.ACT)).bosses.push(item);
   });
   data.buffs.forEach(item => {
-    if (item) getGroup(getText(item, 'アクト')).buffs.push(item);
+    if (item) getGroup(getText(item, FIELDS.ACT)).buffs.push(item);
   });
   return groups;
 }
@@ -132,6 +142,9 @@ const ToggleService = {
     if (iconText) {
       iconText.textContent = isOpen ? '▲ 閉じる' : '▼ 開く';
     }
+
+    const header = section.querySelector('.act-header');
+    if (header) header.setAttribute('aria-expanded', String(isOpen));
   },
   toggleAll(forceOpen) {
     const sections = document.querySelectorAll('.act-section');
@@ -140,7 +153,7 @@ const ToggleService = {
 };
 
 // ==========================================
-// 5. DOM・UIレンダリング (DOM, Views & Renderers)
+// 4. DOM・UIレンダリング (DOM, Views & Renderers)
 // ==========================================
 
 const DOM = {
@@ -149,6 +162,11 @@ const DOM = {
     this.actNav = document.getElementById('actNav');
     this.btnBackToTop = document.getElementById('btnBackToTop');
     this.btnFormatText = document.getElementById('btn-format-text');
+    this.fatalErrorMessage = document.getElementById('fatal-error-message');
+  },
+  showFatalError(message) {
+    const lines = Array.isArray(message) ? message : [message];
+    renderErrorBox(this.fatalErrorMessage, lines);
   }
 };
 
@@ -158,34 +176,9 @@ function createCell(align = null) {
   return td;
 }
 
-// エンドゲーム側の高機能な言語コンテナ（画像リンク自動生成付き）の設計に統一
-function createLangDiv(className, text, imgSrc = '', defaultText = '') {
-  const div = createDiv(className);
-
-  if (imgSrc && text) {
-    const link = document.createElement('span');
-    link.className = 'boss-link';
-    link.innerHTML = formatMultilineHTML(text); // 改行などを維持
-    Object.assign(link.dataset, { click: 'showModal', imgSrc });
-    div.append(link);
-  } else {
-    div.innerHTML = formatMultilineHTML(text, defaultText);
-  }
-  return div;
-}
-
-function createLanguageContainer(jaText, enText, imgSrc = '', defaultJa = '-', defaultEn = '') {
-  const container = createDiv('cell-lang-container');
-  container.append(
-    createLangDiv('lang-ja', jaText, imgSrc, defaultJa),
-    createLangDiv('lang-en', enText, imgSrc, defaultEn)
-  );
-  return container;
-}
-
 function renderAreaCell(td, item) {
-  const jaText = getText(item, 'エリア日本語');
-  const enText = getText(item, 'エリア英語');
+  const jaText = getText(item, FIELDS.AREA_JA);
+  const enText = getText(item, FIELDS.AREA_EN);
 
   const wrapper = createDiv('area-cell-wrapper');
   wrapper.style.display = 'flex';
@@ -194,9 +187,9 @@ function renderAreaCell(td, item) {
   wrapper.style.gap = '8px';
   wrapper.style.width = '100%';
 
-  wrapper.append(createLanguageContainer(jaText, enText, '', '-', ''));
+  wrapper.append(createLanguageContainer(jaText, enText));
 
-  const rawLv = parseInt(item['モンスターレベル'], 10);
+  const rawLv = parseInt(item[FIELDS.MONSTER_LV], 10);
   if (!isNaN(rawLv)) {
     const lvSpan = document.createElement('span');
     lvSpan.className = 'area-level';
@@ -220,41 +213,14 @@ function renderBossCell(td, jaNames, enNames, images, maxLines) {
 
     const itemWrapper = createDiv('boss-item-wrapper');
     // createLanguageContainer 側で自動的に画像リンク処理（has-imageなど）が行われる
-    itemWrapper.append(createLanguageContainer(jName, eName, imgName, '-', ''));
+    itemWrapper.append(createLanguageContainer(jName, eName, imgName));
     wrapper.append(itemWrapper);
   });
 }
 
 function renderResistCell(td, resistLines, maxLines) {
   renderMultiLineCell(td, maxLines, (wrapper, i) => {
-    const resistText = resistLines[i] || '';
-    const grid = createDiv('resist-grid');
-
-    RESIST_TYPES.forEach(type => {
-      const slot = createDiv('resist-slot');
-      const match = resistText.match(RESIST_REGEXES[type]);
-
-      if (match) {
-        const strength = match[1] ? match[1].toLowerCase() : 'normal';
-        const fileName = `${type.toLowerCase()}${strength !== 'normal' ? '-' + strength : ''}`;
-
-        if (strength === 'strong') slot.classList.add('is-strong');
-        else if (strength === 'weak') slot.classList.add('is-weak');
-        else slot.classList.add('is-normal');
-
-        const img = document.createElement('img');
-        img.src = `images/icon-enemies/${fileName}.webp`;
-        img.className = 'resist-icon';
-        img.title = match[0];
-        img.onerror = () => { img.style.display = 'none'; };
-
-        slot.append(img);
-      } else {
-        slot.classList.add('is-empty');
-      }
-      grid.append(slot);
-    });
-    wrapper.append(grid);
+    wrapper.append(buildResistGrid(resistLines[i] || ''));
   });
 }
 
@@ -273,7 +239,7 @@ function renderAttackCell(td, atkLines, maxLines) {
 
 function renderMemoCell(td, boss) {
   const div = createDiv('cell-memo');
-  div.innerHTML = formatMultilineHTML(boss['メモ']);
+  div.innerHTML = formatMultilineHTML(boss[FIELDS.MEMO]);
   td.append(div);
 }
 
@@ -366,7 +332,7 @@ const BuffTableRenderer = {
     });
 
     const tdBuff = createCell();
-    const buffData = buff['永続バフ'];
+    const buffData = buff[FIELDS.BUFF_CHOICES];
 
     if (Array.isArray(buffData)) {
       const choiceContainer = createDiv('buff-choice-container');
@@ -389,7 +355,7 @@ const BuffTableRenderer = {
     renderAreaCell(tdArea, buff);
 
     const tdMethod = createCell();
-    tdMethod.textContent = getText(buff, '獲得方法') || '-';
+    tdMethod.textContent = getText(buff, FIELDS.BUFF_METHOD) || '-';
 
     tr.append(tdCheck, tdBuff, tdArea, tdMethod);
     return tr;
@@ -424,11 +390,11 @@ const BossTableRenderer = {
   },
 
   createRow(boss) {
-    const jaNames = splitLines(boss['ボス日本語']);
-    const enNames = splitLines(boss['ボス英語']);
-    const images = splitLines(boss['bossimage']);
-    const resistLines = splitLines(boss['耐性アイコン']);
-    const atkLines = splitLines(boss['攻撃属性（物理以外）']);
+    const jaNames = splitLines(boss[FIELDS.BOSS_JA]);
+    const enNames = splitLines(boss[FIELDS.BOSS_EN]);
+    const images = splitLines(boss[FIELDS.BOSS_IMAGE]);
+    const resistLines = splitLines(boss[FIELDS.RESIST]);
+    const atkLines = splitLines(boss[FIELDS.ATTACK_TYPE]);
     const maxLines = Math.max(jaNames.length, enNames.length, resistLines.length, atkLines.length);
 
     const tr = document.createElement('tr');
@@ -481,6 +447,7 @@ const ActSectionRenderer = {
   createHeader(act) {
     const header = createDiv('act-header');
     header.dataset.click = 'toggleSection';
+    header.setAttribute('aria-expanded', 'true'); // セクションは開いた状態で生成されるため
 
     const h2 = document.createElement('h2');
     h2.textContent = isNaN(parseInt(act, 10)) ? act : `アクト ${act}`;
@@ -528,43 +495,13 @@ const CampaignRenderer = {
 };
 
 // ==========================================
-// 6. コントローラー (Controllers)
+// 5. コントローラー (Controllers)
 // ==========================================
 
-const RenderCoordinator = {
-  refreshFormat() {
-    FormatController.updateUI();
-  }
-};
 
-const FormatController = {
-  setFormat(mode) {
-    if (AppState.user.format === mode) return;
-    AppState.user.format = mode;
-    PersistenceService.scheduleSave();
-    RenderCoordinator.refreshFormat();
-  },
-  updateUI() {
-    const mode = AppState.user.format || 'ja-en';
-    const labels = {
-      'ja-en': '日＋英',
-      'en-ja': '英＋日',
-      'ja-only': '日のみ',
-      'en-only': '英のみ'
-    };
 
-    if (DOM.btnFormatText) {
-      DOM.btnFormatText.innerText = labels[mode];
-    }
-
-    document.querySelectorAll('[data-click="setFormat"]').forEach(btn => {
-      const isActive = btn.dataset.format === mode;
-      btn.classList.toggle('is-active', isActive);
-    });
-
-    applyFormatBodyClass(mode);
-  }
-};
+// FormatController: common.js のファクトリで生成（campaign.js/endgame-maps.js共通ロジック）
+const FormatController = createFormatController(AppState, PersistenceService, DOM);
 
 const ResetController = {
   resetBuffs() {
@@ -578,12 +515,12 @@ const ResetController = {
 };
 
 // ==========================================
-// 7. イベント管理 (Events)
+// 6. イベント管理 (Events)
 // ==========================================
 
 const CLICK_ACTIONS = {
   toggleSection: el => ToggleService.toggleSection(el.closest('.act-section')),
-  showModal: el => ImageModalService.show(`images/bosses/${el.dataset.imgSrc}.webp`),
+  showModal: el => ImageModalService.show(`images/bosses/${el.dataset.imgSrc}.webp`, el.textContent.trim() || 'ボス画像'),
   closeModal: () => ImageModalService.close(),
   setFormat: el => FormatController.setFormat(el.dataset.format),
   openAll: () => ToggleService.toggleAll(true),
@@ -603,71 +540,38 @@ function setupClickEvents() {
   });
 }
 
-function setupKeyboardEvents() {
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && DOM.bossModal && DOM.bossModal.classList.contains('show')) {
-      ImageModalService.close();
-    }
-  });
-}
-
-function setupImagePreviewEvents() {
-  const isTouchDevice = window.matchMedia('(hover: none)').matches;
-  if (isTouchDevice) return;
-
-  document.addEventListener('pointerover', e => {
-    const el = e.target.closest('[data-img-src]');
-    if (!el) return;
-
-    const imgSrc = el.dataset.imgSrc;
-    if (!imgSrc) return;
-
-    const imagePath = `images/bosses/${imgSrc}.webp`;
-    ImagePreviewService.show(imagePath, e.clientX, e.clientY);
-  });
-
-  document.addEventListener('pointerout', e => {
-    if (!e.target.closest('[data-img-src]')) return;
-    ImagePreviewService.hide();
-  });
+function updateBackToTopVisibility() {
+  if (!DOM.btnBackToTop) return;
+  DOM.btnBackToTop.classList.toggle('is-hidden', window.scrollY <= 300);
 }
 
 function setupScrollEvents() {
-  if (DOM.btnBackToTop) {
-    let isTicking = false;
-    window.addEventListener('scroll', () => {
-      if (!isTicking) {
-        window.requestAnimationFrame(() => {
-          DOM.btnBackToTop.classList.toggle('is-hidden', window.scrollY <= 300);
-          isTicking = false;
-        });
-        isTicking = true;
-      }
-    }, { passive: true });
+  if (!DOM.btnBackToTop) return;
+  let isTicking = false;
+  window.addEventListener('scroll', () => {
+    if (!isTicking) {
+      window.requestAnimationFrame(() => {
+        updateBackToTopVisibility();
+        isTicking = false;
+      });
+      isTicking = true;
+    }
+  }, { passive: true });
 
-    DOM.btnBackToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  }
-}
-
-function setupPersistenceEvents() {
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'hidden') PersistenceService.flush();
+  DOM.btnBackToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-  window.addEventListener('pagehide', () => PersistenceService.flush());
 }
 
 function setupEventListeners() {
   setupClickEvents();
-  setupKeyboardEvents();
   setupImagePreviewEvents();
   setupScrollEvents();
-  setupPersistenceEvents();
+  setupPersistenceEvents(PersistenceService);
 }
 
 // ==========================================
-// 8. アプリ初期化 (App Initializer)
+// 7. アプリ初期化 (App Initializer)
 // ==========================================
 
 const App = {
@@ -675,25 +579,28 @@ const App = {
     try {
       DOM.initCache();
       initImageServices();
-      checkStorageVersion();
       AppState.init();
       FormatController.updateUI();
       setupEventListeners();
       await this.loadData();
     } catch (e) {
-      console.error('App初期化エラー:', e);
+      console.error('Initialization Failed:', e);
+      DOM.showFatalError([
+        'ページの初期化に失敗しました。再読み込みしても改善しない場合はご連絡ください。',
+        `詳細: ${e.message}`
+      ]);
     }
   },
 
   async loadData() {
     try {
       const [bossesRes, buffsRes] = await Promise.all([
-        fetch('json/poe2-campaign-bosses.json'),
-        fetch('json/poe2-campaign-buffs.json')
+        fetchWithTimeout('json/poe2-campaign-bosses.json'),
+        fetchWithTimeout('json/poe2-campaign-buffs.json')
       ]);
 
-      if (!bossesRes.ok) throw new Error(`Bosses HTTP status: ${bossesRes.status}`);
-      if (!buffsRes.ok) throw new Error(`Buffs HTTP status: ${buffsRes.status}`);
+      if (!bossesRes.ok) throw new Error(`"json/poe2-campaign-bosses.json" の読み込みに失敗しました (HTTP ${bossesRes.status})`);
+      if (!buffsRes.ok) throw new Error(`"json/poe2-campaign-buffs.json" の読み込みに失敗しました (HTTP ${buffsRes.status})`);
 
       const bossesData = await bossesRes.json();
       const buffsData = await buffsRes.json();
@@ -703,20 +610,20 @@ const App = {
         buffs: Array.isArray(buffsData) ? buffsData : []
       };
 
+      validateBuffIds(combinedData.buffs);
+      pruneCheckedBuffs(combinedData.buffs);
+
       const groups = groupDataByAct(combinedData);
 
       CampaignRenderer.renderAll(groups);
+      updateBackToTopVisibility();
 
     } catch (e) {
-      console.error('JSON読み込み失敗:', e);
-      if (DOM.campaignContainer) {
-        DOM.campaignContainer.innerHTML = `
-         <p style="text-align: center; color: #ef4444; padding: 40px 0; font-weight: bold;">
-          データの読み込みに失敗しました。<br>
-          "json/poe2-campaign-bosses.json" と "json/poe2-campaign-buffs.json" が正しく出力・配置されているか確認してください。
-         </p>
-        `;
-      }
+      console.error('JSONデータの読み込みに失敗しました。', e); // コンソール文言を統一
+      DOM.showFatalError([
+        'データの読み込みに失敗しました。',
+        describeLoadError(e)
+      ]);
     }
   }
 };
