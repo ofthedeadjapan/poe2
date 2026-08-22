@@ -343,6 +343,7 @@ const RenderCoordinator = {
     COLUMN_DEFINITIONS.forEach(def => {
       ColumnRenderer.updateColumnVisibility(def.id, AppState.user.columns[def.id]);
     });
+    TableRenderer.applyColumnWidths();
     ColumnRenderer.updateFirstVisibleCol();
     this.refreshAll();
   },
@@ -628,13 +629,15 @@ function updateTableStripes(tbody) {
 
 const TableRenderer = {
   colgroup: null,
+  table: null,
   cols: new Map(),
+  naturalWidths: new Map(),
 
   buildColGroup() {
     if (!this.colgroup) {
       this.colgroup = document.createElement('colgroup');
-      const table = DOM.tbody.closest('table');
-      if (table) table.prepend(this.colgroup);
+      this.table = DOM.tbody.closest('table');
+      if (this.table) this.table.prepend(this.colgroup);
     } else {
       this.colgroup.innerHTML = '';
     }
@@ -648,30 +651,57 @@ const TableRenderer = {
     });
   },
 
-  fixInitialWidths() {
+  measureNaturalWidths() {
+    if (this.table) this.table.style.tableLayout = 'auto';
+    this.cols.forEach(col => { col.style.width = ''; });
     COLUMN_DEFINITIONS.forEach(def => {
-      if (def.className === 'mark') return; // マーク列はCSSの固定幅（.col-mark）に任せるため、実測して上書きしない
       const th = ViewStore.headers.get(def.id);
       if (th) {
         const w = th.offsetWidth;
-        if (w > 0) {
-          const col = this.cols.get(def.id);
-          if (col) col.style.width = `${w}px`;
-        }
+        if (w > 0) this.naturalWidths.set(def.id, w);
       }
     });
   },
 
+  // 記憶した自然な幅から、現在の表示列に応じてpx幅を割り当てる。
+  // マーク列は常に自然な幅で固定。それ以外は、マーク列分を除いた残り幅を
+  // 表示中の列だけで自然な幅の比率に応じて分け合う（非表示列の分がここに回る）
+  applyColumnWidths() {
+    const markDef = COLUMN_DEFINITIONS.find(def => def.className === 'mark');
+    const markW = this.naturalWidths.get(markDef.id) || 0;
+    const totalW = [...this.naturalWidths.values()].reduce((a, b) => a + b, 0);
+    const availableForOthers = totalW - markW;
+
+    const visibleOtherSum = COLUMN_DEFINITIONS
+      .filter(def => def.className !== 'mark' && AppState.user.columns[def.id])
+      .reduce((sum, def) => sum + (this.naturalWidths.get(def.id) || 0), 0);
+
+    COLUMN_DEFINITIONS.forEach(def => {
+      const col = this.cols.get(def.id);
+      if (!col) return;
+      if (def.className === 'mark') {
+        col.style.width = `${markW}px`;
+      } else if (AppState.user.columns[def.id] && visibleOtherSum > 0) {
+        const share = (this.naturalWidths.get(def.id) || 0) / visibleOtherSum;
+        col.style.width = `${share * availableForOthers}px`;
+      } else {
+        col.style.width = '';
+      }
+    });
+
+    if (this.table) this.table.style.tableLayout = 'fixed';
+  },
+
   resetAndFixWidths() {
-    this.cols.forEach(col => { col.style.width = ''; });
     COLUMN_DEFINITIONS.forEach(def => {
       ColumnRenderer.updateColumnVisibility(def.id, true);
     });
 
-    this.fixInitialWidths();
+    this.measureNaturalWidths();
     COLUMN_DEFINITIONS.forEach(def => {
       ColumnRenderer.updateColumnVisibility(def.id, AppState.user.columns[def.id]);
     });
+    this.applyColumnWidths();
   },
 
   buildTable() {
@@ -964,21 +994,12 @@ function setupEventListeners() {
 // ==========================================
 
 function initializeWanakana() {
-  const enableSearch = () => {
-    DOM.searchInput.disabled = false;
-    DOM.searchInput.placeholder = '楽園 らくえん rakuen 等で検索可能';
-  };
   if (typeof wanakana !== 'undefined') {
-    enableSearch();
+    DOM.searchInput.disabled = false;
+    DOM.searchInput.placeholder = '楽園　らくえん　rakuen　等で検索可能';
   } else {
-    const script = document.querySelector('script[src*="wanakana"]');
-    if (script) {
-      script.addEventListener('load', enableSearch);
-      script.addEventListener('error', () => {
-        DOM.searchInput.placeholder = 'ローマ字検索が無効です';
-        DOM.searchInput.disabled = false;
-      });
-    }
+    DOM.searchInput.placeholder = 'かな　ローマ字検索が無効です';
+    DOM.searchInput.disabled = false;
   }
 }
 
@@ -1032,7 +1053,7 @@ const App = {
     DataStore.setItems(ItemFactory.buildItems(data));
     TableRenderer.buildColGroup();
     TableRenderer.buildTable();
-    TableRenderer.fixInitialWidths();
+    TableRenderer.measureNaturalWidths();
     RenderCoordinator.refreshColumns();
   }
 };
