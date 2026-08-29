@@ -663,35 +663,38 @@ const TableRenderer = {
     });
   },
 
+  // 記憶した自然な幅から、現在の表示列に応じてpx幅を割り当てる。
+  // マーク列は常に自然な幅で固定。それ以外は、マーク列分を除いた残り幅を
+  // 表示中の列だけで自然な幅の比率に応じて分け合う（非表示列の分がここに回る）。
+  // 基準は「全列の自然幅合計」ではなく実際に使える幅（.table-wrapperの
+  // clientWidth）。枠のほうが広ければ枠いっぱいまで拡大し、表示中の列の
+  // 自然幅合計のほうが大きい場合はそちらを優先する（＝その場合のみスクロールに任せる）
   applyColumnWidths() {
-  const markDef = COLUMN_DEFINITIONS.find(def => def.className === 'mark');
-  const markW = this.naturalWidths.get(markDef.id) || 0;
+    const markDef = COLUMN_DEFINITIONS.find(def => def.className === 'mark');
+    const markW = this.naturalWidths.get(markDef.id) || 0;
 
-  const visibleOtherSum = COLUMN_DEFINITIONS
-    .filter(def => def.className !== 'mark' && AppState.user.columns[def.id])
-    .reduce((sum, def) => sum + (this.naturalWidths.get(def.id) || 0), 0);
+    const visibleOtherSum = COLUMN_DEFINITIONS
+      .filter(def => def.className !== 'mark' && AppState.user.columns[def.id])
+      .reduce((sum, def) => sum + (this.naturalWidths.get(def.id) || 0), 0);
 
-  // totalW（全列の自然幅合計）ではなく、実際に使える幅を基準にする。
-  // 枠のほうが広ければ枠いっぱいまで拡大し、
-  // 表示中の列の自然幅合計のほうが大きい場合はそちらを優先する
-  const containerW = this.table?.parentElement?.clientWidth || 0;
-  const availableForOthers = Math.max(containerW - markW, visibleOtherSum);
+    const containerW = this.table?.parentElement?.clientWidth || 0;
+    const availableForOthers = Math.max(containerW - markW, visibleOtherSum);
 
-  COLUMN_DEFINITIONS.forEach(def => {
-    const col = this.cols.get(def.id);
-    if (!col) return;
-    if (def.className === 'mark') {
-      col.style.width = `${markW}px`;
-    } else if (AppState.user.columns[def.id] && visibleOtherSum > 0) {
-      const share = (this.naturalWidths.get(def.id) || 0) / visibleOtherSum;
-      col.style.width = `${share * availableForOthers}px`;
-    } else {
-      col.style.width = '';
-    }
-  });
+    COLUMN_DEFINITIONS.forEach(def => {
+      const col = this.cols.get(def.id);
+      if (!col) return;
+      if (def.className === 'mark') {
+        col.style.width = `${markW}px`;
+      } else if (AppState.user.columns[def.id] && visibleOtherSum > 0) {
+        const share = (this.naturalWidths.get(def.id) || 0) / visibleOtherSum;
+        col.style.width = `${share * availableForOthers}px`;
+      } else {
+        col.style.width = '';
+      }
+    });
 
-  if (this.table) this.table.style.tableLayout = 'fixed';
-},
+    if (this.table) this.table.style.tableLayout = 'fixed';
+  },
 
   resetAndFixWidths() {
     COLUMN_DEFINITIONS.forEach(def => {
