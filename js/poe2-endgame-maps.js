@@ -678,7 +678,7 @@ const TableRenderer = {
       .reduce((sum, def) => sum + (this.naturalWidths.get(def.id) || 0), 0);
 
     const containerW = this.table?.parentElement?.clientWidth || 0;
-    const availableForOthers = Math.max(containerW - markW, visibleOtherSum);
+    const availableForOthers = Math.max(containerW - markW, 0);
 
     COLUMN_DEFINITIONS.forEach(def => {
       const col = this.cols.get(def.id);
