@@ -1,6 +1,6 @@
 [
   {
-    "id": "map_001",
+    "id": "mapuniquecastaway",
     "よみがな": "なんぱ",
     "マップ日": "難破",
     "マップ英": "Castaway",
@@ -13,11 +13,10 @@
     "元ボス名日": "ハートリン船長",
     "元ボス名英": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
-    "メモ": "・エリアで見つかるゴールドの量が(500—1000)%増加する\n・マップには埋められた宝物が出現する\n・全てのアイテムはゴールドに変換される",
-    "bossimage": "captain-hartlin"
+    "メモ": "・エリアで見つかるゴールドの量が(500—1000)%増加する\n・マップには埋められた宝物が出現する\n・全てのアイテムはゴールドに変換される"
   },
   {
-    "id": "map_002",
+    "id": "mapuniqueuntaintedparadise",
     "よみがな": "けがれなきらくえん",
     "マップ日": "汚れなき楽園",
     "マップ英": "Untainted Paradise",
@@ -30,11 +29,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・獲得経験値が(200—400)%増加する\n・モンスターはアイテムをドロップしない",
-    "bossimage": ""
+    "メモ": "・獲得経験値が(200—400)%増加する\n・モンスターはアイテムをドロップしない"
   },
   {
-    "id": "map_003",
+    "id": "mapuniquevault",
     "よみがな": "かまさのほうもつこ",
     "マップ日": "カマサの宝物庫",
     "マップ英": "Vaults of Kamasa",
@@ -47,11 +45,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・このエリアで見つかるアイテムのレアリティが(100—200)%増加する\n・全てのチェストはマジックまたはレアである",
-    "bossimage": ""
+    "メモ": "・このエリアで見つかるアイテムのレアリティが(100—200)%増加する\n・全てのチェストはマジックまたはレアである"
   },
   {
-    "id": "map_004",
+    "id": "mapuniquewildwood",
     "よみがな": "あおみどりのわいるどうっど",
     "マップ日": "青緑のワイルドウッド",
     "マップ英": "The Viridian Wildwood",
@@ -64,11 +61,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・闇に包まれている\n・お告げの祭壇が出現する",
-    "bossimage": ""
+    "メモ": "・闇に包まれている\n・お告げの祭壇が出現する"
   },
   {
-    "id": "map_005",
+    "id": "mapuniqueselenite",
     "よみがな": "しずかなどうくつ",
     "マップ日": "静かな洞窟",
     "マップ英": "The Silent Cave",
@@ -81,11 +77,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・エッセンスに囚われた多くのレアモンスターが出現する\n・レアモンスターのエッセンスを吸収した囚われたボスが1体出現する\n・ティア１１以上",
-    "bossimage": ""
+    "メモ": "・エッセンスに囚われた多くのレアモンスターが出現する\n・レアモンスターのエッセンスを吸収した囚われたボスが1体出現する\n・ティア１１以上"
   },
   {
-    "id": "map_006",
+    "id": "mapuniquelake",
     "よみがな": "ひびわれたみずうみ",
     "マップ日": "ひび割れた湖",
     "マップ英": "The Fractured Lake",
@@ -98,11 +93,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・レアモンスターはミラー化される\n・レアモンスターの数が(150—300)%増加する\n・割れた鏡が出現する",
-    "bossimage": ""
+    "メモ": "・レアモンスターはミラー化される\n・レアモンスターの数が(150—300)%増加する\n・割れた鏡が出現する"
   },
   {
-    "id": "map_007",
+    "id": "mapuniquemerchant01_chimeral",
     "よみがな": "しょうにんのやえいじょう",
     "マップ日": "商人の野営場",
     "マップ英": "Merchant's Campsite",
@@ -115,11 +109,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": "Biomes: 森, 沼"
   },
   {
-    "id": "map_008",
+    "id": "mapuniquemerchant01_sandswept",
     "よみがな": "しょうにんのやえいじょう",
     "マップ日": "商人の野営場",
     "マップ英": "Merchant's Campsite",
@@ -132,11 +125,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": "Biomes: 沼"
   },
   {
-    "id": "map_009",
+    "id": "mapuniquemerchant02_crimson",
     "よみがな": "しょうにんのやえいじょう",
     "マップ日": "商人の野営場",
     "マップ英": "Merchant's Campsite",
@@ -149,11 +141,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": "Biomes: 砂漠"
   },
   {
-    "id": "map_010",
+    "id": "mapuniquemerchant02_farmland",
     "よみがな": "しょうにんのやえいじょう",
     "マップ日": "商人の野営場",
     "マップ英": "Merchant's Campsite",
@@ -166,12 +157,11 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": "Biomes: 草原"
   },
   {
-    "id": "map_011",
-    "よみがな": "かみのせつな",
+    "id": "mapuniquemerchant03_beach",
+    "よみがな": "ぜんのせつな",
     "マップ日": "禅の刹那",
     "マップ英": "Moment of Zen",
     "ボス日": "",
@@ -183,12 +173,11 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "ユニーク商人",
-    "bossimage": ""
+    "メモ": "Biomes: 島"
   },
   {
-    "id": "map_012",
-    "よみがな": "かみのせつな",
+    "id": "mapuniquemerchant03_raft",
+    "よみがな": "ぜんのせつな",
     "マップ日": "禅の刹那",
     "マップ英": "Moment of Zen",
     "ボス日": "",
@@ -200,12 +189,11 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "ユニーク商人",
-    "bossimage": ""
+    "メモ": "Biomes: 森, 沼"
   },
   {
-    "id": "map_013",
-    "よみがな": "かみのせつな",
+    "id": "mapuniquemerchant03_tropical",
+    "よみがな": "ぜんのせつな",
     "マップ日": "禅の刹那",
     "マップ英": "Moment of Zen",
     "ボス日": "",
@@ -217,11 +205,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "ユニーク商人",
-    "bossimage": ""
+    "メモ": "Biomes: 水, 海"
   },
   {
-    "id": "map_014",
+    "id": "maphideoutfelled_claimable",
     "よみがな": "ばっさいされたかくれが",
     "マップ日": "伐採された隠れ家",
     "マップ英": "Felled Hideout",
@@ -234,11 +221,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家ゲット？",
-    "bossimage": ""
+    "メモ": "隠れ家"
   },
   {
-    "id": "map_015",
+    "id": "maphideoutlimestone_claimable",
     "よみがな": "せっかいがんのかくれが",
     "マップ日": "石灰岩の隠れ家",
     "マップ英": "Limestone Hideout",
@@ -251,11 +237,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家ゲット？",
-    "bossimage": ""
+    "メモ": "隠れ家"
   },
   {
-    "id": "map_016",
+    "id": "maphideoutshrine_claimable",
     "よみがな": "しんでんのかくれが",
     "マップ日": "神殿の隠れ家",
     "マップ英": "Shrine Hideout",
@@ -268,11 +253,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家ゲット？",
-    "bossimage": ""
+    "メモ": "隠れ家"
   },
   {
-    "id": "map_017",
+    "id": "maphideoutcanal_claimable",
     "よみがな": "うんがのかくれが",
     "マップ日": "運河の隠れ家",
     "マップ英": "Canal Hideout",
@@ -285,11 +269,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家ゲット？",
-    "bossimage": ""
+    "メモ": "隠れ家"
   },
   {
-    "id": "map_018",
+    "id": "g_endgame_town",
     "よみがな": "じっぐらとのひなんじょ",
     "マップ日": "ジッグラトの避難所",
     "マップ英": "The Ziggurat Refuge",
@@ -302,11 +285,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "アクトクリア後の場所",
-    "bossimage": ""
+    "メモ": "キャンペーンをクリア後の場所"
   },
   {
-    "id": "map_019",
+    "id": "mapbloomingfield",
     "よみがな": "はなさくのはら",
     "マップ日": "花咲く野原",
     "マップ英": "Blooming Field",
@@ -319,11 +301,10 @@
     "元ボス名日": "クロウベル",
     "元ボス名英": "The Crowbell",
     "元ボス特徴": "鐘（ベル）ぶんまわし",
-    "メモ": "",
-    "bossimage": "the-crowbell"
+    "メモ": ""
   },
   {
-    "id": "map_020",
+    "id": "mapsavanna",
     "よみがな": "さばんな",
     "マップ日": "サバンナ",
     "マップ英": "Savannah",
@@ -336,11 +317,10 @@
     "元ボス名日": "ラスブレイカー",
     "元ボス名英": "Rathbreaker",
     "元ボス特徴": "獣一杯、槍一杯",
-    "メモ": "",
-    "bossimage": "rathbreaker"
+    "メモ": ""
   },
   {
-    "id": "map_021",
+    "id": "mapfortress",
     "よみがな": "ようさい",
     "マップ日": "要塞",
     "マップ英": "Fortress",
@@ -353,11 +333,10 @@
     "元ボス名日": "裏切り者、バルバラ",
     "元ボス名英": "Balbala, the Traitor",
     "元ボス特徴": "中心の穴から毒霧",
-    "メモ": "",
-    "bossimage": "balbala-the-traitor"
+    "メモ": ""
   },
   {
-    "id": "map_022",
+    "id": "mappenitentiary",
     "よみがな": "けいむしょ",
     "マップ日": "刑務所",
     "マップ英": "Penitentiary",
@@ -370,11 +349,10 @@
     "元ボス名日": "処刑人",
     "元ボス名英": "The Executioner",
     "元ボス特徴": "首ちょんぱする処刑人",
-    "メモ": "",
-    "bossimage": "the-executioner"
+    "メモ": ""
   },
   {
-    "id": "map_023",
+    "id": "maplosttowers",
     "よみがな": "うしなわれたとう",
     "マップ日": "失われた塔",
     "マップ英": "Lost Towers",
@@ -387,11 +365,10 @@
     "元ボス名日": "羽を持つ疫病、チェツァ",
     "元ボス名英": "Chetza, the Feathered Plague",
     "元ボス特徴": "飛ばない大きい鳥",
-    "メモ": "",
-    "bossimage": "chetza-the-feathered-plague"
+    "メモ": ""
   },
   {
-    "id": "map_024",
+    "id": "mapsandspit",
     "よみがな": "すなのみさき",
     "マップ日": "砂の岬",
     "マップ英": "Sandspit",
@@ -404,11 +381,10 @@
     "元ボス名日": "ホホジロザメ",
     "元ボス名英": "Great White One",
     "元ボス特徴": "サメ",
-    "メモ": "",
-    "bossimage": "great-white-one"
+    "メモ": ""
   },
   {
-    "id": "map_025",
+    "id": "mapforge",
     "よみがな": "かじろ",
     "マップ日": "鍜治炉",
     "マップ英": "Forge",
@@ -421,11 +397,10 @@
     "元ボス名日": "巨像、ザルマラス",
     "元ボス名英": "Zalmarath, the Colossus",
     "元ボス特徴": "巨人の像",
-    "メモ": "",
-    "bossimage": "zalmarath-the-colossus"
+    "メモ": ""
   },
   {
-    "id": "map_026",
+    "id": "mapsulphuriccaverns",
     "よみがな": "いおうのどうくつ",
     "マップ日": "硫黄の洞窟",
     "マップ英": "Sulphuric Caverns",
@@ -438,11 +413,10 @@
     "元ボス名日": "古代の戦象、エクバブ\n死の王、イクタブ",
     "元ボス名英": "Ekbab, Ancient Steed\nIktab, the Deathlord",
     "元ボス特徴": "象と魔術師",
-    "メモ": "",
-    "bossimage": "ekbab-ancient-steed\niktab-the-deathlord"
+    "メモ": ""
   },
   {
-    "id": "map_027",
+    "id": "mapmire",
     "よみがな": "どろぬま",
     "マップ日": "泥沼",
     "マップ英": "Mire",
@@ -455,11 +429,10 @@
     "元ボス名日": "腐りし群れのベイラ",
     "元ボス名英": "Beira of the Rotten Pack",
     "元ボス特徴": "街出てすぐの氷ボス",
-    "メモ": "",
-    "bossimage": "beira-of-the-rotten-pack"
+    "メモ": ""
   },
   {
-    "id": "map_028",
+    "id": "mapwoodland",
     "よみがな": "しんりんちたい",
     "マップ日": "森林地帯",
     "マップ英": "Woodland",
@@ -472,11 +445,10 @@
     "元ボス名日": "腐乱した粉屋\n腐乱した粉屋",
     "元ボス名英": "The Bloated Miller\nThe Bloated Miller",
     "元ボス特徴": "粉屋\n粉屋",
-    "メモ": "",
-    "bossimage": "the-bloated-miller\nthe-bloated-miller"
+    "メモ": ""
   },
   {
-    "id": "map_029",
+    "id": "mapsump",
     "よみがな": "おすいだめ",
     "マップ日": "汚水溜め",
     "マップ英": "Sump",
@@ -489,11 +461,10 @@
     "元ボス名日": "沼地の魔女、イグナグドゥク",
     "元ボス名英": "Ignagduk, the Bog Witch",
     "元ボス特徴": "暴走スピリット",
-    "メモ": "",
-    "bossimage": "ignagduk-the-bog-witch"
+    "メモ": ""
   },
   {
-    "id": "map_030",
+    "id": "mapwillow",
     "よみがな": "やなぎ",
     "マップ日": "柳",
     "マップ英": "Willow",
@@ -506,11 +477,10 @@
     "元ボス名日": "終わりなき悲嘆のラクラン",
     "元ボス名英": "Lachlann of Endless Lament",
     "元ボス特徴": "墓場で変身ボス",
-    "メモ": "",
-    "bossimage": "lachlann-of-endless-lament"
+    "メモ": ""
   },
   {
-    "id": "map_031",
+    "id": "mapheadland",
     "よみがな": "みさき",
     "マップ日": "岬",
     "マップ英": "Headland",
@@ -523,11 +493,10 @@
     "元ボス名日": "見捨てられた息子、アザリアン",
     "元ボス名英": "Azarian, the Forsaken Son",
     "元ボス特徴": "四隅に火鉢",
-    "メモ": "",
-    "bossimage": "azarian-the-forsaken-son"
+    "メモ": ""
   },
   {
-    "id": "map_032",
+    "id": "maploftysummit",
     "よみがな": "そびえるさんちょう",
     "マップ日": "そびえる山頂",
     "マップ英": "Lofty Summit",
@@ -540,11 +509,10 @@
     "元ボス名日": "亡霊、黒き顎",
     "元ボス名英": "Blackjaw, the Remnant",
     "元ボス特徴": "大斧",
-    "メモ": "",
-    "bossimage": "blackjaw-the-remnant"
+    "メモ": ""
   },
   {
-    "id": "map_033",
+    "id": "mapnecropolis",
     "よみがな": "きょうどうぼち",
     "マップ日": "共同墓地",
     "マップ英": "Necropolis",
@@ -557,11 +525,10 @@
     "元ボス名日": "永遠なる法務官、ドレイヴン",
     "元ボス名英": "Draven, the Eternal Praetor",
     "元ボス特徴": "墓場での夫ボス",
-    "メモ": "",
-    "bossimage": "draven-the-eternal-praetor"
+    "メモ": ""
   },
   {
-    "id": "map_034",
+    "id": "mapcrypt",
     "よみがな": "ちかのうこつどう",
     "マップ日": "地下納骨堂",
     "マップ英": "Crypt",
@@ -574,11 +541,10 @@
     "元ボス名日": "生ける儀式、キャンドルマス",
     "元ボス名英": "Candlemass, the Living Rite",
     "元ボス特徴": "屋敷の石像",
-    "メモ": "",
-    "bossimage": "candlemass-the-living-rite"
+    "メモ": ""
   },
   {
-    "id": "map_035",
+    "id": "mapsteamingsprings",
     "よみがな": "じょうきせん",
     "マップ日": "蒸気泉",
     "マップ英": "Steaming Springs",
@@ -591,11 +557,10 @@
     "元ボス名日": "大蛇の女王、カバラ",
     "元ボス名英": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
-    "メモ": "",
-    "bossimage": "kabala-constrictor-queen"
+    "メモ": ""
   },
   {
-    "id": "map_036",
+    "id": "mapseepage",
     "よみがな": "ろうしゅつ",
     "マップ日": "漏出",
     "マップ英": "Seepage",
@@ -608,11 +573,10 @@
     "元ボス名日": "腐ったドルイド",
     "元ボス名英": "The Rotten Druid",
     "元ボス特徴": "キノコ",
-    "メモ": "",
-    "bossimage": "the-rotten-druid"
+    "メモ": ""
   },
   {
-    "id": "map_037",
+    "id": "mapriverside",
     "よみがな": "かわべ",
     "マップ日": "川辺",
     "マップ英": "Riverside",
@@ -625,11 +589,10 @@
     "元ボス名日": "マイティ・シルバーフィスト",
     "元ボス名英": "Mighty Silverfist",
     "元ボス特徴": "ワンパンゴリラ",
-    "メモ": "",
-    "bossimage": "mighty-silverfist"
+    "メモ": ""
   },
   {
-    "id": "map_038",
+    "id": "mapsteppe",
     "よみがな": "そうげん",
     "マップ日": "草原",
     "マップ英": "Steppe",
@@ -642,11 +605,10 @@
     "元ボス名日": "錆の王",
     "元ボス名英": "The Rust King",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": "the-rust-king"
+    "メモ": ""
   },
   {
-    "id": "map_039",
+    "id": "mapslick",
     "よみがな": "みなも",
     "マップ日": "水面",
     "マップ英": "Slick",
@@ -659,11 +621,10 @@
     "元ボス名日": "恐怖の技師、ルジャ",
     "元ボス名英": "Rudja, the Dread Engineer",
     "元ボス特徴": "火炎放射ガスグレネード",
-    "メモ": "",
-    "bossimage": "rudja-the-dread-engineer"
+    "メモ": ""
   },
   {
-    "id": "map_040",
+    "id": "mapspiderwoods",
     "よみがな": "くものもり",
     "マップ日": "蜘蛛の森",
     "マップ英": "Spider Woods",
@@ -676,11 +637,10 @@
     "元ボス名日": "ブランブルガスト",
     "元ボス名英": "The Brambleghast",
     "元ボス特徴": "カオス植物",
-    "メモ": "",
-    "bossimage": "the-brambleghast"
+    "メモ": ""
   },
   {
-    "id": "map_041",
+    "id": "mapmarrow",
     "よみがな": "こつずい",
     "マップ日": "骨髄",
     "マップ英": "Marrow",
@@ -693,11 +653,10 @@
     "元ボス名日": "冒涜者、トール・ガル",
     "元ボス名英": "Tor Gul, the Defiler",
     "元ボス特徴": "巨大ドクロ",
-    "メモ": "",
-    "bossimage": "tor-gul-the-defiler"
+    "メモ": ""
   },
   {
-    "id": "map_042",
+    "id": "mapvaalcity",
     "よみがな": "ヴぁーるのとし",
     "マップ日": "ヴァールの都市",
     "マップ英": "Vaal City",
@@ -710,11 +669,10 @@
     "元ボス名日": "ヴァイパー・ナプアツィ",
     "元ボス名英": "Viper Napuatzi",
     "元ボス特徴": "周り兵士ツンツン",
-    "メモ": "",
-    "bossimage": "viper-napuatzi"
+    "メモ": ""
   },
   {
-    "id": "map_043",
+    "id": "mapbloodwood",
     "よみがな": "ぶらっどうっど",
     "マップ日": "ブラッドウッド",
     "マップ英": "Bloodwood",
@@ -727,11 +685,10 @@
     "元ボス名日": "デヴァウラー",
     "元ボス名英": "The Devourer",
     "元ボス特徴": "地面に潜るワーム",
-    "メモ": "",
-    "bossimage": "the-devourer"
+    "メモ": ""
   },
   {
-    "id": "map_044",
+    "id": "mapcenotes",
     "よみがな": "せのーて",
     "マップ日": "セノーテ",
     "マップ英": "Cenotes",
@@ -744,11 +701,10 @@
     "元ボス名日": "空を見る者、バーラク",
     "元ボス名英": "Bahlak, the Sky Seer",
     "元ボス特徴": "竜巻鳥",
-    "メモ": "",
-    "bossimage": "bahlak-the-sky-seer"
+    "メモ": ""
   },
   {
-    "id": "map_045",
+    "id": "maphiddengrotto",
     "よみがな": "かくれいわや",
     "マップ日": "隠れ岩屋",
     "マップ英": "Hidden Grotto",
@@ -761,11 +717,10 @@
     "元ボス名日": "冒涜者、トール・ガル",
     "元ボス名英": "Tor Gul, the Defiler",
     "元ボス特徴": "巨大ドクロ",
-    "メモ": "",
-    "bossimage": "tor-gul-the-defiler"
+    "メモ": ""
   },
   {
-    "id": "map_046",
+    "id": "mapravine",
     "よみがな": "けいこく",
     "マップ日": "渓谷",
     "マップ英": "Ravine",
@@ -778,11 +733,10 @@
     "元ボス名日": "コアの番人、ジコアトル",
     "元ボス名英": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
-    "メモ": "",
-    "bossimage": "zicoatl-warden-of-the-core"
+    "メモ": ""
   },
   {
-    "id": "map_047",
+    "id": "mapalpineridge",
     "よみがな": "こうざんのおね",
     "マップ日": "高山の尾根",
     "マップ英": "Alpine Ridge",
@@ -795,11 +749,10 @@
     "元ボス名日": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
     "元ボス名英": "Heldra of the Black Pyre\nIsolde of the White Shroud",
     "元ボス特徴": "炎と氷",
-    "メモ": "",
-    "bossimage": "heldra-of-the-black-pyre\nisolde-of-the-white-shroud"
+    "メモ": ""
   },
   {
-    "id": "map_048",
+    "id": "mapaugury",
     "よみがな": "よちょう",
     "マップ日": "予兆",
     "マップ英": "Augury",
@@ -812,11 +765,10 @@
     "元ボス名日": "ビーストロード、ウクスマル",
     "元ボス名英": "Uxmal, the Beastlord",
     "元ボス特徴": "キメラ",
-    "メモ": "頭が緑と赤",
-    "bossimage": "uxmal-the-beastlord"
+    "メモ": ""
   },
   {
-    "id": "map_049",
+    "id": "mapbastille",
     "よみがな": "かんごく",
     "マップ日": "監獄",
     "マップ英": "Bastille",
@@ -829,11 +781,10 @@
     "元ボス名日": "恐怖の看守、オスウィン",
     "元ボス名英": "Oswin, the Dread Warden",
     "元ボス特徴": "地面から針",
-    "メモ": "",
-    "bossimage": "oswin-the-dread-warden"
+    "メモ": ""
   },
   {
-    "id": "map_050",
+    "id": "mapcreek",
     "よみがな": "おがわ",
     "マップ日": "小川",
     "マップ英": "Creek",
@@ -846,11 +797,10 @@
     "元ボス名日": "腐乱した粉屋",
     "元ボス名英": "The Bloated Miller",
     "元ボス特徴": "粉屋",
-    "メモ": "",
-    "bossimage": "the-bloated-miller"
+    "メモ": ""
   },
   {
-    "id": "map_051",
+    "id": "mapcrimsonshores",
     "よみがな": "しんくのきし",
     "マップ日": "深紅の岸",
     "マップ英": "Crimson Shores",
@@ -863,11 +813,10 @@
     "元ボス名日": "大地を砕く者、ラトルケージ",
     "元ボス名英": "Rattlecage, the Earthbreaker",
     "元ボス特徴": "セケマのボス１",
-    "メモ": "",
-    "bossimage": "rattlecage-the-earthbreaker"
+    "メモ": ""
   },
   {
-    "id": "map_052",
+    "id": "mapdecay",
     "よみがな": "ふはい",
     "マップ日": "腐敗",
     "マップ英": "Decay",
@@ -880,11 +829,10 @@
     "元ボス名日": "腐ったドルイド",
     "元ボス名英": "The Rotten Druid",
     "元ボス特徴": "キノコドルイド",
-    "メモ": "",
-    "bossimage": "the-rotten-druid"
+    "メモ": ""
   },
   {
-    "id": "map_053",
+    "id": "mapdeserted",
     "よみがな": "こうりょうち",
     "マップ日": "荒涼地",
     "マップ英": "Deserted",
@@ -897,11 +845,10 @@
     "元ボス名日": "死の王、イクタブ",
     "元ボス名英": "Iktab, the Deathlord",
     "元ボス特徴": "象が居ない魔術師",
-    "メモ": "",
-    "bossimage": "iktab-the-deathlord"
+    "メモ": ""
   },
   {
-    "id": "map_054",
+    "id": "mapgrimhaven",
     "よみがな": "ぐりむへぶん",
     "マップ日": "グリムヘブン",
     "マップ英": "Grimhaven",
@@ -914,11 +861,10 @@
     "元ボス名日": "法務官の妻、アシニア",
     "元ボス名英": "Asinia, the Praetor's Consort",
     "元ボス特徴": "墓所の婦人ボス",
-    "メモ": "",
-    "bossimage": "asinia-the-praetors-consort"
+    "メモ": ""
   },
   {
-    "id": "map_055",
+    "id": "maphive",
     "よみがな": "すあな",
     "マップ日": "巣穴",
     "マップ英": "Hive",
@@ -931,11 +877,10 @@
     "元ボス名日": "腐ったドルイド",
     "元ボス名英": "The Rotten Druid",
     "元ボス特徴": "キノコドルイド",
-    "メモ": "",
-    "bossimage": "the-rotten-druid"
+    "メモ": ""
   },
   {
-    "id": "map_056",
+    "id": "mapinferno",
     "よみがな": "ごうか",
     "マップ日": "業火",
     "マップ英": "Inferno",
@@ -948,11 +893,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_057",
+    "id": "mapmineshaft",
     "よみがな": "こうどう",
     "マップ日": "坑道",
     "マップ英": "Mineshaft",
@@ -965,11 +909,10 @@
     "元ボス名日": "恐怖の技師、ルジャ",
     "元ボス名英": "Rudja, the Dread Engineer",
     "元ボス特徴": "火炎ガスグレネード",
-    "メモ": "",
-    "bossimage": "rudja-the-dread-engineer"
+    "メモ": ""
   },
   {
-    "id": "map_058",
+    "id": "mapoasis",
     "よみがな": "おあしす",
     "マップ日": "オアシス",
     "マップ英": "Oasis",
@@ -982,11 +925,10 @@
     "元ボス名日": "復活した王、ジャマンラ",
     "元ボス名英": "Jamanra, the Risen King",
     "元ボス特徴": "ハラニの門でのジャマンラ",
-    "メモ": "",
-    "bossimage": "jamanra-the-risen-king"
+    "メモ": ""
   },
   {
-    "id": "map_059",
+    "id": "mapoutlands",
     "よみがな": "へんきょう",
     "マップ日": "辺境",
     "マップ英": "Outlands",
@@ -999,11 +941,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_060",
+    "id": "maprockpools",
     "よみがな": "しおだまり",
     "マップ日": "潮だまり",
     "マップ英": "Rockpools",
@@ -1016,11 +957,10 @@
     "元ボス名日": "キンの領主、クルトォグ",
     "元ボス名英": "Krutog, Lord of Kin",
     "元ボス特徴": "火山での巨人",
-    "メモ": "",
-    "bossimage": "krutog-lord-of-kin"
+    "メモ": ""
   },
   {
-    "id": "map_061",
+    "id": "mapswamptower",
     "よみがな": "しずむせんとう",
     "マップ日": "沈む尖塔",
     "マップ英": "Sinking Spire",
@@ -1033,11 +973,10 @@
     "元ボス名日": "守護者、ストームゴア",
     "元ボス名英": "Stormgore, the Guardian",
     "元ボス特徴": "雷の黒き顎",
-    "メモ": "",
-    "bossimage": "stormgore-the-guardian"
+    "メモ": ""
   },
   {
-    "id": "map_062",
+    "id": "mapuberboss_ironcitadel",
     "よみがな": "てつのじょうさい",
     "マップ日": "鉄の城塞",
     "マップ英": "The Iron Citadel",
@@ -1050,11 +989,10 @@
     "元ボス名日": "ジオノール伯爵\n堕落した狼、ジオノール",
     "元ボス名英": "Count Geonor\nGeonor, the Putrid Wolf",
     "元ボス特徴": "１章ボス",
-    "メモ": "",
-    "bossimage": "count-geonor\ngeonor-the-putrid-wolf"
+    "メモ": ""
   },
   {
-    "id": "map_063",
+    "id": "mapuberboss_stonecitadel",
     "よみがな": "いしのじょうさい",
     "マップ日": "石の城塞",
     "マップ英": "The Stone Citadel",
@@ -1067,11 +1005,10 @@
     "元ボス名日": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
     "元ボス名英": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "元ボス特徴": "３章ボス",
-    "メモ": "",
-    "bossimage": "doryani-royal-thaumaturge\ndoryanis-triumph"
+    "メモ": ""
   },
   {
-    "id": "map_064",
+    "id": "mapuberboss_coppercitadel",
     "よみがな": "どうのじょうさい",
     "マップ日": "銅の城塞",
     "マップ英": "The Copper Citadel",
@@ -1084,11 +1021,10 @@
     "元ボス名日": "アボミネーション、ジャマンラ",
     "元ボス名英": "Jamanra, the Abomination",
     "元ボス特徴": "２章ボス",
-    "メモ": "",
-    "bossimage": "jamanra-the-abomination"
+    "メモ": ""
   },
   {
-    "id": "map_065",
+    "id": "mapuniquemerchant01_oasis",
     "よみがな": "じゃどのきゃんぷち",
     "マップ日": "ジャドのキャンプ地",
     "マップ英": "Jado's Campsite",
@@ -1101,11 +1037,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_066",
+    "id": "map_hildacampsite",
     "よみがな": "ひるだのきゃんぷち",
     "マップ日": "ヒルダのキャンプ地",
     "マップ英": "Hilda's Campsite",
@@ -1118,11 +1053,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_067",
+    "id": "mapvaalvillage",
     "よみがな": "ヴぁーるのむら",
     "マップ日": "ヴァールの村",
     "マップ英": "Vaal Village",
@@ -1135,11 +1069,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_068",
+    "id": "maprustbowl",
     "よみがな": "さびのくぼち",
     "マップ日": "錆の窪地",
     "マップ英": "Rustbowl",
@@ -1152,11 +1085,10 @@
     "元ボス名日": "錆の王",
     "元ボス名英": "The Rust King",
     "元ボス特徴": "金属飛ばし",
-    "メモ": "",
-    "bossimage": "the-rust-king"
+    "メモ": ""
   },
   {
-    "id": "map_069",
+    "id": "mapbackwash",
     "よみがな": "ひきなみ",
     "マップ日": "引き波",
     "マップ英": "Backwash",
@@ -1169,11 +1101,10 @@
     "元ボス名日": "汚物の女王",
     "元ボス名英": "The Queen of Filth",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": "the-queen-of-filth"
+    "メモ": ""
   },
   {
-    "id": "map_070",
+    "id": "mapburialbog",
     "よみがな": "まいそうのぬま",
     "マップ日": "埋葬の沼",
     "マップ英": "Burial Bog",
@@ -1186,11 +1117,10 @@
     "元ボス名日": "ルートドレッジ",
     "元ボス名英": "Rootdredge",
     "元ボス特徴": "ゾンビ召喚の木",
-    "メモ": "",
-    "bossimage": "rootdredge"
+    "メモ": ""
   },
   {
-    "id": "map_071",
+    "id": "mapwetlands",
     "よみがな": "しっちたい",
     "マップ日": "湿地帯",
     "マップ英": "Wetlands",
@@ -1203,11 +1133,10 @@
     "元ボス名日": "ラスブレイカー",
     "元ボス名英": "Rathbreaker",
     "元ボス特徴": "獣一杯、槍一杯",
-    "メモ": "",
-    "bossimage": "rathbreaker"
+    "メモ": ""
   },
   {
-    "id": "map_072",
+    "id": "mapsuntemple",
     "よみがな": "たいようのしんでん",
     "マップ日": "太陽の神殿",
     "マップ英": "Sun Temple",
@@ -1220,11 +1149,10 @@
     "元ボス名日": "太陽の大祭司、ケツーリ",
     "元ボス名英": "Ketzuli, High Priest of the Sun",
     "元ボス特徴": "太陽",
-    "メモ": "",
-    "bossimage": "ketzuli-high-priest-of-the-sun"
+    "メモ": ""
   },
   {
-    "id": "map_073",
+    "id": "mapchannel",
     "よみがな": "すいろ",
     "マップ日": "水路",
     "マップ英": "Channel",
@@ -1237,11 +1165,10 @@
     "元ボス名日": "見捨てられた息子、アザリアン",
     "元ボス名英": "Azarian, the Forsaken Son",
     "元ボス特徴": "四隅に火鉢",
-    "メモ": "",
-    "bossimage": "azarian-the-forsaken-son"
+    "メモ": ""
   },
   {
-    "id": "map_074",
+    "id": "mapvaalfoundry",
     "よみがな": "かじば",
     "マップ日": "鍛冶場",
     "マップ英": "Molten Vault",
@@ -1254,11 +1181,10 @@
     "元ボス名日": "鍛造場主、メクトゥル",
     "元ボス名英": "Mektul, the Forgemaster",
     "元ボス特徴": "溶岩巨人",
-    "メモ": "",
-    "bossimage": "mektul-the-forgemaster"
+    "メモ": ""
   },
   {
-    "id": "map_075",
+    "id": "mapvaalfactory",
     "よみがな": "こうじょう",
     "マップ日": "工場",
     "マップ英": "The Assembly",
@@ -1271,11 +1197,10 @@
     "元ボス名日": "コアの番人、ジコアトル",
     "元ボス名英": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
-    "メモ": "",
-    "bossimage": "zicoatl-warden-of-the-core"
+    "メモ": ""
   },
   {
-    "id": "map_076",
+    "id": "mapmesa",
     "よみがな": "だいち",
     "マップ日": "台地",
     "マップ英": "Mesa",
@@ -1288,11 +1213,10 @@
     "元ボス名日": "砂漠の母、アシャー",
     "元ボス名英": "Ashar, the Sand Mother",
     "元ボス特徴": "サソリ",
-    "メモ": "",
-    "bossimage": "ashar-the-sand-mother"
+    "メモ": ""
   },
   {
-    "id": "map_077",
+    "id": "mapbluff",
     "よみがな": "ぜっぺき",
     "マップ日": "絶壁",
     "マップ英": "Bluff",
@@ -1305,11 +1229,10 @@
     "元ボス名日": "ビーストロード、ウクスマル",
     "元ボス名英": "Uxmal, the Beastlord",
     "元ボス特徴": "キメラ",
-    "メモ": "頭が緑と赤",
-    "bossimage": "uxmal-the-beastlord"
+    "メモ": ""
   },
   {
-    "id": "map_078",
+    "id": "mapuniquemegalith",
     "よみがな": "えぞまいとのめがりす",
     "マップ日": "エゾマイトのメガリス",
     "マップ英": "The Ezomyte Megaliths",
@@ -1322,11 +1245,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "強力なボスとのエンカウンターが出現する",
-    "bossimage": ""
+    "メモ": "強力なボスとのエンカウンターが出現する"
   },
   {
-    "id": "map_079",
+    "id": "mapazmerianranges",
     "よみがな": "あずめりさんみゃく",
     "マップ日": "アズメリ山脈",
     "マップ英": "Azmerian Ranges",
@@ -1339,11 +1261,10 @@
     "元ボス名日": "流浪の槍、リサラ",
     "元ボス名英": "Lythara, the Wayward Spear",
     "元ボス特徴": "ヴァイパー幕間バージョン",
-    "メモ": "",
-    "bossimage": "lythara-the-wayward-spear"
+    "メモ": ""
   },
   {
-    "id": "map_080",
+    "id": "mapfrozenfalls",
     "よみがな": "こおったたき",
     "マップ日": "凍った滝",
     "マップ英": "Frozen Falls",
@@ -1356,11 +1277,10 @@
     "元ボス名日": "凍てつく鉤爪、ラッカー",
     "元ボス名英": "Rakkar, the Frozen Talon",
     "元ボス特徴": "氷の鳥",
-    "メモ": "",
-    "bossimage": "rakkar-the-frozen-talon"
+    "メモ": ""
   },
   {
-    "id": "map_081",
+    "id": "maptrenches",
     "よみがな": "ざんごう",
     "マップ日": "塹壕",
     "マップ英": "Trenches",
@@ -1373,11 +1293,10 @@
     "元ボス名日": "デヴァウラー",
     "元ボス名英": "The Devourer",
     "元ボス特徴": "地面に潜るワーム",
-    "メモ": "",
-    "bossimage": "the-devourer"
+    "メモ": ""
   },
   {
-    "id": "map_082",
+    "id": "hideoutfarmlands",
     "よみがな": "のうじょうのかくれが",
     "マップ日": "農場の隠れ家",
     "マップ英": "Farmlands Hideout",
@@ -1390,11 +1309,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家ゲット？",
-    "bossimage": ""
+    "メモ": "隠れ家"
   },
   {
-    "id": "map_083",
+    "id": "hideoutprison",
     "よみがな": "かんごくのかくれが",
     "マップ日": "監獄の隠れ家",
     "マップ英": "Prison Hideout",
@@ -1407,11 +1325,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家ゲット？",
-    "bossimage": ""
+    "メモ": "隠れ家"
   },
   {
-    "id": "map_084",
+    "id": "mapuberboss_jadecitadel",
     "よみがな": "あらしのめ\nひすいのしま",
     "マップ日": "嵐の目\nヒスイの島",
     "マップ英": "Eye of the Storm\nThe Jade Isles",
@@ -1424,11 +1341,10 @@
     "元ボス名日": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
     "元ボス名英": "Tavakai, the Chieftain\nTavakai, the Fallen\nTavakai, the Consumed",
     "元ボス特徴": "4章ボス",
-    "メモ": "・タウホアの加護\n・カオムの狂気\n・ラキアタの流れ",
-    "bossimage": "tavakai-the-chieftain\ntavakai-the-fallen\ntavakai-the-consumed"
+    "メモ": "リネージュサポート\n・タウホアの加護\n・カオムの狂気\n・ラキアタの流れ"
   },
   {
-    "id": "map_085",
+    "id": "mapcaverncity",
     "よみがな": "じくうのすなあらし\nしんせいなちょすいち",
     "マップ日": "時空の穴\n神聖な貯水池",
     "マップ英": "Temporal Sandstorm\nSacred Reservoir",
@@ -1441,11 +1357,10 @@
     "元ボス名日": "ファリドゥンの王子、アズマディ",
     "元ボス名英": "Azmadi, the Faridun Prince",
     "元ボス特徴": "王子",
-    "メモ": "・ガルカーンの決意\n・ヴァラシュタの祝福\n・ザロクの反復",
-    "bossimage": "azmadi-the-faridun-prince"
+    "メモ": "リネージュサポート\n・ガルカーンの決意\n・ヴァラシュタの祝福\n・ザロクの反復"
   },
   {
-    "id": "map_086",
+    "id": "mapderelictmansion",
     "よみがな": "きりのなかのごうてい\nはいやしき",
     "マップ日": "霧の中の豪邸\n廃屋敷",
     "マップ英": "Mansion in the Mists\nDerelict Mansion",
@@ -1458,11 +1373,10 @@
     "元ボス名日": "ウルフリック族長\nエルズウィス婦人",
     "元ボス名英": "Thane Wulfric\nLady Elswyth",
     "元ボス特徴": "",
-    "メモ": "・エイリスの鐘\n・リグワルドの獰猛",
-    "bossimage": "thane-wulfric\nlady-elswyth"
+    "メモ": "リネージュサポート\n・エイリスの鐘\n・リグワルドの獰猛"
   },
   {
-    "id": "map_087",
+    "id": "mapvaalvault",
     "よみがな": "えすたずんてぃのひなんじょ\nふういんされたちかしつ",
     "マップ日": "エスタズンティの避難所\n封印された地下室",
     "マップ英": "Estazunti's Vault\nSealed Vault",
@@ -1475,11 +1389,10 @@
     "元ボス名日": "血の巫女、ゼリナ\n血の司祭、ゾリン",
     "元ボス名英": "Zelina, Blood Priestess\nZolin, Blood Priest",
     "元ボス特徴": "",
-    "メモ": "・アタルイの血抜き\n・パクアテの契約\n・タカティの怒り",
-    "bossimage": "zelina-blood-priestess\nzolin-blood-priest"
+    "メモ": "リネージュサポート\n・アタルイの血抜き\n・パクアテの契約\n・タカティの怒り"
   },
   {
-    "id": "map_088",
+    "id": "mapsevenwaters",
     "よみがな": "ごうりゅうてん",
     "マップ日": "合流点",
     "マップ英": "Confluence",
@@ -1492,11 +1405,10 @@
     "元ボス名日": "大蛇の女王、カバラ",
     "元ボス名英": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
-    "メモ": "",
-    "bossimage": "kabala-constrictor-queen"
+    "メモ": ""
   },
   {
-    "id": "map_089",
+    "id": "mapovergrown",
     "よみがな": "うっそうち",
     "マップ日": "鬱蒼地",
     "マップ英": "Overgrown",
@@ -1509,11 +1421,10 @@
     "元ボス名日": "コアの番人、ジコアトル",
     "元ボス名英": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
-    "メモ": "",
-    "bossimage": "zicoatl-warden-of-the-core"
+    "メモ": ""
   },
   {
-    "id": "map_090",
+    "id": "mapstronghold",
     "よみがな": "きょてん",
     "マップ日": "拠点",
     "マップ英": "Stronghold",
@@ -1526,11 +1437,10 @@
     "元ボス名日": "プリズナー",
     "元ボス名英": "The Prisoner",
     "元ボス特徴": "バリスタ３回",
-    "メモ": "",
-    "bossimage": "the-prisoner"
+    "メモ": ""
   },
   {
-    "id": "map_091",
+    "id": "maprupture",
     "よみがな": "だんれつ",
     "マップ日": "断裂",
     "マップ英": "Rupture",
@@ -1543,11 +1453,10 @@
     "元ボス名日": "マイティ・シルバーフィスト",
     "元ボス名英": "Mighty Silverfist",
     "元ボス特徴": "ワンパンゴリラ",
-    "メモ": "",
-    "bossimage": "mighty-silverfist"
+    "メモ": ""
   },
   {
-    "id": "map_092",
+    "id": "mapspring_",
     "よみがな": "いずみ",
     "マップ日": "泉",
     "マップ英": "Spring",
@@ -1560,11 +1469,10 @@
     "元ボス名日": "大蛇の女王、カバラ",
     "元ボス名英": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
-    "メモ": "",
-    "bossimage": "kabala-constrictor-queen"
+    "メモ": ""
   },
   {
-    "id": "map_093",
+    "id": "mapwaywardisle",
     "よみがな": "きまぐれなしま",
     "マップ日": "気まぐれな島",
     "マップ英": "Wayward Isle",
@@ -1577,11 +1485,10 @@
     "元ボス名日": "死の王、イクタブ",
     "元ボス名英": "Iktab, the Deathlord",
     "元ボス特徴": "象が居ない魔術師",
-    "メモ": "",
-    "bossimage": "iktab-the-deathlord"
+    "メモ": ""
   },
   {
-    "id": "map_094",
+    "id": "mapepitaph",
     "よみがな": "ひぶん",
     "マップ日": "碑文",
     "マップ英": "Epitaph",
@@ -1594,11 +1501,10 @@
     "元ボス名日": "法務官の妻、アシニア",
     "元ボス名英": "Asinia, the Praetor's Consort",
     "元ボス特徴": "墓場での妻ボス",
-    "メモ": "",
-    "bossimage": "asinia-the-praetors-consort"
+    "メモ": ""
   },
   {
-    "id": "map_095",
+    "id": "mapcliffside",
     "よみがな": "だんがい",
     "マップ日": "断崖",
     "マップ英": "Cliffside",
@@ -1611,11 +1517,10 @@
     "元ボス名日": "救世主の片腕、トーヴィアン",
     "元ボス名英": "Torvian, Hand of the Saviour",
     "元ボス特徴": "高台からボスへバフ、ボスの岩投げを誘導",
-    "メモ": "",
-    "bossimage": "torvian-hand-of-the-saviour"
+    "メモ": ""
   },
   {
-    "id": "map_096",
+    "id": "mapsinkhole",
     "よみがな": "かんぼつあな",
     "マップ日": "陥没穴",
     "マップ英": "Sinkhole",
@@ -1628,11 +1533,10 @@
     "元ボス名日": "白猿のヤマ",
     "元ボス名英": "Yama The White",
     "元ボス特徴": "カオスペット猿",
-    "メモ": "",
-    "bossimage": "yama-the-white"
+    "メモ": ""
   },
   {
-    "id": "map_097",
+    "id": "mapcaldera",
     "よみがな": "かるでら",
     "マップ日": "カルデラ",
     "マップ英": "Caldera",
@@ -1645,11 +1549,10 @@
     "元ボス名日": "盲目の獣",
     "元ボス名英": "The Blind Beast",
     "元ボス特徴": "檻でタイマンボス",
-    "メモ": "",
-    "bossimage": "the-blind-beast"
+    "メモ": ""
   },
   {
-    "id": "map_098",
+    "id": "mapflotsam",
     "よみがな": "ひょうりゅうぶつ",
     "マップ日": "漂流物",
     "マップ英": "Flotsam",
@@ -1662,11 +1565,10 @@
     "元ボス名日": "ハートリン船長",
     "元ボス名英": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
-    "メモ": "",
-    "bossimage": "captain-hartlin"
+    "メモ": ""
   },
   {
-    "id": "map_099",
+    "id": "chayulaleague_tower",
     "よみがな": "はいヴふぉとれす",
     "マップ日": "ハイヴフォトレス",
     "マップ英": "Hive Fortress",
@@ -1679,11 +1581,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない",
-    "bossimage": ""
+    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない"
   },
   {
-    "id": "map_100",
+    "id": "chayulaleague_towerboss",
     "よみがな": "はいヴころにー",
     "マップ日": "ハイヴコロニー",
     "マップ英": "Hive Colony",
@@ -1696,11 +1597,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない\n[動画](https://www.twitch.tv/videos/2859486169)",
-    "bossimage": ""
+    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない\n[動画](https://www.twitch.tv/videos/2859486169)"
   },
   {
-    "id": "map_101",
+    "id": "mapuniquereactor_02",
     "よみがな": "いにしえのげーとうぇい",
     "マップ日": "古のゲートウェイ",
     "マップ英": "Ancient Gateway",
@@ -1713,11 +1613,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_102",
+    "id": "mapuniquereactor_01",
     "よみがな": "にしのげーとうぇい",
     "マップ日": "西のゲートウェイ",
     "マップ英": "Western Gateway",
@@ -1730,11 +1629,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_103",
+    "id": "mapuniquereactor_03",
     "よみがな": "ひがしのげーとうぇい",
     "マップ日": "東のゲートウェイ",
     "マップ英": "Eastern Gateway",
@@ -1747,11 +1645,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_104",
+    "id": "mapuberboss_divinity",
     "よみがな": "きげんのとう",
     "マップ日": "起源の塔",
     "マップ英": "The Origin Tower",
@@ -1764,11 +1661,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2852402087)",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2860203910)"
   },
   {
-    "id": "map_105",
+    "id": "mapmothersoul_male",
     "よみがな": "ふそのひろま",
     "マップ日": "父祖の広間",
     "マップ英": "The Patriarch Halls",
@@ -1781,11 +1677,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2852376300)",
-    "bossimage": ""
+    "メモ": "[動画](https://www.twitch.tv/videos/2852376300)"
   },
   {
-    "id": "map_106",
+    "id": "mapmothersoul_female",
     "よみがな": "ぼそのひろま",
     "マップ日": "母祖の広間",
     "マップ英": "The Matriarch Halls",
@@ -1798,11 +1693,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2852378489)",
-    "bossimage": ""
+    "メモ": "[動画](https://www.twitch.tv/videos/2852378489)"
   },
   {
-    "id": "map_107",
+    "id": "mapuberboss_monolith",
     "よみがな": "もえるものりす",
     "マップ日": "燃えるモノリス",
     "マップ英": "The Burning Monolith",
@@ -1815,11 +1709,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2847719406)",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2847719406)"
   },
   {
-    "id": "map_108",
+    "id": "mapuberboss_ironcitadel_quest",
     "よみがな": "にしのえにぐまのま",
     "マップ日": "西のエニグマの間",
     "マップ英": "Western Enigma Chamber",
@@ -1832,11 +1725,10 @@
     "元ボス名日": "ジオノール伯爵\n堕落した狼、ジオノール",
     "元ボス名英": "Count Geonor\nGeonor, the Putrid Wolf",
     "元ボス特徴": "アクト１ボス",
-    "メモ": "",
-    "bossimage": "count-geonor\ngeonor-the-putrid-wolf"
+    "メモ": "クエストのマップ"
   },
   {
-    "id": "map_109",
+    "id": "mapuberboss_stonecitadel_quest",
     "よみがな": "ひがしのえにぐまのま",
     "マップ日": "東のエニグマの間",
     "マップ英": "Eastern Enigma Chamber",
@@ -1849,11 +1741,10 @@
     "元ボス名日": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
     "元ボス名英": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "元ボス特徴": "アクト３ボス",
-    "メモ": "",
-    "bossimage": "doryani-royal-thaumaturge\ndoryanis-triumph"
+    "メモ": "クエストのマップ"
   },
   {
-    "id": "map_110",
+    "id": "mapsnowfall",
     "よみがな": "こうせつ",
     "マップ日": "降雪",
     "マップ英": "Snowfall",
@@ -1866,11 +1757,10 @@
     "元ボス名日": "霧の刃、シオラ",
     "元ボス名英": "Siora, Blade of the Mists",
     "元ボス特徴": "石碑エリア雷のボス",
-    "メモ": "",
-    "bossimage": "siora-blade-of-the-mists"
+    "メモ": ""
   },
   {
-    "id": "map_111",
+    "id": "mapgreenhouse",
     "よみがな": "おんしつ",
     "マップ日": "温室",
     "マップ英": "Greenhouse",
@@ -1883,11 +1773,10 @@
     "元ボス名日": "ブランブルガスト",
     "元ボス名英": "The Brambleghast",
     "元ボス特徴": "カオス植物",
-    "メモ": "",
-    "bossimage": "the-brambleghast"
+    "メモ": ""
   },
   {
-    "id": "map_112",
+    "id": "mapchasm",
     "よみがな": "たにま",
     "マップ日": "谷間",
     "マップ英": "Chasm",
@@ -1900,11 +1789,10 @@
     "元ボス名日": "死の歌、ディアモラ",
     "元ボス名英": "Diamora, Song of Death",
     "元ボス特徴": "石化ビーム回転セイレーン",
-    "メモ": "",
-    "bossimage": "diamora-song-of-death"
+    "メモ": ""
   },
   {
-    "id": "map_113",
+    "id": "mappit",
     "よみがな": "いせきはっくつげんば",
     "マップ日": "遺跡発掘場",
     "マップ英": "Pit",
@@ -1917,11 +1805,10 @@
     "元ボス名日": "救世主の片腕、トーヴィアン",
     "元ボス名英": "Torvian, Hand of the Saviour",
     "元ボス特徴": "周りからバフ、ボスの岩投げで解除",
-    "メモ": "",
-    "bossimage": "torvian-hand-of-the-saviour"
+    "メモ": ""
   },
   {
-    "id": "map_114",
+    "id": "mapport",
     "よみがな": "みなと",
     "マップ日": "港",
     "マップ英": "Port",
@@ -1934,11 +1821,10 @@
     "元ボス名日": "ハートリン船長",
     "元ボス名英": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
-    "メモ": "",
-    "bossimage": "captain-hartlin"
+    "メモ": ""
   },
   {
-    "id": "map_115",
+    "id": "maparidplains",
     "よみがな": "かんそうへいげん",
     "マップ日": "乾燥平原",
     "マップ英": "Arid Plains",
@@ -1951,11 +1837,10 @@
     "元ボス名日": "最後の一刺し、アクティ\nサンドワーム、アナンドル",
     "元ボス名英": "Akthi, the Final Sting\nAnundr, the Sandworm",
     "元ボス特徴": "サソリとワーム",
-    "メモ": "",
-    "bossimage": "akthi-the-final-sting\nanundr-the-sandworm"
+    "メモ": ""
   },
   {
-    "id": "map_116",
+    "id": "mapbazaar",
     "よみがな": "ばざー",
     "マップ日": "バザー",
     "マップ英": "Bazaar",
@@ -1968,11 +1853,10 @@
     "元ボス名日": "ヴァイパー・ナプアツィ",
     "元ボス名英": "Viper Napuatzi",
     "元ボス特徴": "周り兵士ツンツン",
-    "メモ": "",
-    "bossimage": "viper-napuatzi"
+    "メモ": ""
   },
   {
-    "id": "map_117",
+    "id": "mapsinterrift",
     "よみがな": "しょうけつのさけめ",
     "マップ日": "焼結の裂け目",
     "マップ英": "Sinter Rift",
@@ -1985,11 +1869,10 @@
     "元ボス名日": "キンの領主、クルトォグ",
     "元ボス名英": "Krutog, Lord of Kin",
     "元ボス特徴": "火山での巨人",
-    "メモ": "",
-    "bossimage": "krutog-lord-of-kin"
+    "メモ": ""
   },
   {
-    "id": "map_118",
+    "id": "mapreservoir",
     "よみがな": "ちょすいち",
     "マップ日": "貯水池",
     "マップ英": "Reservoir",
@@ -2002,11 +1885,10 @@
     "元ボス名日": "ルートドレッジ",
     "元ボス名英": "Rootdredge",
     "元ボス特徴": "ゾンビ召喚の木",
-    "メモ": "",
-    "bossimage": "rootdredge"
+    "メモ": ""
   },
   {
-    "id": "map_119",
+    "id": "mapslash",
     "よみがな": "おうだん",
     "マップ日": "横断",
     "マップ英": "Slash",
@@ -2019,11 +1901,10 @@
     "元ボス名日": "クロウベル",
     "元ボス名英": "The Crowbell",
     "元ボス特徴": "鐘で攻撃",
-    "メモ": "",
-    "bossimage": "the-crowbell"
+    "メモ": ""
   },
   {
-    "id": "map_120",
+    "id": "mapplantation",
     "よみがな": "だいのうえん",
     "マップ日": "大農園",
     "マップ英": "Plantation",
@@ -2036,11 +1917,10 @@
     "元ボス名日": "ウルフリック族長",
     "元ボス名英": "Thane Wulfric",
     "元ボス特徴": "幕間左、屋敷ボス単体夫",
-    "メモ": "",
-    "bossimage": "thane-wulfric"
+    "メモ": ""
   },
   {
-    "id": "map_121",
+    "id": "maporbalascrossing",
     "よみがな": "おるばらのわたりじ",
     "マップ日": "オルバラの渡り路",
     "マップ英": "Orbala's Crossing",
@@ -2053,11 +1933,10 @@
     "元ボス名日": "コブラの王、エルザラ",
     "元ボス名英": "Elzarah, the Cobra Lord",
     "元ボス特徴": "地面から手、竜巻",
-    "メモ": "",
-    "bossimage": "elzarah-the-cobra-lord"
+    "メモ": ""
   },
   {
-    "id": "map_122",
+    "id": "mapmonument",
     "よみがな": "せきひ",
     "マップ日": "石碑",
     "マップ英": "The Monument",
@@ -2070,11 +1949,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_123",
+    "id": "mapsanctuary",
     "よみがな": "せいいき",
     "マップ日": "聖域",
     "マップ英": "Sanctuary",
@@ -2087,11 +1965,10 @@
     "元ボス名日": "裏切り者、バルバラ",
     "元ボス名英": "Balbala, the Traitor",
     "元ボス特徴": "中心の穴から毒切り",
-    "メモ": "",
-    "bossimage": "balbala-the-traitor"
+    "メモ": ""
   },
   {
-    "id": "map_124",
+    "id": "mapswarm",
     "よみがな": "むれ",
     "マップ日": "群れ",
     "マップ英": "Swarm",
@@ -2104,11 +1981,10 @@
     "元ボス名日": "大地を砕く者、ラトルケージ",
     "元ボス名英": "Rattlecage, the Earthbreaker",
     "元ボス特徴": "セケマの試練の最初のボス",
-    "メモ": "",
-    "bossimage": "rattlecage-the-earthbreaker"
+    "メモ": ""
   },
   {
-    "id": "map_125",
+    "id": "mapdeforestation",
     "よみがな": "きりつくされたもり",
     "マップ日": "伐り尽くされた森",
     "マップ英": "Deforestation",
@@ -2121,11 +1997,10 @@
     "元ボス名日": "流浪の槍、リサラ",
     "元ボス名英": "Lythara, the Wayward Spear",
     "元ボス特徴": "ヴァイパー幕間バージョン",
-    "メモ": "",
-    "bossimage": "lythara-the-wayward-spear"
+    "メモ": ""
   },
   {
-    "id": "map_126",
+    "id": "mapprecipice",
     "よみがな": "ぜっぺき",
     "マップ日": "絶壁",
     "マップ英": "Precipice",
@@ -2138,11 +2013,10 @@
     "元ボス名日": "邪悪な炎、ヴォルナス",
     "元ボス名英": "Vornas, the Fell Flame",
     "元ボス特徴": "門からの獣ボス",
-    "メモ": "",
-    "bossimage": "vornas-the-fell-flame"
+    "メモ": ""
   },
   {
-    "id": "map_127",
+    "id": "delirium_act1town",
     "よみがな": "もうそうのしみゅらくらむ",
     "マップ日": "妄想のシミュラクラム",
     "マップ英": "Simulacrum of Delusion",
@@ -2155,11 +2029,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_128",
+    "id": "expeditionlogbook_atoll",
     "よみがな": "あれはてたかんしょう",
     "マップ日": "荒れ果てた環礁",
     "マップ英": "Barren Atoll",
@@ -2172,11 +2045,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_129",
+    "id": "delirium_act1town_quest",
     "よみがな": "もうそうのしみゅらくらむ",
     "マップ日": "妄想のシミュラクラム",
     "マップ英": "Simulacrum of Delusion",
@@ -2189,11 +2061,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": "クエストのマップ"
   },
   {
-    "id": "map_130",
+    "id": "endgamedoodad_meteorcrater",
     "よみがな": "堕ちた星",
     "マップ日": "堕ちた星",
     "マップ英": "The Fallen Star",
@@ -2206,11 +2077,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_131",
+    "id": "mapuberboss_fallenstar",
     "よみがな": "きんぐすまーちのはいきょ",
     "マップ日": "キングスマーチの廃墟",
     "マップ英": "Ruins of Kingsmarch",
@@ -2223,11 +2093,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2860313142)"
   },
   {
-    "id": "map_132",
+    "id": "chayulaleague",
     "よみがな": "しゅごしゃのしゅうどういん",
     "マップ日": "守護者の修道院",
     "マップ英": "Monastery of the Keepers",
@@ -2240,11 +2109,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_133",
+    "id": "endgamedoodad_beastgroundzero",
     "よみがな": "つながれしまじゅう",
     "マップ日": "繋がれし魔獣",
     "マップ英": "The Chained Beast",
@@ -2257,11 +2125,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_134",
+    "id": "mapuberboss_ritual",
     "よみがな": "かいる・たるす",
     "マップ日": "カイル・タルス",
     "マップ英": "Caer Tarth",
@@ -2274,11 +2141,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_135",
+    "id": "mapuberboss_delirium",
     "よみがな": "かれやなぎ",
     "マップ日": "枯れ柳",
     "マップ英": "The Withered Willow",
@@ -2291,11 +2157,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_136",
+    "id": "abyss_hub",
     "よみがな": "たましいのいど",
     "マップ日": "魂の井戸",
     "マップ英": "The Well of Souls",
@@ -2308,11 +2173,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_137",
+    "id": "incursionhub",
     "よみがな": "ヴぁーるのいせき",
     "マップ日": "ヴァールの遺跡",
     "マップ英": "Vaal Ruins",
@@ -2325,11 +2189,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_138",
+    "id": "mapvoidreliquary",
     "よみがな": "せいいぶつのほうもつこ",
     "マップ日": "聖遺物の宝物庫",
     "マップ英": "The Reliquary Vault",
@@ -2342,11 +2205,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_139",
+    "id": "delirium_act2reveal",
     "よみがな": "がるかーんのはか",
     "マップ日": "ガルカーンの墓",
     "マップ英": "Garukhan's Tomb",
@@ -2359,11 +2221,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_140",
+    "id": "delirium_act3town",
     "よみがな": "すいぼつしたぴらみっど",
     "マップ日": "水没したピラミッド",
     "マップ英": "Sunken Pyramid",
@@ -2376,11 +2237,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_141",
+    "id": "delirium_vastirioutskirts",
     "よみがな": "[DNT-UNUSED] Vastiri Outpost",
     "マップ日": "[DNT-UNUSED] Vastiri Outpost",
     "マップ英": "[DNT-UNUSED] Vastiri Outpost",
@@ -2393,11 +2253,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": ""
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_142",
+    "id": "expeditionsubarea_medvedboss",
     "よみがな": "ひろがるじゃんぐる",
     "マップ日": "広がるジャングル",
     "マップ英": "Sprawling Jungle",
@@ -2410,11 +2269,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859496349)",
-    "bossimage": ""
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859496349)"
   },
   {
-    "id": "map_143",
+    "id": "expeditionsubarea_voranaboss",
     "よみがな": "なげきのがけ",
     "マップ日": "嘆きの崖",
     "マップ英": "Mournful Cliffside",
@@ -2427,11 +2285,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859517062)",
-    "bossimage": ""
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859517062)"
   },
   {
-    "id": "map_144",
+    "id": "expeditionsubarea_uhtredboss",
     "よみがな": "こりつしたじいん",
     "マップ日": "孤立した寺院",
     "マップ英": "Secluded Temple",
@@ -2444,11 +2301,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効",
-    "bossimage": ""
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2860261157)"
   },
   {
-    "id": "map_145",
+    "id": "expeditionsubarea_olrothboss",
     "よみがな": "かくれたしま",
     "マップ日": "隠れた島",
     "マップ英": "Obscure Island",
@@ -2461,11 +2317,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効",
-    "bossimage": ""
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2860369519)"
   },
   {
-    "id": "map_146",
+    "id": "mapprecursortowerdesert",
     "よみがな": "せんじんのとう",
     "マップ日": "先人の塔",
     "マップ英": "Precursor Tower",
@@ -2478,11 +2333,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "壁の一部の塔のどれか",
-    "bossimage": ""
+    "メモ": "Biomes: 砂漠"
   },
   {
-    "id": "map_147",
+    "id": "mapprecursortowerforest",
     "よみがな": "せんじんのとう",
     "マップ日": "先人の塔",
     "マップ英": "Precursor Tower",
@@ -2495,11 +2349,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "壁の一部の塔のどれか",
-    "bossimage": ""
+    "メモ": "Biomes: 森"
   },
   {
-    "id": "map_148",
+    "id": "mapprecursortowergrass",
     "よみがな": "せんじんのとう",
     "マップ日": "先人の塔",
     "マップ英": "Precursor Tower",
@@ -2512,11 +2365,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "壁の一部の塔のどれか",
-    "bossimage": ""
+    "メモ": "Biomes: 草原"
   },
   {
-    "id": "map_149",
+    "id": "mapprecursortowermountain",
     "よみがな": "せんじんのとう",
     "マップ日": "先人の塔",
     "マップ英": "Precursor Tower",
@@ -2529,11 +2381,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "壁の一部の塔のどれか",
-    "bossimage": ""
+    "メモ": "Biomes: 山"
   },
   {
-    "id": "map_150",
+    "id": "mapprecursortowerswamp",
     "よみがな": "せんじんのとう",
     "マップ日": "先人の塔",
     "マップ英": "Precursor Tower",
@@ -2546,11 +2397,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "壁の一部の塔のどれか",
-    "bossimage": ""
+    "メモ": "Biomes: 沼"
   },
   {
-    "id": "map_151",
+    "id": "ritualleagueboss",
     "よみがな": "むのちゅうかく",
     "マップ日": "無の中核",
     "マップ英": "Crux of Nothingness",
@@ -2563,11 +2413,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
-    "bossimage": "the-king-in-the-mists-humanoid\nthe-king-in-the-mists-demon"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
   },
   {
-    "id": "map_152",
+    "id": "expeditionlogbook_basin",
     "よみがな": "よどんだぼんち",
     "マップ日": "淀んだ盆地",
     "マップ英": "Stagnant Basin",
@@ -2580,11 +2429,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_153",
+    "id": "expeditionlogbook_digsite",
     "よみがな": "ほりおこされたいせき",
     "マップ日": "掘り起こされた遺跡",
     "マップ英": "Exhumed Ruins",
@@ -2597,11 +2445,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_154",
+    "id": "expeditionlogbook_gully",
     "よみがな": "ぬかるんだきょうこく",
     "マップ日": "ぬかるんだ峡谷",
     "マップ英": "Sloughed Gully",
@@ -2614,11 +2461,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_155",
+    "id": "expeditionlogbook_heath",
     "よみがな": "おちたるそらのげんや",
     "マップ日": "落ちたる空の原野",
     "マップ英": "Moor of Fallen Skies",
@@ -2631,11 +2477,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_156",
+    "id": "expeditionlogbook_peninsula",
     "よみがな": "いわだらけのはんとう",
     "マップ日": "岩だらけの半島",
     "マップ英": "Craggy Peninsula",
@@ -2648,11 +2493,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_157",
+    "id": "expeditionlogbook_prairie",
     "よみがな": "ほうぼくのだいそうげん",
     "マップ日": "放牧の大草原",
     "マップ英": "Grazed Prairie",
@@ -2665,11 +2509,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_158",
+    "id": "expeditionlogbook_reef",
     "よみがな": "はっかしたあさせ",
     "マップ日": "白化した浅瀬",
     "マップ英": "Bleached Shoals",
@@ -2682,11 +2525,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_159",
+    "id": "expeditionlogbook_tropical",
     "よみがな": "おいしげったしま",
     "マップ日": "生い茂った島",
     "マップ英": "Lush Isle",
@@ -2699,11 +2541,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_160",
+    "id": "expeditionlogbook_tundra",
     "よみがな": "いてついただんがい",
     "マップ日": "凍てついた断崖",
     "マップ英": "Frigid Bluffs",
@@ -2716,11 +2557,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_161",
+    "id": "expeditionlogbook_wastes",
     "よみがな": "やけこげたこじま",
     "マップ日": "焼け焦げた小島",
     "マップ英": "Scorched Cay",
@@ -2733,11 +2573,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション",
-    "bossimage": ""
+    "メモ": "エクスペディション"
   },
   {
-    "id": "map_162",
+    "id": "mapexcavation",
     "よみがな": "はっくつげんば",
     "マップ日": "発掘現場",
     "マップ英": "Digsite",
@@ -2750,11 +2589,10 @@
     "元ボス名日": "ユートピアの第一の使者、ベネディクタス",
     "元ボス名英": "Benedictus, First Herald of Utopia",
     "元ボス特徴": "柱落とし",
-    "メモ": "",
-    "bossimage": "benedictus-first-herald-of-utopia"
+    "メモ": ""
   },
   {
-    "id": "map_163",
+    "id": "mapicecave",
     "よみがな": "こおりのどうくつ",
     "マップ日": "氷の洞窟",
     "マップ英": "Ice Cave",
@@ -2767,11 +2605,10 @@
     "元ボス名日": "アボミネーションのイエティ",
     "元ボス名英": "The Abominable Yeti",
     "元ボス特徴": "氷の柱ゴリラ",
-    "メモ": "",
-    "bossimage": "the-abominable-yeti"
+    "メモ": ""
   },
   {
-    "id": "map_164",
+    "id": "maprazedfields",
     "よみがな": "しょうど",
     "マップ日": "焦土",
     "マップ英": "Razed Fields",
@@ -2784,11 +2621,10 @@
     "元ボス名日": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
     "元ボス名英": "Heldra of the Black Pyre\nIsolde of the White Shroud",
     "元ボス特徴": "炎と氷",
-    "メモ": "",
-    "bossimage": "heldra-of-the-black-pyre\nisolde-of-the-white-shroud"
+    "メモ": ""
   },
   {
-    "id": "map_165",
+    "id": "mapriverhold",
     "よみがな": "りばーほーるど",
     "マップ日": "リバーホールド",
     "マップ英": "Riverhold",
@@ -2801,11 +2637,10 @@
     "元ボス名日": "霧の刃、シオラ",
     "元ボス名英": "Siora, Blade of the Mists",
     "元ボス特徴": "石碑エリア雷のボス",
-    "メモ": "",
-    "bossimage": "siora-blade-of-the-mists"
+    "メモ": ""
   },
   {
-    "id": "map_166",
+    "id": "maprugosa",
     "よみがな": "るごさ",
     "マップ日": "ルゴサ",
     "マップ英": "Rugosa",
@@ -2818,11 +2653,10 @@
     "元ボス名日": "死の歌、ディアモラ",
     "元ボス名英": "Diamora, Song of Death",
     "元ボス特徴": "石化ビーム回転セイレーン",
-    "メモ": "",
-    "bossimage": "diamora-song-of-death"
+    "メモ": ""
   },
   {
-    "id": "map_167",
+    "id": "mapmortuary",
     "よみがな": "れいあんじょう",
     "マップ日": "霊安場",
     "マップ英": "Mortuary",
@@ -2835,11 +2669,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "ヴァール神殿の改造人間？",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_168",
+    "id": "mapmothersoul_male_quest",
     "よみがな": "ふそのひろま",
     "マップ日": "父祖の広間",
     "マップ英": "The Patriarch Halls",
@@ -2852,11 +2685,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2852376300)",
-    "bossimage": ""
+    "メモ": "クエストのマップ\n[動画](https://www.twitch.tv/videos/2852376300)"
   },
   {
-    "id": "map_169",
+    "id": "mapmothersoul_female_quest",
     "よみがな": "ぼそのひろま",
     "マップ日": "母祖の広間",
     "マップ英": "The Matriarch Halls",
@@ -2869,11 +2701,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2852378489)",
-    "bossimage": ""
+    "メモ": "クエストのマップ\n[動画](https://www.twitch.tv/videos/2852378489)"
   },
   {
-    "id": "map_170",
+    "id": "mapprecursortower",
     "よみがな": "せんじんのとう",
     "マップ日": "先人の塔",
     "マップ英": "Precursor Tower",
@@ -2886,11 +2717,10 @@
     "元ボス名日": "砂漠の母、アシャー",
     "元ボス名英": "Ashar, the Sand Mother",
     "元ボス特徴": "サソリ",
-    "メモ": "マップにぽつんとある塔",
-    "bossimage": "ashar-the-sand-mother"
+    "メモ": "マップにぽつんとある塔"
   },
   {
-    "id": "map_171",
+    "id": "mapuniquereactor_04",
     "よみがな": "えらばれしもののば",
     "マップ日": "選ばれし者の場",
     "マップ英": "Site of the Chosen",
@@ -2903,11 +2733,10 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "",
-    "bossimage": ""
+    "メモ": ""
   },
   {
-    "id": "map_172",
+    "id": "mapcanyon",
     "よみがな": "けいこく",
     "マップ日": "渓谷",
     "マップ英": "Canyon",
@@ -2920,11 +2749,10 @@
     "元ボス名日": "邪悪な炎、ヴォルナス",
     "元ボス名英": "Vornas, the Fell Flame",
     "元ボス特徴": "門からの獣ボス",
-    "メモ": "",
-    "bossimage": "vornas-the-fell-flame"
+    "メモ": ""
   },
   {
-    "id": "map_173",
+    "id": "mapornatechambers",
     "よみがな": "ごうかなひろま",
     "マップ日": "豪華な広間",
     "マップ英": "Ornate Chambers",
@@ -2937,8 +2765,7 @@
     "元ボス名日": "コブラの王、エルザラ",
     "元ボス名英": "Elzarah, the Cobra Lord",
     "元ボス特徴": "地面から手、竜巻",
-    "メモ": "",
-    "bossimage": "elzarah-the-cobra-lord"
+    "メモ": ""
   },
   {
     "id": "breachdomain_01",
@@ -2954,7 +2781,6 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2859488131)",
-    "bossimage": ""
+    "メモ": "[動画](https://www.twitch.tv/videos/2859488131)"
   }
 ]
