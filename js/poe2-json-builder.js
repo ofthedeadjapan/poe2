@@ -4,13 +4,11 @@
 // ==========================================================================
 
 const COPY_BTN_DEFAULT_TEXT = '📋 JSONをコピー';
-const MAX_PREVIEW_ROWS = 100;
 
 const DOM = {
   inputArea: document.getElementById('inputArea'),
   outputJsonArea: document.getElementById('outputJsonArea'),
   errorMessage: document.getElementById('errorMessage'),
-  previewContainer: document.getElementById('previewContainer'),
   processBtn: document.getElementById('processBtn'),
   copyBtn: document.getElementById('copyBtn'),
   resetBtn: document.getElementById('resetBtn')
@@ -150,62 +148,9 @@ function processData() {
 
     currentJson = dataList;
     DOM.outputJsonArea.value = JSON.stringify(currentJson, null, 2);
-
-    const fragment = document.createDocumentFragment();
-    renderPreviewTable(dataList, headers.filter(Boolean), 'データ プレビュー', fragment);
-    DOM.previewContainer.appendChild(fragment);
   } catch (e) {
     DOM.errorMessage.textContent = e.message;
   }
-}
-
-// ==========================================================================
-// プレビュー表示
-// ==========================================================================
-
-function renderPreviewTable(dataArray, headers, titleText, parentFragment) {
-  if (dataArray.length === 0) return;
-
-  const displayCount = Math.min(dataArray.length, MAX_PREVIEW_ROWS);
-
-  const title = document.createElement('h3');
-  title.textContent = dataArray.length > MAX_PREVIEW_ROWS
-    ? `${titleText} (全 ${dataArray.length} 件中 / 先頭 ${MAX_PREVIEW_ROWS} 件)`
-    : `${titleText} (${dataArray.length} 件)`;
-
-  const wrapper = document.createElement('div');
-  wrapper.className = 'table-wrapper';
-
-  const table = document.createElement('table');
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-
-  const trHead = document.createElement('tr');
-  for (const h of headers) {
-    const th = document.createElement('th');
-    th.textContent = h;
-    trHead.appendChild(th);
-  }
-  thead.appendChild(trHead);
-
-  for (let i = 0; i < displayCount; i++) {
-    const obj = dataArray[i];
-    const tr = document.createElement('tr');
-    for (const h of headers) {
-      const td = document.createElement('td');
-      const val = obj[h];
-      td.textContent = Array.isArray(val) ? val.join(', ') : val;
-      tr.appendChild(td);
-    }
-    tbody.appendChild(tr);
-  }
-
-  table.appendChild(thead);
-  table.appendChild(tbody);
-  wrapper.appendChild(table);
-
-  parentFragment.appendChild(title);
-  parentFragment.appendChild(wrapper);
 }
 
 // ==========================================================================
@@ -240,7 +185,6 @@ async function copyJSON() {
 
 function resetUI() {
   DOM.errorMessage.textContent = '';
-  DOM.previewContainer.innerHTML = '';
   DOM.outputJsonArea.value = '';
   currentJson = null;
 }

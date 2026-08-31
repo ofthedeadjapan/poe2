@@ -120,6 +120,20 @@ const COLUMN_DEFINITIONS = [
   markCol()
 ];
 
+// 各列がこれより狭くなると本文が1文字ずつ縦に並んで読みにくくなる下限値(px)。
+// 耐性アイコンだけは.resist-gridの実寸（26px×6+gap4px×5=176px）+セルpadding24px
+// =200pxが構造上の下限なのでそれに合わせている。他の値はまず読める目安として
+// 置いた初期値。実データを見ながら微調整してよい
+const MIN_COLUMN_WIDTHS = {
+  'マップ': 100,
+  'ボス': 110,
+  '耐性アイコン': 200,
+  '元ボスアクト/エリア': 90,
+  '元ボス': 110,
+  '元ボス特徴': 140,
+  'メモ': 140,
+};
+
 const createSorter = (key, collator, isDesc = false) => (a, b) => {
   const valA = a.data[key] || '';
   const valB = b.data[key] || '';
@@ -664,30 +678,68 @@ const TableRenderer = {
   },
 
   // 記憶した自然な幅から、現在の表示列に応じてpx幅を割り当てる。
-  // マーク列は常に自然な幅で固定。それ以外は、マーク列分を除いた残り幅を
+  // マーク列は常に自然な幅で固定。それ以外は、マーク列分を除いた残り幅
+  // （.table-wrapperの実際のclientWidthからマーク列分を引いたもの）を、
   // 表示中の列だけで自然な幅の比率に応じて分け合う（非表示列の分がここに回る）。
-  // 基準は「全列の自然幅合計」ではなく実際に使える幅（.table-wrapperの
-  // clientWidth）。枠のほうが広ければ枠いっぱいまで拡大し、表示中の列の
-  // 自然幅合計のほうが大きい場合はそちらを優先する（＝その場合のみスクロールに任せる）
+  // ただしMIN_COLUMN_WIDTHSを下回る列は最低幅まで引き上げ、その分はまだ最低幅に
+  // 達していない列だけで比例配分し直す（水を張るように収束させる）。
+  // 最低幅の合計すら枠に収まらない場合のみ全列を最低幅にして確定し、はみ出た分は
+  // .table-wrapperのoverflow-x: autoに任せる（見出しの折り返し許可はCSS側の
+  // #endgame-maps-table th { white-space: normal; } ）
   applyColumnWidths() {
     const markDef = COLUMN_DEFINITIONS.find(def => def.className === 'mark');
     const markW = this.naturalWidths.get(markDef.id) || 0;
 
-    const visibleOtherSum = COLUMN_DEFINITIONS
-      .filter(def => def.className !== 'mark' && AppState.user.columns[def.id])
-      .reduce((sum, def) => sum + (this.naturalWidths.get(def.id) || 0), 0);
+    const visibleDefs = COLUMN_DEFINITIONS.filter(
+      def => def.className !== 'mark' && AppState.user.columns[def.id]
+    );
+    const visibleOtherSum = visibleDefs.reduce(
+      (sum, def) => sum + (this.naturalWidths.get(def.id) || 0), 0
+    );
 
     const containerW = this.table?.parentElement?.clientWidth || 0;
     const availableForOthers = Math.max(containerW - markW, 0);
+
+    const widths = new Map();
+    if (visibleOtherSum > 0) {
+      const minSum = visibleDefs.reduce((s, def) => s + (MIN_COLUMN_WIDTHS[def.id] || 0), 0);
+
+      if (availableForOthers <= minSum) {
+        visibleDefs.forEach(def => widths.set(def.id, MIN_COLUMN_WIDTHS[def.id] || 0));
+      } else {
+        let remaining = availableForOthers;
+        let pool = [...visibleDefs];
+        let poolNatural = visibleOtherSum;
+        let pinned = true;
+        while (pinned) {
+          pinned = false;
+          for (const def of [...pool]) {
+            const natural = this.naturalWidths.get(def.id) || 0;
+            const share = (natural / poolNatural) * remaining;
+            const min = MIN_COLUMN_WIDTHS[def.id] || 0;
+            if (share < min) {
+              widths.set(def.id, min);
+              remaining -= min;
+              poolNatural -= natural;
+              pool = pool.filter(d => d.id !== def.id);
+              pinned = true;
+            }
+          }
+        }
+        pool.forEach(def => {
+          const natural = this.naturalWidths.get(def.id) || 0;
+          widths.set(def.id, (natural / poolNatural) * remaining);
+        });
+      }
+    }
 
     COLUMN_DEFINITIONS.forEach(def => {
       const col = this.cols.get(def.id);
       if (!col) return;
       if (def.className === 'mark') {
         col.style.width = `${markW}px`;
-      } else if (AppState.user.columns[def.id] && visibleOtherSum > 0) {
-        const share = (this.naturalWidths.get(def.id) || 0) / visibleOtherSum;
-        col.style.width = `${share * availableForOthers}px`;
+      } else if (AppState.user.columns[def.id] && widths.has(def.id)) {
+        col.style.width = `${widths.get(def.id)}px`;
       } else {
         col.style.width = '';
       }

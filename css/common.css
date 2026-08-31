@@ -106,7 +106,7 @@ body {
 .page-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 0px;
+  padding: 0 20px;
 }
 
 /* ページヘッダー部分 */
@@ -726,10 +726,5 @@ body.lang-en-only .lang-en {
 
   .ml-auto {
     margin-left: 0 !important;
-  }
-
-  .resist-grid {
-    grid-template-columns: repeat(3, 26px);
-    grid-template-rows: repeat(2, 26px);
   }
 }

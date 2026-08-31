@@ -373,7 +373,7 @@ const BossTableRenderer = {
         <th class="col-boss-name">ボス</th>
         <th class="col-boss-resist">耐性アイコン</th>
         <th class="col-boss-attack">攻撃属性<br><span class="th-sub">（物理以外）</span></th>
-        <th>メモ</th>
+        <th class="col-boss-memo">メモ</th>
        </tr>
       </thead>
     `;

@@ -343,6 +343,12 @@
       overflow-wrap: break-word;
     }
 
+    /* 列が自然幅より狭く割り当てられた場合に備え、見出しの折り返しも許可する
+       （common.cssのth { white-space: nowrap; } をこのテーブルだけ上書き） */
+    #endgame-maps-table th {
+      white-space: normal;
+    }
+
     /* 8. レスポンシブ (独自部分の補完) */
     @media (max-width: 767px) {
       .control-bar {
