@@ -43,6 +43,29 @@ const transcendentData = [
   { type: "超越の義足", name: "回復の脚", effect: "受けたダメージの(6—10)%をライフとして回収する" },
 ];
 
+// --- 汎用性の高い強化方法データ ---
+const enhanceData = [
+  { method: "アノイント", item: "アミュレット\n液化した感情", effect: "アミュレットにパッシブスキルを割り当て", note: "", source: "シミュラクラム" },
+  { method: "アノイント", item: "兜\nレイヴンタッチシャード\n液化した感情", effect: "兜にパッシブスキルを割り当て", note: "高額", source: "シミュラクラム\nボス：鴉の欺く者？" },
+  { method: "特殊なジュエル", item: "英雄の悲劇\nタイムレスジュエル", effect: "？？？", note: "？？？", source: "" },
+  { method: "特殊なジュエル", item: "不死の憎しみ\nタイムレスジュエル", effect: "？？？", note: "？？？", source: "" },
+  { method: "特殊なジュエル", item: "グランド・スペクトラム ルビー", effect: "グランドスペクトラム1個ごとに最大ライフが2%増加する", note: "３つまで？\nルビー３つなら\n(2+2+2)*3=18%", source: "セケマの試練" },
+  { method: "特殊なジュエル", item: "グランド・スペクトラム エメラルド", effect: "グランドスペクトラム1個ごとにスピリットが2%増加する", note: "３つまで？\nエメラルド３つなら\n(2+2+2)*3=18%", source: "セケマの試練" },
+  { method: "特殊なジュエル", item: "グランド・スペクトラム サファイア", effect: "ソケットされたグランドスペクトラム1個ごとに全ての元素耐性が+6%される", note: "３つまで？\nサファイア３つなら\n(6+6+6)*3=54%", source: "セケマの試練" },
+  { method: "特殊なジュエル", item: "分裂した人格\nルビー", effect: "各クラスの開始地点からパッシブスキルを割り当てられるようになる\nコラプト状態", note: "", source: "シミュラクラム\nボス：鴉の欺く者？" },
+  { method: "特殊なジュエル", item: "ボイス\nサファイア", effect: "シニスタージュエルソケットを2-4個割り当てる\nコラプト状態", note: "独立したソケットを2-4追加\nユニークジュエルは不可", source: "マップ：妄想のシミュラクラム\nコシス＆コンナル？" },
+  { method: "特殊なジュエル", item: "メガロマニアック\nダイヤモンド", effect: "Passive Skill を割り当てる\nPassive Skill を割り当てる\n(Passive Skill を割り当てる)", note: "２から３のパッシブスキルのついたジュエル", source: "マップ：妄想のシミュラクラム\nコシス＆コンナル？" },
+  { method: "特殊なジュエル", item: "虚空より来たる\nダイヤモンド", effect: "Passive Skillを中心とする範囲内のパッシブはツリーと繋げることなく割り当てることができる\nコラプト状態", note: "", source: "リチュアル\n霧の王" },
+  { method: "特殊なジュエル", item: "制御された変質\nダイヤモンド", effect: "中大型リング内のパッシブにのみ影響する\n範囲内のパッシブはツリーと繋げることなく割り当てることができる\n全ての元素耐性 (-20—-5)%", note: "", source: "ブリーチ\n一つの我ら、ゼシュト" },
+  { method: "特殊なジュエル", item: "信仰のプリズム\nダイヤモンド", effect: "全てのSpecific Skillスキルのレベル +(1—3)", note: "スキルレベル＋１～３", source: "灰のアービター" },
+  { method: "特殊なジュエル", item: "飾り立てられしもの\nダイヤモンド", effect: "コラプト状態のマジックジュエルをはめている\nソケットパッシブスキルの効果が(0—150)%増加する\nコラプト状態", note: "マジックジュエルをはめ込めることが出来て、効果が2.5倍？", source: "カオス寺院\nトライアルマスター" },
+  { method: "特殊なジュエル", item: "井戸の心臓\nダイヤモンド", effect: "[Custom Desecrated prefix]\n[Custom Desecrated prefix]\n[Custom Desecrated suffix]\n[Custom Desecrated suffix]", note: "プレフィックス２\nサフィックス２\nの冒涜モッド４つ", source: "アビス化したローグエグザイル" },
+  { method: "特殊なジュエル", item: "肉のるつぼ\nダイヤモンド", effect: "Random 1 Keystone Passive Skill [1,33]\n(20-10)% less [random stat]\nコラプト状態", note: "キーストーンパッシブがついている？\nただし(20-10)%のランダムステータスダウン", source: "アッツィリの神殿\nアッツィリ" },
+  { method: "特殊なジュエル", item: "闇との対立\nタイムロストダイヤモンド", effect: "[2 Random Jewel Modifiers]", note: "範囲内のパッシブにいろいろな効果を追加？", source: "セケマの試練\n時のザロク" },
+  { method: "汎用性の高い装備", item: "不在のアミュレット", effect: "スキルを付与: レベル 12 元素系状態異常時キャスト\nスキルを付与: レベル 12 クリティカル時キャスト\nスキルを付与: レベル 12 ドッジ時キャスト\nスキルを付与: レベル 12 ロア騎乗\nスキルを付与: レベル 12 アーチメイジ\nスキルを付与: レベル 12 トリニティ\nスキルを付与: レベル 12 エターナルレイジ\nプレフィックスモッド -1個\nサフィックスモッド -1個", note: "いずれかのスピリットスキルつき\nただし\nプレフィックスモッド -1個\nサフィックスモッド -1個\n※スキルレベルは12から20？", source: "ブリーチ\nアミュレット　母胎　ツリーの「理解を超えた姿」ノード" },
+  { method: "汎用性の高い装備", item: "メイジブラッド（ベルト）", effect: "全てのメイジの遺産は重複したメイジの遺産ごとに効果が(25—50)%増加する\nMages Legacyの遺産\nMages Legacyの遺産\nMages Legacyの遺産\nMages Legacyの遺産", note: "ルビーの遺産＝火耐性 +60%および火耐性の最大値 +5%\nサファイアの遺産＝冷気耐性 +60%および冷気耐性の最大値 +5%\nトパーズの遺産＝雷耐性 +60%および雷耐性の最大値 +5%\nビスマスの遺産＝全ての元素耐性 +45%\nアメジストの遺産＝混沌耐性 +45%\nグラナイトの遺産＝アーマー +2000\nバサルトの遺産＝アーマー150%増加\nヒスイの遺産＝回避力 +2000\nスティブナイトの遺産＝回避力 150%増加\n硫黄の遺産＝ダメージ60%増加付与および静止状態の時にプレイヤーの周囲2.5mを神聖領域\nダイアモンドの遺産＝クリティカルヒット率75%増加\nシルバーの遺産＝スキルスピード 30%増加\n水銀の遺産＝移動スピード30%増加\n金の遺産＝見つかるアイテムのレアリティ 45%増加", source: "どこからでも？" },
+];
+
 // --- ストアアイテムデータ ---
 const storeData = [
   { category: "基本系？", name: "スタッシュ", normal: 30, sale: "20", exiles_stash_bundle: "" },
@@ -97,7 +120,18 @@ const TABLES = [
     columns: [
       { key: 'type', className: 'nowrap', grouped: true },
       { key: 'name', className: 'nowrap' },
-      { key: 'effect' }
+      { key: 'effect', className: 'col-effect' }
+    ]
+  },
+  {
+    tbodyId: 'enhance-tbody',
+    data: enhanceData,
+    columns: [
+      { key: 'method', className: 'nowrap col-align-left', grouped: true },
+      { key: 'item', className: 'col-enhance-text col-align-left' },
+      { key: 'effect', className: 'col-enhance-text col-align-left' },
+      { key: 'note', className: 'col-enhance-text col-align-left' },
+      { key: 'source', className: 'col-enhance-text col-align-left' }
     ]
   },
   {
@@ -105,7 +139,7 @@ const TABLES = [
     data: storeData,
     columns: [
       { key: 'category', grouped: true }, // nowrapは #store-table td 側の一括指定で対応済み
-      { key: 'name', className: 'col-align-left' },
+      { key: 'name' },
       { key: 'normal', className: 'col-align-right' },
       { key: 'sale', className: 'col-align-right' },
       { key: 'exiles_stash_bundle' }

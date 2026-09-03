@@ -16,7 +16,16 @@
 
     .table-wrapper {
       width: max-content;
+      max-width: 100%;
       margin: 0 auto 16px;
+    }
+
+    .col-effect {
+      min-width: 160px;
+    }
+
+    .col-enhance-text {
+      min-width: 130px;
     }
 
     th {
@@ -29,6 +38,12 @@
 
     #store-table td {
       white-space: nowrap;
+    }
+
+    /* 強化方法テーブルは長文セルが多いため、セル内の改行（\n）を
+       そのまま折り返し表示させる（左寄せは各列の col-align-left で指定） */
+    #enhance-table td {
+      white-space: pre-line;
     }
 
     .col-align-left {
@@ -77,6 +92,7 @@
         <nav class="section-nav">
           <a href="#gem">ジェム</a>
           <a href="#transcendent">改造手術</a>
+          <a href="#enhance">汎用性の高い強化方法</a>
           <a href="#stash">スタッシュ価格</a>
         </nav>
       </div>
@@ -125,6 +141,24 @@
       </div>
       <div class="note-panel">
         既にしている改造は改造候補に出てこない？ ※ただし１回の神殿に２つ以上の改造部屋がある場合ダブって出てくる可能性？
+      </div>
+
+      <h2 id="enhance">汎用性の高い強化方法</h2>
+      <div class="table-wrapper">
+        <table id="enhance-table">
+          <caption class="sr-only">汎用性の高い強化方法ごとのアイテム・効果・入手方法一覧</caption>
+          <thead>
+            <tr>
+              <th class="nowrap">方法</th>
+              <th>アイテム</th>
+              <th>効果</th>
+              <th>補足</th>
+              <th>入手方法</th>
+            </tr>
+          </thead>
+          <tbody id="enhance-tbody">
+          </tbody>
+        </table>
       </div>
 
       <h2 id="stash">スタッシュ価格</h2>
