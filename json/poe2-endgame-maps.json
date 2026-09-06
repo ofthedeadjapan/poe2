@@ -13,7 +13,9 @@
     "元ボス名日": "ハートリン船長",
     "元ボス名英": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
-    "メモ": "・エリアで見つかるゴールドの量が(500—1000)%増加する\n・マップには埋められた宝物が出現する\n・全てのアイテムはゴールドに変換される"
+    "メモ": "・エリアで見つかるゴールドの量が(500—1000)%増加する\n・マップには埋められた宝物が出現する\n・全てのアイテムはゴールドに変換される",
+    "bossimage": "captain-hartlin",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Torrek_of_the_Drowned_Fleet#%E6%B2%88%E6%B2%A1%E8%89%A6%E9%9A%8A%E3%81%AE%E3%83%88%E3%83%BC%E3%83%AC%E3%83%83%E3%82%AFCaptainRothBossCASTAWAY_"
   },
   {
     "id": "mapuniqueuntaintedparadise",
@@ -29,7 +31,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・獲得経験値が(200—400)%増加する\n・モンスターはアイテムをドロップしない"
+    "メモ": "・獲得経験値が(200—400)%増加する\n・モンスターはアイテムをドロップしない",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquevault",
@@ -45,7 +49,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・このエリアで見つかるアイテムのレアリティが(100—200)%増加する\n・全てのチェストはマジックまたはレアである"
+    "メモ": "・このエリアで見つかるアイテムのレアリティが(100—200)%増加する\n・全てのチェストはマジックまたはレアである",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquewildwood",
@@ -61,7 +67,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・闇に包まれている\n・お告げの祭壇が出現する"
+    "メモ": "・闇に包まれている\n・お告げの祭壇が出現する",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniqueselenite",
@@ -77,7 +85,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・エッセンスに囚われた多くのレアモンスターが出現する\n・レアモンスターのエッセンスを吸収した囚われたボスが1体出現する\n・ティア１１以上"
+    "メモ": "・エッセンスに囚われた多くのレアモンスターが出現する\n・レアモンスターのエッセンスを吸収した囚われたボスが1体出現する\n・ティア１１以上",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquelake",
@@ -93,7 +103,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・レアモンスターはミラー化される\n・レアモンスターの数が(150—300)%増加する\n・割れた鏡が出現する"
+    "メモ": "・レアモンスターはミラー化される\n・レアモンスターの数が(150—300)%増加する\n・割れた鏡が出現する",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant01_chimeral",
@@ -109,7 +121,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 森, 沼"
+    "メモ": "Biomes: 森, 沼",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant01_sandswept",
@@ -125,7 +139,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 沼"
+    "メモ": "Biomes: 沼",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant02_crimson",
@@ -141,7 +157,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 砂漠"
+    "メモ": "Biomes: 砂漠",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant02_farmland",
@@ -157,7 +175,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 草原"
+    "メモ": "Biomes: 草原",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant03_beach",
@@ -173,7 +193,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 島"
+    "メモ": "Biomes: 島",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant03_raft",
@@ -189,7 +211,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 森, 沼"
+    "メモ": "Biomes: 森, 沼",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquemerchant03_tropical",
@@ -205,7 +229,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 水, 海"
+    "メモ": "Biomes: 水, 海",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "maphideoutfelled_claimable",
@@ -221,7 +247,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家"
+    "メモ": "隠れ家",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "maphideoutlimestone_claimable",
@@ -237,7 +265,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家"
+    "メモ": "隠れ家",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "maphideoutshrine_claimable",
@@ -253,7 +283,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家"
+    "メモ": "隠れ家",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "maphideoutcanal_claimable",
@@ -269,7 +301,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家"
+    "メモ": "隠れ家",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "g_endgame_town",
@@ -285,7 +319,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "キャンペーンをクリア後の場所"
+    "メモ": "キャンペーンをクリア後の場所",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapbloomingfield",
@@ -301,7 +337,9 @@
     "元ボス名日": "クロウベル",
     "元ボス名英": "The Crowbell",
     "元ボス特徴": "鐘（ベル）ぶんまわし",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-crowbell",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Black_Crow#%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%82%AF%E3%83%AD%E3%82%A6CrowBellBossEnragedMap_"
   },
   {
     "id": "mapsavanna",
@@ -317,7 +355,9 @@
     "元ボス名日": "ラスブレイカー",
     "元ボス名英": "Rathbreaker",
     "元ボス特徴": "見守る獣一杯、崖上から槍一杯",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rathbreaker",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Caedron%2C_the_Hyena_Lord#%E3%83%8F%E3%82%A4%E3%82%A8%E3%83%8A%E3%83%AD%E3%83%BC%E3%83%89%E3%80%81%E3%82%AB%E3%82%A8%E3%83%89%E3%83%AD%E3%83%B3RathbreakerBossMap"
   },
   {
     "id": "mapfortress",
@@ -333,7 +373,9 @@
     "元ボス名日": "裏切り者、バルバラ",
     "元ボス名英": "Balbala, the Traitor",
     "元ボス特徴": "中心の穴から毒霧",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "balbala-the-traitor",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Pirasha%2C_the_Forgotten_Prisoner#%E5%BF%98%E3%82%8C%E5%8E%BB%E3%82%89%E3%82%8C%E3%81%9F%E5%9B%9A%E4%BA%BA%E3%80%81%E3%83%94%E3%83%A9%E3%82%B7%E3%83%A3BalbalaMAP"
   },
   {
     "id": "mappenitentiary",
@@ -349,7 +391,9 @@
     "元ボス名日": "処刑人",
     "元ボス名英": "The Executioner",
     "元ボス特徴": "首ちょんぱする処刑人",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-executioner",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Incarnation_of_Death#%E6%AD%BB%E3%81%AE%E6%A8%A9%E5%8C%96GuillotineExecutionerMap"
   },
   {
     "id": "maplosttowers",
@@ -365,7 +409,9 @@
     "元ボス名日": "羽を持つ疫病、チェツァ",
     "元ボス名英": "Chetza, the Feathered Plague",
     "元ボス特徴": "飛ばない大きい鳥",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "chetza-the-feathered-plague",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Chetza%2C_the_Feathered_Plague#%E7%BE%BD%E3%82%92%E6%8C%81%E3%81%A4%E7%96%AB%E7%97%85%E3%80%81%E3%83%81%E3%82%A7%E3%83%84%E3%82%A1MutantBird2Map"
   },
   {
     "id": "mapsandspit",
@@ -381,7 +427,9 @@
     "元ボス名日": "ホホジロザメ",
     "元ボス名英": "Great White One",
     "元ボス特徴": "サメ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "great-white-one",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Sandstrider#%E3%82%B5%E3%83%B3%E3%83%89%E3%82%B9%E3%83%88%E3%83%A9%E3%82%A4%E3%83%80%E3%83%BCGreatWhiteOneMAP_"
   },
   {
     "id": "mapforge",
@@ -397,7 +445,9 @@
     "元ボス名日": "巨像、ザルマラス",
     "元ボス名英": "Zalmarath, the Colossus",
     "元ボス特徴": "巨人の像",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "zalmarath-the-colossus",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Vastweld%2C_the_Colossal_Guardian#%E5%B7%A8%E5%A4%A7%E3%81%AA%E5%AE%88%E8%AD%B7%E8%80%85%E3%80%81%E3%83%B4%E3%82%A1%E3%82%B9%E3%83%88%E3%82%A6%E3%82%A7%E3%83%AB%E3%83%89TitanBossMap"
   },
   {
     "id": "mapsulphuriccaverns",
@@ -413,7 +463,9 @@
     "元ボス名日": "古代の戦象、エクバブ\n死の王、イクタブ",
     "元ボス名英": "Ekbab, Ancient Steed\nIktab, the Deathlord",
     "元ボス特徴": "象と魔術師",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "ekbab-ancient-steed\niktab-the-deathlord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Bone_Colossus#%E9%AA%A8%E3%81%AE%E5%B7%A8%E5%83%8FMastodonBossMAP\nhttps://poe2db.tw/jp/Lord_of_the_Pit#%E5%A4%A7%E7%A9%B4%E3%81%AE%E9%A0%98%E4%B8%BBBoneCultist_NecromancerBossMAP"
   },
   {
     "id": "mapmire",
@@ -429,7 +481,9 @@
     "元ボス名日": "腐りし群れのベイラ",
     "元ボス名英": "Beira of the Rotten Pack",
     "元ボス特徴": "街出てすぐの氷ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "beira-of-the-rotten-pack",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Riona%2C_Winters_Cackle#%E5%86%AC%E3%81%AE%E7%AC%91%E5%A3%B0%E3%80%81%E3%83%AA%E3%82%AA%E3%83%8AUrchinHagBossMap"
   },
   {
     "id": "mapwoodland",
@@ -445,7 +499,9 @@
     "元ボス名日": "腐乱した粉屋\n腐乱した粉屋",
     "元ボス名英": "The Bloated Miller\nThe Bloated Miller",
     "元ボス特徴": "粉屋\n粉屋",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-bloated-miller\nthe-bloated-miller",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Murtagh%2C_the_Engorged\nhttps://poe2db.tw/jp/Colm%2C_the_Rancorous"
   },
   {
     "id": "mapsump",
@@ -461,7 +517,9 @@
     "元ボス名日": "沼地の魔女、イグナグドゥク",
     "元ボス名英": "Ignagduk, the Bog Witch",
     "元ボス特徴": "暴走スピリット",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "ignagduk-the-bog-witch",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Brakka%2C_the_Withered_Crone#%E8%90%8E%E3%82%8C%E3%81%9F%E8%80%81%E5%A9%86%E3%80%81%E3%83%96%E3%83%A9%E3%83%83%E3%82%ABIgnagdukBogWitchMap"
   },
   {
     "id": "mapwillow",
@@ -477,7 +535,9 @@
     "元ボス名日": "終わりなき悲嘆のラクラン",
     "元ボス名英": "Lachlann of Endless Lament",
     "元ボス特徴": "墓場で変身ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "lachlann-of-endless-lament",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Connal%2C_the_Tormented#%E8%8B%A6%E6%82%A9%E3%81%99%E3%82%8B%E8%80%85%E3%80%81%E3%82%B3%E3%83%B3%E3%83%8A%E3%83%ABBitterGuyBossMap"
   },
   {
     "id": "mapheadland",
@@ -493,7 +553,9 @@
     "元ボス名日": "見捨てられた息子、アザリアン",
     "元ボス名英": "Azarian, the Forsaken Son",
     "元ボス特徴": "四隅に火鉢",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "azarian-the-forsaken-son",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Hask%2C_the_Fallen_Son#%E5%A0%95%E3%81%A1%E3%81%97%E6%81%AF%E5%AD%90%E3%80%81%E3%83%8F%E3%82%B9%E3%82%AFForsakenSonMap"
   },
   {
     "id": "maploftysummit",
@@ -502,14 +564,16 @@
     "マップ英": "Lofty Summit",
     "ボス日": "良心なきオロトン",
     "ボス英": "Oloton, the Remorseless",
-    "耐性アイコン": "ArmourStrong,FireStrong,FireWeak",
+    "耐性アイコン": "ArmourStrong,FireStrong,ColdWeak",
     "元ボスアクト": "３",
     "元ボスエリア日": "ジクアニのマシナリウム",
     "元ボスエリア英": "Jiquani's Machinarium",
     "元ボス名日": "亡霊、黒き顎",
     "元ボス名英": "Blackjaw, the Remnant",
     "元ボス特徴": "炎　顎　大斧",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "blackjaw-the-remnant",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Oloton%2C_the_Remorseless#%E8%89%AF%E5%BF%83%E3%81%AA%E3%81%8D%E3%82%AA%E3%83%AD%E3%83%88%E3%83%B3BlackJawMap"
   },
   {
     "id": "mapnecropolis",
@@ -525,7 +589,9 @@
     "元ボス名日": "永遠なる法務官、ドレイヴン",
     "元ボス名英": "Draven, the Eternal Praetor",
     "元ボス特徴": "墓場での夫ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "draven-the-eternal-praetor",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Tycho%2C_the_Black_Praetor#%E9%BB%92%E3%81%AE%E6%B3%95%E5%8B%99%E5%AE%98%E3%80%81%E3%83%86%E3%82%A3%E3%82%B3HusbandMonsterMAP"
   },
   {
     "id": "mapcrypt",
@@ -541,7 +607,9 @@
     "元ボス名日": "生ける儀式、キャンドルマス",
     "元ボス名英": "Candlemass, the Living Rite",
     "元ボス特徴": "屋敷の石像",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "candlemass-the-living-rite",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Meltwax%2C_Mockery_of_Faith#%E4%BF%A1%E4%BB%B0%E3%81%AE%E7%9C%9F%E4%BC%BC%E4%BA%8B%E3%80%81%E3%83%A1%E3%83%AB%E3%83%88%E3%83%AF%E3%83%83%E3%82%AF%E3%82%B9ManorGargoyleBossMap"
   },
   {
     "id": "mapsteamingsprings",
@@ -557,7 +625,9 @@
     "元ボス名日": "大蛇の女王、カバラ",
     "元ボス名英": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "kabala-constrictor-queen",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Manassa%2C_the_Serpent_Queen#%E3%82%B5%E3%83%BC%E3%83%9A%E3%83%B3%E3%83%88%E3%82%AF%E3%82%A3%E3%83%BC%E3%83%B3%E3%80%81%E3%83%9E%E3%83%8A%E3%83%83%E3%82%B5SerpentClanCasterBossMap"
   },
   {
     "id": "mapseepage",
@@ -573,7 +643,9 @@
     "元ボス名日": "腐ったドルイド",
     "元ボス名英": "The Rotten Druid",
     "元ボス特徴": "キノコ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-rotten-druid",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Fungus_Behemoth#%E7%9C%9F%E8%8F%8C%E3%81%AE%E3%83%99%E3%83%92%E3%83%A2%E3%82%B9FungusBehemothMap"
   },
   {
     "id": "mapriverside",
@@ -589,7 +661,9 @@
     "元ボス名日": "マイティ・シルバーフィスト",
     "元ボス名英": "Mighty Silverfist",
     "元ボス特徴": "ワンパンゴリラ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "mighty-silverfist",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Zekoa%2C_the_Headcrusher#%E9%A0%AD%E7%A0%95%E3%81%8D%E3%80%81%E3%82%BC%E3%82%B3%E3%82%A2QuadrillaBossMAP"
   },
   {
     "id": "mapsteppe",
@@ -605,7 +679,9 @@
     "元ボス名日": "錆の王",
     "元ボス名英": "The Rust King",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-rust-king",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gozen%2C_Rebellious_Rustlord#%E5%8F%8D%E9%80%86%E3%81%AE%E3%83%A9%E3%82%B9%E3%83%88%E3%83%AD%E3%83%BC%E3%83%89%E3%80%81%E3%82%B4%E3%82%BC%E3%83%B3TheRustKingBossMAP"
   },
   {
     "id": "mapslick",
@@ -621,7 +697,9 @@
     "元ボス名日": "恐怖の技師、ルジャ",
     "元ボス名英": "Rudja, the Dread Engineer",
     "元ボス特徴": "火炎放射ガスグレネード",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rudja-the-dread-engineer",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Vorrik%2C_The_Infernal_Engineer#%E5%9C%B0%E7%8D%84%E3%81%AE%E6%8A%80%E5%B8%AB%E3%80%81%E3%83%B4%E3%82%A9%E3%83%AA%E3%83%83%E3%82%AFRudjaDreadEngineerMAP"
   },
   {
     "id": "mapspiderwoods",
@@ -637,7 +715,9 @@
     "元ボス名日": "ブランブルガスト",
     "元ボス名英": "The Brambleghast",
     "元ボス特徴": "カオス植物",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-brambleghast",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Rootgrasp%2C_the_Hateful_Forest#%E6%86%8E%E3%82%80%E3%81%B9%E3%81%8D%E6%A3%AE%E3%80%81%E3%83%AB%E3%83%BC%E3%83%88%E3%82%B0%E3%83%A9%E3%82%B9%E3%83%97CarnivorousPlantEaterOldForestMap"
   },
   {
     "id": "mapmarrow",
@@ -653,7 +733,9 @@
     "元ボス名日": "冒涜者、トール・ガル",
     "元ボス名英": "Tor Gul, the Defiler",
     "元ボス特徴": "巨大ドクロ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "tor-gul-the-defiler",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Zar_Wali%2C_the_Bone_Tyrant#%E9%AA%A8%E3%81%AE%E6%9A%B4%E5%90%9B%E3%80%81%E3%82%B6%E3%83%BC%E3%83%BB%E3%83%AF%E3%83%AAGiantSkeletonSnakeBossMap"
   },
   {
     "id": "mapvaalcity",
@@ -669,7 +751,9 @@
     "元ボス名日": "ヴァイパー・ナプアツィ",
     "元ボス名英": "Viper Napuatzi",
     "元ボス特徴": "周り兵士ツンツン",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "viper-napuatzi",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Viper_Napuatzi#%E3%83%B4%E3%82%A1%E3%82%A4%E3%83%91%E3%83%BC%E3%83%BB%E3%83%8A%E3%83%97%E3%82%A2%E3%83%84%E3%82%A3ViperNapuatziMAP"
   },
   {
     "id": "mapbloodwood",
@@ -685,7 +769,9 @@
     "元ボス名日": "デヴァウラー",
     "元ボス名英": "The Devourer",
     "元ボス特徴": "地面に潜るワーム",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-devourer",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gorian%2C_the_Moving_Earth#%E5%8B%95%E3%81%8F%E5%A4%A7%E5%9C%B0%E3%80%81%E3%82%B4%E3%83%AA%E3%82%A2%E3%83%B3MudBurrowerHeadBossMAP2__"
   },
   {
     "id": "mapcenotes",
@@ -701,7 +787,9 @@
     "元ボス名日": "空を見る者、バーラク",
     "元ボス名英": "Bahlak, the Sky Seer",
     "元ボス特徴": "竜巻鳥",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "bahlak-the-sky-seer",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Bahlak%2C_the_Sky_Seer#%E7%A9%BA%E3%82%92%E8%A6%8B%E3%82%8B%E8%80%85%E3%80%81%E3%83%90%E3%83%BC%E3%83%A9%E3%82%AFChaosGodOwlBossMAP_"
   },
   {
     "id": "maphiddengrotto",
@@ -717,7 +805,9 @@
     "元ボス名日": "冒涜者、トール・ガル",
     "元ボス名英": "Tor Gul, the Defiler",
     "元ボス特徴": "巨大ドクロ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "tor-gul-the-defiler",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Zar_Wali%2C_the_Bone_Tyrant#%E9%AA%A8%E3%81%AE%E6%9A%B4%E5%90%9B%E3%80%81%E3%82%B6%E3%83%BC%E3%83%BB%E3%83%AF%E3%83%AAGiantSkeletonSnakeBossMap"
   },
   {
     "id": "mapravine",
@@ -733,7 +823,9 @@
     "元ボス名日": "コアの番人、ジコアトル",
     "元ボス名英": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "zicoatl-warden-of-the-core",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Tetzcatl%2C_the_Blazing_Guardian#%E7%81%BC%E7%86%B1%E3%81%AE%E5%AE%88%E8%AD%B7%E8%80%85%E3%80%81%E3%83%86%E3%83%84%E3%82%AB%E3%83%88%E3%83%ABVaalStatueBossMAP"
   },
   {
     "id": "mapalpineridge",
@@ -749,7 +841,9 @@
     "元ボス名日": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
     "元ボス名英": "Heldra of the Black Pyre\nIsolde of the White Shroud",
     "元ボス特徴": "炎と氷",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "heldra-of-the-black-pyre\nisolde-of-the-white-shroud",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Ignatia%2C_the_Flame-Sworn#%E7%82%8E%E3%81%AE%E8%AA%93%E3%81%84%E3%80%81%E3%82%A4%E3%82%B0%E3%83%8A%E3%83%86%E3%82%A3%E3%82%A2IgnagdukBogWitchHagBattleMap\nhttps://poe2db.tw/jp/Ignatia%2C_the_Flame-Sworn#%E7%82%8E%E3%81%AE%E8%AA%93%E3%81%84%E3%80%81%E3%82%A4%E3%82%B0%E3%83%8A%E3%83%86%E3%82%A3%E3%82%A2IgnagdukBogWitchHagBattleMap"
   },
   {
     "id": "mapaugury",
@@ -765,7 +859,9 @@
     "元ボス名日": "ビーストロード、ウクスマル",
     "元ボス名英": "Uxmal, the Beastlord",
     "元ボス特徴": "キメラ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "uxmal-the-beastlord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gressor-Kul%2C_the_Apex#%E9%A0%82%E7%82%B9%E3%80%81%E3%82%B0%E3%83%AC%E3%83%83%E3%82%B5%E3%83%BC%E3%83%BB%E3%82%AF%E3%83%ABChimeraUltimatumBossMap"
   },
   {
     "id": "mapbastille",
@@ -781,7 +877,9 @@
     "元ボス名日": "恐怖の看守、オスウィン",
     "元ボス名英": "Oswin, the Dread Warden",
     "元ボス特徴": "地面から針",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "oswin-the-dread-warden",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Veynar%2C_the_Frostbane#%E3%83%95%E3%83%AD%E3%82%B9%E3%83%88%E3%83%99%E3%82%A4%E3%83%B3%E3%80%81%E3%83%B4%E3%82%A7%E3%82%A4%E3%83%8A%E3%83%BCFrozenOneBossMAP_"
   },
   {
     "id": "mapcreek",
@@ -797,7 +895,9 @@
     "元ボス名日": "腐乱した粉屋",
     "元ボス名英": "The Bloated Miller",
     "元ボス特徴": "粉屋",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-bloated-miller",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Tierney%2C_the_Hateful#%E6%86%8E%E3%82%80%E8%80%85%E3%80%81%E3%83%86%E3%82%A3%E3%82%A2%E3%83%8B%E3%83%BCSwollenMillerBossMAP"
   },
   {
     "id": "mapcrimsonshores",
@@ -813,7 +913,9 @@
     "元ボス名日": "大地を砕く者、ラトルケージ",
     "元ボス名英": "Rattlecage, the Earthbreaker",
     "元ボス特徴": "セケマのボス１",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rattlecage-the-earthbreaker",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Volkhar%2C_the_Emberborn#%E6%AE%8B%E3%82%8A%E7%81%AB%E3%82%88%E3%82%8A%E7%94%9F%E3%81%BE%E3%82%8C%E3%81%97%E8%80%85%E3%80%81%E3%83%B4%E3%82%A9%E3%83%AB%E3%82%AB%E3%83%BCSaltGolemBossMAP"
   },
   {
     "id": "mapdecay",
@@ -829,7 +931,9 @@
     "元ボス名日": "腐ったドルイド",
     "元ボス名英": "The Rotten Druid",
     "元ボス特徴": "キノコドルイド",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-rotten-druid",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Fungus_Behemoth#%E7%9C%9F%E8%8F%8C%E3%81%AE%E3%83%99%E3%83%92%E3%83%A2%E3%82%B9FungusBehemothMap"
   },
   {
     "id": "mapdeserted",
@@ -845,7 +949,9 @@
     "元ボス名日": "死の王、イクタブ",
     "元ボス名英": "Iktab, the Deathlord",
     "元ボス特徴": "象が居ない魔術師",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "iktab-the-deathlord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Lord_of_the_Pit#%E5%A4%A7%E7%A9%B4%E3%81%AE%E9%A0%98%E4%B8%BBBoneCultist_NecromancerBossMAPSOLO"
   },
   {
     "id": "mapgrimhaven",
@@ -861,7 +967,9 @@
     "元ボス名日": "法務官の妻、アシニア",
     "元ボス名英": "Asinia, the Praetor's Consort",
     "元ボス特徴": "墓所の婦人ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "asinia-the-praetors-consort",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Saphira%2C_The_Dread_Consort#%E6%81%90%E3%82%8D%E3%81%97%E3%81%8D%E5%A6%BB%E3%80%81%E3%82%B5%E3%83%95%E3%82%A3%E3%83%A9WifeMonsterMap_"
   },
   {
     "id": "maphive",
@@ -877,7 +985,9 @@
     "元ボス名日": "腐ったドルイド",
     "元ボス名英": "The Rotten Druid",
     "元ボス特徴": "キノコドルイド",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-rotten-druid",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Fungus_Behemoth#%E7%9C%9F%E8%8F%8C%E3%81%AE%E3%83%99%E3%83%92%E3%83%A2%E3%82%B9FungusBehemothMap"
   },
   {
     "id": "mapinferno",
@@ -893,7 +1003,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapmineshaft",
@@ -909,7 +1021,9 @@
     "元ボス名日": "恐怖の技師、ルジャ",
     "元ボス名英": "Rudja, the Dread Engineer",
     "元ボス特徴": "火炎ガスグレネード",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rudja-the-dread-engineer",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Vorrik%2C_The_Infernal_Engineer#%E5%9C%B0%E7%8D%84%E3%81%AE%E6%8A%80%E5%B8%AB%E3%80%81%E3%83%B4%E3%82%A9%E3%83%AA%E3%83%83%E3%82%AFRudjaDreadEngineerMAP"
   },
   {
     "id": "mapoasis",
@@ -925,7 +1039,9 @@
     "元ボス名日": "復活した王、ジャマンラ",
     "元ボス名英": "Jamanra, the Risen King",
     "元ボス特徴": "ハラニの門でのジャマンラ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "jamanra-the-risen-king",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Ishtaroth%2C_the_Perennial#%E6%B0%B8%E6%9C%9F%E3%81%AA%E3%82%8B%E3%82%A4%E3%82%B7%E3%83%A5%E3%82%BF%E3%83%AD%E3%82%B9PerennialKingHumanBossMAP"
   },
   {
     "id": "mapoutlands",
@@ -941,7 +1057,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "maprockpools",
@@ -957,7 +1075,9 @@
     "元ボス名日": "キンの領主、クルトォグ",
     "元ボス名英": "Krutog, Lord of Kin",
     "元ボス特徴": "火山での巨人",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "krutog-lord-of-kin",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Brughor%2C_the_Insatiable#%E9%A3%BD%E3%81%8F%E3%81%AA%E3%81%8D%E8%80%85%E3%80%81%E3%83%96%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%ABGoblinGiantBossMAP_"
   },
   {
     "id": "mapswamptower",
@@ -973,7 +1093,9 @@
     "元ボス名日": "守護者、ストームゴア",
     "元ボス名英": "Stormgore, the Guardian",
     "元ボス特徴": "雷の黒き顎",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "stormgore-the-guardian",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Stormgore%2C_the_Guardian#%E5%AE%88%E8%AD%B7%E8%80%85%E3%80%81%E3%82%B9%E3%83%88%E3%83%BC%E3%83%A0%E3%82%B4%E3%82%A2BlackJawLightningMap"
   },
   {
     "id": "mapuberboss_ironcitadel",
@@ -982,14 +1104,16 @@
     "マップ英": "The Iron Citadel",
     "ボス日": "ジオノール伯爵\n堕落した狼、ジオノール",
     "ボス英": "Count Geonor\nGeonor, the Putrid Wolf",
-    "耐性アイコン": "ArmourStrong,ColdStrong\nColdStrong",
+    "耐性アイコン": "ArmourStrong,Cold\nCold",
     "元ボスアクト": "１",
     "元ボスエリア日": "オガムの邸宅",
     "元ボスエリア英": "Ogham Manor",
     "元ボス名日": "ジオノール伯爵\n堕落した狼、ジオノール",
     "元ボス名英": "Count Geonor\nGeonor, the Putrid Wolf",
     "元ボス特徴": "１章ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "count-geonor\ngeonor-the-putrid-wolf",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Count_Geonor#%E3%82%B8%E3%82%AA%E3%83%8E%E3%83%BC%E3%83%AB%E4%BC%AF%E7%88%B5BaronBossHumanFormMap\nhttps://poe2db.tw/jp/Geonor%2C_the_Putrid_Wolf#%E5%A0%95%E8%90%BD%E3%81%97%E3%81%9F%E7%8B%BC%E3%80%81%E3%82%B8%E3%82%AA%E3%83%8E%E3%83%BC%E3%83%ABBaronBossCorruptedWolfFormMap"
   },
   {
     "id": "mapuberboss_stonecitadel",
@@ -998,14 +1122,16 @@
     "マップ英": "The Stone Citadel",
     "ボス日": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
     "ボス英": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
-    "耐性アイコン": "FireStrong,LightningStrong\nArmourStrong,Fire,Lightning",
+    "耐性アイコン": "Fire,Lightning\nArmourStrong,Fire,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア日": "黒の間",
     "元ボスエリア英": "The Black Chambers",
     "元ボス名日": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
     "元ボス名英": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "元ボス特徴": "３章ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "doryani-royal-thaumaturge\ndoryanis-triumph",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Doryani%2C_Royal_Thaumaturge#%E5%AE%AE%E5%BB%B7%E9%AD%94%E8%A1%93%E5%B8%AB%E3%80%81%E3%83%89%E3%83%AA%E3%83%A4%E3%83%8BDoryaniPastMap\nhttps://poe2db.tw/jp/Doryanis_Triumph#%E3%83%89%E3%83%AA%E3%83%A4%E3%83%8B%E3%81%AE%E5%81%89%E6%A5%ADDoryaniMechMap"
   },
   {
     "id": "mapuberboss_coppercitadel",
@@ -1021,7 +1147,9 @@
     "元ボス名日": "アボミネーション、ジャマンラ",
     "元ボス名英": "Jamanra, the Abomination",
     "元ボス特徴": "２章ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "jamanra-the-abomination",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Jamanra%2C_the_Abomination#%E3%82%A2%E3%83%9C%E3%83%9F%E3%83%8D%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%9E%E3%83%B3%E3%83%A9PerennialKingMap"
   },
   {
     "id": "mapuniquemerchant01_oasis",
@@ -1037,7 +1165,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "map_hildacampsite",
@@ -1053,7 +1183,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapvaalvillage",
@@ -1062,14 +1194,16 @@
     "マップ英": "Vaal Village",
     "ボス日": "[DNT-UNUSED] Dog Trader",
     "ボス英": "[DNT-UNUSED] Dog Trader",
-    "耐性アイコン": "-",
+    "耐性アイコン": "EvasionStrong",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "maprustbowl",
@@ -1085,7 +1219,9 @@
     "元ボス名日": "錆の王",
     "元ボス名英": "The Rust King",
     "元ボス特徴": "金属飛ばし",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-rust-king",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gozen%2C_Rebellious_Rustlord#%E5%8F%8D%E9%80%86%E3%81%AE%E3%83%A9%E3%82%B9%E3%83%88%E3%83%AD%E3%83%BC%E3%83%89%E3%80%81%E3%82%B4%E3%82%BC%E3%83%B3TheRustKingBossMAP"
   },
   {
     "id": "mapbackwash",
@@ -1101,7 +1237,9 @@
     "元ボス名日": "汚物の女王",
     "元ボス名英": "The Queen of Filth",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-queen-of-filth",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Yaota%2C_the_Loathsome#%E4%B8%8D%E5%BF%AB%E3%81%AA%E8%80%85%E3%80%81%E3%83%A4%E3%82%AA%E3%82%BFQueenofFilfthBossMap"
   },
   {
     "id": "mapburialbog",
@@ -1117,7 +1255,9 @@
     "元ボス名日": "ルートドレッジ",
     "元ボス名英": "Rootdredge",
     "元ボス特徴": "ゾンビ召喚の木",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rootdredge",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Grudgelash%2C_Vile_Thorn#%E9%82%AA%E6%82%AA%E3%81%AA%E6%A3%98%E3%80%81%E3%82%B0%E3%83%A9%E3%83%83%E3%82%B8%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5DredgeFiendShamanBossMap"
   },
   {
     "id": "mapwetlands",
@@ -1133,7 +1273,9 @@
     "元ボス名日": "ラスブレイカー",
     "元ボス名英": "Rathbreaker",
     "元ボス特徴": "獣一杯、槍一杯",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rathbreaker",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Caedron%2C_the_Hyena_Lord#%E3%83%8F%E3%82%A4%E3%82%A8%E3%83%8A%E3%83%AD%E3%83%BC%E3%83%89%E3%80%81%E3%82%AB%E3%82%A8%E3%83%89%E3%83%AD%E3%83%B3RathbreakerBossMap"
   },
   {
     "id": "mapsuntemple",
@@ -1149,7 +1291,9 @@
     "元ボス名日": "太陽の大祭司、ケツーリ",
     "元ボス名英": "Ketzuli, High Priest of the Sun",
     "元ボス特徴": "太陽",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "ketzuli-high-priest-of-the-sun",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Tonqui%2C_Seer_of_the_Sun#%E5%A4%AA%E9%99%BD%E3%81%AE%E9%A0%90%E8%A8%80%E8%80%85%E3%80%81%E3%83%88%E3%83%B3%E3%82%ADVaalSunWorshipperMAP"
   },
   {
     "id": "mapchannel",
@@ -1165,7 +1309,9 @@
     "元ボス名日": "見捨てられた息子、アザリアン",
     "元ボス名英": "Azarian, the Forsaken Son",
     "元ボス特徴": "四隅に火鉢",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "azarian-the-forsaken-son",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Hask%2C_the_Fallen_Son#%E5%A0%95%E3%81%A1%E3%81%97%E6%81%AF%E5%AD%90%E3%80%81%E3%83%8F%E3%82%B9%E3%82%AFForsakenSonMap"
   },
   {
     "id": "mapvaalfoundry",
@@ -1181,7 +1327,9 @@
     "元ボス名日": "鍛造場主、メクトゥル",
     "元ボス名英": "Mektul, the Forgemaster",
     "元ボス特徴": "溶岩巨人",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "mektul-the-forgemaster",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gulzal%2C_the_Living_Furnace_#%E7%94%9F%E3%81%91%E3%82%8B%E7%82%89%E3%80%81%E3%82%AC%E3%83%AB%E3%82%B6%E3%83%ABVaalForgemasterMAP"
   },
   {
     "id": "mapvaalfactory",
@@ -1197,7 +1345,9 @@
     "元ボス名日": "コアの番人、ジコアトル",
     "元ボス名英": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "zicoatl-warden-of-the-core",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Tetzcatl%2C_the_Blazing_Guardian#%E7%81%BC%E7%86%B1%E3%81%AE%E5%AE%88%E8%AD%B7%E8%80%85%E3%80%81%E3%83%86%E3%83%84%E3%82%AB%E3%83%88%E3%83%ABVaalStatueBossMAP"
   },
   {
     "id": "mapmesa",
@@ -1213,7 +1363,9 @@
     "元ボス名日": "砂漠の母、アシャー",
     "元ボス名英": "Ashar, the Sand Mother",
     "元ボス特徴": "サソリ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "ashar-the-sand-mother",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Karash%2C_The_Dune_Dweller#%E7%A0%82%E4%B8%98%E3%81%AE%E4%BD%8F%E4%BA%BA%E3%80%81%E3%82%AB%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5ShakariMap_"
   },
   {
     "id": "mapbluff",
@@ -1229,7 +1381,9 @@
     "元ボス名日": "ビーストロード、ウクスマル",
     "元ボス名英": "Uxmal, the Beastlord",
     "元ボス特徴": "キメラ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "uxmal-the-beastlord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gressor-Kul%2C_the_Apex#%E9%A0%82%E7%82%B9%E3%80%81%E3%82%B0%E3%83%AC%E3%83%83%E3%82%B5%E3%83%BC%E3%83%BB%E3%82%AF%E3%83%ABChimeraUltimatumBossMap"
   },
   {
     "id": "mapuniquemegalith",
@@ -1245,7 +1399,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "強力なボスとのエンカウンターが出現する"
+    "メモ": "強力なボスとのエンカウンターが出現する",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapazmerianranges",
@@ -1261,7 +1417,9 @@
     "元ボス名日": "流浪の槍、リサラ",
     "元ボス名英": "Lythara, the Wayward Spear",
     "元ボス特徴": "ヴァイパー幕間バージョン",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "lythara-the-wayward-spear",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Morwyn%2C_the_Kinslayer#%E5%90%8C%E8%83%9E%E6%AE%BA%E3%81%97%E3%81%AE%E3%83%A2%E3%83%BC%E3%82%A6%E3%82%A3%E3%83%B3ViperNapuatziAzmeriMap_"
   },
   {
     "id": "mapfrozenfalls",
@@ -1277,7 +1435,9 @@
     "元ボス名日": "凍てつく鉤爪、ラッカー",
     "元ボス名英": "Rakkar, the Frozen Talon",
     "元ボス特徴": "氷の鳥",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rakkar-the-frozen-talon",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Thraeven%2C_Wing_of_Winter#%E5%86%AC%E3%81%AE%E7%BF%BC%E3%80%81%E3%82%B9%E3%83%AC%E3%82%A4%E3%83%96%E3%83%B3IcyOwlBossMap"
   },
   {
     "id": "maptrenches",
@@ -1293,7 +1453,9 @@
     "元ボス名日": "デヴァウラー",
     "元ボス名英": "The Devourer",
     "元ボス特徴": "地面に潜るワーム",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-devourer",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Gorian%2C_the_Moving_Earth#%E5%8B%95%E3%81%8F%E5%A4%A7%E5%9C%B0%E3%80%81%E3%82%B4%E3%83%AA%E3%82%A2%E3%83%B3MudBurrowerHeadBossMAP_"
   },
   {
     "id": "hideoutfarmlands",
@@ -1309,7 +1471,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家"
+    "メモ": "隠れ家",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "hideoutprison",
@@ -1325,7 +1489,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "隠れ家"
+    "メモ": "隠れ家",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuberboss_jadecitadel",
@@ -1341,7 +1507,9 @@
     "元ボス名日": "族長、タヴァカイ\n堕ちたタヴァカイ\n蝕まれたタヴァカイ",
     "元ボス名英": "Tavakai, the Chieftain\nTavakai, the Fallen\nTavakai, the Consumed",
     "元ボス特徴": "4章ボス",
-    "メモ": "リネージュサポート\n・タウホアの加護\n・カオムの狂気\n・ラキアタの流れ"
+    "メモ": "リネージュサポート\n・タウホアの加護\n・カオムの狂気\n・ラキアタの流れ",
+    "bossimage": "tavakai-the-chieftain\ntavakai-the-fallen\ntavakai-the-consumed",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Manoki%2C_the_Chosen\nhttps://poe2db.tw/jp/Manoki%2C_the_Fevered\nhttps://poe2db.tw/jp/Manoki%2C_the_Defiled"
   },
   {
     "id": "mapcaverncity",
@@ -1357,7 +1525,9 @@
     "元ボス名日": "ファリドゥンの王子、アズマディ",
     "元ボス名英": "Azmadi, the Faridun Prince",
     "元ボス特徴": "王子",
-    "メモ": "リネージュサポート\n・ガルカーンの決意\n・ヴァラシュタの祝福\n・ザロクの反復"
+    "メモ": "リネージュサポート\n・ガルカーンの決意\n・ヴァラシュタの祝福\n・ザロクの反復",
+    "bossimage": "azmadi-the-faridun-prince",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Zahmir%2C_the_Blade_Sovereign#%E5%89%A3%E3%81%AE%E7%8E%8B%E3%80%81%E3%82%B6%E3%83%BC%E3%83%9F%E3%83%ABFaridunOlrothMAP"
   },
   {
     "id": "mapderelictmansion",
@@ -1373,7 +1543,9 @@
     "元ボス名日": "ウルフリック族長\nエルズウィス婦人",
     "元ボス名英": "Thane Wulfric\nLady Elswyth",
     "元ボス特徴": "",
-    "メモ": "リネージュサポート\n・エイリスの鐘\n・リグワルドの獰猛"
+    "メモ": "リネージュサポート\n・エイリスの鐘\n・リグワルドの獰猛",
+    "bossimage": "thane-wulfric\nlady-elswyth",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Varloch%2C_the_Ashen_Lord#%E7%81%B0%E3%81%AE%E7%8E%8B%E3%80%81%E3%83%B4%E3%82%A1%E2%80%95%E3%83%AD%E3%83%83%E3%82%AFBloodKnightBossMAP_\nhttps://poe2db.tw/jp/Avelyne%2C_the_Withered_Rose#%E6%9E%AF%E3%82%8C%E8%96%94%E8%96%87%E3%81%AE%E3%82%A2%E3%83%B4%E3%82%A7%E3%83%AA%E3%83%B3VampireQueenBossMAP_"
   },
   {
     "id": "mapvaalvault",
@@ -1389,7 +1561,9 @@
     "元ボス名日": "血の巫女、ゼリナ\n血の司祭、ゾリン",
     "元ボス名英": "Zelina, Blood Priestess\nZolin, Blood Priest",
     "元ボス特徴": "",
-    "メモ": "リネージュサポート\n・アタルイの血抜き\n・パクアテの契約\n・タカティの怒り"
+    "メモ": "リネージュサポート\n・アタルイの血抜き\n・パクアテの契約\n・タカティの怒り",
+    "bossimage": "zelina-blood-priestess\nzolin-blood-priest",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Ytzara%2C_Blood_Oracle#%E8%A1%80%E3%81%AE%E7%A5%9E%E8%A8%97%E8%80%85%E3%80%81%E3%82%A4%E3%83%84%E3%82%A1%E3%83%A9VaalBloodPriestessBossMAP_\nhttps://poe2db.tw/jp/Maztli%2C_Flesh-Shaper#%E8%82%89%E4%BD%93%E6%94%B9%E9%80%A0%E8%80%85%E3%80%81%E3%83%9E%E3%82%BA%E3%83%88%E3%83%AAVaalBloodPriestBossMAP_"
   },
   {
     "id": "mapsevenwaters",
@@ -1405,7 +1579,9 @@
     "元ボス名日": "大蛇の女王、カバラ",
     "元ボス名英": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "kabala-constrictor-queen",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Manassa%2C_the_Serpent_Queen#%E3%82%B5%E3%83%BC%E3%83%9A%E3%83%B3%E3%83%88%E3%82%AF%E3%82%A3%E3%83%BC%E3%83%B3%E3%80%81%E3%83%9E%E3%83%8A%E3%83%83%E3%82%B5SerpentClanCasterBossMap"
   },
   {
     "id": "mapovergrown",
@@ -1421,7 +1597,9 @@
     "元ボス名日": "コアの番人、ジコアトル",
     "元ボス名英": "Zicoatl, Warden of the Core",
     "元ボス特徴": "壁から出現、背中から蛇の手",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "zicoatl-warden-of-the-core",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Tetzcatl%2C_the_Blazing_Guardian#%E7%81%BC%E7%86%B1%E3%81%AE%E5%AE%88%E8%AD%B7%E8%80%85%E3%80%81%E3%83%86%E3%83%84%E3%82%AB%E3%83%88%E3%83%ABVaalStatueBossMAP2"
   },
   {
     "id": "mapstronghold",
@@ -1437,7 +1615,9 @@
     "元ボス名日": "プリズナー",
     "元ボス名英": "The Prisoner",
     "元ボス特徴": "バリスタ３回",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-prisoner",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Shackled_Horror"
   },
   {
     "id": "maprupture",
@@ -1453,7 +1633,9 @@
     "元ボス名日": "マイティ・シルバーフィスト",
     "元ボス名英": "Mighty Silverfist",
     "元ボス特徴": "ワンパンゴリラ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "mighty-silverfist",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Zekoa%2C_the_Headcrusher#%E9%A0%AD%E7%A0%95%E3%81%8D%E3%80%81%E3%82%BC%E3%82%B3%E3%82%A2QuadrillaBossMAP"
   },
   {
     "id": "mapspring_",
@@ -1469,7 +1651,9 @@
     "元ボス名日": "大蛇の女王、カバラ",
     "元ボス名英": "Kabala, Constrictor Queen",
     "元ボス特徴": "地面に潜る蛇",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "kabala-constrictor-queen",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Manassa%2C_the_Serpent_Queen#%E3%82%B5%E3%83%BC%E3%83%9A%E3%83%B3%E3%83%88%E3%82%AF%E3%82%A3%E3%83%BC%E3%83%B3%E3%80%81%E3%83%9E%E3%83%8A%E3%83%83%E3%82%B5SerpentClanCasterBossMapSpring"
   },
   {
     "id": "mapwaywardisle",
@@ -1485,7 +1669,9 @@
     "元ボス名日": "死の王、イクタブ",
     "元ボス名英": "Iktab, the Deathlord",
     "元ボス特徴": "象が居ない魔術師",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "iktab-the-deathlord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Lord_of_the_Pit#%E5%A4%A7%E7%A9%B4%E3%81%AE%E9%A0%98%E4%B8%BBBoneCultist_NecromancerBossMAPSOLO"
   },
   {
     "id": "mapepitaph",
@@ -1501,7 +1687,9 @@
     "元ボス名日": "法務官の妻、アシニア",
     "元ボス名英": "Asinia, the Praetor's Consort",
     "元ボス特徴": "墓場での妻ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "asinia-the-praetors-consort",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Saphira%2C_The_Dread_Consort#%E6%81%90%E3%82%8D%E3%81%97%E3%81%8D%E5%A6%BB%E3%80%81%E3%82%B5%E3%83%95%E3%82%A3%E3%83%A9WifeMonsterMap_"
   },
   {
     "id": "mapcliffside",
@@ -1517,7 +1705,9 @@
     "元ボス名日": "救世主の片腕、トーヴィアン",
     "元ボス名英": "Torvian, Hand of the Saviour",
     "元ボス特徴": "高台からボスへバフ、ボスの岩投げを誘導",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "torvian-hand-of-the-saviour",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Brakkus%2C_the_Juggernaut#%E9%87%8D%E5%B7%A8%E5%85%B5%E3%80%81%E3%83%96%E3%83%A9%E3%83%83%E3%82%AB%E3%82%B9TwilightOrderGuardBossMap"
   },
   {
     "id": "mapsinkhole",
@@ -1533,7 +1723,9 @@
     "元ボス名日": "白猿のヤマ",
     "元ボス名英": "Yama The White",
     "元ボス特徴": "カオスペット猿",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "yama-the-white",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Yama_The_White#%E7%99%BD%E7%8C%BF%E3%81%AE%E3%83%A4%E3%83%9EYamaBossMAP_"
   },
   {
     "id": "mapcaldera",
@@ -1549,7 +1741,9 @@
     "元ボス名日": "盲目の獣",
     "元ボス名英": "The Blind Beast",
     "元ボス特徴": "檻でタイマンボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-blind-beast",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Ravenous_Fang#%E3%83%A9%E3%83%B4%E3%82%A7%E3%83%8A%E3%82%B9%E3%83%95%E3%82%A1%E3%83%B3%E3%82%B0ArenaBeastBossMAP_"
   },
   {
     "id": "mapflotsam",
@@ -1565,7 +1759,9 @@
     "元ボス名日": "ハートリン船長",
     "元ボス名英": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "captain-hartlin",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Malgor%2C_the_Nautilord"
   },
   {
     "id": "chayulaleague_tower",
@@ -1581,7 +1777,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない"
+    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "chayulaleague_towerboss",
@@ -1597,23 +1795,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない\n[動画](https://www.twitch.tv/videos/2859486169)"
-  },
-  {
-    "id": "mapuniquereactor_02",
-    "よみがな": "いにしえのげーとうぇい",
-    "マップ日": "古のゲートウェイ",
-    "マップ英": "Ancient Gateway",
-    "ボス日": "",
-    "ボス英": "",
-    "耐性アイコン": "",
-    "元ボスアクト": "",
-    "元ボスエリア日": "",
-    "元ボスエリア英": "",
-    "元ボス名日": "",
-    "元ボス名英": "",
-    "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "エリアのブリーチモンスターはスプリンターをドロップしない\n[動画](https://www.twitch.tv/videos/2859486169)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/It_That_Was_Tul#%E3%83%88%E3%82%A5%E3%83%AB%E3%81%A0%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AEFallenKnight\nhttps://poe2db.tw/jp/It_That_Was_Esh#%E3%82%A8%E3%83%83%E3%82%B7%E3%83%A5%E3%81%A0%E3%81%A3%E3%81%9F%E3%82%82%E3%81%AEHandMage"
   },
   {
     "id": "mapuniquereactor_01",
@@ -1629,7 +1813,27 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Separator"
+  },
+  {
+    "id": "mapuniquereactor_02",
+    "よみがな": "いにしえのげーとうぇい",
+    "マップ日": "古のゲートウェイ",
+    "マップ英": "Ancient Gateway",
+    "ボス日": "",
+    "ボス英": "",
+    "耐性アイコン": "",
+    "元ボスアクト": "",
+    "元ボスエリア日": "",
+    "元ボスエリア英": "",
+    "元ボス名日": "",
+    "元ボス名英": "",
+    "元ボス特徴": "",
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuniquereactor_03",
@@ -1638,14 +1842,16 @@
     "マップ英": "Eastern Gateway",
     "ボス日": "先人の製錬機",
     "ボス英": "Precursor Refiner",
-    "耐性アイコン": "ArmourStrong,FireWeak,ColdWeak",
+    "耐性アイコン": "ArmourStrong,FireWeak,ColdStrong",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Refiner"
   },
   {
     "id": "mapuberboss_divinity",
@@ -1654,14 +1860,16 @@
     "マップ英": "The Origin Tower",
     "ボス日": "神性のアービター",
     "ボス英": "The Arbiter of Divinity",
-    "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
+    "耐性アイコン": "Armour,FireWeak,Lightning",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2860203910)"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエリアでは無制限の回数の復活を行える\n[動画](https://www.twitch.tv/videos/2860203910)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Arbiter_of_Divinity#%E7%A5%9E%E6%80%A7%E3%81%AE%E3%82%A2%E3%83%BC%E3%83%93%E3%82%BF%E3%83%BCArbiterofDivinity_"
   },
   {
     "id": "mapmothersoul_male",
@@ -1670,14 +1878,16 @@
     "マップ英": "The Patriarch Halls",
     "ボス日": "火花の番人、フィックス",
     "ボス英": "Phyx, Sentinel of the Spark",
-    "耐性アイコン": "FireStrong,ColdWeak",
+    "耐性アイコン": "Fire,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2852376300)"
+    "メモ": "[動画](https://www.twitch.tv/videos/2852376300)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Phyx%2C_Sentinel_of_the_Spark#%E7%81%AB%E8%8A%B1%E3%81%AE%E7%95%AA%E4%BA%BA%E3%80%81%E3%83%95%E3%82%A3%E3%83%83%E3%82%AF%E3%82%B9GeneticsScientistMale__"
   },
   {
     "id": "mapmothersoul_female",
@@ -1686,14 +1896,16 @@
     "マップ英": "The Matriarch Halls",
     "ボス日": "揺りかごの番人、フィア",
     "ボス英": "Phya, Sentinel of the Cradle",
-    "耐性アイコン": "FireWeak,ColdStrong",
+    "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2852378489)"
+    "メモ": "[動画](https://www.twitch.tv/videos/2852378489)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Phya%2C_Sentinel_of_the_Cradle#%E6%8F%BA%E3%82%8A%E3%81%8B%E3%81%94%E3%81%AE%E7%95%AA%E4%BA%BA%E3%80%81%E3%83%95%E3%82%A3%E3%82%A2GeneticsScientistFemale"
   },
   {
     "id": "mapuberboss_monolith",
@@ -1702,14 +1914,16 @@
     "マップ英": "The Burning Monolith",
     "ボス日": "灰のアービター",
     "ボス英": "The Arbiter of Ash",
-    "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
+    "耐性アイコン": "Armour,Fire,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2847719406)"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエリアでは無制限の回数の復活を行える\n[動画](https://www.twitch.tv/videos/2847719406)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Arbiter_of_Ash#%E7%81%B0%E3%81%AE%E3%82%A2%E3%83%BC%E3%83%93%E3%82%BF%E3%83%BCDemonClawBoss"
   },
   {
     "id": "mapuberboss_ironcitadel_quest",
@@ -1718,14 +1932,16 @@
     "マップ英": "Western Enigma Chamber",
     "ボス日": "ジオノール伯爵\n堕落した狼、ジオノール",
     "ボス英": "Count Geonor\nGeonor, the Putrid Wolf",
-    "耐性アイコン": "ArmourStrong,ColdStrong\nColdStrong",
+    "耐性アイコン": "ArmourStrong,Cold\nCold",
     "元ボスアクト": "１",
     "元ボスエリア日": "オガムの邸宅",
     "元ボスエリア英": "Ogham Manor",
     "元ボス名日": "ジオノール伯爵\n堕落した狼、ジオノール",
     "元ボス名英": "Count Geonor\nGeonor, the Putrid Wolf",
     "元ボス特徴": "アクト１ボス",
-    "メモ": "クエストのマップ"
+    "メモ": "クエストのマップ",
+    "bossimage": "count-geonor\ngeonor-the-putrid-wolf",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Count_Geonor#%E3%82%B8%E3%82%AA%E3%83%8E%E3%83%BC%E3%83%AB%E4%BC%AF%E7%88%B5BaronBossHumanFormMap\nhttps://poe2db.tw/jp/Geonor%2C_the_Putrid_Wolf#%E5%A0%95%E8%90%BD%E3%81%97%E3%81%9F%E7%8B%BC%E3%80%81%E3%82%B8%E3%82%AA%E3%83%8E%E3%83%BC%E3%83%ABBaronBossCorruptedWolfFormMap"
   },
   {
     "id": "mapuberboss_stonecitadel_quest",
@@ -1734,14 +1950,16 @@
     "マップ英": "Eastern Enigma Chamber",
     "ボス日": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
     "ボス英": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
-    "耐性アイコン": "FireStrong,LightningStrong\nArmourStrong,Fire,Lightning",
+    "耐性アイコン": "Fire,Lightning\nArmourStrong,Fire,Lightning",
     "元ボスアクト": "３",
     "元ボスエリア日": "黒の間",
     "元ボスエリア英": "The Black Chambers",
     "元ボス名日": "宮廷魔術師、ドリヤニ\nドリヤニの偉業",
     "元ボス名英": "Doryani, Royal Thaumaturge\nDoryani's Triumph",
     "元ボス特徴": "アクト３ボス",
-    "メモ": "クエストのマップ"
+    "メモ": "クエストのマップ",
+    "bossimage": "doryani-royal-thaumaturge\ndoryanis-triumph",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Doryani%2C_Royal_Thaumaturge#%E5%AE%AE%E5%BB%B7%E9%AD%94%E8%A1%93%E5%B8%AB%E3%80%81%E3%83%89%E3%83%AA%E3%83%A4%E3%83%8BDoryaniPastMap\nhttps://poe2db.tw/jp/Doryanis_Triumph#%E3%83%89%E3%83%AA%E3%83%A4%E3%83%8B%E3%81%AE%E5%81%89%E6%A5%ADDoryaniMechMap"
   },
   {
     "id": "mapsnowfall",
@@ -1757,7 +1975,9 @@
     "元ボス名日": "霧の刃、シオラ",
     "元ボス名英": "Siora, Blade of the Mists",
     "元ボス特徴": "石碑エリア雷のボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "siora-blade-of-the-mists",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Thariel%2C_the_Umbral_Wraith#%E5%BD%B1%E3%81%AE%E5%B9%BD%E9%AC%BC%E3%80%81%E3%82%B5%E3%83%AA%E3%82%A8%E3%83%ABEzomyteReaperBossMAP"
   },
   {
     "id": "mapgreenhouse",
@@ -1773,7 +1993,9 @@
     "元ボス名日": "ブランブルガスト",
     "元ボス名英": "The Brambleghast",
     "元ボス特徴": "カオス植物",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-brambleghast",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Rootgrasp%2C_the_Hateful_Forest#%E6%86%8E%E3%82%80%E3%81%B9%E3%81%8D%E6%A3%AE%E3%80%81%E3%83%AB%E3%83%BC%E3%83%88%E3%82%B0%E3%83%A9%E3%82%B9%E3%83%97CarnivorousPlantEaterOldForestMap"
   },
   {
     "id": "mapchasm",
@@ -1789,7 +2011,9 @@
     "元ボス名日": "死の歌、ディアモラ",
     "元ボス名英": "Diamora, Song of Death",
     "元ボス特徴": "石化ビーム回転セイレーン",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "diamora-song-of-death",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Diamora%2C_Song_of_Death#%E6%AD%BB%E3%81%AE%E6%AD%8C%E3%80%81%E3%83%87%E3%82%A3%E3%82%A2%E3%83%A2%E3%83%A9SirenBoss"
   },
   {
     "id": "mappit",
@@ -1805,7 +2029,9 @@
     "元ボス名日": "救世主の片腕、トーヴィアン",
     "元ボス名英": "Torvian, Hand of the Saviour",
     "元ボス特徴": "周りからバフ、ボスの岩投げで解除",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "torvian-hand-of-the-saviour",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Brakkus%2C_the_Juggernaut#%E9%87%8D%E5%B7%A8%E5%85%B5%E3%80%81%E3%83%96%E3%83%A9%E3%83%83%E3%82%AB%E3%82%B9TwilightOrderGuardBossMap"
   },
   {
     "id": "mapport",
@@ -1821,7 +2047,9 @@
     "元ボス名日": "ハートリン船長",
     "元ボス名英": "Captain Hartlin",
     "元ボス特徴": "イカリ・大砲・波攻撃",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "captain-hartlin",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Malgor%2C_the_Nautilord"
   },
   {
     "id": "maparidplains",
@@ -1837,7 +2065,9 @@
     "元ボス名日": "最後の一刺し、アクティ\nサンドワーム、アナンドル",
     "元ボス名英": "Akthi, the Final Sting\nAnundr, the Sandworm",
     "元ボス特徴": "サソリとワーム",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "akthi-the-final-sting\nanundr-the-sandworm",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Akthi%2C_the_Final_Sting#%E6%9C%80%E5%BE%8C%E3%81%AE%E4%B8%80%E5%88%BA%E3%81%97%E3%80%81%E3%82%A2%E3%82%AF%E3%83%86%E3%82%A3ShakariDuoMAP_\nhttps://poe2db.tw/jp/Anundr%2C_the_Sandworm#%E3%82%B5%E3%83%B3%E3%83%89%E3%83%AF%E3%83%BC%E3%83%A0%E3%80%81%E3%82%A2%E3%83%8A%E3%83%B3%E3%83%89%E3%83%ABDevourerBossDuoHeadMAP_"
   },
   {
     "id": "mapbazaar",
@@ -1853,7 +2083,9 @@
     "元ボス名日": "ヴァイパー・ナプアツィ",
     "元ボス名英": "Viper Napuatzi",
     "元ボス特徴": "周り兵士ツンツン",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "viper-napuatzi",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Viper_Napuatzi#%E3%83%B4%E3%82%A1%E3%82%A4%E3%83%91%E3%83%BC%E3%83%BB%E3%83%8A%E3%83%97%E3%82%A2%E3%83%84%E3%82%A3ViperNapuatziMAP"
   },
   {
     "id": "mapsinterrift",
@@ -1869,7 +2101,9 @@
     "元ボス名日": "キンの領主、クルトォグ",
     "元ボス名英": "Krutog, Lord of Kin",
     "元ボス特徴": "火山での巨人",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "krutog-lord-of-kin",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Brughor%2C_the_Insatiable#%E9%A3%BD%E3%81%8F%E3%81%AA%E3%81%8D%E8%80%85%E3%80%81%E3%83%96%E3%83%AB%E3%82%B4%E3%83%BC%E3%83%ABGoblinGiantBossMAP_"
   },
   {
     "id": "mapreservoir",
@@ -1885,7 +2119,9 @@
     "元ボス名日": "ルートドレッジ",
     "元ボス名英": "Rootdredge",
     "元ボス特徴": "ゾンビ召喚の木",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rootdredge",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Grudgelash%2C_Vile_Thorn#%E9%82%AA%E6%82%AA%E3%81%AA%E6%A3%98%E3%80%81%E3%82%B0%E3%83%A9%E3%83%83%E3%82%B8%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5DredgeFiendShamanBossMap"
   },
   {
     "id": "mapslash",
@@ -1901,7 +2137,9 @@
     "元ボス名日": "クロウベル",
     "元ボス名英": "The Crowbell",
     "元ボス特徴": "鐘で攻撃",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-crowbell",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Black_Crow#%E3%83%96%E3%83%A9%E3%83%83%E3%82%AF%E3%82%AF%E3%83%AD%E3%82%A6CrowBellBossEnragedMap_"
   },
   {
     "id": "mapplantation",
@@ -1917,7 +2155,9 @@
     "元ボス名日": "ウルフリック族長",
     "元ボス名英": "Thane Wulfric",
     "元ボス特徴": "幕間左、屋敷ボス単体夫",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "thane-wulfric",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Varloch%2C_the_Ashen_Lord#%E7%81%B0%E3%81%AE%E7%8E%8B%E3%80%81%E3%83%B4%E3%82%A1%E2%80%95%E3%83%AD%E3%83%83%E3%82%AFBloodKnightBossMAP2_"
   },
   {
     "id": "maporbalascrossing",
@@ -1933,7 +2173,9 @@
     "元ボス名日": "コブラの王、エルザラ",
     "元ボス名英": "Elzarah, the Cobra Lord",
     "元ボス特徴": "地面から手、竜巻",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "elzarah-the-cobra-lord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Serath%2C_the_Scaled_One#%E9%B1%97%E3%82%92%E3%82%82%E3%81%A4%E3%82%82%E3%81%AE%E3%80%81%E3%82%BB%E3%83%A9%E3%82%B9CaptainSandstormMAP_"
   },
   {
     "id": "mapmonument",
@@ -1949,7 +2191,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapsanctuary",
@@ -1965,7 +2209,9 @@
     "元ボス名日": "裏切り者、バルバラ",
     "元ボス名英": "Balbala, the Traitor",
     "元ボス特徴": "中心の穴から毒切り",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "balbala-the-traitor",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Pirasha%2C_the_Forgotten_Prisoner#%E5%BF%98%E3%82%8C%E5%8E%BB%E3%82%89%E3%82%8C%E3%81%9F%E5%9B%9A%E4%BA%BA%E3%80%81%E3%83%94%E3%83%A9%E3%82%B7%E3%83%A3BalbalaMAP"
   },
   {
     "id": "mapswarm",
@@ -1981,7 +2227,9 @@
     "元ボス名日": "大地を砕く者、ラトルケージ",
     "元ボス名英": "Rattlecage, the Earthbreaker",
     "元ボス特徴": "セケマの試練の最初のボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "rattlecage-the-earthbreaker",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Volkhar%2C_the_Emberborn#%E6%AE%8B%E3%82%8A%E7%81%AB%E3%82%88%E3%82%8A%E7%94%9F%E3%81%BE%E3%82%8C%E3%81%97%E8%80%85%E3%80%81%E3%83%B4%E3%82%A9%E3%83%AB%E3%82%AB%E3%83%BCSaltGolemBossMAP"
   },
   {
     "id": "mapdeforestation",
@@ -1997,7 +2245,9 @@
     "元ボス名日": "流浪の槍、リサラ",
     "元ボス名英": "Lythara, the Wayward Spear",
     "元ボス特徴": "ヴァイパー幕間バージョン",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "lythara-the-wayward-spear",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Morwyn%2C_the_Kinslayer#%E5%90%8C%E8%83%9E%E6%AE%BA%E3%81%97%E3%81%AE%E3%83%A2%E3%83%BC%E3%82%A6%E3%82%A3%E3%83%B3ViperNapuatziAzmeriMap_"
   },
   {
     "id": "mapprecipice",
@@ -2013,7 +2263,9 @@
     "元ボス名日": "邪悪な炎、ヴォルナス",
     "元ボス名英": "Vornas, the Fell Flame",
     "元ボス特徴": "門からの獣ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "vornas-the-fell-flame",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Morvak%2C_the_Infernal#%E5%9C%B0%E7%8D%84%E3%81%AE%E6%A5%AD%E7%81%AB%E3%80%81%E3%83%A2%E3%83%AB%E3%83%B4%E3%82%A1%E3%82%AFFireBeastBossMAP__"
   },
   {
     "id": "delirium_act1town",
@@ -2029,7 +2281,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_atoll",
@@ -2045,7 +2299,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "delirium_act1town_quest",
@@ -2061,7 +2317,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "クエストのマップ"
+    "メモ": "クエストのマップ",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "endgamedoodad_meteorcrater",
@@ -2077,7 +2335,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuberboss_fallenstar",
@@ -2093,7 +2353,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2860313142)"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエリアでは無制限の回数の復活を行える\n[動画](https://www.twitch.tv/videos/2860313142)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Aberration"
   },
   {
     "id": "chayulaleague",
@@ -2109,7 +2371,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "endgamedoodad_beastgroundzero",
@@ -2125,7 +2389,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapuberboss_ritual",
@@ -2134,14 +2400,16 @@
     "マップ英": "Caer Tarth",
     "ボス日": "ボダック",
     "ボス英": "The Bodach",
-    "耐性アイコン": "ArmourStrong,ChaosStrong",
+    "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエリアでは無制限の回数の復活を行える",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Bodach"
   },
   {
     "id": "mapuberboss_delirium",
@@ -2150,14 +2418,16 @@
     "マップ英": "The Withered Willow",
     "ボス日": "鴉の欺く者",
     "ボス英": "The Raven Trickster",
-    "耐性アイコン": "Armour,FireStrong,ColdStrong,LightningStrong",
+    "耐性アイコン": "Armour",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない\n[動画](https://www.twitch.tv/videos/2860550823)"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない\nエリアでは無制限の回数の復活を行える\n[動画](https://www.twitch.tv/videos/2860550823)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Raven_Trickster"
   },
   {
     "id": "abyss_hub",
@@ -2166,14 +2436,16 @@
     "マップ英": "The Well of Souls",
     "ボス日": "クーラマクの器",
     "ボス英": "Vessel of Kulemak",
-    "耐性アイコン": "Armour",
+    "耐性アイコン": "ArmourStrong",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Vessel_of_Kulemak"
   },
   {
     "id": "incursionhub",
@@ -2189,7 +2461,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapvoidreliquary",
@@ -2205,7 +2479,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "delirium_act2reveal",
@@ -2221,7 +2497,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "delirium_act3town",
@@ -2237,7 +2515,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "delirium_vastirioutskirts",
@@ -2253,7 +2533,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionsubarea_medvedboss",
@@ -2269,7 +2551,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859496349)"
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859496349)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Medved%2C_the_Fallen_Seer"
   },
   {
     "id": "expeditionsubarea_voranaboss",
@@ -2278,30 +2562,34 @@
     "マップ英": "Mournful Cliffside",
     "ボス日": "最後に倒れる者、ヴォラナ",
     "ボス英": "Vorana, Last to Fall",
-    "耐性アイコン": "ArmourStrong,Evasion,ColdStrong",
+    "耐性アイコン": "ArmourStrong,Evasion,Cold",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859517062)"
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2859517062)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Vorana%2C_Last_to_Fall#%E6%9C%80%E5%BE%8C%E3%81%AB%E5%80%92%E3%82%8C%E3%82%8B%E8%80%85%E3%80%81%E3%83%B4%E3%82%A9%E3%83%A9%E3%83%8AVorana"
   },
   {
     "id": "expeditionsubarea_uhtredboss",
     "よみがな": "こりつしたじいん",
     "マップ日": "孤立した寺院",
     "マップ英": "Secluded Temple",
-    "ボス日": "星を飲むもの、ウートレッド",
+    "ボス日": "星を飲むもの、ウートレド",
     "ボス英": "Uhtred, the Stardrinker",
-    "耐性アイコン": "ArmourStrong,ColdStrong",
+    "耐性アイコン": "ArmourStrong,Cold",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2860261157)"
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2860261157)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Uhtred%2C_the_Stardrinker"
   },
   {
     "id": "expeditionsubarea_olrothboss",
@@ -2310,14 +2598,16 @@
     "マップ英": "Obscure Island",
     "ボス日": "破滅の元凶、オルロス",
     "ボス英": "Olroth, Origin of the Fall",
-    "耐性アイコン": "ArmourStrong,ColdStrong",
+    "耐性アイコン": "ArmourStrong,Cold",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2860369519)"
+    "メモ": "・プレイヤーは経験値を獲得することも失うこともない\n・エクスペディション系\n・時間停止無効\n[動画](https://www.twitch.tv/videos/2860369519)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Olroth%2C_Origin_of_the_Fall#%E7%A0%B4%E6%BB%85%E3%81%AE%E5%85%83%E5%87%B6%E3%80%81%E3%82%AA%E3%83%AB%E3%83%AD%E3%82%B9Olroth"
   },
   {
     "id": "mapprecursortowerdesert",
@@ -2333,7 +2623,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 砂漠"
+    "メモ": "Biomes: 砂漠",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Displacer\nhttps://poe2db.tw/jp/Precursor_Extractor"
   },
   {
     "id": "mapprecursortowerforest",
@@ -2349,7 +2641,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 森"
+    "メモ": "Biomes: 森",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Displacer\nhttps://poe2db.tw/jp/Precursor_Extractor"
   },
   {
     "id": "mapprecursortowergrass",
@@ -2365,7 +2659,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 草原"
+    "メモ": "Biomes: 草原",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Displacer\nhttps://poe2db.tw/jp/Precursor_Extractor"
   },
   {
     "id": "mapprecursortowermountain",
@@ -2381,7 +2677,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 山"
+    "メモ": "Biomes: 山",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Displacer\nhttps://poe2db.tw/jp/Precursor_Extractor"
   },
   {
     "id": "mapprecursortowerswamp",
@@ -2397,7 +2695,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "Biomes: 沼"
+    "メモ": "Biomes: 沼",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Precursor_Displacer\nhttps://poe2db.tw/jp/Precursor_Extractor"
   },
   {
     "id": "ritualleagueboss",
@@ -2413,7 +2713,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "プレイヤーは経験値を獲得することも失うこともない"
+    "メモ": "プレイヤーは経験値を獲得することも失うこともない",
+    "bossimage": "the-king-in-the-mists-humanoid\nthe-king-in-the-mists-demon",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_King_in_the_Mists#%E9%9C%A7%E3%81%AE%E7%8E%8BVoodooKingBoss2MAP\nhttps://poe2db.tw/jp/The_King_in_the_Mists#%E9%9C%A7%E3%81%AE%E7%8E%8BVoodooKingBoss3MAP"
   },
   {
     "id": "expeditionlogbook_basin",
@@ -2429,7 +2731,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_digsite",
@@ -2445,7 +2749,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_gully",
@@ -2461,7 +2767,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_heath",
@@ -2477,7 +2785,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_peninsula",
@@ -2493,7 +2803,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_prairie",
@@ -2509,7 +2821,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_reef",
@@ -2525,7 +2839,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_tropical",
@@ -2541,7 +2857,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_tundra",
@@ -2557,7 +2875,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "expeditionlogbook_wastes",
@@ -2573,7 +2893,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "エクスペディション"
+    "メモ": "エクスペディション",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapexcavation",
@@ -2589,7 +2911,9 @@
     "元ボス名日": "ユートピアの第一の使者、ベネディクタス",
     "元ボス名英": "Benedictus, First Herald of Utopia",
     "元ボス特徴": "エリアの両脇に柱落とし",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "benedictus-first-herald-of-utopia",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Aurelian%2C_the_Grand_Adjudicator#%E5%A4%A7%E8%A3%81%E5%AE%9A%E8%80%85%E3%80%81%E3%82%AA%E3%83%BC%E3%83%AC%E3%83%AA%E3%82%A2%E3%83%B3TwilightOrderOverlordMAP_"
   },
   {
     "id": "mapicecave",
@@ -2605,7 +2929,9 @@
     "元ボス名日": "アボミネーションのイエティ",
     "元ボス名英": "The Abominable Yeti",
     "元ボス特徴": "巨大つららゴリラ",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "the-abominable-yeti",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/The_Frostborn_Fiend#%E3%83%95%E3%83%AD%E3%82%B9%E3%83%88%E3%83%9C%E3%83%BC%E3%83%B3%E3%81%AE%E5%8C%96%E3%81%91%E7%89%A9IcyQuadrillaBossMap"
   },
   {
     "id": "maprazedfields",
@@ -2621,7 +2947,9 @@
     "元ボス名日": "黒き火葬のヘルドラ\n白き死衣のイゾルデ",
     "元ボス名英": "Heldra of the Black Pyre\nIsolde of the White Shroud",
     "元ボス特徴": "炎と氷",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "heldra-of-the-black-pyre\nisolde-of-the-white-shroud",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Elvara%2C_the_Savage_Flame\nhttps://poe2db.tw/jp/Rael%2C_the_Frost_Hand"
   },
   {
     "id": "mapriverhold",
@@ -2637,7 +2965,9 @@
     "元ボス名日": "霧の刃、シオラ",
     "元ボス名英": "Siora, Blade of the Mists",
     "元ボス特徴": "石碑エリア雷のボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "siora-blade-of-the-mists",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Thariel%2C_the_Umbral_Wraith#%E5%BD%B1%E3%81%AE%E5%B9%BD%E9%AC%BC%E3%80%81%E3%82%B5%E3%83%AA%E3%82%A8%E3%83%ABEzomyteReaperBossMAP"
   },
   {
     "id": "maprugosa",
@@ -2653,7 +2983,9 @@
     "元ボス名日": "死の歌、ディアモラ",
     "元ボス名英": "Diamora, Song of Death",
     "元ボス特徴": "石化ビーム回転セイレーン",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "diamora-song-of-death",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Syvora%2C_Daughter_of_the_Deep"
   },
   {
     "id": "mapmortuary",
@@ -2669,7 +3001,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "ヴァール神殿の改造人間？",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Micata%2C_the_Remade#%E5%86%8D%E9%80%A0%E3%81%AE%E3%83%9F%E3%82%AB%E3%82%BFMechaQueenOfFilfthTierMAP_"
   },
   {
     "id": "mapmothersoul_male_quest",
@@ -2678,14 +3012,16 @@
     "マップ英": "The Patriarch Halls",
     "ボス日": "火花の番人、フィックス",
     "ボス英": "Phyx, Sentinel of the Spark",
-    "耐性アイコン": "FireStrong,ColdWeak",
+    "耐性アイコン": "Fire,ColdWeak",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "クエストのマップ\n[動画](https://www.twitch.tv/videos/2852376300)"
+    "メモ": "クエストのマップ\n[動画](https://www.twitch.tv/videos/2852376300)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Phyx%2C_Sentinel_of_the_Spark#%E7%81%AB%E8%8A%B1%E3%81%AE%E7%95%AA%E4%BA%BA%E3%80%81%E3%83%95%E3%82%A3%E3%83%83%E3%82%AF%E3%82%B9GeneticsScientistMale__"
   },
   {
     "id": "mapmothersoul_female_quest",
@@ -2694,14 +3030,16 @@
     "マップ英": "The Matriarch Halls",
     "ボス日": "揺りかごの番人、フィア",
     "ボス英": "Phya, Sentinel of the Cradle",
-    "耐性アイコン": "FireWeak,ColdStrong",
+    "耐性アイコン": "FireWeak,Cold",
     "元ボスアクト": "",
     "元ボスエリア日": "",
     "元ボスエリア英": "",
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "クエストのマップ\n[動画](https://www.twitch.tv/videos/2852378489)"
+    "メモ": "クエストのマップ\n[動画](https://www.twitch.tv/videos/2852378489)",
+    "bossimage": "",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Phya%2C_Sentinel_of_the_Cradle#%E6%8F%BA%E3%82%8A%E3%81%8B%E3%81%94%E3%81%AE%E7%95%AA%E4%BA%BA%E3%80%81%E3%83%95%E3%82%A3%E3%82%A2GeneticsScientistFemale"
   },
   {
     "id": "mapprecursortower",
@@ -2717,7 +3055,9 @@
     "元ボス名日": "砂漠の母、アシャー",
     "元ボス名英": "Ashar, the Sand Mother",
     "元ボス特徴": "サソリ",
-    "メモ": "マップにぽつんとある塔"
+    "メモ": "マップにぽつんとある塔",
+    "bossimage": "ashar-the-sand-mother",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Karash%2C_The_Dune_Dweller#%E7%A0%82%E4%B8%98%E3%81%AE%E4%BD%8F%E4%BA%BA%E3%80%81%E3%82%AB%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5ShakariMap_"
   },
   {
     "id": "mapuniquereactor_04",
@@ -2733,7 +3073,9 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   },
   {
     "id": "mapcanyon",
@@ -2749,7 +3091,9 @@
     "元ボス名日": "邪悪な炎、ヴォルナス",
     "元ボス名英": "Vornas, the Fell Flame",
     "元ボス特徴": "門からの獣ボス",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "vornas-the-fell-flame",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Morvak%2C_the_Infernal#%E5%9C%B0%E7%8D%84%E3%81%AE%E6%A5%AD%E7%81%AB%E3%80%81%E3%83%A2%E3%83%AB%E3%83%B4%E3%82%A1%E3%82%AFFireBeastBossMAP__"
   },
   {
     "id": "mapornatechambers",
@@ -2765,7 +3109,9 @@
     "元ボス名日": "コブラの王、エルザラ",
     "元ボス名英": "Elzarah, the Cobra Lord",
     "元ボス特徴": "地面から手、竜巻",
-    "メモ": ""
+    "メモ": "",
+    "bossimage": "elzarah-the-cobra-lord",
+    "PoE2DB_URL1": "https://poe2db.tw/jp/Serath%2C_the_Scaled_One#%E9%B1%97%E3%82%92%E3%82%82%E3%81%A4%E3%82%82%E3%81%AE%E3%80%81%E3%82%BB%E3%83%A9%E3%82%B9CaptainSandstormMAP_"
   },
   {
     "id": "breachdomain_01",
@@ -2781,6 +3127,8 @@
     "元ボス名日": "",
     "元ボス名英": "",
     "元ボス特徴": "",
-    "メモ": "[動画](https://www.twitch.tv/videos/2859488131)"
+    "メモ": "[動画](https://www.twitch.tv/videos/2859488131)",
+    "bossimage": "",
+    "PoE2DB_URL1": ""
   }
 ]
