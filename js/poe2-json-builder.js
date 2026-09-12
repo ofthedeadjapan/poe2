@@ -3,14 +3,13 @@
 // スプレッドシートからコピーしたTSVデータをJSONに変換する
 // ==========================================================================
 
-const COPY_BTN_DEFAULT_TEXT = '📋 JSONをコピー';
+const COPY_BTN_DEFAULT_TEXT = '📋 変換してコピー';
 
 const DOM = {
   inputArea: document.getElementById('inputArea'),
   outputJsonArea: document.getElementById('outputJsonArea'),
   errorMessage: document.getElementById('errorMessage'),
   processBtn: document.getElementById('processBtn'),
-  copyBtn: document.getElementById('copyBtn'),
   resetBtn: document.getElementById('resetBtn')
 };
 
@@ -158,7 +157,7 @@ function processData() {
 // ==========================================================================
 
 function setCopyButtonState(stateClass, text) {
-  const btn = DOM.copyBtn;
+  const btn = DOM.processBtn;
   btn.textContent = text;
   btn.classList.remove('is-success', 'is-error');
   if (stateClass) btn.classList.add(stateClass);
@@ -183,6 +182,16 @@ async function copyJSON() {
   copyTimer = setTimeout(() => setCopyButtonState(null, COPY_BTN_DEFAULT_TEXT), 2000);
 }
 
+/**
+ * 変換とコピーをまとめて実行する。
+ * 変換に失敗した場合はcurrentJsonがnullのままなので、
+ * copyJSON()側の`if (!currentJson) return;`により後続のコピー処理は走らない。
+ */
+async function processAndCopy() {
+  processData();
+  await copyJSON();
+}
+
 function resetUI() {
   DOM.errorMessage.textContent = '';
   DOM.outputJsonArea.value = '';
@@ -202,8 +211,7 @@ function setupEventListeners() {
   DOM.inputArea.addEventListener('input', () => {
     DOM.errorMessage.textContent = '';
   });
-  DOM.processBtn.addEventListener('click', processData);
-  DOM.copyBtn.addEventListener('click', copyJSON);
+  DOM.processBtn.addEventListener('click', processAndCopy);
   DOM.resetBtn.addEventListener('click', resetForm);
 }
 
